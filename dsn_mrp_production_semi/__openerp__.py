@@ -24,7 +24,7 @@
     'version': '1.0',
     'category': '',
     'description': """
-    Retrieves the semifinished product related to final product
+Retrieves the semifinished product related to final product
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',

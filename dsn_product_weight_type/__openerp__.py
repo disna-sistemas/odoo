@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['product'],
     "description": """
-        Weight Type for product templates
+Weight Type for product templates
     """,
     "data": [
         'views/product.xml',

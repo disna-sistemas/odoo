@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['product'],
     "description": """
-        Product variant addons
+- New field for product variant
     """,
     "data": [
         'views/product.xml',

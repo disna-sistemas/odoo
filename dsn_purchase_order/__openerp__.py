@@ -25,7 +25,7 @@
     "category": "",
     "depends": ["purchase"],
     "description": """
-
+Changes purchase orders order
     """,
     "data": [],
     "installable": True,

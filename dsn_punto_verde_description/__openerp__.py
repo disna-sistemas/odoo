@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['green_dot_amount'],
     "description": """
-        Añade una descripción en la categoría para el Punto Verde
+Adds description related to Punto Verde
     """,
     "data": [
         'views/category.xml',
