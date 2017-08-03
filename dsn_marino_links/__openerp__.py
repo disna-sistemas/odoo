@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['product'],
     "description": """
-        Marino Links
+Marino ERP links for products and customers
     """,
     "data": [
         'views/marino_partner.xml',

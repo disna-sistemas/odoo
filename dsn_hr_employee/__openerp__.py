@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['hr'],
     "description": """
-        Adds sone fields to employee
+Adds some fields to employee:  nif, Social Security Number, etc...
     """,
     "data": [
         'views/employee.xml',

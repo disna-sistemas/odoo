@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['stock'],
     "description": """
-        Adds category levels to stock location
+Adds location levels (8) to stock location
     """,
     "data": [],
     "installable": True,
