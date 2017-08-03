@@ -25,6 +25,8 @@
     'category': 'Reports',
     'description': """
 QC page on mrp production
+- Adds filters to production search view
+- Adds fields to production tree view
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
