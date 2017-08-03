@@ -24,7 +24,8 @@
     'version': '1.0',
     'category': '',
     'description': """
-Adds Disna custom menus
+Creates new entity dsnmp (raw material) and its composition.
+
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',

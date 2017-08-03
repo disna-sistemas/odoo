@@ -25,7 +25,8 @@
     "category": "",
     "depends": ['account'],
     "description": """
-        Stores some total invoice concepts
+Stores some total invoice concepts:
+- Promotional Quantity
     """,
     "data": [],
     "installable": True,
