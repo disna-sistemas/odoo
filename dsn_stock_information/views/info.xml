@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="dsn_stock_info_search">
+            <field name="name">dsn.stock.info.search</field>
+            <field name="model">stock.information</field>
+            <field name="inherit_id" ref="stock_information.stock_information_search_view" />
+            <field name="arch" type="xml">
+                <filter string="Location" position="after">
+                    <filter string="Loc1" domain="[]" context="{'group_by':'dsnloc1_id'}"/>
+                    <filter string="Loc2" domain="[]" context="{'group_by':'dsnloc2_id'}"/>
+                    <filter string="Loc3" domain="[]" context="{'group_by':'dsnloc3_id'}"/>
+                    <filter string="Loc4" domain="[]" context="{'group_by':'dsnloc4_id'}"/>
+                    <filter string="Loc5" domain="[]" context="{'group_by':'dsnloc5_id'}"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

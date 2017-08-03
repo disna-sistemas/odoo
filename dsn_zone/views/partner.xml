@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="zone" model="ir.ui.view">
+
+            <field name="name">dsn_zone.partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="country_id" position="after">
+                    <field name="zone_id"
+                           required="False"
+                           placeholder="Zone"
+                           groups="dsn_zone.user">Zone</field>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

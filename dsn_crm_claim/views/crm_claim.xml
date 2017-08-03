@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="dsn_crm_claim_form_view" model="ir.ui.view">
+            <field name="name">dsn_claim_form</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+            <field name="arch" type="xml">
+                <page string="Follow Up" position="after">
+                    <page string="Costes">
+                        <group colspan="2" col="2" groups="dsn_crm_claim.dsngroup_claim_manager">
+                            <field name="time" widget="float_time" />
+                            <field name="cost" />
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>

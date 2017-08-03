@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_packaging_category">
+            <field name="name">dsnPackaging</field>
+            <field name="description">Extra security for packaging</field>
+            <field name="sequence">23</field>
+        </record>
+
+        <record id="packaging_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="dsn_packaging_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="packaging_manufacturer" model="res.groups">
+            <field name="name">Manufacturer</field>
+            <field name="category_id" ref="dsn_packaging_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="packaging_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="dsn_packaging_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>

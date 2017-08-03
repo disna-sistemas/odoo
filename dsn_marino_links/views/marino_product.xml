@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_marino_product" model="ir.ui.view">
+
+            <field name="name">dsn_marino_links.product_form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="dsnidart"
+                           required="False"
+                           placeholder="Marino id"
+                           groups="dsn_marino_links.user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_marino_product_tree_dsnidart" model="ir.ui.view">
+            <field name="name">dsn_marino_links.product_tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view" />
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="dsnidart"
+                           required="False"
+                           placeholder="Marino id"
+                           groups="dsn_marino_links.user"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

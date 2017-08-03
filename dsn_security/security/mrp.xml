@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_mrp_category">
+            <field name="name">dsnMRP</field>
+            <field name="description">Extra security for MRP</field>
+            <field name="sequence">22</field>
+        </record>
+
+        <record id="mrp_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="dsn_mrp_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="mrp_manufacturer" model="res.groups">
+            <field name="name">Manufacturer</field>
+            <field name="category_id" ref="dsn_mrp_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="mrp_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="dsn_mrp_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>

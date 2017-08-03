@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="dsnview_stock_move_invoice_state">
+            <field name="name">dsn.stock.move.form.invoice_state</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock_account.view_move_picking_from_stockaccount_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_state']" position="replace">
+                    <field name="invoice_state" groups="dsnsale.user"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+<!--
+        <record model="ir.ui.view" id="dsn_stock_quant_location_levels_tree_view">
+            <field name="name">dsn.stock.quant.location.levels.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree" />
+            <field name="arch" type="xml">
+                <field name="location_id" position="replace">
+                    <field name="dsnloc2_id" />
+                    <field name="dsnloc3_id" />
+                    <field name="dsnloc4_id" />
+                </field>
+            </field>
+        </record>
+-->
+        <record model="ir.ui.view" id="dsn_stock_quant_validation_hide">
+            <field name="name">dsn.stock.quant.valuation.hide</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock_quant_valuation.view_stock_quant_tree" />
+            <field name="arch" type="xml">
+                <field name="inventory_value" position="replace"/>
+                <field name="manual_value" position="replace"/>
+                <field name="real_value" position="replace"/>
+            </field>
+        </record>
+
+        <record id="dsn_stock_quant_search" model="ir.ui.view">
+            <field name="name">dsn.stock.quant.search</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.quant_search_view"/>
+            <field name="arch" type="xml">
+                <filter name='internal_loc' position="after">
+                    <filter name='life_date_expired' string="Expired" domain="[('lot_id.life_date','&lt;', datetime.datetime.now())]"/>
+                    <filter name='life_date_not_expired' string="Not Expired" domain="[('lot_id.life_date','&gt;', datetime.datetime.now())]"/>
+                </filter>
+                <filter string='Location' position="after">
+                    <filter name="loc1group" string='Loc1' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsnloc1_id'}"/>
+                    <filter name="loc2group" string='Loc2' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsnloc2_id'}"/>
+                    <filter name="loc3group" string='Loc3' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsnloc3_id'}"/>
+                    <filter name="loc4group" string='Loc4' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsnloc4_id'}"/>
+                    <filter name="loc5group" string='Loc5' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsnloc5_id'}"/>
+                    <filter name="cat1group" string='Cat1' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat1_id'}"/>
+                    <filter name="cat2group" string='Cat2' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat2_id'}"/>
+                    <filter name="cat3group" string='Cat3' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat3_id'}"/>
+                    <filter name="cat4group" string='Cat4' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat4_id'}"/>
+                    <filter name="cat5group" string='Cat5' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat5_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
+

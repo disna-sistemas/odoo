@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_account_invoice_report_search" model="ir.ui.view">
+            <field name="name">dsn.account.invoice.report.search</field>
+            <field name="model">account.invoice.report</field>
+            <field name="inherit_id" ref="account.view_account_invoice_report_search"></field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+
+                    <field name="product_tmpl_id" filter_domain="[('product_tmpl_id', '=', self)]"/>
+                    <field name="name_template" filter_domain="[('name_template','ilike',self)]"/>
+                    <field name="default_code" filter_domain="[('default_code','ilike',self)]"/>
+
+                </field>
+                <filter name="thisyear" position="after">
+                    <filter string="1st 4r" name="1stqr" domain="[('quarter','=',1)]" help="Journal invoices 1st quarter"/>
+                    <filter string="2nd 4r" name="2ndqr" domain="[('quarter','=',2)]" help="Journal invoices 2nd quarter"/>
+                    <filter string="3rd 4r" name="3rdqr" domain="[('quarter','=',3)]" help="Journal invoices 3rd quarter"/>
+                    <filter string="4th 4r" name="4thqr" domain="[('quarter','=',4)]" help="Journal invoices 4th quarter"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

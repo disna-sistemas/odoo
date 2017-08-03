@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!--
+        <record id="dsn_view_picking_info_logistics" model="ir.ui.view">
+            <field name="name">dsn.stock.picking.form.view.logistics</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+            <field name="arch" type="xml">
+                <field name="number_of_packages" position="after">
+                    <group>
+                        <field name="dsn_manual_weight">Peso</field>
+                        <field name="dsn_manual_volume">Volumen (m3)</field>
+                    </group>
+                </field>
+            </field>
+        </record>
+-->
+        <record id="dsn_view_move_tree" model="ir.ui.view">
+            <field name="name">dsn.stock.move.tree.order</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <tree string="Moves" position="attributes">
+                    <attribute name="default_order">create_date desc, name</attribute>
+                </tree>
+                <field name="date" position="attributes">
+                    <attribute name="groups">base.group_no_one, dsn_security.purchase_user</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_view_move_tree_receipt_picking" model="ir.ui.view">
+            <field name="name">dsn.view.move.tree.receipt.picking</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+            <field name="arch" type="xml">
+                <field name="date_expected" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                    <attribute name="widget">date</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_stock_move_tree_date_and_partner" model="ir.ui.view">
+            <field name="name">dsn.stock.tree.date.and.partner</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock_move_partner_info.view_move_picking_tree_inh_pickingpartner"/>
+            <field name="arch" type="xml">
+                <tree string="Stock Moves" position="attributes">
+                    <attribute name="default_order">create_date desc, name</attribute>
+                </tree>
+                <field name="create_date" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+                <field name="picking_partner" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+            </field>
+
+        </record>
+
+    </data>
+</openerp>

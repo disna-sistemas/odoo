@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_mrp_production_search" model="ir.ui.view" >
+            <field name="name">dsn.mrp.production.search</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+            <field name="arch" type="xml">
+                <filter name="inprogress" position="after">
+                    <filter name='pa' string="PA" domain="[('product_id.dsncat2_id.name','&#61;', 'PA')]"/>
+                    <filter name='semi' string="SEMI" domain="[('product_id.dsncat2_id.name','&#61;', 'SEMI')]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="dsn_mrp_production_tree_" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.tree.estimated.cost</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_production_estimated_cost.mrp_production_tree_view_inh_estimatedcost"/>
+            <field name="arch" type="xml">
+                <field name="avg_cost" position="after">
+                    <field name="std_cost" sum="Total Std Cost" />
+                </field>
+            </field>
+        </record>
+<!--
+        <record id="dsn_mrp_production_form_view" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <div name="dsn_mrp_production_print">
+                        <button name="dsn_button_mrp_production_label" colspan="2" string="Print Label" states="in_production,done" type="object" icon="gtk-execute" class="oe_inline"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+-->
+<!--
+        <record id="dsn_mrp_production_filter" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.search.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <filter string='Scheduled Month' position="after">
+                    <filter string='Scheduled Date' icon='terp-go-today' domain="[]" context="{'group_by' : 'dsn_planned_day'}"/>
+                </filter>
+            </field>
+
+        </record>
+-->
+<!--
+        <record id="dsn_mrp_production_tree_real_costs" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.tree.real.costs</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_production_real_cost.mrp_production_tree_view_real_costs"/>
+            <field name="arch" type="xml">
+                <field name="real_cost" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_mrp_production_tree_inh_estimatedcost" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.tree.estimated.cost</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_production_estimated_cost.mrp_production_tree_view_inh_estimatedcost"/>
+            <field name="arch" type="xml">
+                <field name="avg_cost" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_mrp_production_tree_etc" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.tree.etc</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="date_planned" position="after">
+                    <field name="manual_date" widget="date"/>
+                </field>
+                <field name="product_uom" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+-->
+<!--
+        <record id="mrp_production_view_tree" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.tree.lot</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+            <field name="arch" type="xml">
+                <field name="routing_id" position="after">
+                    <field name="move_created_ids2.lot_ids"/>
+                </field>
+            </field>
+        </record>
+-->
+<!--
+        <record id="dsn_mrp_production_form_print_label" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.form.print.label</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <group name="dsnlabel">
+                        <field name="dsn_nr_labels"/>
+                        <div name="dsn_print_label">
+                            <button name="dsn_button_print_label" colspan="2" string="Print" states="in_production,done" type="object" icon="gtk-execute" class="oe_inline"/>
+                        </div>
+                    </group>
+                </field>
+            </field>
+        </record>
+-->
+    </data>
+</openerp>

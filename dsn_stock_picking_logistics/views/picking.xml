@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_view_picking_info_logistics" model="ir.ui.view">
+            <field name="name">dsn.stock.picking.form.view.logistics</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+            <field name="arch" type="xml">
+                <field name="number_of_packages" position="after">
+                    <group>
+                        <field name="dsn_manual_weight">Peso</field>
+                        <field name="dsn_manual_volume">Volumen (m3)</field>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

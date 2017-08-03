@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_product_category_pverde_form" model="ir.ui.view">
+
+            <field name="name">dsn_punto_verde_description.product_category_pverde_view_form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="green_dot_amount.product_category_green_dot_view_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="green_dot_amount" position="before">
+                    <field name="punto_verde_description"
+                           required="False"
+                           placeholder="Descr. Punto Verde"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

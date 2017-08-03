@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_purchase_category">
+            <field name="name">dsnPurchase</field>
+            <field name="description">Extra security for Purchases</field>
+            <field name="sequence">23</field>
+        </record>
+
+        <record id="purchase_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="dsn_purchase_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="purchase_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="dsn_purchase_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_product_form_view_addons" model="ir.ui.view">
+            <field name="name">product.product.form.view.addons</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+<!--                <notebook position="inside">
+-->
+                    <page string="Packaging" position="after">
+                        <page string="Logistics">
+                            <group colspan="4" col="4">
+                                <group colspan="2">
+                                    <separator string="Product" colspan="2"/>
+
+                                    <field name="weight" required="False" />
+                                    <field name="weight_net" required="False" />
+                                    <field name="volume" required="False" />
+                                </group>
+                                <group colspan="2">
+                                    <separator string="Box" colspan="2"/>
+                                    <field name="dsn_box_weight" />
+                                    <field name="dsn_box_length" />
+                                    <field name="dsn_box_width" />
+                                    <field name="dsn_box_height" />
+                                    <field name="dsn_box_volume" />
+
+                                    <field name="dsn_box_barcode"
+                                           required="False"
+                                           placeholder="GTIN 14 Box"/>
+                                    <field name="dsn_box_units"
+                                           required="False"
+                                           placeholder="Box Units"/>
+                                    <field name="dsn_box_config"
+                                           required="False"
+                                           placeholder="Box Configuration"/>
+                                </group>
+                            </group>
+                        </page>
+                    </page>
+<!--                </notebook>
+-->
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="dsn_product_template_packaging_form">
+            <field name="name">dsn.product.template.packaging.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product_packaging_views.product_template_packaging_form_view" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <field name="packagings"
+                           position="replace"
+                            context="{'default_product_tmpl_id':id}">
+                        <tree>
+                            <field name="qty" />
+                            <field name="ul" />
+                            <field name="ul_qty" />
+                            <field name="ul_container" />
+                            <field name="rows" />
+                            <field name="weight" />
+                            <field name="dsn_height" />
+                        </tree>
+                    </field>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="dsn_product_packaging_form" model="ir.ui.view">
+            <field name="name">dsn.product.packaging.form</field>
+            <field name="model">product.packaging</field>
+            <field name="inherit_id" ref="product.product_packaging_form_view" />
+            <field name="arch" type="xml">
+                <field name="weight" position="after">
+                    <field name="dsn_height" />
+                </field>
+                <field name="name" position="after">
+                    <field name="dsn_default" />
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

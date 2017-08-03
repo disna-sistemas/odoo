@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_brand_form_view" model="ir.ui.view">
+            <field name="name">dsn.brand.form.view</field>
+            <field name="model">dsn.brand</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Brand">
+                    <group colspan="2" col="2">
+                        <field name="name" groups="dsn_security.qualityGuarantee_user">Name</field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="dsn_brand_tree_view"  model="ir.ui.view">
+            <field name="name">dsn.brand.tree.view</field>
+            <field name="model">dsn.brand</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Brands for product variants">
+                    <field name="name" groups="dsn_security.qualityGuarantee_user">Name</field>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_product_product_form_view_brand" model="ir.ui.view">
+            <field name="name">dsn.product.product.form.view.brand</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Certificates">
+                        <group colspan="2" col="2">
+<!--
+                            <field name="dsn_registered_name" groups="dsn_security.qualityGuarantee_user">Registered Name</field>
+-->
+                            <field name="dsn_brand_id" groups="dsn_security.qualityGuarantee_user">Brand</field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="dsn_action_brand" model="ir.actions.act_window">
+            <field name="name">Brands</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.brand</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="dsn_brand_form_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a brand for product variants
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="dsn_menu_disna_brand"
+                    name="Brands"
+                    groups="dsn_security.sale_mger"
+                    parent="dsn_menu_disna.dsn_menu_disna"
+                    sequence="150" />
+
+        <menuitem id="dsn_menu_disna_brand_brand"
+                    name="Brands"
+                    groups="dsn_security.sale_mger"
+                    parent="dsn_menu_disna_brand"
+                    action="dsn_action_brand"
+                    sequence="10" />
+    </data>
+</openerp>

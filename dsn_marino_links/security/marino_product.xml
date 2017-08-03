@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_marino_links">
+            <field name="name">Marino Product</field>
+            <field name="description">Categoría de seguridad para artículos de Marino</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record id="manager" model="res.groups">
+            <field name="name">Marino Product Manager</field>
+            <field name="category_id" ref="dsn_marino_links" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="user" model="res.groups">
+            <field name="name">Marino Product User</field>
+            <field name="category_id" ref="dsn_marino_links" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="dsn_res_partner_form_etc">
+            <field name="name">dsn.res.partner.form.etc</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="etc"
+                        attrs="{'invisible':[('customer','=',False)]}">
+                        <group colspan="2" col="2">
+                            <separator string="Manufacture"
+                                colspan="2" />
+                            <field name="dsn_manufacture_specs">Specifications</field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

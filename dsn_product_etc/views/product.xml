@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_template_specs_tree" model="ir.ui.view">
+            <field name="name">product.template.specs.tree</field>
+            <field name="model">dsn.product.template.specifications</field>
+            <field name="arch" type="xml">
+                <tree string="Specifications" editable="bottom">
+                    <field name="country_id" />
+                    <field name="name" />
+                    <field name="from1" />
+                    <field name="until1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_product_template_form_view_etc" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.view.etc</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="etc">
+                        <group colspan="2" col="2">
+                            <separator string="Manufacture" colspan="2"/>
+                            <field name="dsn_pnt_nf" groups="dsn_security.mrp_user">PNT NF</field>
+                            <field name="dsn_pnt_esp" groups="dsn_security.mrp_user">PNT ESP</field>
+                            <separator string="Formula" colspan="2"/>
+                            <field name="dsn_rinsing" groups="dsn_security.quality_user">Rinsing</field>
+                        </group>
+                        <group>
+                            <tree string="Specs">
+                                <field name="dsn_spec_ids"/>
+                            </tree>
+                        </group>
+                    </page>
+                </notebook>
+<!--
+                <group name="general" position="before">
+                    <group name="dsncost">
+                        <field name="cost_method" groups="stock_account.group_inventory_valuation" attrs="{'invisible': [('type','=','service')]}"/>
+                    </group>
+                </group>
+-->
+            </field>
+        </record>
+
+        <record id="dsn_product_template_form_hide_std_price" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.hide.std.price</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock_account.view_template_property_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="standard_price" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_product_template_form_hide_manual_std_cost" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.hide.manual.std.cost</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="mrp_production_estimated_cost.product_template_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="manual_standard_cost" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_product_template_form_hide_price_history" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.hide.price.history</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product_price_history.product_template_price_history_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <button name="open_product_historic_prices" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+            </field>
+        </record>
+
+        <record id="dsn_product_product_form_costs" model="ir.ui.view">
+            <field name="name">dsn.product.product.form.costs</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Costs" >
+                        <group colspan="2" col="2">
+                            <field name="standard_price" groups="account.group_account_manager">Cost Price</field>
+                            <field name="manual_standard_cost" groups="account.group_account_manager">Manual Standard cost</field>
+                            <button name="open_product_historic_prices"
+                                    string="Price history" type="object" class="oe_link"
+                                    colspan="2" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="dsn_product_product_tree" model="ir.ui.view">
+            <field name="name">dsn.product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="lst_price" position="replace">
+                    <field name="standard_price">Standard Price</field>
+                    <field name="manual_standard_cost">Manual Standard Cost</field>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_product_supplierinfo_tree" model="ir.ui.view">
+            <field name="name">dsn.product.supplierinfo.tree</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="product_name"/>
+                </field>
+            </field>
+        </record>
+<!--
+        <record id="dsn_product_template_hide_edit_button" model="ir.ui.view">
+            <field name="dsn.product.template.readonly" />
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+
+                <field name="type" position="attributes">
+                    <attribute name="attrs">{'readonly':[(1,'=',2)]}</attribute>
+
+                </field>
+
+            </field>
+        </record>
+-->
+    </data>
+</openerp>

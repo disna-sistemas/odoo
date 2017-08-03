@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_qc_inspection_tree_date" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.tree.date</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="date" widget="date" />
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_inspection_tree_notes" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.tree.notes</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="internal_notes" />
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_inspection_tree_operation_invisible" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.tree.operation.invisible</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control_mrp_operations.qc_inspection_tree_view_operation"/>
+            <field name="arch" type="xml">
+                <field name="workcenter_line_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="dsn_qc_inspection_tree_claimfields_invisible" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.tree.claimfields.invisible</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control_claim.qc_inspection_claim_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="automatic_claims" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="automatic_claims_by_line" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_inspection_forcevalid_invisible" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.forcevalid.invisible</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control_force_valid.qc_inspection_tree_view_putvalid"/>
+            <field name="arch" type="xml">
+                <field name="force_valid" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_inspection_tree_product_qty" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.tree.qty.produced</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control_mrp.qc_inspection_tree_view_production" />
+            <field name="arch" type="xml">
+                <field name="production" position="after">
+                    <field name="dsn_production_qty">Production Qty</field>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_inspection_action_back_to_ready_state" model="ir.ui.view">
+            <field name="name">dsn.qc.inspection.button.back.to.ready</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel" position="after">
+                    <button name="dsn_action_back_to_ready"
+                            string="Back to Ready"
+                            states="waiting"
+                            groups="dsn_security.quality_manager"
+                            type="object"
+                            icon="gtk-execute"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="dsn_qc_test_question_method" model="ir.ui.view">
+            <field name="name">dsn.qc.test.question.method</field>
+            <field name="model">qc.test.question</field>
+            <field name="inherit_id" ref="quality_control.qc_test_question_form_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="method_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_qc_analysis_method_form" model="ir.ui.view">
+
+            <field name="name">dsn_qc.analysis_method_form</field>
+            <field name="model">dsnqc.analysis.method</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formula">
+                    <group colspan="2" col="2">
+
+                        <field name="name" groups="dsn_security.qualityGuarantee_user">Name</field>
+                        <field name="notes" groups="dsn_security.qualityGuarantee_user">Notas</field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="dsn_qc_analysis_method_tree" model="ir.ui.view">
+
+            <field name="name">dsn_qc.analysis_method_tree</field>
+            <field name="model">dsnqc.analysis.method</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Analysis Methods">
+                    <field name="name" groups="dsn_security.qualityGuarantee_user">Name</field>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="dsn_action_analysis_method" model="ir.actions.act_window">
+            <field name="name">Analysis Methods</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsnqc.analysis.method</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="dsn_qc_analysis_method_form"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new analysis method
+              </p>
+            </field>
+        </record>
+
+
+        <menuitem id="dsn_menu_disna_technical"
+                    name="Technical"
+                    parent="dsn_menu_disna.dsn_menu_disna"
+                    sequence="110" />
+
+        <menuitem id="dsn_menu_disna_technical_analysis_method"
+                    name="Analysis Methods"
+                    parent="dsn_menu_disna_technical"
+                    action="dsn_action_analysis_method"
+                    sequence="10" />
+
+    </data>
+</openerp>

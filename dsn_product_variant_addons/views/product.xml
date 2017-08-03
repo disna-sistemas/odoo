@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_product_form_view_addons" model="ir.ui.view">
+            <field name="name">product.product.form.view.addons</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="uom_id" position="after">
+<!--
+                    <separator string="Logistics" colspan="2"/>
+                    <field name="dsn_box_barcode"
+                           required="False"
+                           placeholder="GTIN 14 Box"/>
+                    <field name="dsn_box_units"
+                           required="False"
+                           placeholder="Box Units"/>
+                    <field name="dsn_box_config"
+                           required="False"
+                           placeholder="Box Configuration"/>
+-->
+                    <separator string="Costs" colspan="2"/>
+                    <field name="dsn_calc_cost" groups="dsn_security.mrp_user">Calculate Cost</field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

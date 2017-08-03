@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="zone_form_view">
+            <field name="name">zone.form</field>
+            <field name="model">zone</field>
+            <field name="arch" type="xml">
+                <form string="Zones">
+                    <group>
+                        <field name="name" required="True">Name</field>
+                        <field name="parent">Parent</field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="zone_tree_view">
+            <field name="name">zone.tree</field>
+            <field name="model">zone</field>
+            <field name="arch" type="xml">
+                <tree string="Zones">
+                    <field name="name">Name</field>
+                    <field name="name">Parent</field>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_zones" model="ir.actions.act_window">
+            <field name="name">Zones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">zone</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="zone_form_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a zone
+              </p>
+            </field>
+        </record>
+
+        <menuitem name="Zones"
+                  id="dsn_zone.menu_zone_zone"
+                  parent="base.menu_sales"
+                  action="action_zones"
+                  sequence="10"/>
+
+        <record model="ir.ui.view" id="zone_tree_view">
+            <field name="name">zone.tree</field>
+            <field name="model">zone</field>
+            <field name="arch" type="xml">
+                <tree string="Zones">
+                        <field name="name">Name</field>
+                        <field name="parent">Parent</field>
+                </tree>
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>

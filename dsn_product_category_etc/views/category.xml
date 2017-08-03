@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_product_category_mrp_report_order" model="ir.ui.view">
+            <field name="name">dsn.product.category.mrp_report_order</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="mrp_report_order" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

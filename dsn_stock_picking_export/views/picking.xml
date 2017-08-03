@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_view_stock_picking_export_file" model="ir.ui.view">
+            <field name="name">dsn.stock.picking.form.view.export.file</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <label for="Exported File"/>
+                    <div name="dsn_file_export_info">
+                        <field name="dsn_export_file" string="Exported File"/>
+                        <button name="dsn_button_stock_picking_export_file" colspan="2" string="Export File" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_view_stock_picking_products_order" model="ir.ui.view">
+            <field name="name">dsn.stock.picking.form.view.products.order</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="move_lines" position="attributes">
+                    <attribute name="default_order">priority, create_date</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

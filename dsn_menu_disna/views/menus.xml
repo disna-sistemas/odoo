@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="etc"
+            id="dsn_menu_disna"
+            sequence="50"/>
+
+    </data>
+</openerp>

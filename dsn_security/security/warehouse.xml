@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_warehouse_category">
+            <field name="name">dsnWarehouse</field>
+            <field name="description">Extra security for Warehouse</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <record id="warehouse_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="dsn_warehouse_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="warehouse_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="dsn_warehouse_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>

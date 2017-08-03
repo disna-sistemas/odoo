@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record forcecreate="True" id="dsn_decimal_precision_cm" model="decimal.precision">
+            <field name="name">cm</field>
+            <field name="digits" eval="2"/>
+        </record>
+        <record forcecreate="True" id="dsn_decimal_precision_lt" model="decimal.precision">
+            <field name="name">cm3</field>
+            <field name="digits" eval="2"/>
+        </record>
+    </data>
+</openerp>

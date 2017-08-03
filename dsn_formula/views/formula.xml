@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_mp_form_view" model="ir.ui.view">
+
+            <field name="name">dsn_formula.mp_form</field>
+            <field name="model">dsnmp</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formula">
+                    <group colspan="4" col="4">
+
+                        <separator string="General" colspan="4"/>
+                        <field name="product_id" groups="dsn_security.quality_user">Product</field>
+                        <field name="name" groups="dsn_security.quality_user">INCI</field>
+                        <field name="anexos" groups="dsn_security.quality_user">Anexos</field>
+                        <field name="ld50" groups="dsn_security.quality_user">LD50</field>
+                        <field name="noael" groups="dsn_security.quality_user">NOAEL</field>
+                        <field name="natural">% Natural</field>
+                        <field name="show_on_label" groups="dsn_security.quality_user">Show on label</field>
+                        <field name="extract" groups="dsn_security.quality_user">Extract</field>
+                        <field name="bio" groups="dsn_security.quality_user">BIO</field>
+                        <field name="tested_on_animals" groups="dsn_security.quality_user">Tested on Animals</field>
+                        <field name="tested_on_animals_text" groups="dsn_security.quality_user"></field>
+                        <field name="update_date" groups="dsn_security.quality_user">Update Date</field>
+                    </group>
+                    <group colspan="8" col="8">
+                        <separator string="Functions" colspan="8"/>
+                        <field name="absouv" groups="dsn_security.quality_user">Absorción UV</field>
+                        <field name="accabe" groups="dsn_security.quality_user">Acond. Cabello</field>
+                        <field name="acpiel" groups="dsn_security.quality_user">Acond. Piel</field>
+                        <field name="alisan" groups="dsn_security.quality_user">Alisante</field>
+                        <field name="anaglu" groups="dsn_security.quality_user">Antiaglutinante</field>
+                        <field name="ancasp" groups="dsn_security.quality_user">Anticaspa</field>
+                        <field name="ancorr" groups="dsn_security.quality_user">Anticorrosivo</field>
+                        <field name="anespu" groups="dsn_security.quality_user">Antiespumante</field>
+                        <field name="anesta" groups="dsn_security.quality_user">Antiestático</field>
+                        <field name="anmicr" groups="dsn_security.quality_user">Antimicrobiano</field>
+                        <field name="anoxid" groups="dsn_security.quality_user">Antioxidante</field>
+                        <field name="anplac" groups="dsn_security.quality_user">Antiplaca</field>
+                        <field name="astrin" groups="dsn_security.quality_user">Astringente</field>
+                        <field name="blanqu" groups="dsn_security.quality_user">Blanqueante</field>
+                        <field name="calman" groups="dsn_security.quality_user">Calmante</field>
+                        <field name="colora" groups="dsn_security.quality_user">Colorante</field>
+                        <field name="conser" groups="dsn_security.quality_user">Conservante</field>
+                        <field name="ctvisc" groups="dsn_security.quality_user">Control Viscosidad</field>
+                        <field name="cuoral" groups="dsn_security.quality_user">Cuidado Oral</field>
+                        <field name="desnat" groups="dsn_security.quality_user">Desnaturalizante</field>
+                        <field name="desodo" groups="dsn_security.quality_user">Desodorante</field>
+                        <field name="disolv" groups="dsn_security.quality_user">Disolvente</field>
+                        <field name="edulco" groups="dsn_security.quality_user">Edulcorante</field>
+                        <field name="emolie" groups="dsn_security.quality_user">Emoliente</field>
+                        <field name="emulsi" groups="dsn_security.quality_user">Emulsionante</field>
+                        <field name="enmasc" groups="dsn_security.quality_user">Enmascarante</field>
+                        <field name="espuma" groups="dsn_security.quality_user">Espumante</field>
+                        <field name="estemu" groups="dsn_security.quality_user">Estabilizador Emulsión</field>
+                        <field name="fiform" groups="dsn_security.quality_user">Film Forming</field>
+                        <field name="fijcab" groups="dsn_security.quality_user">Fijador Cabello</field>
+                        <field name="filtuv" groups="dsn_security.quality_user">Filtro UV</field>
+                        <field name="hidrat" groups="dsn_security.quality_user">Hidratante</field>
+                        <field name="humect" groups="dsn_security.quality_user">Humectante</field>
+                        <field name="imespu" groups="dsn_security.quality_user">Impulsor Espuma</field>
+                        <field name="limpia" groups="dsn_security.quality_user">Limpiador</field>
+                        <field name="opacif" groups="dsn_security.quality_user">Opacificante</field>
+                        <field name="perfum" groups="dsn_security.quality_user">Perfume</field>
+                        <field name="plasti" groups="dsn_security.quality_user">Plastificante</field>
+                        <field name="prpiel" groups="dsn_security.quality_user">Protector Piel</field>
+                        <field name="quelan" groups="dsn_security.quality_user">Quelante</field>
+                        <field name="querat" groups="dsn_security.quality_user">Queratolítico</field>
+                        <field name="reduct" groups="dsn_security.quality_user">Reductor</field>
+                        <field name="refres" groups="dsn_security.quality_user">Refrescante</field>
+                        <field name="solubi" groups="dsn_security.quality_user">Solubilizante</field>
+                        <field name="tampon" groups="dsn_security.quality_user">Tampón</field>
+                        <field name="tensoa" groups="dsn_security.quality_user">Tensoactivo</field>
+                        <field name="tonico" groups="dsn_security.quality_user">Tónico</field>
+
+                    </group>
+
+                    <group col="2">
+                        <separator string="Ingredients" colspan="2"/>
+                        <field name="ingredient_ids"
+                                context="{'mp_id':id}"
+                                nolabel="1">
+                            <tree>
+                                <field name="mpingr_id" >Ingrediente</field>
+                                <field name="conc_min" />
+                                <field name="conc_max" />
+                                <field name="conc_fixed" />
+                            </tree>
+                        </field>
+                    </group>
+
+                    <group col="4">
+                        <field name="cas_ids"
+                                context="{'mp_id':id}"
+                                nolabel="1">
+                            <tree>
+                                <field name="description" />
+                            </tree>
+                        </field>
+                        <field name="einec_ids"
+                                context="{'mp_id':id}"
+                                nolabel="1">
+                            <tree>
+                                <field name="description" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group col="4">
+                        <field name="toxicity"/>
+                        <field name="usage_warning"/>
+                        <field name="cir"/>
+                        <field name="other"/>
+                        <field name="security"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="dsn_mp_tree_view" model="ir.ui.view">
+
+            <field name="name">dsn_formula.mp_tree</field>
+            <field name="model">dsnmp</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Formulas">
+                    <field name="code" groups="dsn_security.quality_user">Prod. Code</field>
+                    <field name="product_id" groups="dsn_security.quality_user">Product</field>
+                    <field name="name" groups="dsn_security.quality_user">INCI</field>
+                    <field name="anexos" groups="dsn_security.quality_user">Anexos</field>
+                    <field name="ld50" groups="dsn_security.quality_user">LD50</field>
+                    <field name="noael" groups="dsn_security.quality_user">NOAEL</field>
+                    <field name="natural">% Natural</field>
+                    <field name="show_on_label" groups="dsn_security.quality_user">Show on label</field>
+                    <field name="extract" groups="dsn_security.quality_user">Extract</field>
+                    <field name="bio" groups="dsn_security.quality_user">BIO</field>
+                    <field name="tested_on_animals" groups="dsn_security.quality_user">Tested on Animals</field>
+                    <field name="tested_on_animals_text" groups="dsn_security.quality_user"></field>
+                </tree>
+
+            </field>
+        </record>
+
+       <record id="dsn_mp_ingredient_tree_view" model="ir.ui.view">
+            <field name="name">dsn.mp.ingredient.tree</field>
+            <field name="model">dsnmp.ingredient</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ingredients">
+                    <field name="mp_id"/>
+                    <field name="mpingr_id"/>
+                    <field name="conc_min"/>
+                    <field name="conc_max"/>
+                </tree>
+            </field>
+        </record>
+<!--
+        <record id="dsn_mp_ingredient_search" model="ir.ui.view">
+            <field name="name">dsn.mp.ingredient.search</field>
+            <field name="model">dsnmp.ingredient</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Ingrs">
+                    <field name="mp_id" string="MP"/>
+                    <field name="mpingr_id" string="Ingredient"/>
+                    <field name="conc_min"/>
+                    <field name="conc_max"/>
+                    <filter string="Ingredient name" domain="[('mpingr_id.product_id.name','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+-->
+        <record id="dsn_action_formula" model="ir.actions.act_window">
+            <field name="name">Formulas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsnmp</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="dsn_mp_form_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a formula
+              </p>
+            </field>
+        </record>
+
+        <record id="dsn_action_ingredients" model="ir.actions.act_window">
+            <field name="name">Ingredients</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsnmp.ingredient</field>
+            <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+        </record>
+<!--
+        <record id="view_mrp_bom_line_filter" model="ir.ui.view">
+            <field name="name">dsnmp.ingredient.select</field>
+            <field name="model">dsnmp.ingredient</field>
+            <field name="arch" type="xml">
+                <search string="Search MP Ingredients">
+                    <filter name="mp_id" domain=""
+                    <field name="mp_id"/>
+                    <field name="mpingr_id"/>
+                </search>
+            </field>
+        </record>
+-->
+        <menuitem id="dsn_menu_chemical"
+                    name="Chemical"
+                    groups="dsn_security.quality_user,dsn_security.qualityGuarantee_user"
+                    sequence="88"/>
+
+        <menuitem id="dsn_menu_chemical_formula"
+                    name="Formulas"
+                    groups="dsn_security.quality_user"
+                    parent="dsn_menu_chemical"
+                    sequence="1" />
+
+        <menuitem id="dsn_menu_chemical_formula_formula"
+                    name="Formulas"
+                    groups="dsn_security.quality_user"
+                    parent="dsn_menu_chemical_formula"
+                    action="dsn_action_formula"
+                    sequence="30" />
+
+        <menuitem id="dsn_menu_chemical_formula_ingredients"
+                  name="Ingredients"
+                  groups="dsn_security.quality_user"
+                  parent="dsn_menu_chemical_formula"
+                  action="dsn_action_ingredients"
+                  sequence="50" />
+
+    </data>
+</openerp>

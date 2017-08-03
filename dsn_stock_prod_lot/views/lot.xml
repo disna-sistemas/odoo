@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_view_production_lot_tree" model="ir.ui.view">
+            <field name="name">dsn.production.lot.tree</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="product_expiry_ext.product_expiry_tree_view" />
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="create_date" position="after">
+                    <field name="life_date"/>
+                </field>
+                <field name="create_date" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dsn_stock_production_lot_form" model="ir.ui.view">
+            <field name="name">dsn.stock.production.lot.form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <field name="version_id" readonly="1">Version</field>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="dsn_stock_production_lot_search_category">
+            <field name="name">dsn.stock.production.lot.search.category</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.search_product_lot_filter" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <filter name='pa' string="PA" domain="[('product_id.dsncat2_id.name','&#61;', 'PA')]"/>
+                    <filter name='mp' string="MP" domain="[('product_id.dsncat2_id.name','&#61;', 'MP')]"/>
+                    <filter name='acc' string="ACC" domain="[('product_id.dsncat2_id.name','&#61;', 'ACC')]"/>
+                    <filter name='pa_en_stock'
+                            string="PA en stock"
+                            domain="[('product_id.dsncat2_id.name','&#61;', 'PA'),
+                                    ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
+                    <filter name='mp_en_stock'
+                            string="MP en stock"
+                            domain="[('product_id.dsncat2_id.name','&#61;', 'MP'),
+                                    ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
+                    <filter name='acc_en_stock'
+                            string="ACC en stock"
+                            domain="[('product_id.dsncat2_id.name','&#61;', 'ACC'),
+                                    ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
+<!--                            context="{'group_by': 'product_id'}"-->
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
