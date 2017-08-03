@@ -28,9 +28,11 @@
     + PNT NF
     + PNT ESP
     + rinsing
+    + Product Specifications and Registrations
     - standard_price
     - manual_standard_cost
     - price_history
+
 
     """,
     "data": [
