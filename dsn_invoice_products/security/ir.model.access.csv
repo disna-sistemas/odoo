@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dsn_invoice,access_dsn_invoice,dsn_invoice_products.dsn.account.invoice,base.group_sale_manager,1,0,0,0
-access_dsn_invoice_product,access_dsn_invoice_product,dsn_invoice_products.dsn.account.invoice.product,base.group_sale_manager,1,0,0,0
