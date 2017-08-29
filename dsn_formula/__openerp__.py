@@ -24,7 +24,8 @@
     'version': '1.0',
     'category': '',
     'description': """
-Creates new entity dsnmp (raw material) and its composition.
+Creates new entity dsnmp (raw material) and its chemical composition with technical specificacions as
+INCI name, NOAEL, LD50, CAS, EINECS, etc...
 
 """,
     'author': 'Disna',
