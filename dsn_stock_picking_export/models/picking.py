@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _, exceptions
 from datetime import datetime
 import sys
 import xml.etree.ElementTree as etree
@@ -44,6 +44,16 @@ class dsnStockPickingExport(models.Model):
 
     @api.multi
     def dsn_button_stock_picking_export_file(self):
+
+        param_obj = self.pool.get('ir.config_parameter')
+        local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
+
+        if local_folder_ids:
+            local_folder_id = local_folder_ids[0]
+            local_folder = local_folder_id['value']
+        else:
+            raise exceptions.Warning(_('Local folder not defined'))
+
         for record in self:
 
             _name = self.replace_bars(record.name)
@@ -87,23 +97,6 @@ class dsnStockPickingExport(models.Model):
                 if line.product_id.dsnidart:
                     _dsnidart = self.replace_bars(str(line.product_id.dsnidart))
 
-#                lin = etree.SubElement(docdata, "lin",
-#                    {
-#                        "product_id": str(line.product_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                        "product_code": line.product_id.default_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                        "product_dsnidart": _dsnidart, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                        "product_name": line.product_id.name_template, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                        "product_qty": str(line.product_uom_qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
-#                    })
-
-#                for quant in line.reserved_quant_ids:
-#                    lot = etree.SubElement(lin, "lot",
-#                       {
-#                           "lot_name": quant.lot_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                           "lot_qty": str(quant.qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
-#                       })
-
-
                 for quant in line.reserved_quant_ids:
                     lot = etree.SubElement(docdata, "lot",
                            {
@@ -115,15 +108,62 @@ class dsnStockPickingExport(models.Model):
                                "lot_qty": str(quant.qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                            })
 
-            etree.ElementTree(alb).write('/media/copias/Winfolder/alova/' + _name + '.xml', xml_declaration=True)
+#            etree.ElementTree(alb).write('/media/copias/Winfolder/alova/' + _name + '.xml', xml_declaration=True)
+#            etree.ElementTree(alb).write('/home/odoo/alova/' + _name + '.xml', xml_declaration=True)
+            etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
 
-#            ftp = ftplib.FTP("pixie.disna.com","alova", "4L0va4a4")
-#            file = open("/media/copias/Winfolder/alova/" + _name + ".xml", "r")
+#            ftp = ftplib.FTP("192.168.5.19","varios", "@")
+#            file = open(local_folder + _name + ".xml", "r")
 #            ftp.storbinary("STOR" + _name + ".xml")
 #            file.close()
 #            ftp.quit()
 
         self.dsn_export_file = True
+
+        return True
+
+    @api.multi
+    def dsn_button_export_to_ftp(self):
+
+        param_obj = self.pool.get('ir.config_parameter')
+        ftp_server_ids = param_obj.search([('key', '=', 'disna.ftp.server')])
+        ftp_user_ids = param_obj.search([('key', '=', 'disna.ftp.user')])
+        ftp_pwd_ids = param_obj.search([('key', '=', 'disna.ftp.pwd')])
+        local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
+
+        if ftp_server_ids:
+            ftp_server_id = ftp_server_ids[0]
+            ftp_server = ftp_server_id['value']
+        else:
+            raise exceptions.Warning(_('No ftp server defined'))
+
+        if ftp_user_ids:
+            ftp_user_id = ftp_user_ids[0]
+            ftp_user = ftp_user_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp user not defined'))
+
+        if ftp_pwd_ids:
+            ftp_pwd_id = ftp_pwd_ids[0]
+            ftp_pwd = ftp_pwd_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp password not defined'))
+
+        if local_folder_ids:
+            local_folder_id = local_folder_ids[0]
+            local_folder = local_folder_id['value']
+        else:
+            raise exceptions.Warning(_('Local folder not defined'))
+
+        self.dsn_button_stock_picking_export_file()
+
+        for record in self:
+            _name = self.replace_bars(record.name)
+            ftp = ftplib.FTP(ftp_server, ftp_user, ftp_pwd)
+            file = open(local_folder + _name + ".xml", "r")
+            ftp.storbinary("STOR" + _name + ".xml")
+            file.close()
+            ftp.quit()
 
         return True
 
