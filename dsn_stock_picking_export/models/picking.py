@@ -108,15 +108,7 @@ class dsnStockPickingExport(models.Model):
                                "lot_qty": str(quant.qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                            })
 
-#            etree.ElementTree(alb).write('/media/copias/Winfolder/alova/' + _name + '.xml', xml_declaration=True)
-#            etree.ElementTree(alb).write('/home/odoo/alova/' + _name + '.xml', xml_declaration=True)
             etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
-
-#            ftp = ftplib.FTP("192.168.5.19","varios", "@")
-#            file = open(local_folder + _name + ".xml", "r")
-#            ftp.storbinary("STOR" + _name + ".xml")
-#            file.close()
-#            ftp.quit()
 
         self.dsn_export_file = True
 
