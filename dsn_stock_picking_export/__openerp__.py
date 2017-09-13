@@ -25,7 +25,9 @@
     "category": "",
     "depends": ["stock"],
     "description": """
-        allows exporting stock picking to a text file
+Allows exporting stock picking to a text file
+Allows exporting stock picking to a ftp server
+
     """,
     "data": ['views/picking.xml'],
     "installable": True,
