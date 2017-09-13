@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['stock','product_expiry','product_expiry_ext','mrp_production_traceability','stock_lock_lot'],
+    "depends": ['stock','product_expiry','product_expiry_ext','mrp_production_traceability','stock_lock_lot','disna_version_control'],
     "description": """
         now
     """,
