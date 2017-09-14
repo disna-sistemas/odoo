@@ -117,7 +117,7 @@ class dsnStockPickingExport(models.Model):
     @api.multi
     def dsn_button_export_to_ftp(self):
 
-        param_obj = self.pool.get('ir.config_parameter')
+        param_obj = self.env['ir.config_parameter']
         ftp_server_ids = param_obj.search([('key', '=', 'disna.ftp.server')])
         ftp_user_ids = param_obj.search([('key', '=', 'disna.ftp.user')])
         ftp_pwd_ids = param_obj.search([('key', '=', 'disna.ftp.pwd')])
