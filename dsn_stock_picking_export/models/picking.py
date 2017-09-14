@@ -153,7 +153,7 @@ class dsnStockPickingExport(models.Model):
             _name = self.replace_bars(record.name)
             ftp = ftplib.FTP(ftp_server, ftp_user, ftp_pwd)
             file = open(local_folder + _name + ".xml", "r")
-            ftp.storbinary("STOR" + _name + ".xml")
+            ftp.storbinary("STOR" + _name + ".xml", file)
             file.close()
             ftp.quit()
 
