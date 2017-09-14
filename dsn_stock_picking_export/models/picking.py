@@ -45,7 +45,7 @@ class dsnStockPickingExport(models.Model):
     @api.multi
     def dsn_button_stock_picking_export_file(self):
 
-        param_obj = self.pool.get('ir.config_parameter')
+        param_obj = self.env['ir.config_parameter']
         local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
 
         if local_folder_ids:
