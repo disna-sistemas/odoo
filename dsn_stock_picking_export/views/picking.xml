@@ -11,7 +11,8 @@
                     <div name="dsn_file_export_info">
                         <field name="dsn_export_file" string="Exported File"/>
                         <button name="dsn_button_stock_picking_export_file" colspan="2" string="Export File" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
-                        <button name="dsn_button_export_to_ftp" colspan="2" string="Export to Ftp" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
+<!--                        <button name="dsn_button_export_to_ftp" colspan="2" string="Export to Ftp" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
+-->
                     </div>
                 </field>
             </field>
