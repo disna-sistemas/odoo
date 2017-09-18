@@ -53,46 +53,46 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, values):
+        self.ensure_one()
 
         _allow_update = True
 
         _uid = self.env.uid
-        for record in self:
-            if _uid != 1 and record.product_manager:
-                if record.product_manager != _uid:
+        if _uid != 1 and self.product_manager:
+            if self.product_manager != _uid:
 
-                    _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
-                        'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
-                        'hr_expense_ok', 'image', 'image_medium', 'image_small', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
-                        'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
-                        'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
-                        'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
-                        'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
-                        'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_producion', 'type',
-                        'volume', 'warranty', 'weight', 'weight_net' ]
+                _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
+                    'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
+                    'hr_expense_ok', 'image', 'image_medium', 'image_small', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
+                    'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
+                    'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
+                    'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
+                    'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
+                    'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_producion', 'type',
+                    'volume', 'warranty', 'weight', 'weight_net' ]
 
-                    for _field in _forbidden_fields:
-                        if _field in values:
+                for _field in _forbidden_fields:
+                    if _field in values:
 
-                            _allow_update = False
+                        _allow_update = False
 
-    #                        if self.create_date:
+#                        if self.create_date:
 
-    #                            a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
-    #                            b = datetime.now()
-    #                            diff = (b-a).total_seconds()
-    #                            if diff>3600:
-    #                                if self.product_manager == self.env.user:
-    #                                    _allow_update = True
-    #                        else:
-    #                            _allow_update = True
+#                            a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
+#                            b = datetime.now()
+#                            diff = (b-a).total_seconds()
+#                            if diff>3600:
+#                                if self.product_manager == self.env.user:
+#                                    _allow_update = True
+#                        else:
+#                            _allow_update = True
 
-                            break
+                        break
 
-            if _allow_update:
-                return super(ProductTemplate, record).write(values)
-            else:
-                raise exceptions.Warning('You are not allowed to modify this product template!!!')
+        if _allow_update:
+            return super(ProductTemplate, self).write(values)
+        else:
+            raise exceptions.Warning('You are not allowed to modify this product template!!!')
 
 
     dsn_pnt_nf = fields.Char(string='PNT NF')
