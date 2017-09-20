@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
+<!--
         <record id="dsn_brand_form_view" model="ir.ui.view">
             <field name="name">dsn.brand.form.view</field>
             <field name="model">dsn.brand</field>
@@ -25,7 +25,7 @@
                 </tree>
             </field>
         </record>
-<!--
+
         <record id="dsn_product_product_form_view_brand" model="ir.ui.view">
             <field name="name">dsn.product.product.form.view.brand</field>
             <field name="model">product.product</field>
