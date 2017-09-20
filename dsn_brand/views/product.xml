@@ -25,7 +25,7 @@
                 </tree>
             </field>
         </record>
-
+<!--
         <record id="dsn_product_product_form_view_brand" model="ir.ui.view">
             <field name="name">dsn.product.product.form.view.brand</field>
             <field name="model">product.product</field>
@@ -35,15 +35,17 @@
                 <notebook position="inside">
                     <page string="Certificates">
                         <group colspan="2" col="2">
-<!--
-                            <field name="dsn_registered_name" groups="dsn_security.qualityGuarantee_user">Registered Name</field>
--->
+
+###                            <field name="dsn_registered_name" groups="dsn_security.qualityGuarantee_user">Registered Name</field>
+
                             <field name="dsn_brand_id" groups="dsn_security.qualityGuarantee_user">Brand</field>
                         </group>
                     </page>
                 </notebook>
             </field>
         </record>
+
+-->
 
         <record id="dsn_action_brand" model="ir.actions.act_window">
             <field name="name">Brands</field>
