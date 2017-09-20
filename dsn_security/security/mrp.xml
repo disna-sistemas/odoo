@@ -25,18 +25,18 @@
             <field name="category_id" ref="dsn_mrp_category" />
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
-<!--
+
         <record model="ir.module.category" id="dsn_vof_category">
             <field name="name">dsnVOF</field>
             <field name="description">Extra security for Virtual OF</field>
             <field name="sequence">23</field>
         </record>
 
-        <record id="mrp_user" model="res.groups">
+        <record id="vof_user" model="res.groups">
             <field name="name">user</field>
             <field name="category_id" ref="dsn_vof_category" />
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
--->
+
     </data>
 </openerp>
