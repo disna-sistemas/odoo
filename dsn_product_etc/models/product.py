@@ -59,6 +59,8 @@ class ProductTemplate(models.Model):
 
         _uid = self.env.uid
         if _uid != 1 and self.product_manager:
+            _warn = "manager.id:  " + str(self.product_manager.id) + " , _uid: " + str(_uid)
+            raise exceptions.Warning(_warn)
             if self.product_manager.id != _uid:
 
                 _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
