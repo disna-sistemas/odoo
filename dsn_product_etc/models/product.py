@@ -53,7 +53,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, values):
-        self.ensure_one()
+#        self.ensure_one()
 
         _allow_update = True
 
