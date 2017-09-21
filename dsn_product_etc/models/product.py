@@ -55,12 +55,12 @@ class ProductTemplate(models.Model):
     def write(self, values):
 #        self.ensure_one()
 
-        _allow_update = True
+        allow_update = True
 
         _uid = self.env.uid
         if _uid != 1 and self.product_manager:
-            _warn = "manager.id:  " + str(self.product_manager.id) + " , _uid: " + str(_uid)
-            raise exceptions.Warning(_warn)
+#            _warn = "manager.id:  " + str(self.product_manager.id) + " , _uid: " + str(_uid)
+#            raise exceptions.Warning(_warn)
             if self.product_manager.id != _uid:
 
                 _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
@@ -76,7 +76,7 @@ class ProductTemplate(models.Model):
                 for _field in _forbidden_fields:
                     if _field in values:
 
-                        _allow_update = False
+                        allow_update = False
 
 #                        if self.create_date:
 
@@ -90,8 +90,10 @@ class ProductTemplate(models.Model):
 #                            _allow_update = True
 
                         break
+#            _warn = str(allow_update)
 
-        if _allow_update:
+
+        if allow_update:
             return super(ProductTemplate, self).write(values)
         else:
             raise exceptions.Warning('You are not allowed to modify this product template!!!')
