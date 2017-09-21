@@ -59,7 +59,7 @@ class ProductTemplate(models.Model):
 
         _uid = self.env.uid
         if _uid != 1 and self.product_manager:
-            if self.product_manager != _uid:
+            if self.product_manager.id != _uid:
 
                 _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
                     'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
