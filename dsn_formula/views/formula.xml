@@ -142,6 +142,19 @@
             </field>
         </record>
 
+        <record id="dsn_mp_search" model="ir.ui.view">
+            <field name="name">dsn_formula.dsn.mp.search</field>
+            <field name="model">dsnmp</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_id" filter_domain="[('product_id','=',self)]"/>
+                    <field name="code" filter_domain="['code','ilike',self]"/>
+                    <field name="name" filter_domain="[('name','ilike',self)]"/>
+                </search>
+
+            </field>
+        </record>
+
        <record id="dsn_mp_ingredient_tree_view" model="ir.ui.view">
             <field name="name">dsn.mp.ingredient.tree</field>
             <field name="model">dsnmp.ingredient</field>
