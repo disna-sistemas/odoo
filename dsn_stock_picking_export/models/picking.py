@@ -234,7 +234,7 @@ class dsnStockPickingExport(models.Model):
         else:
             raise exceptions.Warning(_('Local folder not defined'))
 
-        self.dsn_button_stock_picking_export_file()
+        self.dsn_button_stock_picking_export2_file()
 
         for record in self:
             _name = self.replace_bars(record.name)
