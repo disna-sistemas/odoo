@@ -162,7 +162,7 @@ class dsnStockPickingExport(models.Model):
                     "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
 
-            quant_ids = self.env['stock.quant'].search([('reservation_id.picking_id.id','=',record.id)]).sorted(key=lambda x: (x.product_id, x.lot_id))
+            quant_ids = self.env['stock.quant'].search([('reservation_id.picking_id.id','=',record.id)]).sorted(key=lambda x: (x.product_id.default_code, x.lot_id.name))
 
             prod_code = ""
             prod_name = ""
