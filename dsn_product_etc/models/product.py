@@ -126,7 +126,7 @@ class ProductProduct(models.Model):
 
         allow_update = True
 
-        _uid = self.env.user.id
+        _uid = self.env.uid
 
         for record in self:
             if allow_update and _uid != 1 and record.product_tmpl_id.product_manager:
