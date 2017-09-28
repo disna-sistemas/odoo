@@ -124,12 +124,12 @@ class ProductProduct(models.Model):
     @api.multi
     def write(self, values):
 
-        _allow_update = True
+        allow_update = True
 
         _uid = self.env.user.id
 
         for record in self:
-            if _allow_update and _uid != 1 and record.product_tmpl_id.product_manager:
+            if allow_update and _uid != 1 and record.product_tmpl_id.product_manager:
 
                 if record.product_tmpl_id.product_manager != _uid:
 
@@ -140,7 +140,7 @@ class ProductProduct(models.Model):
                     for _field in _forbidden_fields:
                         if _field in values:
 
-                            _allow_update = False
+                            allow_update = False
 
         #                    a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
         #                    b = datetime.now()
@@ -150,7 +150,7 @@ class ProductProduct(models.Model):
         #                            _allow_update = True
                             break
 
-        if _allow_update:
+        if allow_update:
             return super(ProductProduct, self).write(values)
         else:
             raise exceptions.Warning('You are not allowed to modify this product!!!')
