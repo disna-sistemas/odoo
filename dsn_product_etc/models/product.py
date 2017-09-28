@@ -127,25 +127,28 @@ class ProductProduct(models.Model):
         _allow_update = True
 
         _uid = self.env.user.id
-        if _uid != 1 and self.product_tmpl_id.product_manager:
-            if self.product_tmpl_id.product_manager != self.env.user:
 
-                _forbidden_fields = ['active', 'adr_class_id','default_code','description','dsnidart','dsn_box_barcode',
-                'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','image_variant','manual_code',
-                'name','name_template','product_id','product_tmpl_id','weight','weight_net','volume']
+        for record in self:
+            if _allow_update and _uid != 1 and record.product_tmpl_id.product_manager:
 
-                for _field in _forbidden_fields:
-                    if _field in values:
+                if record.product_tmpl_id.product_manager != _uid:
 
-                        _allow_update = False
+                    _forbidden_fields = ['active', 'adr_class_id','default_code','description','dsnidart','dsn_box_barcode',
+                    'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','image_variant','manual_code',
+                    'name','name_template','product_id','product_tmpl_id','weight','weight_net','volume']
 
-    #                    a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
-    #                    b = datetime.now()
-    #                    diff = (b-a).total_seconds()
-    #                    if diff>3600:
-    #                        if self.product_tmpl_id.product_manager == self.env.user:
-    #                            _allow_update = True
-                        break
+                    for _field in _forbidden_fields:
+                        if _field in values:
+
+                            _allow_update = False
+
+        #                    a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
+        #                    b = datetime.now()
+        #                    diff = (b-a).total_seconds()
+        #                    if diff>3600:
+        #                        if self.product_tmpl_id.product_manager == self.env.user:
+        #                            _allow_update = True
+                            break
 
         if _allow_update:
             return super(ProductProduct, self).write(values)
