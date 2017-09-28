@@ -53,44 +53,42 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, values):
-#        self.ensure_one()
 
         allow_update = True
 
         _uid = self.env.uid
-        if _uid != 1 and self.product_manager:
-#            _warn = "manager.id:  " + str(self.product_manager.id) + " , _uid: " + str(_uid)
-#            raise exceptions.Warning(_warn)
-            if self.product_manager.id != _uid:
 
-                _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
-                    'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
-                    'hr_expense_ok', 'image', 'image_medium', 'image_small', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
-                    'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
-                    'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
-                    'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
-                    'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
-                    'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
-                    'volume', 'warranty', 'weight', 'weight_net' ]
+        for record in self:
+            if allow_update and _uid != 1 and record.product_manager:
 
-                for _field in _forbidden_fields:
-                    if _field in values:
+                if record.product_manager.id != _uid:
 
-                        allow_update = False
+                    _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
+                        'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
+                        'hr_expense_ok', 'image', 'image_medium', 'image_small', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
+                        'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
+                        'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
+                        'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
+                        'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
+                        'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
+                        'volume', 'warranty', 'weight', 'weight_net' ]
 
-#                        if self.create_date:
+                    for _field in _forbidden_fields:
+                        if _field in values:
 
-#                            a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
-#                            b = datetime.now()
-#                            diff = (b-a).total_seconds()
-#                            if diff>3600:
-#                                if self.product_manager == self.env.user:
-#                                    _allow_update = True
-#                        else:
-#                            _allow_update = True
+                            allow_update = False
 
-                        break
-#            _warn = str(allow_update)
+    #                        if self.create_date:
+    #                            a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
+    #                            b = datetime.now()
+    #                            diff = (b-a).total_seconds()
+    #                            if diff>3600:
+    #                                if self.product_manager == self.env.user:
+    #                                    _allow_update = True
+    #                        else:
+    #                            _allow_update = True
+
+                            break
 
 
         if allow_update:
