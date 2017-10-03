@@ -7,8 +7,6 @@
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="type">form</field>
             <field name="arch" type="xml">
-<!--                <notebook position="inside">
--->
                     <page string="Packaging" position="after">
                         <page string="Logistics">
                             <group colspan="4" col="4">
@@ -43,8 +41,6 @@
                             </group>
                         </page>
                     </page>
-<!--                </notebook>
--->
             </field>
         </record>
 
