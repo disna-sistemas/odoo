@@ -25,7 +25,10 @@
     "category": "",
     "depends": ["stock","sale_stock"],
     "description": """
-
+- Changes move lines default order
+- Adds security to invoice_state
+- Adds Supplier document
+- Adds origin location to tree view
     """,
     "data": ['views/picking.xml'],
     "installable": True,
