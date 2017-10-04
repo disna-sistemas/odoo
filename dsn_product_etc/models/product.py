@@ -132,7 +132,7 @@ class ProductProduct(models.Model):
         for record in self:
             if allow_update and _uid != 1 and record.product_tmpl_id.product_manager:
 
-                if record.product_tmpl_id.product_manager != _uid:
+                if record.product_tmpl_id.product_manager.id != _uid:
 
                     _forbidden_fields = ['active', 'adr_class_id','default_code','description','dsnidart','dsn_box_barcode',
                     'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','image_variant','manual_code',
