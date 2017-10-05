@@ -53,6 +53,9 @@
                 <field name="create_date" position="attributes">
                     <attribute name="invisible">0</attribute>
                 </field>
+                <field name="date_expected" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
                 <field name="picking_partner" position="attributes">
                     <attribute name="invisible">0</attribute>
                 </field>
