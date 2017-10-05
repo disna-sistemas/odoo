@@ -9,8 +9,13 @@
                 <tree string="Specifications" editable="bottom">
                     <field name="country_id" />
                     <field name="name" />
+                    <field name="title1" />
                     <field name="from1" />
                     <field name="until1" />
+                    <field name="title2" />
+                    <field name="from2" />
+                    <field name="until2" />
+                    <field name="notes" />
                 </tree>
             </field>
         </record>
