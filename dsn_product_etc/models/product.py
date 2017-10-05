@@ -33,7 +33,7 @@ class ProductTemplateSpecs(models.Model):
     from1 = fields.Date(string="From1")
     until1 = fields.Date(string="Until1")
 
-    title1 = fields.Char(string="Record2")
+    title2 = fields.Char(string="Record2")
     from2 = fields.Date(string="From2")
     until2 = fields.Date(string="Until2")
 
