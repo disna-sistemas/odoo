@@ -114,6 +114,7 @@ class dsnStockPickingExport(models.Model):
 
         return True
 
+#   Esta función agrupa por producto y excluye campos de Marino
     @api.multi
     def dsn_button_stock_picking_export2_file(self):
 
@@ -234,7 +235,7 @@ class dsnStockPickingExport(models.Model):
         else:
             raise exceptions.Warning(_('Local folder not defined'))
 
-        self.dsn_button_stock_picking_export2_file()
+        self.dsn_button_stock_picking_export_file()
 
         for record in self:
             _name = self.replace_bars(record.name)
