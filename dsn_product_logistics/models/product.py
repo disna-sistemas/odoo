@@ -35,6 +35,7 @@ class ProductVariant(models.Model):
         for record in self:
             record.dsn_box_volume = record.dsn_box_length * record.dsn_box_width * record.dsn_box_height
 
+    dsn_net_volume = fields.Float(string='Net Volume', help='Product volume excluding any packaging')
 
     dsn_box_barcode = fields.Char(string='Box Barcode',
                                   help='GTIN 14')

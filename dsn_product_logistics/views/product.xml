@@ -19,6 +19,7 @@
                                     <field name="dsn_width" />
                                     <field name="dsn_height" />
                                     <field name="volume" required="False" />
+                                    <field name="dsn_net_volume" required="False" />
                                 </group>
                                 <group colspan="2">
                                     <separator string="Box" colspan="2"/>
