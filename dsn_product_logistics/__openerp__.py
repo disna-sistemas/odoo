@@ -27,7 +27,9 @@
         Product Logistics
     """,
     "data": [
-        'views/product.xml','views/precision.xml'
+        'views/product.xml',
+        'views/mrp.xml',
+        'views/precision.xml'
     ],
     "installable": True,
     "auto_install": False,

@@ -27,6 +27,8 @@ from datetime import datetime
 class dsnMrpProduction(models.Model):
     _inherit = "mrp.production"
 
+
+
 #   Imprimir etiquetas
 #    @api.multi
 #    def dsn_button_print_label(self):

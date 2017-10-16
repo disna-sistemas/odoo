@@ -22,18 +22,34 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     @api.multi
-    @api.depends('product_id')
-    def _compute_possible_packagings(self):
-        for production in self:
-            production.possible_packagings = production.mapped('product_id.product_tmpl_id.packagings')
+    @api.depends('product_tmpl_id')
+    def _compute_default_packaging(self):
 
-    possible_packagings = fields.Many2many(comodel_name='product.packaging',
-                                           string='packagingss',
-                                           compute='_compute_possible_packagings')
+        for record in self:
+
+            packaging_ids = record.product_tmpl_id.packaging_ids.filtered(lambda x: x.dsn_default == True).sorted(key=lambda x: x.id, reverse=False)
+            if packaging_ids:
+                record.dsn_packaging_id = packaging_ids[0]
 
     dsn_packaging_id = fields.Many2one(comodel_name='product.packaging',
-                                       domain="[('id', 'in', possible_packagings[0][2])]",
-                                       string='Packaging')
+                                    string='Packaging',
+                                    domain="[('id','in', product_tmpl_id.packaging_ids)]",
+                                   default='_compute_default_packaging',
+                                   store=True)
+
+#    @api.multi
+#    @api.depends('product_id')
+#    def _compute_possible_packagings(self):
+#        for production in self:
+#            production.possible_packagings = production.mapped('product_id.product_tmpl_id.packagings')
+#
+#    possible_packagings = fields.Many2many(comodel_name='product.packaging',
+#                                           string='packagingss',
+#                                           compute='_compute_possible_packagings')
+
+#    dsn_packaging_id = fields.Many2one(comodel_name='product.packaging',
+#                                       domain="[('id', 'in', possible_packagings[0][2])]",
+#                                       string='Packaging')
 
 #    @api.multi
 #    @api.depends('product_id')
