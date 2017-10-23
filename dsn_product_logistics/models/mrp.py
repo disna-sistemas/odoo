@@ -27,15 +27,15 @@ class MrpProduction(models.Model):
 
         for record in self:
             break
-            packaging_ids = record.product_tmpl_id.packaging_ids.filtered(lambda x: x.dsn_default == True).sorted(key=lambda x: x.id, reverse=False)
-#            if packaging_ids:
-#                record.dsn_packaging_id = packaging_ids[0]
+            packaging_ids = record.product_tmpl_id.packagings.filtered(lambda x: x.dsn_default == True).sorted(key=lambda x: x.id, reverse=False)
+            if packaging_ids:
+                record.dsn_packaging_id = packaging_ids[0]
 
     dsn_packaging_id = fields.Many2one(comodel_name='product.packaging',
                                     string='Packaging',
-                                    domain="[('id','in', product_tmpl_id.packaging_ids)]",
-#                                   default='_compute_default_packaging',
-                                   store=True)
+                                    domain="[('id','in', product_tmpl_id.packagings)]",
+                                    default='_compute_default_packaging',
+                                    store=True)
 
 #    @api.multi0
 #    @api.depends('product_id')
