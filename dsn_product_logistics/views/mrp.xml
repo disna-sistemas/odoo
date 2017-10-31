@@ -8,7 +8,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
 	            <field name="origin" position="after">
-	                <field name="dsn_packaging_id" />
+	                <field name="dsn_packaging_id" domain="[('product_tmpl_id','=',product_tmpl_id)]" />
 	            </field>
             </field>
         </record>
