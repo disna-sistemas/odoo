@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_nationalinvoice_document">
+    <t t-call="dsn_report.invoice_layout">
+        <div class="page">
+
+            <h2>
+                <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+                <span t-if="o.type == 'out_refund'">Refund</span>
+                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+                <span t-field="o.number"/>
+            </h2>
+
+            <div class="row mt32 mb32">
+                <!--
+                <div class="col-xs-3" t-if="o.name">
+                    <strong>Document:</strong>
+                    <p t-field="o.name"/>
+                </div>
+                -->
+                <div class="col-xs-3" t-if="o.date_invoice">
+                    <strong>Invoice Date:</strong>
+                    <p t-field="o.date_invoice"/>
+                </div>
+                <div class="col-xs-3" t-if="o.partner_id.ref">
+                    <strong>Partner Ref.:</strong>
+                    <p t-field="o.partner_id.ref"/>
+                </div>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="text-center">Quantity</th>
+<!--                        <th class="text-center">Gift</th>-->
+                        <th class="text-right">Unit Price</th>
+                        <th class="text-right">Discount</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr t-foreach="o.invoice_line" t-as="l" >
+                        <td><span t-field="l.name" /></td>
+                        <td class="text-right"><span t-esc="int(l.quantity)"/></td>
+                        <td class="text-right"><span t-field="l.price_unit"/></td>
+                        <td class="text-right"><span t-field="l.discount"/></td>
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal"
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--
+            <div t-foreach="o.tax_line" t-as="t" >
+                <span t-if="t.name.startswith('IV')">
+
+                </span>
+                <span t-field="t.ammount"  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+            </div>
+            -->
+
+            <div>
+                <p >Corresponde al albarán <span t-field="o.origin"></span>
+                </p>
+<!--
+                <p t-foreach="o.pv" t-as="v" >
+Según la legislación vigente, el poseedor final de resíduos de envases comerciales es responsable de su correcta gestión.<br/>
+A efectos informativos, se hace constar que la aportación al SIG según la Ley 50/98 de 30/12 de la presente factura,
+es de <span t-field="v.pv"  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </p>
+-->
+            </div>
+
+            <table class="bases">
+                <thead>
+                    <tr>
+                        <th class="text-right">Base Amount</th>
+                        <th class="text-left"><br/></th>
+                        <th class="text-left">Tax Description</th>
+                        <th class="text-right">Tax Amount</th>
+                        <th class="text-right">Total Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr t-foreach="o.tax_line" t-as="t" >
+                        <td t-if="t.name.startswith('IVA')" class="text-right"><span t-field="t.base"/></td>
+                        <td t-if="t.name.startswith('IVA')" class="text-left"><span/><br/></td>
+                        <td t-if="t.name.startswith('IVA')" class="text-left"><span t-field="t.name" /></td>
+                        <td t-if="t.name.startswith('IVA')" class="text-right"><span t-field="t.amount"/></td>
+                        <td t-if="t.name.startswith('IVA')" class="text-right"><span t-esc="t.base+t.amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            -->
+
+            <p t-if="o.comment">
+                <strong>Comment:</strong>
+                <span t-field="o.comment"/>
+            </p>
+
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-7">
+                    <address t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                    <span t-field="o.partner_id.vat"/>
+                </div>
+            </div>
+
+        </div>
+    </t>
+</template>
+
+<template id="report_nationalinvoice">
+    <t t-call="dsn_report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'dsn_invoice_rpt.report_nationalinvoice_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

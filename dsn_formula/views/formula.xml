@@ -86,7 +86,8 @@
                                 <field name="mpingr_id" >Ingrediente</field>
                                 <field name="conc_min" />
                                 <field name="conc_max" />
-                                <field name="conc_fixed" />
+                                <field name="conc_avg" />
+<!--                                <field name="conc_fixed" /> -->
                             </tree>
                         </field>
                     </group>
@@ -155,6 +156,22 @@
             </field>
         </record>
 
+       <record id="dsn_mp_ingredient_form_view" model="ir.ui.view">
+            <field name="name">dsn.mp.ingredient.form</field>
+            <field name="model">dsnmp.ingredient</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Ingredients">
+                    <group>
+                        <field name="mpingr_id"/>
+                        <field name="conc_min"/>
+                        <field name="conc_max"/>
+                        <field name="conc_avg"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
        <record id="dsn_mp_ingredient_tree_view" model="ir.ui.view">
             <field name="name">dsn.mp.ingredient.tree</field>
             <field name="model">dsnmp.ingredient</field>
@@ -165,6 +182,7 @@
                     <field name="mpingr_id"/>
                     <field name="conc_min"/>
                     <field name="conc_max"/>
+                    <field name="conc_avg"/>
                 </tree>
             </field>
         </record>

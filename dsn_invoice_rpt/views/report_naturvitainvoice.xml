@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_naturvitainvoice_document">
+    <xpath expr="//head" position="inside">
+        <style type="text/css">
+            html {
+                font-family: Verdana;
+            }
+
+            body {
+
+                background-image: url("/dsn_report/static/img/registro_mercantil.png");
+                background-repeat: no-repeat;
+                background-position: left bottom;
+            }
+
+            div.absol {
+                position: absolute;
+                border: 1px solid blue;
+            }
+
+            table.bases30 {
+                width: 30%;
+                border: 1px solid green;
+                right: 0px;
+            }
+
+            div.footer {
+                bottom: 50px;
+                background-image: url("/dsn_report/static/img/registro_mercantil.png");
+                background-repeat: no-repeat;
+                background-position: left bottom;
+            }
+
+            div.footer_picking_transporter {
+                bottom: 50px;
+                height: 200px;
+            }
+
+            div.packages {
+                min-width: 150px;
+            }
+
+            div.registro_mercantil {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                font-size: 7px;
+                font-color: rgb(0,111,105);
+                text-align: center;
+            }
+
+            div.relat {
+                position: relative;
+            }
+
+            span.float_left {
+                float: left;
+                margin-left: 400px;
+            }
+
+            span.float_left400 {
+                float: left;
+                margin-left: 400px;
+            }
+
+            .text-xs6 {
+                font-size: 6 px;
+            }
+
+            table.bases100 {
+                width: 100%;
+            }
+
+            table.bases {
+                border: 1px solid orange;
+            }
+
+            table.bases30 {
+                width: 30%;
+                border: 1px solid;
+            }
+
+            table.header {
+                width: 50%;
+                border: 1px solid blue;
+            }
+
+            td.header {
+                padding-right: 5px;
+            }
+
+        </style>
+    </xpath>
+
+    <t t-call="dsn_report.invoice_layout">
+        <div class="page">
+
+            <h2>
+                <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+                <span t-if="o.type == 'out_refund'">Refund</span>
+                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+                <span t-field="o.number"/>
+            </h2>
+
+            <table class="header">
+                <tr>
+                    <td>Fecha</td>
+                    <td><p t-field="o.date_invoice"/></td>
+                </tr>
+                <tr>
+                    <td>Código Cliente</td>
+                    <td><p t-field="o.partner_id.ref"/></td>
+                </tr>
+                <tr>
+                    <td>Forma de Pago</td>
+                    <td><p t-field="o.payment_mode_id.name" /></td>
+                </tr>
+                <tr>
+                    <td>Vencimiento</td>
+                    <td><p t-field="o.date_due"/></td>
+                </tr>
+
+            </table>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-left">Código</th>
+                        <th class="text-left">Description</th>
+                        <th class="text-left">Lote</th>
+                        <th class="text-left">Cantidad</th>
+                        <th class="text-right">Precio</th>
+                        <th class="text-right">Importe</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr t-foreach="o.invoice_line" t-as="l" >
+                        <td class="text-left"><span t-field="l.product_id.default_code" /></td>
+                        <td class="text-left"><span t-field="l.name" /></td>
+                        <td class="text-left"><span t-field="l.quantity"/></td>
+                        <td class="text-right"><span t-field="l.price_unit"/></td>
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal"
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="bases30">
+                <table class="bases">
+                    <tbody t-foreach="o.tax_line" t-as="t">
+                        <tr t-if="t.name.startswith('IVA')">
+                            <td class="header">Base Imponible</td><td class="text-right"><span t-field="t.base"/></td>
+                        </tr>
+                        <tr t-if="t.name.startswith('IVA')">
+                            <td class="header"><span t-field="t.name"/></td><td class="text-right"><span t-field="t.amount"/></td>
+                        </tr>
+                        <tr t-if="t.name.startswith('IVA')">
+                            <td class="header">Total</td><td class="text-right"><span t-esc="t.base+t.amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p t-if="o.comment">
+                <strong>Comment:</strong>
+                <span t-field="o.comment"/>
+            </p>
+
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-7">
+                    <address t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                    <span t-field="o.partner_id.vat"/>
+                </div>
+            </div>
+
+        </div>
+    </t>
+</template>
+
+<template id="report_naturvitainvoice">
+    <t t-call="dsn_report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'dsn_invoice_rpt.report_naturvitainvoice_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
