@@ -117,6 +117,7 @@ class dsnMp(models.Model):
         for record in self:
             record.code=record.product_id.default_code
 
+
     code = fields.Char(string='Code',
                                   compute='_compute_code',
                                   store=True)
@@ -233,11 +234,20 @@ class dsnMp(models.Model):
 class dsnMpIngredient(models.Model):
     _name="dsnmp.ingredient"
 
+    @api.multi
+    @api.depends('conc_min','conc_max')
+    def _compute_conc_avg(self):
+        for record in self:
+            record.conc_avg=(record.conc_min+record.conc_max)/2
+
     mp_id = fields.Many2one(comodel_name="dsnmp", required=False, ondelete='restrict')
     mpingr_id = fields.Many2one(comodel_name="dsnmp", required=True, ondelete='restrict')
     conc_min = fields.Float(string="Conc.Mín.",digits=dp.get_precision('Product Unit of Measure'))
     conc_max = fields.Float(string="Conc.Máx.",digits=dp.get_precision('Product Unit of Measure'))
-    conc_fixed = fields.Float(string="Conc.Fija",digits=dp.get_precision('Product Unit of Measure'))
+    conc_avg = fields.Float(string="Conc.Media",digits=dp.get_precision('Product Unit of Measure'),
+                            compute='_compute_conc_avg',readonly=True,store=True)
+    conc_fixed = fields.Float(string="Conc.Fija",digits=dp.get_precision('Product Unit of Measure'),
+                              readonly=True)
 
 class dsnMpCas(models.Model):
     _name="dsnmp.cas"

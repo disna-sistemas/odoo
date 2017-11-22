@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <report
+            id="dsn_report_invoice_national"
+            model="account.invoice"
+            string="National Invoice"
+            report_type="qweb-html"
+            name="dsn_invoice_rpt.report_nationalinvoice"
+            file="dsn_invoice_rpt.report_nationalinvoice"
+        />
+<!--
+        <report
+            id="account_naturvitainvoice"
+            model="account.invoice"
+            string="Naturvita Invoice"
+            report_type="qweb-pdf"
+            name="dsn_invoice_rpt.report_naturvitainvoice"
+            file="dsn_invoice_rpt.report_naturvitainvoice"
+        />
+
+        <report
+            id="account_exportinvoice"
+            model="account.invoice"
+            string="Export Invoice"
+            report_type="qweb-pdf"
+            name="dsn_invoice_rpt.report_exportinvoice"
+            file="dsn_invoice_rpt.report_exportinvoice"
+        />
+-->
+    </data>
+</openerp>
