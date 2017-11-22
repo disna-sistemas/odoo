@@ -1,0 +1,166 @@
+html {
+    font-family: Verdana;
+}
+
+body {
+
+    background-image: url("dsn_report/static/img/registro_mercantil.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+div.absol {
+    position: absolute;
+    border: 1px solid blue;
+}
+
+table.bases30 {
+    width: 30%;
+    border: 1px solid green;
+    right: 0px;
+}
+
+div.float_left_50per {
+    float: left;
+    top: 0;
+    left: 0;
+    width: 50%;
+}
+
+div.abs_50per_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+}
+
+div.nota_entrega {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    height
+}
+
+div.transporter_signature {
+    clear: both;
+}
+
+div.footer_picking_transporter {
+    bottom: 50px;
+    height: 200px;
+}
+
+div.footer {
+    bottom: 50px;
+    /*background-image: url("/opt/odoo/v8/other-addons/dsn_report/static/img/registro_mercantil.png");*/
+    background-image: url("dsn_report/static/img/registro_mercantil.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+div.footer_picking_transporter {
+    bottom: 50px;
+    height: 200px;
+}
+
+div.packages {
+    min-width: 150px;
+}
+
+div.rect-write {
+    min-width: 150px;
+    border: 1px solid black;
+    min-height: 50px;
+}
+
+div.rect-stamp {
+    min-width: 200px;
+    border: 1px solid black;
+    min-height: 100px;
+    height: 120px;
+}
+
+div.registro_mercantil {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /*
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    align: center;
+    */
+    font-size: 7px;
+    font-color: rgb(0,111,105);
+    text-align: center;
+}
+
+div.relat {
+    position: relative;
+}
+
+span.float_left {
+    float: left;
+    margin-left: 400px;
+}
+
+span.float_left400 {
+    float: left;
+    margin-left: 400px;
+}
+
+span.packages {
+    min-width: 150px;
+}
+
+.text-xs6 {
+    font-size: 6 px;
+}
+
+table.transporter {
+    border-spacing: 10px 10px;
+}
+
+table.bases100 {
+    width: 100%;
+}
+
+table.bases {
+    border: 1px solid orange;
+}
+
+table.bases30 {
+    width: 30%;
+    border: 1px solid;
+}
+
+table.header {
+    width: 50%;
+    border: 1px solid blue;
+}
+
+td.packages {
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+td.header {
+    padding-right: 5px;
+}
+
+td.transporter {
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+ul.list-inline span {
+    font-size: 8px;
+    font-color: #56;
+}
+
+/*
+div.invoice {
+    //position: relative;
+    margin-left: 30px;
+}
+*/

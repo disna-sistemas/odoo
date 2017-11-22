@@ -1,0 +1,32 @@
+html {
+    font-family: Verdana;
+}
+
+body {
+    color: #050 !important;
+}
+
+div.registro_mercantil {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+}
+
+p.rotate-90
+{
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+p.text-xs6 {
+    font-size: 6 px;
+}
