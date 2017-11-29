@@ -178,7 +178,9 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Ingredients">
+                    <field name="mp_code"/>
                     <field name="mp_id"/>
+                    <field name="mpingr_code"/>
                     <field name="mpingr_id"/>
                     <field name="conc_min"/>
                     <field name="conc_max"/>

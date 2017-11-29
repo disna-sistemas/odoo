@@ -240,8 +240,10 @@ class dsnMpIngredient(models.Model):
         for record in self:
             record.conc_avg=(record.conc_min+record.conc_max)/2
 
-    mp_id = fields.Many2one(comodel_name="dsnmp", required=False, ondelete='restrict')
-    mpingr_id = fields.Many2one(comodel_name="dsnmp", required=True, ondelete='restrict')
+    mp_id = fields.Many2one(string="MP", comodel_name="dsnmp", required=False, ondelete='restrict')
+    mp_code = fields.Char(string="MP Code", related="mp_id.product_id.default_code", readonly=True)
+    mpingr_id = fields.Many2one(string="Ingredient", comodel_name="dsnmp", required=True, ondelete='restrict')
+    mpingr_code = fields.Char(string="Ingr Code", related="mpingr_id.product_id.default_code", readonly=True)
     conc_min = fields.Float(string="Conc.Mín.",digits=dp.get_precision('Product Unit of Measure'))
     conc_max = fields.Float(string="Conc.Máx.",digits=dp.get_precision('Product Unit of Measure'))
     conc_avg = fields.Float(string="Conc.Media",digits=dp.get_precision('Product Unit of Measure'),
@@ -256,7 +258,7 @@ class dsnMpCas(models.Model):
 
     description = fields.Char(string="CAS")
 
-
+git che
 class dsnMpEinec(models.Model):
     _name = "dsnmp.einec"
 
