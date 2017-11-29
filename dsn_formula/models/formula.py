@@ -258,7 +258,6 @@ class dsnMpCas(models.Model):
 
     description = fields.Char(string="CAS")
 
-git che
 class dsnMpEinec(models.Model):
     _name = "dsnmp.einec"
 
