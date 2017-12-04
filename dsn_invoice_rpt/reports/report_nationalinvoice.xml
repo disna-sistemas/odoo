@@ -16,21 +16,40 @@
                 <span t-field="o.number"/>
             </h2>
 
-            <div class="row mt32 mb32">
-                <!--
-                <div class="col-xs-3" t-if="o.name">
-                    <strong>Document:</strong>
-                    <p t-field="o.name"/>
+<!--            <div class="row mt32 mb32" style="width: 50%;">
+-->
+            <div style="margin-top: 10px; width: 100;">
+                <div style="float:left; width: 50%; margin">
+                    <table>
+                        <tr t-if="o.date_invoice">
+                            <td style="width: 100px;"><strong>Invoice Date:</strong></td><td t-field="o.date_invoice"/>
+                        </tr>
+                        <tr t-if="o.partner_id.ref">
+
+                            <td><strong>Partner Ref.:</strong></td><td t-field="o.partner_id.ref"/>
+                        </tr>
+
+                    </table>
+
+<!--
+                    <div class="col-xs-3" t-if="o.date_invoice">
+                        <span style="width: 100px;"><strong>Invoice Date:</strong></span><span t-field="o.date_invoice"/>
+                    </div>
+
+                    <div t-if="o.partner_id.ref">
+                        <span><strong>Partner Ref.:</strong></span><span t-field="o.partner_id.ref"/>
+                    </div>
+-->
                 </div>
-                -->
-                <div class="col-xs-3" t-if="o.date_invoice">
-                    <strong>Invoice Date:</strong>
-                    <p t-field="o.date_invoice"/>
+
+
+                <div style="float: left;">
+                    <span><strong t-field="o.partner_id.name"/></span>
+                    <address t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}' />
+                    <span t-field="o.partner_id.vat"/>
                 </div>
-                <div class="col-xs-3" t-if="o.partner_id.ref">
-                    <strong>Partner Ref.:</strong>
-                    <p t-field="o.partner_id.ref"/>
-                </div>
+
             </div>
 
             <table class="table table-condensed">
@@ -51,9 +70,10 @@
                         <td class="text-right"><span t-esc="int(l.quantity)"/></td>
                         <td class="text-right"><span t-field="l.price_unit"/></td>
                         <td class="text-right"><span t-field="l.discount"/></td>
-                        <td class="text-right">
-                            <span t-field="l.price_subtotal"
-                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        <td class="text-right"><span t-field="l.price_subtotal"/>
+<!--
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'
+-->
                         </td>
                     </tr>
                 </tbody>
@@ -79,12 +99,12 @@ es de <span t-field="v.pv"  t-field-options='{"widget": "monetary", "display_cur
                 </p>
 -->
             </div>
-
+<!--
             <table class="bases">
+
                 <thead>
                     <tr>
                         <th class="text-right">Base Amount</th>
-                        <th class="text-left"><br/></th>
                         <th class="text-left">Tax Description</th>
                         <th class="text-right">Tax Amount</th>
                         <th class="text-right">Total Amount</th>
@@ -94,14 +114,13 @@ es de <span t-field="v.pv"  t-field-options='{"widget": "monetary", "display_cur
                 <tbody>
                     <tr t-foreach="o.tax_line" t-as="t" >
                         <td t-if="t.name.startswith('IVA')" class="text-right"><span t-field="t.base"/></td>
-                        <td t-if="t.name.startswith('IVA')" class="text-left"><span/><br/></td>
                         <td t-if="t.name.startswith('IVA')" class="text-left"><span t-field="t.name" /></td>
                         <td t-if="t.name.startswith('IVA')" class="text-right"><span t-field="t.amount"/></td>
-                        <td t-if="t.name.startswith('IVA')" class="text-right"><span t-esc="t.base+t.amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+                        <td t-if="t.name.startswith('IVA')" class="text-right"><span t-esc="t.base+t.amount"/></td>
                     </tr>
                 </tbody>
             </table>
-
+-->
             <!--
             <div class="row">
                 <div class="col-xs-4 pull-right">
@@ -134,13 +153,7 @@ es de <span t-field="v.pv"  t-field-options='{"widget": "monetary", "display_cur
                 <span t-field="o.comment"/>
             </p>
 
-            <div class="row">
-                <div class="col-xs-5 col-xs-offset-7">
-                    <address t-field="o.partner_id"
-                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                    <span t-field="o.partner_id.vat"/>
-                </div>
-            </div>
+
 
         </div>
     </t>

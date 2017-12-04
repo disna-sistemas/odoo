@@ -64,6 +64,23 @@
 
 
 
+
+
+<template id="external_document_layout_header">
+    <div class="header">
+        <div class="row">
+            <div class="col-xs-12">
+                <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
+                <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 16px;" t-field="company.name"/>
+            </div>
+
+
+
+        </div>
+    </div>
+</template>
+
+
 <template id="invoice_layout_header">
     <t t-call="dsn_report.external_document_layout_header" />
 
@@ -74,19 +91,6 @@
             </div>
 -->
 </template>
-
-<template id="external_document_layout_header">
-    <div class="header">
-        <div class="row">
-            <div class="col-xs-12">
-                <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="vertical-align: text-bottom; max-width: 120px; "/></span>
-                <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 16px;" t-field="company.company_registry"/>
-            </div>
-
-        </div>
-    </div>
-</template>
-
 
 <template id="invoice_layout_footer">
     <t t-call="dsn_report.external_document_layout_footer" />
@@ -111,11 +115,12 @@
                 <hr />
             </p>
             <t t-if="o and 'company_id' in o">
-                <t t-set="company" t-value="o.company_id"></t>
-           </t>
-            <t t-if="company.vat='ESA08627515'" >
-                <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
-                </p>
+                <t t-set="company" t-value="o.company_id">
+                    <t t-if="company.vat='ESA08627515'" >
+                        <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+                        </p>
+                    </t>
+                </t>
             </t>
         </div>
         <!--
@@ -149,6 +154,7 @@
 <template id="picking_layout_header">
     <div class="header">
         <div class="row">
+<!--
             <div class="col-xs-12">
                 <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="vertical-align: text-bottom; max-width: 120px; "/></span>
                 <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 24px;" t-field="company.company_registry"/>
@@ -157,6 +163,7 @@
                 <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 14px;">C/ del Ferro, nº 33 Pol. Can Magarola - 08100 Mollet del Vallès - Barcelona - España Tel. (+34) 935 706 292 - Fax (+34) 935 706 536
                 </p>
             </div>
+-->
         </div>
     </div>
 </template>
@@ -167,7 +174,7 @@
 </template>
 
 <template id="registro_mercantil">
-        <div class="registro_mercantil">Inscrita en el Registro Mercantil de Barcelona, Hoja 54135, Folio 113, Tomo 4835, Sección 2ª Sociedades - NºIdent.Fiscal <strong>A08627515</strong></div>
+        <div class="registro_mercantil" style="text-align: center;">Inscrita en el Registro Mercantil de Barcelona, Hoja 54135, Folio 113, Tomo 4835, Sección 2ª Sociedades - NºIdent.Fiscal <strong>A08627515</strong></div>
 </template>
 
 </data>
