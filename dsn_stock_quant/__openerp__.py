@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['stock','dsn_location_levels','dsn_product_category_levels'],
+    "depends": ['stock','dsn_location_levels','dsn_product_category_levels','product_expiry'],
     "description": """
         Decimal Precision customization,
         Location Levels groups,
