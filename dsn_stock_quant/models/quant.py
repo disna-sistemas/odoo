@@ -115,6 +115,8 @@ class dsnStockQuant(models.Model):
                                  store=True
                                  )
 
+    dsnlife_date = fields.Datetime(related='lot_id.life_date', readonly=True)
+
     qty = fields.Float(string='Quantity',
                    required=True,
                    help="Quantity of products in this quant, in the default unit of measure of the product",
