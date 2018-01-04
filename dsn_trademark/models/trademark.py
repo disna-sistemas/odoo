@@ -39,7 +39,7 @@ class dsnTrademarkRegistration(models.Model):
     name = fields.Char('Registration name')
 
     num_class= fields.Integer("Num.Class")
-    type = fields.Selection(['Denominativa','Frasco','Mixta','Palabra'],required=True)
+    type = fields.Selection([('denominativa','Denominativa'),('frasco','Frasco'),('mixta','Mixta'),('palabra','Palabra')],required=True)
 
     logo = fields.Binary('Logo')
 
