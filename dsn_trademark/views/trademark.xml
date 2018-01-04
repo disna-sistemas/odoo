@@ -87,7 +87,7 @@
             <field name="name">Trademark Registration</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsn.trademark.registration</field>
-            <field name="view_type">tree</field>
+            <field name="view_type">form</field>
             <field name="view_id" ref="dsn_trademark_registration_form_view"/>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
