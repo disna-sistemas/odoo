@@ -45,7 +45,7 @@
         <record id="dsn_trademark_registration_form_view" model="ir.ui.view">
 
             <field name="name">dsn.trademark.registration.form</field>
-            <field name="model">dsn.trademark</field>
+            <field name="model">dsn.trademark.registration</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Trademark Registration">
@@ -68,7 +68,7 @@
         <record id="dsn_trademark_registration_tree_view" model="ir.ui.view">
 
             <field name="name">dsn.trademark.registration.tree</field>
-            <field name="model">dsn.trademark</field>
+            <field name="model">dsn.trademark.registration</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Trademark Registrations">
