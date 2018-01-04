@@ -41,7 +41,7 @@ class dsnTrademarkRegistration(models.Model):
     num_class= fields.Integer("Num.Class")
     type = fields.Selection(['Denominativa','Frasco','Mixta','Palabra'],required=True)
 
-    logo = fields.binary('Logo')
+    logo = fields.Binary('Logo')
 
     request_date_ = fields.Date('Request Date')
     due_date = fields.Date('Due Date')
