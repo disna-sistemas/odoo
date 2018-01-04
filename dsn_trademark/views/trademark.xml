@@ -58,7 +58,7 @@
                         <field name="logo">Logo</field>
                         <field name="request_date">Request Date</field>
                         <field name="due_date">Request Date</field>
-
+                        <field name="state"/>
                     </group>
                 </form>
             </field>
