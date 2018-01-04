@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_trademark_form_view" model="ir.ui.view">
+
+            <field name="name">dsn.trademark.form</field>
+            <field name="model">dsn.trademark</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Trademark">
+                    <group colspan="2" col="2">
+                        <field name="name">Name</field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="dsn_trademark_tree_view" model="ir.ui.view">
+
+            <field name="name">dsn.trademark.tree</field>
+            <field name="model">dsn.trademark</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Trademarks">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_action_trademark" model="ir.actions.act_window">
+            <field name="name">Trademarks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.trademark</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_trademark_tree_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a trademark
+              </p>
+            </field>
+        </record>
+
+        <record id="dsn_trademark_registration_form_view" model="ir.ui.view">
+
+            <field name="name">dsn.trademark.registration.form</field>
+            <field name="model">dsn.trademark</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Trademark Registration">
+                    <group colspan="2" col="2">
+                        <field name="trademark_id">Trademark</field>
+                        <field name="country_id">Country</field>
+
+                        <field name="name">Name</field>
+                        <field namd="num_class">Num.class</field>
+                        <field name="type">Type</field>
+                        <field name="logo">Logo</field>
+                        <field name="request_date">Request Date</field>
+                        <field name="due_date">Request Date</field>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="dsn_trademark_registration_tree_view" model="ir.ui.view">
+
+            <field name="name">dsn.trademark.registration.tree</field>
+            <field name="model">dsn.trademark</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Trademark Registrations">
+                    <field name="name"/>
+                    <field name="trademark_id"/>
+                    <field name="country_id"/>
+                    <field name="num_class"/>
+                    <field name="type"/>
+                    <field name="request_date"/>
+                    <field name="due_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_action_trademark_registration" model="ir.actions.act_window">
+            <field name="name">Trademark Registration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.trademark.registration</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_trademark_registration_form_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a trademark registration
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="dsn_menu_trademark"
+                    name="Trademark"
+                    groups="dsn_security.qualityGuarantee_user"
+                    sequence="89"/>
+
+        <menuitem id="dsn_menu_trademark_trademark"
+                    name="Formulas"
+                    groups="dsn_security.qualityGuarantee_user"
+                    parent="dsn_menu_trademark"
+                    sequence="1" />
+
+        <menuitem id="dsn_menu_trademark_formula_formula"
+                    name="Trademarks"
+                    groups="dsn_security.qualityGuarantee_user"
+                    parent="dsn_menu_trademark_trademark"
+                    action="dsn_action_trademark"
+                    sequence="30" />
+
+        <menuitem id="dsn_menu_trademark_trademark_registrations"
+                  name="Registrations"
+                  groups="dsn_security.quality_user"
+                  parent="dsn_menu_trademark_trademark"
+                  action="dsn_action_trademark_registration"
+                  sequence="50" />
+
+    </data>
+</openerp>
