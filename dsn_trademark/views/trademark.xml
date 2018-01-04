@@ -117,7 +117,7 @@
 
         <menuitem id="dsn_menu_trademark_trademark_registrations"
                   name="Registrations"
-                  groups="dsn_security.quality_user"
+                  groups="dsn_security.qualityGuarantee_user"
                   parent="dsn_menu_trademark_trademark"
                   action="dsn_action_trademark_registration"
                   sequence="50" />

@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": [],
+    "depends": ['dsn_security'],
     "description": """
 Trademark management
 
