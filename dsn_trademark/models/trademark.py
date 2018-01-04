@@ -43,7 +43,7 @@ class dsnTrademarkRegistration(models.Model):
 
     logo = fields.Binary('Logo')
 
-    request_date_ = fields.Date('Request Date')
+    request_date = fields.Date('Request Date')
     due_date = fields.Date('Due Date')
 
     state = fields.Selection(
