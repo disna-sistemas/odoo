@@ -52,9 +52,8 @@
                     <group colspan="2" col="2">
                         <field name="trademark_id">Trademark</field>
                         <field name="country_id">Country</field>
-
                         <field name="name">Name</field>
-                        <field namd="num_class">Num.class</field>
+                        <field name="num_class">Num.class</field>
                         <field name="type">Type</field>
                         <field name="logo">Logo</field>
                         <field name="request_date">Request Date</field>
