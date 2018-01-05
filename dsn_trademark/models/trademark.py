@@ -28,6 +28,11 @@ class dsnTrademark(models.Model):
 
     name = fields.Char("Trademark")
 
+class dsnTrademarkClass(models.Model):
+    _name="dsn.trademark.class"
+
+    num = fields.Integer("Number")
+
 
 class dsnTrademarkRegistration(models.Model):
     _name="dsn.trademark.registration"
@@ -38,7 +43,8 @@ class dsnTrademarkRegistration(models.Model):
 
     name = fields.Char('Registration name')
 
-    num_class= fields.Integer("Num.Class")
+    class_ids = fields.One2many(comodel_name="dsn.trademark.class", inverse_name="trademark_id", string="Classes")
+#    num_class= fields.Integer("Num.Class")
     type = fields.Selection([('denominativa','Denominativa'),('frasco','Frasco'),('mixta','Mixta'),('palabra','Palabra')],required=True)
 
     logo = fields.Binary('Logo')
@@ -49,6 +55,8 @@ class dsnTrademarkRegistration(models.Model):
     state = fields.Selection(
         [('titulo', 'Título'), ('tramite', 'Trámite'), ('pendiente titulo', 'Pendiente Título'),
          ('solicitada', 'Solicitada'), ('cancel', 'Cancelada')], string='State', default='tramite')
+
+    notes = fields.Text(string="Notes")
 
 
 
