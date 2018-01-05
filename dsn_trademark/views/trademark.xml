@@ -42,6 +42,18 @@
             </field>
         </record>
 
+        <record id="dsn_trademark_class_tree_view" model="ir.ui.view">
+
+            <field name="name">dsn.trademark.class.tree</field>
+            <field name="model">dsn.trademark.class</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Trademark Classes">
+                    <field name="num"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="dsn_trademark_registration_form_view" model="ir.ui.view">
 
             <field name="name">dsn.trademark.registration.form</field>
