@@ -77,7 +77,6 @@
                     <field name="name"/>
                     <field name="trademark_id"/>
                     <field name="country_id"/>
-                    <field name="num_class"/>
                     <field name="type"/>
                     <field name="request_date"/>
                     <field name="due_date"/>
