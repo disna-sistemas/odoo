@@ -43,7 +43,11 @@ class dsnTrademarkRegistration(models.Model):
 
     name = fields.Char('Registration name')
 
-    class_ids = fields.One2many(comodel_name="dsn.trademark.class", inverse_name="trademark_id", string="Classes")
+    class_ids = fields.Many2many(comodel_name="res.partner",
+                                    relation="dsn_trademark_class_rel",
+                                    column1="trademark_id",
+                                    column2="class_id",
+                                    string="Classes")
 #    num_class= fields.Integer("Num.Class")
     type = fields.Selection([('denominativa','Denominativa'),('frasco','Frasco'),('mixta','Mixta'),('palabra','Palabra')],required=True)
 
