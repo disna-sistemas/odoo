@@ -71,7 +71,7 @@
                         <field name="due_date">Request Date</field>
                         <field name="state"/>
                     </group>
-                    <group colspan="2" col="1">
+                    <group col="4">
                         <separator string="Classes"/>
                         <field name="class_ids" nolabel="1"/>
                     </group>
