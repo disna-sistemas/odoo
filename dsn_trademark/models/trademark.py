@@ -43,7 +43,7 @@ class dsnTrademarkRegistration(models.Model):
 
     name = fields.Char('Registration name')
 
-    class_ids = fields.Many2many(comodel_name="res.partner",
+    class_ids = fields.Many2many(comodel_name="dsn.trademark.class",
                                     relation="dsn_trademark_class_rel",
                                     column1="trademark_id",
                                     column2="class_id",
