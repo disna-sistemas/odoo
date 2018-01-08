@@ -114,25 +114,25 @@
 
         <menuitem id="dsn_menu_trademark"
                     name="Trademark"
-                    groups="dsn_security.qualityGuarantee_user"
+                    groups="dsn_trademark.trademark_user"
                     sequence="89"/>
 
         <menuitem id="dsn_menu_trademark_trademark"
                     name="Formulas"
-                    groups="dsn_security.qualityGuarantee_user"
+                    groups="dsn_trademark.trademark_user"
                     parent="dsn_menu_trademark"
                     sequence="1" />
 
         <menuitem id="dsn_menu_trademark_formula_formula"
                     name="Trademarks"
-                    groups="dsn_security.qualityGuarantee_user"
+                    groups="dsn_trademark.trademark_user"
                     parent="dsn_menu_trademark_trademark"
                     action="dsn_action_trademark"
                     sequence="30" />
 
         <menuitem id="dsn_menu_trademark_trademark_registrations"
                   name="Registrations"
-                  groups="dsn_security.qualityGuarantee_user"
+                  groups="dsn_trademark.trademark_user"
                   parent="dsn_menu_trademark_trademark"
                   action="dsn_action_trademark_registration"
                   sequence="50" />

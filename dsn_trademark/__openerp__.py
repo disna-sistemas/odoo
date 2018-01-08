@@ -22,13 +22,14 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['dsn_security'],
+    "depends": [],
     "description": """
 Trademark management
 
     """,
     "data": [
         'views/trademark.xml',
+        'views/security'
     ],
     "installable": True,
     "auto_install": False,
