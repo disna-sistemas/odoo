@@ -28,7 +28,7 @@ Trademark management
 
     """,
     "data": [
-        'views/security',
+        'views/security.xml',
         'views/trademark.xml'
     ],
     "installable": True,
