@@ -28,8 +28,8 @@ Trademark management
 
     """,
     "data": [
-        'views/trademark.xml',
-        'views/security'
+        'views/security',
+        'views/trademark.xml'
     ],
     "installable": True,
     "auto_install": False,
