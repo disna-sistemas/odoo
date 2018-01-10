@@ -118,12 +118,12 @@
                     sequence="89"/>
 
         <menuitem id="dsn_menu_trademark_trademark"
-                    name="Formulas"
+                    name="Trademarks"
                     groups="dsn_trademark.trademark_user"
                     parent="dsn_menu_trademark"
                     sequence="1" />
 
-        <menuitem id="dsn_menu_trademark_formula_formula"
+        <menuitem id="dsn_menu_trademark_trademark_trademarks"
                     name="Trademarks"
                     groups="dsn_trademark.trademark_user"
                     parent="dsn_menu_trademark_trademark"
