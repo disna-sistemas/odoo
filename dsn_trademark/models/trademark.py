@@ -62,5 +62,7 @@ class dsnTrademarkRegistration(models.Model):
 
     notes = fields.Text(string="Notes")
 
+    costes = fields.Text(string="Costs")
+
 
 
