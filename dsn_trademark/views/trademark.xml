@@ -77,7 +77,7 @@
                         <field name="costes">Costs</field>
                     </group>
 
-                    <group col="4">
+                    <group col="2">
                         <separator string="Classes"/>
                         <field name="class_ids" nolabel="1"/>
                     </group>
