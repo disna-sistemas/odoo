@@ -64,9 +64,9 @@
                     <group colspan="2" col="2">
                         <field name="trademark_id">Trademark</field>
                         <field name="country_id">Country</field>
+                        <field name="logo" widget="image">Logo</field>
                         <field name="name">Name</field>
                         <field name="type">Type</field>
-                        <field name="logo">Logo</field>
                         <field name="request_date">Request Date</field>
                         <field name="due_date">Request Date</field>
                         <field name="state"/>
