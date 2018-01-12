@@ -44,7 +44,7 @@ class dsnTrademarkRegistration(models.Model):
             _classes = ""
             for cl in record.class_ids:
 
-                _classes = _classes + str(cl) + ","
+                _classes = _classes + str(cl.id) + ","
             record.classes = _classes
 
     trademark_id = fields.Many2one(comodel_name="dsn.trademark",string='Trademark')
