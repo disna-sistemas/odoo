@@ -37,6 +37,15 @@ class dsnTrademarkClass(models.Model):
 class dsnTrademarkRegistration(models.Model):
     _name="dsn.trademark.registration"
 
+    @api.multi
+    @api.depends('class_ids')
+    def _compute_classes(self):
+        for record in self:
+            _classes = ""
+            for cl in record.class_ids:
+
+                _classes = _classes + str(cl) + ","
+            record.classes = _classes
 
     trademark_id = fields.Many2one(comodel_name="dsn.trademark",string='Trademark')
     country_id = fields.Many2one(comodel_name="res.country", string='Country')
@@ -48,7 +57,9 @@ class dsnTrademarkRegistration(models.Model):
                                     column1="trademark_id",
                                     column2="class_id",
                                     string="Classes")
-#    num_class= fields.Integer("Num.Class")
+
+    classes = fields.Char("Classes",compute='_compute_classes', store=True)
+
     type = fields.Selection([('denominativa','Denominativa'),('frasco','Frasco'),('mixta','Mixta'),('palabra','Palabra')],required=True)
 
     logo = fields.Binary('Logo')
