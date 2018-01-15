@@ -68,7 +68,7 @@ class dsnTrademarkRegistration(models.Model):
     due_date = fields.Date('Due Date')
 
     state = fields.Selection(
-        [('titulo', 'Título'), ('tramite', 'Trámite'), ('pendiente titulo', 'Pendiente Título'),
+        [('titulo', 'Título'), ('tramite', 'Trámite'), ('pendiente_titulo', 'Pendiente Título'),
          ('solicitada', 'Solicitada'), ('cancel', 'Cancelada')], string='State', default='tramite')
 
     notes = fields.Text(string="Notes")
