@@ -111,9 +111,10 @@
             <field name="model">dsn.trademark.registration</field>
             <field name="type">calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Registrations" position="attributes">
-                    <attribute name="date_start">request_date</attribute>
-                    <attribute name="date_stop">due_date</attribute>
+                <calendar string="Registrations" date_start="request_date" date_stop="due_date" color="state">
+                    <field name="trademark_id"/>
+                    <field name="country_id"/>
+                    <field name="name"></field>
                 </calendar>
             </field>
         </record>
