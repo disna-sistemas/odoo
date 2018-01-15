@@ -112,6 +112,7 @@
             <field name="type">calendar</field>
             <field name="arch" type="xml">
                 <calendar string="Registrations" position="attributes">
+                    <attribute name="date_start">request_date</attribute>
                     <attribute name="date_stop">due_date</attribute>
                 </calendar>
             </field>
