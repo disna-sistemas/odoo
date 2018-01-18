@@ -116,7 +116,7 @@
                 <calendar string="Registrations" date_start="due_date" date_stop="due_date" color="state">
                     <field name="trademark_id"/>
                     <field name="country_id"/>
-                    <field name="name"></field>
+                    <field name="name"/>
                 </calendar>
             </field>
         </record>
