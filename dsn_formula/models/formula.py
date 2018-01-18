@@ -270,3 +270,15 @@ class dsnProductMps(models.Model):
     dsnmp_ids = fields.One2many(comodel_name="dsnmp", inverse_name="product_id", string="mps", ondelete='restrict')
 
 
+class dsnCosmeticSecurityGroup(models.Model):
+
+    _name="dsn.cosmetic.security.group"
+
+    name=fields.Char(string="Cosmetic Group")
+
+    absorption_percen = fields.Integer(string='Absorption %')
+    retention_factor = fields.Float(string='Retention Factor', digits=(16, 2))
+    daily_exposure = fields.Float(string='Calculated daily exposure (g.day)', digits=(16, 3))
+    relative_daily_exposure = fields.Float(string='A (calculated relative daily exposure)', digits=(16, 2))
+
+
