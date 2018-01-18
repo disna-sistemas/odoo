@@ -111,7 +111,9 @@
             <field name="model">dsn.trademark.registration</field>
             <field name="type">calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Registrations" date_start="request_date" date_stop="due_date" color="state">
+<!--                <calendar string="Registrations" date_start="request_date" date_stop="due_date" color="state">
+-->
+                <calendar string="Registrations" date_stop="due_date" color="state">
                     <field name="trademark_id"/>
                     <field name="country_id"/>
                     <field name="name"></field>
