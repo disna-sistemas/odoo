@@ -42,7 +42,7 @@ class dsnStockProductionLot(models.Model):
                 track_obj = self.env['mrp.track.lot']
                 track_lst = track_obj.search([('product_lot','=',record.id),('component.product_tmpl_id.dsncat2_id.name','=','SEMI')]).mapped('component_lot')
                 if track_lst:
-                    dsn_semi_comp_unique_lot_ids = track_lst
+                    record.dsn_semi_comp_unique_lot_ids = track_lst
 
     dsn_comp_lot_ids = fields.One2many(comodel_name='mrp.track.lot',
                                        inverse_name='product_lot',
