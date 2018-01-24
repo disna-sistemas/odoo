@@ -281,4 +281,4 @@ class dsnProductMps(models.Model):
     dsnmp_ids = fields.One2many(comodel_name="dsnmp", inverse_name="product_id", string="mps", ondelete='restrict')
 
     dsn_cosmetic_safety_group = fields.Many2one(comodel="dsn.cosmetic.safety.group",
-                                         String="Safety Evaluation Group")
+                                         string="Safety Evaluation Group")
