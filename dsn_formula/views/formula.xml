@@ -239,6 +239,30 @@
             </field>
         </record>
 -->
+
+        <record id="dsn_product_template_form_hide_price_history" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.hide.price.history</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product_price_history.product_template_price_history_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <button name="open_product_historic_prices" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+            </field>
+        </record>
+
+        <record id="dsn_product_template_safety_group" model="ir.ui.view">
+            <field name="name">dsn.cosmetic.safety.group</field>
+            <field name="inherit_id" ref="product.template" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="sale_ok" position="before">
+                    <field name="dsn_cosmetic_safety_group">Safety Evaluation Group</field>
+                </field>
+            </field>
+        </record>
+
         <menuitem id="dsn_menu_chemical"
                     name="Chemical"
                     groups="dsn_security.quality_user,dsn_security.qualityGuarantee_user"

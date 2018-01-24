@@ -264,11 +264,11 @@ class dsnMpEinec(models.Model):
     mp_id = fields.Many2one(comodel_name="dsnmp", required=False, ondelete='restrict')
     description = fields.Char(string="EINEC")
 
-class dsnCosmeticSecurityGroup(models.Model):
+class dsnCosmeticSafetyGroup(models.Model):
 
-    _name="dsn.cosmetic.security.group"
+    _name="dsn.cosmetic.safety.group"
 
-    name=fields.Char(string="Cosmetic Group")
+    name=fields.Char(string="Safety Evaluation Group")
 
     absorption_percen = fields.Integer(string='Absorption %')
     retention_factor = fields.Float(string='Retention Factor', digits=(16, 2))
@@ -280,8 +280,5 @@ class dsnProductMps(models.Model):
 
     dsnmp_ids = fields.One2many(comodel_name="dsnmp", inverse_name="product_id", string="mps", ondelete='restrict')
 
-    dsn_cosmetic_group = fields.Many2one(comodel="dsn.cosmetic.security.group",
-                                         String="Cosmetic Group")
-
-
-
+    dsn_cosmetic_safety_group = fields.Many2one(comodel="dsn.cosmetic.safety.group",
+                                         String="Safety Evaluation Group")
