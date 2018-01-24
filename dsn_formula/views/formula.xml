@@ -258,8 +258,10 @@
             <field name="inherit_id" ref="product.product_template_form_view" />
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="sale_ok" position="before">
-                    <field name="dsn_cosmetic_safety_group">Safety Evaluation Group</field>
+                <field name="categ_id" position="after">
+                    <group>
+                        <field name="dsn_cosmetic_safety_group">Safety Evaluation Group</field>
+                    </group>
                 </field>
             </field>
         </record>
