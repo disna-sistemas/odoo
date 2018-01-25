@@ -188,6 +188,38 @@
                 </tree>
             </field>
         </record>
+
+       <record id="dsn_cosmetic_safety_group_form" model="ir.ui.view">
+            <field name="name">dsn.cosmetic.safety.group.form</field>
+            <field name="model">dsn.cosmetic.safety.group</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="General">
+                    <group>
+                        <field name="name"/>
+                        <field name="absorption_percen"/>
+                        <field name="retention_factor"/>
+                        <field name="daily_exposure"/>
+                        <field name="relative_daily_exposure"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <record id="dsn_cosmetic_safety_group_tree" model="ir.ui.view">
+            <field name="name">dsn.cosmetit.safety.group.tree</field>
+            <field name="model">dsn.cosmetic.safety.group</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Safety Evaluation Groups">
+                    <field name="name"/>
+                    <field name="absorption_percen"/>
+                    <field name="retention_factor"/>
+                    <field name="daily_exposure"/>
+                    <field name="relative_daily_exposure"/>
+                </tree>
+            </field>
+        </record>
 <!--
         <record id="dsn_mp_ingredient_search" model="ir.ui.view">
             <field name="name">dsn.mp.ingredient.search</field>
@@ -222,6 +254,15 @@
             <field name="name">Ingredients</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsnmp.ingredient</field>
+            <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record id="dsn_action_safety_groups" model="ir.actions.act_window">
+            <field name="name">Safety Evaluation Groups</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.cosmetic.safety.group</field>
             <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
             <field name="view_type">tree</field>
             <field name="view_mode">tree</field>
@@ -287,6 +328,13 @@
                   groups="dsn_security.quality_user"
                   parent="dsn_menu_chemical_formula"
                   action="dsn_action_ingredients"
+                  sequence="50" />
+
+        <menuitem id="dsn_menu_chemical_formula_safety_groups"
+                  name="Safety Evaluation Groups"
+                  groups="dsn_security.quality_user"
+                  parent="dsn_menu_chemical_formula"
+                  action="dsn_action_safety_groups"
                   sequence="50" />
 
     </data>
