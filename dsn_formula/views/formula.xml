@@ -207,7 +207,7 @@
         </record>
 
        <record id="dsn_cosmetic_safety_group_tree" model="ir.ui.view">
-            <field name="name">dsn.cosmetit.safety.group.tree</field>
+            <field name="name">dsn.cosmetic.safety.group.tree</field>
             <field name="model">dsn.cosmetic.safety.group</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
@@ -263,7 +263,7 @@
             <field name="name">Safety Evaluation Groups</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsn.cosmetic.safety.group</field>
-            <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
+            <field name="view_id" ref="dsn_cosmetic_safety_group_tree"></field>
             <field name="view_type">tree</field>
             <field name="view_mode">tree</field>
         </record>
