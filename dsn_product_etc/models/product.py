@@ -65,7 +65,7 @@ class ProductTemplate(models.Model):
 
                     _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
                         'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
-                        'hr_expense_ok', 'image', 'image_medium', 'image_small', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
+                        'hr_expense_ok', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
                         'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
                         'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
                         'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
