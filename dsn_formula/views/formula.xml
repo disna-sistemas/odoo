@@ -220,6 +220,17 @@
                 </tree>
             </field>
         </record>
+
+        <record id="dsn_cosmetic_safety_group_search" model="ir.ui.view">
+            <field name="name">dsn.cosmetic.safety.group.search</field>
+            <field name="model">dsn.cosmetic.safety.group</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" filter_domain="[('name','ilike',self)]"/>
+                </search>
+
+            </field>
+        </record>
 <!--
         <record id="dsn_mp_ingredient_search" model="ir.ui.view">
             <field name="name">dsn.mp.ingredient.search</field>
@@ -263,8 +274,8 @@
             <field name="name">Safety Evaluation Groups</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsn.cosmetic.safety.group</field>
-            <field name="view_id" ref="dsn_cosmetic_safety_group_tree"></field>
-            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_cosmetic_safety_group_form"></field>
+            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 <!--
