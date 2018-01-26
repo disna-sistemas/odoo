@@ -275,6 +275,12 @@ class dsnCosmeticSafetyGroup(models.Model):
     daily_exposure = fields.Float(string='Calculated daily exposure (g.day)', digits=(16, 3))
     relative_daily_exposure = fields.Float(string='A (calculated relative daily exposure)', digits=(16, 2))
 
+    surface_area = fields.Float(string='Surface Area', digits=(16,2))
+    frequency_application = fields.Float(string='Frequency of Application', digits=(16,2))
+    estim_daily_amount_applied = fields.Float(string='Estimated daily amount applied', digits=(16,2))
+    relative_amount_applied = fields.Float(string='Relative amount applied', digits=(16, 2))
+    notes = fields.Text(string='Notes')
+
 class dsnProductMps(models.Model):
     _inherit = "product.template"
 
