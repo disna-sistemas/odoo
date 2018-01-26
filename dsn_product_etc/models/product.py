@@ -128,6 +128,7 @@ class ProductProduct(models.Model):
     def write(self, values):
 
         allow_update = True
+        _updated_fields = ""
 
         _uid = self.env.uid
 
@@ -143,7 +144,7 @@ class ProductProduct(models.Model):
 
                     for _field in _forbidden_fields:
                         if _field in values:
-
+                            _updated_fields = _updated_fields + _field + ","
                             allow_update = False
 
         #                    a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
@@ -157,7 +158,7 @@ class ProductProduct(models.Model):
         if allow_update:
             return super(ProductProduct, self).write(values)
         else:
-            raise exceptions.Warning('You are not allowed to modify this product!!! (' + values + ')')
+            raise exceptions.Warning('You are not allowed to modify this product!!! (' + _updated_fields + ')')
 
 
 
