@@ -55,6 +55,7 @@ class ProductTemplate(models.Model):
     def write(self, values):
 
         allow_update = True
+        _updated_fields = ""
 
         _uid = self.env.uid
 
@@ -76,6 +77,8 @@ class ProductTemplate(models.Model):
                     for _field in _forbidden_fields:
                         if _field in values:
 
+                            _updated_fields = _updated_fields + _field + ","
+
                             allow_update = False
 
     #                        if self.create_date:
@@ -94,7 +97,7 @@ class ProductTemplate(models.Model):
         if allow_update:
             return super(ProductTemplate, self).write(values)
         else:
-            raise exceptions.Warning('You are not allowed to modify this product template!!! (' + values + ')')
+            raise exceptions.Warning('You are not allowed to modify this product template!!! (' + _updated_fields + ')')
 
 
     dsn_pnt_nf = fields.Char(string='PNT NF')
