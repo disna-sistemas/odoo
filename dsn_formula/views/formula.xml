@@ -201,6 +201,11 @@
                         <field name="retention_factor"/>
                         <field name="daily_exposure"/>
                         <field name="relative_daily_exposure"/>
+                        <field name="surface_area"/>
+                        <field name="frequency_application"/>
+                        <field name="estim_daily_amount_applied"/>
+                        <field name="relative_amount_applied"/>
+                        <field name="notes"/>
                     </group>
                 </form>
             </field>
@@ -217,6 +222,7 @@
                     <field name="retention_factor"/>
                     <field name="daily_exposure"/>
                     <field name="relative_daily_exposure"/>
+
                 </tree>
             </field>
         </record>
