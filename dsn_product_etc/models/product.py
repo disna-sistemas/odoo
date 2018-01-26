@@ -139,7 +139,7 @@ class ProductProduct(models.Model):
                 if record.product_tmpl_id.product_manager.id != _uid:
 
                     _forbidden_fields = ['active', 'adr_class_id','default_code','description','dsnidart','dsn_box_barcode',
-                    'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','image_variant','manual_code',
+                    'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','manual_code',
                     'name','name_template','product_id','product_tmpl_id','weight','weight_net','volume']
 
                     for _field in _forbidden_fields:
