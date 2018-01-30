@@ -23,6 +23,8 @@ from dateutil.relativedelta import relativedelta
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
 
+    @api.depends
+
     @api.multi
     @api.depends('life_date')
     def _compute_dsn_life_date(self):

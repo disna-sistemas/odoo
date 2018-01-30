@@ -1,3 +1,3 @@
 # -*- encoding: utf-8 -*-
 
-from . import lot
+from . import lot, package
