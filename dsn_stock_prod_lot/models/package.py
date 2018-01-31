@@ -19,15 +19,17 @@
 from openerp import models, fields, api, _, exceptions
 
 class dsnStockQuantPackage(models.Model):
-    _inherit = ['stock.quant.package']
+    _inherit = "stock.quant.package"
 
     @api.multi
     @api.depends('quant_ids')
     def _compute_lots(self):
         for record in self:
             if record.quant_ids:
+                for lot in record.quant_ids.mapped('lot_id'):
+                    record.dsn_lots
                 record.dsn_lots = record.quant_ids.mapped('lot_id')
 
-    dsn_lots = fields.One2many(string='Lots', compute='_compute_lots', store=True)
+    dsn_lots = fields.One2many(comodel_name='stock.production.lot', string='Lots', compute='_compute_lots', store=True)
 
 
