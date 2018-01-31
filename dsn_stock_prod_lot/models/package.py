@@ -24,10 +24,9 @@ class dsnStockQuantPackage(models.Model):
     @api.multi
     @api.depends('quant_ids')
     def _compute_lots(self):
-        if self.quant_ids:
-            for record in self:
-                if record.quant_ids:
-                    record.dsn_lot_ids = record.quant_ids.mapped('lot_id')
+        for record in self:
+            if record.quant_ids:
+                record.dsn_lot_ids = record.quant_ids.mapped('lot_id')
 
     dsn_lot_ids = fields.Many2many(comodel_name='stock.production.lot',
                                     relation='dsn_package_lot_rel',
