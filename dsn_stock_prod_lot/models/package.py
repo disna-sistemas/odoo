@@ -27,8 +27,6 @@ class dsnStockQuantPackage(models.Model):
         if self.quant_ids:
             for record in self:
                 if record.quant_ids:
-                    for lot in record.quant_ids.mapped('lot_id'):
-                        record.dsn_lots
                     record.dsn_lots = record.quant_ids.mapped('lot_id')
 
     dsn_lots = fields.One2many(comodel_name='stock.production.lot', string='Lots', compute='_compute_lots', store=True)
