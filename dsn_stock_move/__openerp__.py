@@ -23,9 +23,9 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['stock','stock_move_partner_info','dsn_security'],
+    "depends": ['stock','stock_move_partner_info','dsn_security','product_supplierinfo_for_customer'],
     "description": """
-
+- Gets product-partner description, according to supplier info
     """,
     "data": ['views/move.xml'],
     "installable": True,
