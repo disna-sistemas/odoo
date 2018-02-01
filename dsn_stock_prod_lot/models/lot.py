@@ -23,17 +23,17 @@ from dateutil.relativedelta import relativedelta
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
 
-    @api.multi
-    @api.depends('name')
-    def _compute_lot_code(self):
-        for record in self:
-            _lot = record.name
-            _longitud = _lot.length
-            if _lot.contains('_'):
-                _long =_lot.find('_',0)
-                if _long > 0:
-                    _longitud = _long -1
-            record.dsn_lot_code = _lot[0:_longitud]
+#    @api.multi
+#    @api.depends('name')
+#    def _compute_lot_code(self):
+#        for record in self:
+#            _lot = record.name
+#            _longitud = _lot.length
+#            if _lot.contains('_'):
+#                _long =_lot.find('_',0)
+#                if _long > 0:
+#                    _longitud = _long -1
+#            record.dsn_lot_code = _lot[0:_longitud]
 
     @api.multi
     @api.depends('life_date')
@@ -58,10 +58,10 @@ class dsnStockProductionLot(models.Model):
 #                    record.dsn_semi_comp_unique_lot_ids = track_lst.mapped('component_lot')
 
 
-    dsn_lot_code = fields.Char(string='Official Lot Name',
-                               compute='_compute_lot_code',
-                               store=True,
-                               help='Lot name for sale purposes:  picking, invoice, certificate, ...')
+#    dsn_lot_code = fields.Char(string='Official Lot Name',
+#                               compute='_compute_lot_code',
+#                               store=True,
+#                               help='Lot name for sale purposes:  picking, invoice, certificate, ...')
 
     dsn_comp_lot_ids = fields.One2many(comodel_name='mrp.track.lot',
                                        inverse_name='product_lot',
