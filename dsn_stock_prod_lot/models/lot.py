@@ -61,7 +61,7 @@ class dsnStockProductionLot(models.Model):
     dsn_lot_code = fields.Char(string='Official Lot Name',
                                compute='_compute_lot_code',
                                store=True,
-                               help='Lot name for sale purposes:  picking, invoice, certificate, ...'
+                               help='Lot name for sale purposes:  picking, invoice, certificate, ...')
 
     dsn_comp_lot_ids = fields.One2many(comodel_name='mrp.track.lot',
                                        inverse_name='product_lot',
