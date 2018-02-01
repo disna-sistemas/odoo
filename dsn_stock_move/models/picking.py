@@ -36,17 +36,16 @@ class dsnStockMove(models.Model):
                                            compute='_compute_partner_product_name',
                                             store=True)
 
-class dsnProductSupplierInfo(models.Model):
-    _inherit = "product.supplierinfo"
+#class dsnProductSupplierInfo(models.Model):
+#    _inherit = "product.supplierinfo"
 
-
-    @api.multi
-    @api.onchange('product_name')
-    def dsn_update_move_lines_partner_product_name(self):
-        res = {}
-        for record in self:
-            if record.type == 'customer':
-                move_ids = self.env['stock.move'].search([('state','!=','done'),('product_id.product_tmpl_id','=',record.product_id.product_tmpl_id)])
-                for move_id in move_ids:
-                    move_id.dsn_customer_product_name = record.product_name
-        return res
+#    @api.multi
+#    @api.onchange('product_name')
+#    def dsn_update_move_lines_partner_product_name(self):
+#        res = {}
+#        for record in self:
+#            if record.type == 'customer':
+#                move_ids = self.env['stock.move'].search([('state','!=','done'),('product_id.product_tmpl_id','=',record.product_id.product_tmpl_id)])
+#                for move_id in move_ids:
+#                    move_id.dsn_customer_product_name = record.product_name
+#        return res
