@@ -26,15 +26,15 @@ class dsnStockMove(models.Model):
     _inherit = "stock.move"
 #    _order = "date desc, name"
 
-    @api.multi
-    @api.depends('product_id')
-    def _compute_customer_product_name(self):
-        for record in self:
-            record.dsn_customer_product_name=record.product_id.product_tmpl_id.customer_ids.filtered(lambda x: x.name.id==record.picking_id.partner_id.id)
-
-    dsn_customer_product_name = fields.Char(string='Partner-Product Name',
-                                           compute='_compute_partner_product_name',
-                                            store=True)
+#    @api.multi
+#    @api.depends('product_id')
+#    def _compute_partner_product_name(self):
+#        for record in self:
+#            record.dsn_customer_product_name=record.product_id.product_tmpl_id.customer_ids.filtered(lambda x: x.name.id==record.picking_id.partner_id.id)
+#
+#    dsn_customer_product_name = fields.Char(string='Partner-Product Name',
+#                                           compute='_compute_partner_product_name',
+#                                            store=True)
 
 #class dsnProductSupplierInfo(models.Model):
 #    _inherit = "product.supplierinfo"
