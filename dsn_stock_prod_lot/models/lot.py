@@ -67,25 +67,6 @@ class dsnStockProductionLot(models.Model):
                                        inverse_name='product_lot',
                                        string='Lots',
                                        readonly=True)
-#semi
-#    dsn_semi_comp_unique_lot_ids = fields.One2many(comodel_name='stock.production.lot', compute='_compute_semi_lots',string='semi_lots',store=True)
-
-    @api.multi
-    def _get_picking_ids(self):
-        for record in self:
-            if record.id:
-                sale_obj = self.env['sale.order']
-    #            op_obj = self.env['stock.pack.operation']
-                sale_lst = sale_obj.search([('invoice_ids', '=',
-                                             record.id)])
-                record.dsn_picking_ids = sale_lst.mapped('picking_ids')
-    #            op_lst = op_obj.search([('product_id', '=', self.product_id.id),
-    #                                    ('picking_id', 'in',
-    #                                     pickings.ids)])
-
-
-
-
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
