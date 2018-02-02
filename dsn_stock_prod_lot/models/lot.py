@@ -23,17 +23,17 @@ from dateutil.relativedelta import relativedelta
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
 
-#    @api.multi
-#    @api.depends('name')
-#    def _compute_lot_code(self):
-#        for record in self:
-#            _lot = record.name
-#            _longitud = _lot.length
-#            if _lot.contains('_'):
-#                _long =_lot.find('_',0)
-#                if _long > 0:
-#                    _longitud = _long -1
-#            record.dsn_lot_code = _lot[0:_longitud]
+    @api.multi
+    @api.depends('name')
+    def _compute_lot_code(self):
+        for record in self:
+            _lot = record.name
+            _longitud = _lot.length
+            if _lot.contains('_'):
+                _long =_lot.find('_',0)
+                if _long > 0:
+                    _longitud = _long -1
+            record.dsn_lot_code = _lot[0:_longitud]
 
     @api.multi
     @api.depends('life_date')
@@ -47,21 +47,21 @@ class dsnStockProductionLot(models.Model):
 
                 record.dsn_life_date = datetime.strptime(record.life_date, "%Y-%m-%d %H:%M:%S") + relativedelta(days=days_to_add)
 
-    @api.multi
-    def _compute_semi_lots(self):
-        for record in self:
-            if record.id:
-                track_obj = self.env['mrp.track.lot']
-                track_lst = track_obj.search([('product_lot', '=', record.id),
-                                              ('component.product_tmpl_id.dsncat2_id.name','=','SEMI')])
+#    @api.multi
+#    def _compute_semi_lots(self):
+#        for record in self:
+#            if record.id:
+#                track_obj = self.env['mrp.track.lot']
+#                track_lst = track_obj.search([('product_lot', '=', record.id),
+#                                              ('component.product_tmpl_id.dsncat2_id.name','=','SEMI')])
 #                if track_lst:
 #                    record.dsn_semi_comp_unique_lot_ids = track_lst.mapped('component_lot')
 
 
-#    dsn_lot_code = fields.Char(string='Official Lot Name',
-#                               compute='_compute_lot_code',
-#                               store=True,
-#                               help='Lot name for sale purposes:  picking, invoice, certificate, ...')
+    dsn_lot_code = fields.Char(string='Official Lot Name',
+                               compute='_compute_lot_code',
+                               store=True,
+                               help='Lot name for sale purposes:  picking, invoice, certificate, ...')
 
     dsn_comp_lot_ids = fields.One2many(comodel_name='mrp.track.lot',
                                        inverse_name='product_lot',
