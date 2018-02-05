@@ -28,11 +28,10 @@ class dsnStockProductionLot(models.Model):
     def _compute_lot_code(self):
         for record in self:
             _lot = record.name
-            _longitud = _lot.length
-            if _lot.contains('_'):
-                _long =_lot.find('_',0)
-                if _long > 0:
-                    _longitud = _long -1
+            _longitud = len(_lot)
+            _long =_lot.find('_',0)
+            if _long > 0:
+                _longitud = _long
             record.dsn_lot_code = _lot[0:_longitud]
 
     @api.multi
