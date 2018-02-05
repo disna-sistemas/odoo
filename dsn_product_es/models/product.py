@@ -48,6 +48,8 @@ class product(models.Model):
 
             if translat:
                 record.dsn_name_en = translat.value
+            else:
+                record.dsn_name_en = record.name
 
     dsn_name_es = fields.Char(string='Traducción ES',
                               compute='_compute_translations',
