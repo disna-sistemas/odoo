@@ -25,8 +25,8 @@ class product(models.Model):
     @api.depends('write_date')
     def _compute_translations(self):
         for record in self:
-            record.dsn_name_es = record.name
-            record.dsn_name_en = record.name
+#            record.dsn_name_es = record.name
+#            record.dsn_name_en = record.name
 
             translat = self.env['ir.translation'].search(
                         [
@@ -37,19 +37,18 @@ class product(models.Model):
             )
             if translat:
                 record.dsn_name_es = translat.value
+                record.dsn_name_en = translat.source
 
-            translat = self.env['ir.translation'].search(
-                [
-                    ('res_id', '=', record.id),
-                    ('name', '=', 'product.template,name'),
-                    ('lang', '=', 'en_US')
-                ], limit=1
-            )
+#            translat = self.env['ir.translation'].search(
+#                [
+#                    ('res_id', '=', record.id),
+#                    ('name', '=', 'product.template,name'),
+#                    ('lang', '=', 'en_US')
+#                ], limit=1
+#            )
 
-            if translat:
-                record.dsn_name_en = translat.value
-            else:
-                record.dsn_name_en = record.name
+#            if translat:
+#                record.dsn_name_en = translat.value
 
     dsn_name_es = fields.Char(string='Traducción ES',
                               compute='_compute_translations',
