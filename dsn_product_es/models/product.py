@@ -42,12 +42,12 @@ class product(models.Model):
         return self.name
 
     dsn_name_es = fields.Char(string='Traducción ES',
-                              default=_default_translation(),
+                              default=_default_translation,
 #                              compute='_compute_translations',
                               store=True)
 
     dsn_name_en = fields.Char(string='English Traduction',
-                              default=_default_translation(),
+                              default=_default_translation,
 #                              compute='_compute_translations',
                               store=True)
 
