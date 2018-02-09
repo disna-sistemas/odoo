@@ -25,8 +25,8 @@ class product(models.Model):
     @api.depends('write_date')
     def _compute_translations(self):
         for record in self:
-#            record.dsn_name_es = record.name
-#            record.dsn_name_en = record.name
+            record.dsn_name_es = record.name
+            record.dsn_name_en = record.name
 
             translat = self.env['ir.translation'].search(
                         [
