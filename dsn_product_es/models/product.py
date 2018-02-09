@@ -27,7 +27,7 @@ class ProductTemplateTranslation(models.Model):
 
         prod_obj = self.env['product.template']
 
-        for record in self.filtered(lambda x: x.type=='model' & x.name=='product.template,name' & self.lang=='es_ES'):
+        for record in self.filtered(lambda x: x.type=='model' & x.name=='product.template,name' & x.lang=='es_ES'):
             prod_ids = prod_obj.search([('id','=',int(record.res_id))])
             if prod_ids:
                 prod = prod[0]
