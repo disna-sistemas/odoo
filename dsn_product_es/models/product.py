@@ -30,18 +30,22 @@ class ProductTemplateTranslation(models.Model):
 
         prod_obj = self.env['product.template']
 
+        for record in self:
+            if record.name=='product_template,name' and record.lang=='es_ES':
+
 #        for record in self.filtered(lambda x: x.type=='model' and x.name=='product.template,name' and x.lang=='es_ES'):
-        for record in self.filtered(lambda x: x.name == 'product.template,name'):
-            _logger.info('IR TRANSLATION ' + str(record.id))
-            prod_ids = prod_obj.search([('id','=',record.res_id)])
-            if prod_ids:
-                prod = prod[0]
-                _logger.info('PRODUCT' + prod.default_code)
-                prod.dsn_name_es = record.value
-                prod.dsn_name_en = record.src
+
+                _logger.info('IR TRANSLATION ' + record.name + str(record.res_id))
+                prod_ids = prod_obj.search([('id','=',record.res_id)])
+                if prod_ids:
+                    prod = prod[0]
+                    _logger.info('PRODUCT' + prod.default_code)
+                    prod.dsn_name_es = record.value
+                    prod.dsn_name_en = record.src
 
 
 class product(models.Model):
+
     _inherit = "product.template"
 
     def _default_translation(self):
