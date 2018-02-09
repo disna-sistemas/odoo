@@ -17,6 +17,7 @@
 ##############################################################################
 
 from openerp import models, fields, api
+import logging
 
 class ProductTemplateTranslation(models.Model):
     _inherit = "ir.translation"
@@ -25,12 +26,15 @@ class ProductTemplateTranslation(models.Model):
     @api.multi
     def onchange_lang_es_ES(self):
 
+        _logger=logging.getLogger(__name__)
+
         prod_obj = self.env['product.template']
 
         for record in self.filtered(lambda x: x.type=='model' and x.name=='product.template,name' and x.lang=='es_ES'):
-            prod_ids = prod_obj.search([('id','=',int(record.res_id))])
+            prod_ids = prod_obj.search([('id','=',record.res_id)])
             if prod_ids:
                 prod = prod[0]
+                _logger.info('PRODUCT' + prod.default_code)
                 prod.dsn_name_es = record.value
                 prod.dsn_name_en = record.src
 
