@@ -29,3 +29,13 @@ class dsnPurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 #    _order = "date_planned desc, name"
     _order = "id"
+
+class dsnPurchasereport(models.Model):
+    _inherit = "purchase.report"
+
+    dsncat2_id = fields.Many2one(comodel_name='product.category',
+                                 string='Cat2',
+                                 related='product_id.dsncat2_id',
+                                 readonly=True,
+                                 store=True)
+

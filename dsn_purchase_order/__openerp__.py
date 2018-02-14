@@ -25,7 +25,8 @@
     "category": "",
     "depends": ["purchase"],
     "description": """
-Changes purchase orders order
+- Changes purchase orders order
+- Adds Cat2 to purchase.report
     """,
     "data": [],
     "installable": True,
