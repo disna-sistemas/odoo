@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_purchase_order_report_search" model="ir.ui.view">
+            <field name="name">dsn.purchase.order.report.search</field>
+            <field name="model">purchase.report</field>
+            <field name="inherit_id" ref="view_purchase_order_search" />
+            <field name="arch" type="xml">
+                <filter name="group_category_id" position="after">
+                    <filter string="Cat2" context="{'group_by':'dsncat2_id'}" />
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

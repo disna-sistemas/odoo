@@ -28,7 +28,7 @@
 - Changes purchase orders order
 - Adds Cat2 to purchase.report
     """,
-    "data": [],
+    "data": ['views/purchase.xml'],
     "installable": True,
     "auto_install": False,
 }
