@@ -36,7 +36,6 @@ class dsnPurchasereport(models.Model):
 
     dsncat2_id = fields.Many2one(comodel_name='product.category',
                                  string='Cat2',
-                                 related='product_id.dsncat2_id',
                                  readonly=True)
 
     def init(self, cr):
