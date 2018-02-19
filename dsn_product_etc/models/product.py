@@ -176,7 +176,7 @@ class dsnProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
     @api.multi
-    @api.onchange('value')
+    @api.onchange('product_code')
     def onchange_lang_es_ES(self):
 #        _logger=logging.getLogger(__name__)
         for record in self:
