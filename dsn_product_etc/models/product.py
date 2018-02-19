@@ -179,10 +179,11 @@ class dsnProductSupplierInfo(models.Model):
     @api.onchange('product_code')
     def onchange_lang_es_ES(self):
         self.ensure_one()
+        result={}
         if self.name.id == 151:
             self.product_tmpl_id.dsn_code_difusion= self.product_code
         if self.name.id == 499:
-#            result.update({'name': product.name})
+            result.update({'product_tmpl_id.dsn_code_vileda': self.product_code})
             self.product_tmpl_id.dsn_code_vileda = self.product_code
                 
-#        return result
+        return result
