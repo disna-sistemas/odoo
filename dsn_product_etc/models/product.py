@@ -55,11 +55,13 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.depends('seller_ids.product_code')
     def _compute_dsn_codes(self):
+        _logger = logging.getLogger(__name__)
         for record in self.seller_ids.filtered(lambda x: x.name == 151 || x.name == 499):
             for prodselinfo in record.seller_ids:
                 if prodselinfo.name == 151:
                     record.dsn_code_difusion = prodselinfo.product_code
                 if prodselinfo.name == 499:
+                    _logger.info('CODE ' + prodselinfo.product_code)
                     record.dsn_code_vileda = prodselinfo.product_code
 
     @api.multi
