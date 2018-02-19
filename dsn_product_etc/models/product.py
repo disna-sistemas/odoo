@@ -18,6 +18,7 @@
 
 from openerp import models, fields, api, exceptions
 from datetime import datetime
+import logging
 
 class ProductTemplateSpecs(models.Model):
     _name="dsn.product.template.specifications"
@@ -174,13 +175,17 @@ class ProductProduct(models.Model):
 
 class dsnProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
+    @api.onchange('purchase_price', 'transportation_price')
+    def onchange_purchase_price_transportation_price(self):
 
-    @api.multi
     @api.onchange('product_code')
+    @api.multi
     def onchange_lang_es_ES(self):
-#        _logger=logging.getLogger(__name__)
+        _logger=logging.getLogger(__name__)
         for record in self:
             if record.name.id == 151:
+
                 record.product_tmpl_id.dsn_code_difusion= record.product_code
             if record.name.id == 499:
+                _logger.info('499 ' + record.product_code)
                 record.product_tmpl_id.dsn_code_vileda = record.product_code
