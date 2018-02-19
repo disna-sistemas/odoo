@@ -53,6 +53,16 @@ class ProductTemplate(models.Model):
 #        return ret
 
     @api.multi
+    @api.depends('seller_ids.product_code')
+    def _compute_dsn_codes(self):
+        for record in self.seller_ids.filtered(lambda x: x.name == 151 || x.name == 499):
+            for prodselinfo in record.seller_ids:
+                if prodselinfo.name == 151:
+                    record.dsn_code_difusion = prodselinfo.product_code
+                if prodselinfo.name == 499:
+                    record.dsn_code_vileda = prodselinfo.product_code
+
+    @api.multi
     def write(self, values):
 
         allow_update = True
@@ -108,9 +118,9 @@ class ProductTemplate(models.Model):
 
     dsn_spec_ids = fields.One2many(comodel_name="dsn.product.template.specifications", inverse_name="product_tmpl_id", string="Template Specs")
 
-    dsn_code_difusion = fields.Char(string='Difusion Code', store=True)
+    dsn_code_difusion = fields.Char(string='Difusion Code', compute='_compute_dsn_codes', store=True)
 
-    dsn_code_vileda = fields.Char(string='Vileda Code', store=True)
+    dsn_code_vileda = fields.Char(string='Vileda Code', compute='_compute_dsn_codes', store=True)
 
 
 
@@ -173,17 +183,17 @@ class ProductProduct(models.Model):
     ]
 
 
-class dsnProductSupplierInfo(models.Model):
-    _inherit = "product.supplierinfo"
-
-    @api.onchange('product_code')
-    def onchange_lang_es_ES(self):
-        self.ensure_one()
-        result={}
-        if self.name.id == 151:
-            self.product_tmpl_id.dsn_code_difusion= self.product_code
-        if self.name.id == 499:
-            result.update({'product_tmpl_id.dsn_code_vileda': self.product_code})
-            self.product_tmpl_id.dsn_code_vileda = self.product_code
-                
-        return result
+#class dsnProductSupplierInfo(models.Model):
+#    _inherit = "product.supplierinfo"
+#
+#    @api.onchange('product_code')
+#    def onchange_lang_es_ES(self):
+#        self.ensure_one()
+#        result={}
+#        if self.name.id == 151:
+#            self.product_tmpl_id.dsn_code_difusion= self.product_code
+#        if self.name.id == 499:
+#            result.update({'product_tmpl_id.dsn_code_vileda': self.product_code})
+#            self.product_tmpl_id.dsn_code_vileda = self.product_code
+#
+#        return result
