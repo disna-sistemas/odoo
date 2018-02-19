@@ -25,7 +25,7 @@
     "category": "",
     "depends": ["purchase"],
     "description": """
-- Changes purchase orders order
+- Changes purchase orders sort
 - Adds Cat2 to purchase.report
     """,
     "data": ['views/purchase.xml'],

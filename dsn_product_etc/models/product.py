@@ -107,6 +107,10 @@ class ProductTemplate(models.Model):
 
     dsn_spec_ids = fields.One2many(comodel_name="dsn.product.template.specifications", inverse_name="product_tmpl_id", string="Template Specs")
 
+    dsn_code_difusion = fields.Char(string='Difusion Code', store=True)
+
+    dsn_code_vileda = fields.Char(string='Vileda Code', store=True)
+
 
 
 class ProductProduct(models.Model):
@@ -166,3 +170,17 @@ class ProductProduct(models.Model):
         ('default_code_uniq', 'unique(default_code)', 'Product Code must be unique!!!'),
         ('dsnidart_uniq', 'unique(dsnidart)', 'Marino Id must be unique!!!'),
     ]
+
+
+class dsnProductSupplierInfo(models.Model):
+    _inherit = "product.supplierinfo"
+
+    @api.multi
+    @api.onchange('value')
+    def onchange_lang_es_ES(self):
+#        _logger=logging.getLogger(__name__)
+        for record in self:
+            if record.name.id == 151:
+                record.product_tmpl_id.dsn_code_difusion= record.product_code
+            if record.name.id == 499:
+                record.product_tmpl_id.dsn_code_vileda = record.product_code
