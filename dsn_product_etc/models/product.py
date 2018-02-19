@@ -177,12 +177,12 @@ class dsnProductSupplierInfo(models.Model):
     _inherit = "product.supplierinfo"
 
     @api.onchange('product_code')
-    @api.multi
     def onchange_lang_es_ES(self):
-        _logger=logging.getLogger(__name__)
-        for record in self:
-            if record.name.id == 151:
-                record.product_tmpl_id.dsn_code_difusion= record.product_code
-            if record.name.id == 499:
-                _logger.info('499 ' + record.product_code)
-                record.product_tmpl_id.dsn_code_vileda = record.product_code
+        self.ensure_one()
+        if self.name.id == 151:
+            self.product_tmpl_id.dsn_code_difusion= self.product_code
+        if self.name.id == 499:
+#            result.update({'name': product.name})
+            self.product_tmpl_id.dsn_code_vileda = self.product_code
+                
+#        return result
