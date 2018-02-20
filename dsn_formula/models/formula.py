@@ -241,9 +241,10 @@ class dsnMpIngredient(models.Model):
             record.conc_avg=(record.conc_min+record.conc_max)/2
 
     mp_id = fields.Many2one(string="MP", comodel_name="dsnmp", required=False, ondelete='restrict')
-    name = fields.Char(string="Inci", related="mp_id.name")
+
     mp_code = fields.Char(string="MP Code", related="mp_id.product_id.default_code", readonly=True)
     mpingr_id = fields.Many2one(string="Ingredient", comodel_name="dsnmp", required=True, ondelete='restrict')
+    name = fields.Char(string="Inci", related="mpingr_id.name", readonly=True)
     mpingr_code = fields.Char(string="Ingr Code", related="mpingr_id.product_id.default_code", readonly=True)
     conc_min = fields.Float(string="Conc.Mín.",digits=dp.get_precision('Product Unit of Measure'))
     conc_max = fields.Float(string="Conc.Máx.",digits=dp.get_precision('Product Unit of Measure'))

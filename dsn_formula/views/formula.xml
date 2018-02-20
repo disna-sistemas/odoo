@@ -181,6 +181,7 @@
                     <field name="mp_code"/>
                     <field name="mp_id"/>
                     <field name="mpingr_code"/>
+                    <field name="name"/>
                     <field name="mpingr_id"/>
                     <field name="conc_min"/>
                     <field name="conc_max"/>
