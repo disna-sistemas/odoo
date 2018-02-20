@@ -190,11 +190,11 @@
         </record>
 
         <record id="dsn_mp_ingredient_search" model="ir.ui.view">
-            <field name="name">dsn_formula.dsn.mp.search</field>
+            <field name="name">dsn_formula.dsn.mp.ingredient.search</field>
             <field name="model">dsnmp.ingredient</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="inci" filter_domain="[('mp_id.name','ilike',self)]"/>
+<!--                    <field name="name" filter_domain="[('mp_id.name','ilike',self)]"/>-->
                     <field name="mp_code" filter_domain="[('mp_code','ilike',self)]"/>
                     <field name="mpingr_code" filter_domain="[('mpingr_code','ilike',self)]"/>
                 </search>
