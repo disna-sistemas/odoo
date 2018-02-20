@@ -194,7 +194,7 @@
             <field name="model">dsnmp.ingredient</field>
             <field name="arch" type="xml">
                 <search>
-<!--                    <field name="name" filter_domain="[('mp_id.name','ilike',self)]"/>-->
+                    <field name="name" filter_domain="[('name','ilike',self)]"/>
                     <field name="mp_code" filter_domain="[('mp_code','ilike',self)]"/>
                     <field name="mpingr_code" filter_domain="[('mpingr_code','ilike',self)]"/>
                 </search>
@@ -286,7 +286,7 @@
             <field name="res_model">dsnmp.ingredient</field>
             <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
             <field name="view_type">tree</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <record id="dsn_action_safety_groups" model="ir.actions.act_window">
