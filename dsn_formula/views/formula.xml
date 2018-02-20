@@ -285,8 +285,8 @@
             <field name="name">Ingredients</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsnmp.ingredient</field>
-            <field name="view_id" ref="dsn_mp_ingredient_tree_view"></field>
-            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_mp_ingredient_form_view"></field>
+            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
