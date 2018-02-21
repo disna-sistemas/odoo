@@ -19,25 +19,27 @@
 from openerp import models, fields, api
 import logging
 
-#class ProductTemplateTranslation(models.Model):
-#    _inherit = "ir.translation"
-#
-#    @api.onchange('value')
-#    @api.multi
-#    def onchange_lang_es_ES(self):
-#        _logger=logging.getLogger(__name__)
-#        prod_obj = self.env['product.template']
+class ProductTemplateTranslation(models.Model):
+    _inherit = "ir.translation"
+
+    @api.multi
+    @api.onchange('src','value')
+    def onchange_lang_es_ES(self):
+        _logger=logging.getLogger(__name__)
+        prod_obj = self.env['product.template']
 #        for record in self:
 #            if record.name=='product_template,name' and record.lang=='es_ES':
-#
-##        for record in self.filtered(lambda x: x.type=='model' and x.name=='product.template,name' and x.lang=='es_ES'):
-#                _logger.info('IR TRANSLATION ' + record.name + str(record.res_id.id))
-#                prod_ids = prod_obj.search([('id','=',record.res_id)])
-#                if prod_ids:
-#                    prod = prod[0]
-#                    _logger.info('PRODUCT' + prod.default_code)
-#                    prod.dsn_name_es = record.value
-#                   prod.dsn_name_en = record.src
+
+        for record in self.filtered(lambda x: x.type=='model' and x.name=='product.template,name' and x.lang=='es_ES'):
+            _logger.info('IR TRANSLATION ' + record.name + str(record.res_id.id))
+            prod_ids = prod_obj.search([('id','=',record.res_id)])
+            if prod_ids:
+                prod = prod[0]
+                _logger.info('PRODUCT' + prod.default_code)
+                prod.write({'dsn_name_es': record.value,
+                            'dsn_name_en': record.src})
+#                prod.dsn_name_es = record.value
+#                prod.dsn_name_en = record.src
 
 class product(models.Model):
 
@@ -55,46 +57,34 @@ class product(models.Model):
                               default=_default_translation,
 #                              compute='_compute_translations',
                               store=True)
+
+
+
+
+
+
     
-    @api.model
-    def compute_translations(self):
-        prod_tmpl_obj = self.env['product.template']
-        prod_tmpl_lst = prod_tmpl_obj.search([(True)])
-        for pt in prod_tmpl_lst:
-
-            translat = self.env['ir.translation'].search(
-                        [
-                            ('res_id','=',pt.id),
-                            ('name','=','product.template,name'),
-                            ('lang','=','es_ES')
-                         ], limit=1
-            )
-            if translat:
-                pt.dsn_name_es = translat.value
-                pt.dsn_name_en = translat.source
-        _logger=logging.getLogger(__name__)
-        _logger.info('Product template es_ES translation updated')
-        return True
-
-
-
-#    @api.multi
-#    @api.depends('write_date')
+#    @api.model
 #    def _compute_translations(self):
-#        for record in self:
-#            record.dsn_name_es = record.name
-#            record.dsn_name_en = record.name
+#        prod_tmpl_obj = self.env['product.template']
+#        prod_tmpl_lst = prod_tmpl_obj.search([(True)])
+#        for pt in prod_tmpl_lst:
 #
 #            translat = self.env['ir.translation'].search(
 #                        [
-#                            ('res_id','=',record.id),
+#                            ('res_id','=',pt.id),
 #                            ('name','=','product.template,name'),
 #                            ('lang','=','es_ES')
 #                         ], limit=1
 #            )
 #            if translat:
-#                record.dsn_name_es = translat.value
-#                record.dsn_name_en = translat.source
+#                pt.dsn_name_es = translat.value
+#                pt.dsn_name_en = translat.source
+#        _logger=logging.getLogger(__name__)
+#        _logger.info('Product template es_ES translation updated')
+#        return True
+
+
 
 
 
