@@ -58,6 +58,7 @@ class product(models.Model):
                                                       ('type','=','model'),
                                                       ('lang','=','es_ES')])
             if translation_ids:
+                _logger.info('ENTRANDO')
                 translation_id=translation_ids=[0]
                 record.dsn_name_en = record.name
                 record.dsn_name_es = translation_id.value
@@ -76,6 +77,7 @@ class product(models.Model):
 #             else:
 #                 _logger.info('no translation FOR ' + str(record.id))
 
+    @api.multi
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
         translation_obj = self.env['ir.translation']
