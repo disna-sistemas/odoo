@@ -55,13 +55,14 @@ class product(models.Model):
 
         if product_ids:
             for product_id in product_ids:
-                _logger.info('updating PRODUCT ' + product_id.name)
+
                 translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
                 if translation_ids:
 
                     translation_id = translation_ids[0]
                     product.dsn_name_es = translation_id.value
                     product.dsn_name_en = translation_id.src
+                    _logger.info('updating PRODUCT ' + product_id.name)
 
 
     dsn_name_es = fields.Char(string='Traducción ES',
