@@ -77,7 +77,7 @@ class product(models.Model):
 #             else:
 #                 _logger.info('no translation FOR ' + str(record.id))
 
-    @api.multi
+    @api.model
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
         translation_obj = self.env['ir.translation']
@@ -88,17 +88,17 @@ class product(models.Model):
         if product_ids:
             for product_id in product_ids:
 
-                translat_es = translation_obj._get_source(name="product.name,template",
-                                                         types="model",
-                                                         lang="es_ES",
-                                                         source=product_id.name,
-                                                         res_id=product_id.id)
+                translat_ids = translation_obj.search([('name','=','product.name,template'),
+                                                        ('type','=','model'),
+                                                        ('lang','=','es_ES'),
+                                                        ('src','=',product_id.name)])
+                if translat_ids:
+                    translat_es = translat_ids[0].value
 
-#                product.dsn_name_en = product_id.name
-                if translat_es:
-                    product_id.write({"dsn_name_es": translat_es,
-                                   "dsn_name_en": product_id.name})
-                    _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + translat_es)
+                    if translat_es:
+                        product_id.write({"dsn_name_es": translat_es,
+                                       "dsn_name_en": product_id.name})
+                        _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + translat_es)
 #                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
 #                if translation_ids:
 #                    translation_id = translation_ids[0]
