@@ -93,23 +93,23 @@ class product(models.Model):
     dsn_name_en = fields.Char(string='English Traduction')
 
 
-class IrTranslation(models.model):
-    _inherit = "ir.translation"
-
-    @api.multi
-    def write(self, values):
-        product_obj = self.env['product.template']
-        for record in self:
-            if record.name == "product.template,name" and record.type == 'model' and record.lang == 'es_ES':
-                _logger = logging.getLogger(__name__)
-                product_name = record.src
-                product_ids = product_obj.search([('name','=',product_name)])
-
-                for product_id in product_ids:
-                    product_id.write({'dsn_name_en': record.src,
-                                      'dsn_name_es': record.value})
-                    _logger.info('updating PRODUCT ' + str(product_id.id) + ' ' + record.value)
-
-                    break
-
-        return super(IrTranslation,self).write(values)
+# class IrTranslation(models.model):
+#     _inherit = "ir.translation"
+#
+#     @api.multi
+#     def write(self, values):
+#         product_obj = self.env['product.template']
+#         for record in self:
+#             if record.name == "product.template,name" and record.type == 'model' and record.lang == 'es_ES':
+#                 _logger = logging.getLogger(__name__)
+#                 product_name = record.src
+#                 product_ids = product_obj.search([('name','=',product_name)])
+#
+#                 for product_id in product_ids:
+#                     product_id.write({'dsn_name_en': record.src,
+#                                       'dsn_name_es': record.value})
+#                     _logger.info('updating PRODUCT ' + str(product_id.id) + ' ' + record.value)
+#
+#                     break
+#
+#         return super(IrTranslation, self).write(values)
