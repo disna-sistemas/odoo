@@ -49,14 +49,13 @@ class product(models.Model):
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
         translation_obj = self.env['ir.translation']
-        product_ids = product_obj.search([('dsn_name_es','=','NULL')])
+        product_ids = product_obj.search(['|',('dsn_name_es','=',False),('dsn_name_en','=',False)])
 
         _logger = logging.getLogger(__name__)
-        _logger.info('YEA ' + len(product_ids))
 
         if product_ids:
             for product_id in product_ids:
-                _logger.info('upd PRODUCT ' + product_id.name)
+                _logger.info('updating PRODUCT ' + product_id.name)
                 translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
                 if translation_ids:
 
