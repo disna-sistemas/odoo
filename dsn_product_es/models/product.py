@@ -46,6 +46,18 @@ class product(models.Model):
     def _default_translation(self):
         return self.name
 
+    def dsn_update_es_en_description(self):
+        product_obj = self.env['product.template']
+        translation_obj = self.env['ir.translation']
+        product_ids = product_obj.search([('dsn_name_es','=','NULL')])
+        if product_ids:
+            for product_id in product_ids:
+                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
+                if translation_ids:
+                    translation_id = translation_ids[0]
+                    product.dsn_name_es = translation_id.value
+                    product.dsn_name_en = translation_id.src
+
     dsn_name_es = fields.Char(string='Traducción ES',
                               default=_default_translation,
 #                              compute='_compute_translations',
