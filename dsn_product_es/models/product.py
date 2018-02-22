@@ -50,13 +50,19 @@ class product(models.Model):
         product_obj = self.env['product.template']
         translation_obj = self.env['ir.translation']
         product_ids = product_obj.search([('dsn_name_es','=','NULL')])
+
+        _logger = logging.getLogger(__name__)
+
         if product_ids:
             for product_id in product_ids:
+                _logger.info('upd PRODUCT ' + product_id.name)
                 translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
                 if translation_ids:
+
                     translation_id = translation_ids[0]
                     product.dsn_name_es = translation_id.value
                     product.dsn_name_en = translation_id.src
+
 
     dsn_name_es = fields.Char(string='Traducción ES',
                               default=_default_translation,
