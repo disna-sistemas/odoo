@@ -56,12 +56,12 @@ class product(models.Model):
             translat_es = translation_obj._get_source(name="product.name,template",
                                                               types="model",
                                                               lang="es_ES",
-                                                              source=product.name,
-                                                              res_id=product.id)
+                                                              source=record.name,
+                                                              res_id=record.id)
             if translat_es:
-                product.write({"dsn_name_es": translat_es,
-                                  "dsn_name_en": product.name})
-                _logger.info('updating PRODUCT ' + str(product.id) + ' ' + translat_es)
+                record.dsn_name_es = translat_es
+                record.dsn_name_en = record.name
+                _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translat_es)
 
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
