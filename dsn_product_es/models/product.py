@@ -65,7 +65,7 @@ class product(models.Model):
                 product.dsn_name_en = product_id.name
                 if translat_es:
                     product.dsn_name_es = translat_es
-                    _logger.info('updating PRODUCT ' + product_id.name)
+                    _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + product_id.name)
 #                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
 #                if translation_ids:
 #                    translation_id = translation_ids[0]
