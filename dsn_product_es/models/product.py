@@ -56,13 +56,21 @@ class product(models.Model):
         if product_ids:
             for product_id in product_ids:
 
-                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
-                if translation_ids:
+                translat_es = translation_obj._get_source(name="product.name,template",
+                                                         types="model",
+                                                         lang="es_ES",
+                                                         source=product_id.name,
+                                                         res_id=product_id.id)
 
-                    translation_id = translation_ids[0]
-                    product.dsn_name_es = translation_id.value
-                    product.dsn_name_en = translation_id.src
+                product.dsn_name_en = product_id.name
+                if translat_es:
+                    product.dsn_name_es = translat_es
                     _logger.info('updating PRODUCT ' + product_id.name)
+#                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
+#                if translation_ids:
+#                    translation_id = translation_ids[0]
+#                    product.dsn_name_es = translation_id.value
+#                    product.dsn_name_en = translation_id.src
 
 
     dsn_name_es = fields.Char(string='Traducción ES',
