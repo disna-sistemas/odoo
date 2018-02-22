@@ -52,6 +52,7 @@ class product(models.Model):
         product_ids = product_obj.search([('dsn_name_es','=','NULL')])
 
         _logger = logging.getLogger(__name__)
+        _logger.info('YEA ' + len(product_ids))
 
         if product_ids:
             for product_id in product_ids:
