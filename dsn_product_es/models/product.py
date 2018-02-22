@@ -53,18 +53,28 @@ class product(models.Model):
         translation_obj = self.env['ir.translation']
         _logger = logging.getLogger(__name__)
         for record in self:
-            translat_es = translation_obj._get_source(name="product.name,template",
-                                                              types="model",
-                                                              lang="es_ES",
-                                                              source=record.name,
-                                                              res_id=record.id)
-
-            if translat_es:
-                record.dsn_name_es = translat_es
+            translation_ids = translation_obj.search([('src','=',record.name),
+                                                      ('name','=','product.template,name'),
+                                                      ('type','=','model'),
+                                                      ('lang','=','es_ES')])
+            if translation_ids:
+                translation_id=translation_ids=[0]
                 record.dsn_name_en = record.name
-                _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translat_es)
-            else:
-                _logger.info('no translation FOR ' + str(record.id))
+                record.dsn_name_es = translation_id.value
+                _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translation_id.value)
+
+
+#            translat_es = translation_obj._get_source(name="product.name,template",
+#                                                              types="model",
+#                                                               lang="es_ES",
+#                                                               source=record.name,
+#                                                               res_id=record.id)
+#             if translat_es:
+#                 record.dsn_name_es = translat_es
+#                 record.dsn_name_en = record.name
+#                 _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translat_es)
+#             else:
+#                 _logger.info('no translation FOR ' + str(record.id))
 
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
