@@ -108,6 +108,7 @@ class IrTranslation(models.model):
                 for product_id in product_ids:
                     product_id.write({'dsn_name_en': record.src,
                                       'dsn_name_es': record.value})
+                    _logger.info('updating PRODUCT ' + str(product_id.id) + ' ' + record.value)
 
                     break
 
