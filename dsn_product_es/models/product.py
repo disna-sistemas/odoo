@@ -19,25 +19,26 @@
 from openerp import models, fields, api
 import logging
 
-#class ProductTemplateTranslation(models.Model):
-#    _inherit = "ir.translation"
-#
-#     @api.multi
-#     @api.onchange('src','value')
-#     def onchange_lang_es_ES(self):
-#         _logger=logging.getLogger(__name__)
-#         prod_obj = self.env['product.template']
-#
-#         for record in self.filtered(lambda x: x.type=='model' and x.name=='product.template,name' and x.lang=='es_ES'):
-#             _logger.info('IR TRANSLATION ' + record.name + ' ' + str(record.res_id))
-#             prod_ids = prod_obj.search([('id','=',str(record.res_id))])
-#             if prod_ids:
-#                 prod = prod[0]
-#                 _logger.info('PRODUCT' + prod.default_code)
-#                 prod.write({'dsn_name_es': record.value,
-#                             'dsn_name_en': record.src})
-# #                prod.dsn_name_es = record.value
-# #                prod.dsn_name_en = record.src
+class IrTranslation(models.Model):
+    _inherit = "ir.translation"
+
+    @api.multi
+    def write(self, values):
+        product_obj = self.env['product.template']
+        for record in self:
+            if record.name == "product.template,name" and record.type == 'model' and record.lang == 'es_ES':
+                _logger = logging.getLogger(__name__)
+                product_name = record.src
+                product_ids = product_obj.search([('name', '=', product_name)])
+
+                for product_id in product_ids:
+                    product_id.write({'dsn_name_en': record.src,
+                                      'dsn_name_es': record.value})
+                    _logger.info('updating PRODUCT ' + str(product_id.id) + ' ' + record.value)
+
+                    break
+
+        return super(IrTranslation, self).write(values)
 
 class product(models.Model):
 
@@ -94,24 +95,3 @@ class product(models.Model):
 
     dsn_name_en = fields.Char(string='English Traduction')
 
-
- class IrTranslation(models.model):
-     _inherit = "ir.translation"
-
-     @api.multi
-     def write(self, values):
-         product_obj = self.env['product.template']
-         for record in self:
-             if record.name == "product.template,name" and record.type == 'model' and record.lang == 'es_ES':
-                 _logger = logging.getLogger(__name__)
-                 product_name = record.src
-                 product_ids = product_obj.search([('name','=',product_name)])
-
-                 for product_id in product_ids:
-                     product_id.write({'dsn_name_en': record.src,
-                                       'dsn_name_es': record.value})
-                     _logger.info('updating PRODUCT ' + str(product_id.id) + ' ' + record.value)
-
-                     break
-
-         return super(IrTranslation, self).write(values)
