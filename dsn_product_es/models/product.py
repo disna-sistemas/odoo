@@ -46,6 +46,23 @@ class product(models.Model):
     def _default_translation(self):
         return self.name
 
+
+    @api.multi
+    @api.depends('write_date')
+    def dsn_update_es_en_names(self):
+        translation_obj = self.env['ir.translation']
+        _logger = logging.getLogger(__name__)
+        for record in self:
+            translat_es = translation_obj._get_source(name="product.name,template",
+                                                              types="model",
+                                                              lang="es_ES",
+                                                              source=product.name,
+                                                              res_id=product.id)
+            if translat_es:
+                product.write({"dsn_name_es": translat_es,
+                                  "dsn_name_en": product.name})
+                _logger.info('updating PRODUCT ' + str(product.id) + ' ' + translat_es)
+
     def dsn_update_es_en_description(self):
         product_obj = self.env['product.template']
         translation_obj = self.env['ir.translation']
@@ -64,7 +81,7 @@ class product(models.Model):
 
 #                product.dsn_name_en = product_id.name
                 if translat_es:
-                    product.write({"dsn_name_es": translat_es,
+                    product_id.write({"dsn_name_es": translat_es,
                                    "dsn_name_en": product_id.name})
                     _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + translat_es)
 #                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
