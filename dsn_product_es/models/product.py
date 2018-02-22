@@ -19,9 +19,9 @@
 from openerp import models, fields, api
 import logging
 
-class ProductTemplateTranslation(models.Model):
-    _inherit = "ir.translation"
-
+#class ProductTemplateTranslation(models.Model):
+#    _inherit = "ir.translation"
+#
 #     @api.multi
 #     @api.onchange('src','value')
 #     def onchange_lang_es_ES(self):
@@ -47,35 +47,22 @@ class product(models.Model):
         return self.name
 
 
-    @api.multi
-    @api.depends('write_date')
-    def dsn_update_es_en_names(self):
-        translation_obj = self.env['ir.translation']
-        _logger = logging.getLogger(__name__)
-        for record in self:
-            translation_ids = translation_obj.search([('src','=',record.name),
-                                                      ('name','=','product.template,name'),
-                                                      ('type','=','model'),
-                                                      ('lang','=','es_ES')])
-            if translation_ids:
-                _logger.info('ENTRANDO')
-                translation_id=translation_ids=[0]
-                record.dsn_name_en = record.name
-                record.dsn_name_es = translation_id.value
-                _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translation_id.value)
-
-
-#            translat_es = translation_obj._get_source(name="product.name,template",
-#                                                              types="model",
-#                                                               lang="es_ES",
-#                                                               source=record.name,
-#                                                               res_id=record.id)
-#             if translat_es:
-#                 record.dsn_name_es = translat_es
-#                 record.dsn_name_en = record.name
-#                 _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translat_es)
-#             else:
-#                 _logger.info('no translation FOR ' + str(record.id))
+    # @api.multi
+    # @api.depends('write_date')
+    # def dsn_update_es_en_names(self):
+    #     translation_obj = self.env['ir.translation']
+    #     _logger = logging.getLogger(__name__)
+    #     for record in self:
+    #         translation_ids = translation_obj.search([('src','=',record.name),
+    #                                                   ('name','=','product.template,name'),
+    #                                                   ('type','=','model'),
+    #                                                   ('lang','=','es_ES')])
+    #         if translation_ids:
+    #             _logger.info('ENTRANDO')
+    #             translation_id=translation_ids=[0]
+    #             record.dsn_name_en = record.name
+    #             record.dsn_name_es = translation_id.value
+    #             _logger.info('updating PRODUCT ' + str(record.id) + ' ' + translation_id.value)
 
     @api.model
     def dsn_update_es_en_description(self):
@@ -107,12 +94,12 @@ class product(models.Model):
 
 
     dsn_name_es = fields.Char(string='Traducción ES',
-                              default=_default_translation,
+#                              default=_default_translation,
 #                              compute='_compute_translations',
                               store=True)
 
     dsn_name_en = fields.Char(string='English Traduction',
-                              default=_default_translation,
+#                              default=_default_translation,
 #                              compute='_compute_translations',
                               store=True)
 

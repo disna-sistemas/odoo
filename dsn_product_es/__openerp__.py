@@ -17,12 +17,12 @@
 
 {
     "name": "Disna - Spanish Translation for product template",
-    "version": "0.1",
+    "version": "0.2",
     "author": "Disna, S.A.",
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['base','product'],
+    "depends": ['base','product','ir.translation'],
     "description": """
         Adds spanish translation field to product template
     """,
