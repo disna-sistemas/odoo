@@ -86,49 +86,11 @@ class product(models.Model):
                         product_id.write({"dsn_name_es": translat_es,
                                        "dsn_name_en": product_id.name})
                         _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + translat_es)
-#                translation_ids = translation_obj.search([('type','=','model'),('name','=','product.name,template'),('lang','=','es_ES'),('res_id','=',str(product_id.id))])
-#                if translation_ids:
-#                    translation_id = translation_ids[0]
-#                    product.dsn_name_es = translation_id.value
-#                    product.dsn_name_en = translation_id.src
 
 
-    dsn_name_es = fields.Char(string='Traducción ES',
-#                              default=_default_translation,
-#                              compute='_compute_translations',
-                              store=True)
+    dsn_name_es = fields.Char(string='Traducción ES')
 
-    dsn_name_en = fields.Char(string='English Traduction',
-#                              default=_default_translation,
-#                              compute='_compute_translations',
-                              store=True)
-
-
-
-
-
-
-    
-#    @api.model
-#    def _compute_translations(self):
-#        prod_tmpl_obj = self.env['product.template']
-#        prod_tmpl_lst = prod_tmpl_obj.search([(True)])
-#        for pt in prod_tmpl_lst:
-#
-#            translat = self.env['ir.translation'].search(
-#                        [
-#                            ('res_id','=',pt.id),
-#                            ('name','=','product.template,name'),
-#                            ('lang','=','es_ES')
-#                         ], limit=1
-#            )
-#            if translat:
-#                pt.dsn_name_es = translat.value
-#                pt.dsn_name_en = translat.source
-#        _logger=logging.getLogger(__name__)
-#        _logger.info('Product template es_ES translation updated')
-#        return True
-
+    dsn_name_en = fields.Char(string='English Traduction')
 
 
 

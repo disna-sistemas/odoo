@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['base','product','ir.translation'],
+    "depends": ['base','product'],
     "description": """
         Adds spanish translation field to product template
     """,
