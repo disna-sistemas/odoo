@@ -83,8 +83,10 @@ class product(models.Model):
                     translat_es = translat_ids[0].value
 
                     if translat_es:
+
                         product_id.write({"dsn_name_es": translat_es,
                                        "dsn_name_en": product_id.name})
+
                         _logger.info('updting PRODUCT ' + str(product_id.id) + ' ' + translat_es)
 
 
