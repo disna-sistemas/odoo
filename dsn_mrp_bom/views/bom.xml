@@ -5,17 +5,5 @@
             <field name="name">Bom Line Qty</field>
             <field name="digits" eval="5"/>
         </record>
-<!--
-        <record id="dsn_mrp_bom_form" model="ir.ui.view">
-            <field name="name">mrp.bom.form.name</field>
-            <field name="model">mrp.bom</field>
-            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
-            <field name="arch" type="xml">
-                <field name="product_id" position="after">
-                    <field name="name">Name</field>
-                </field>
-            </field>
-        </record>
--->
     </data>
 </openerp>
