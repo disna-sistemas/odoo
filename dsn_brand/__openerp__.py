@@ -26,7 +26,7 @@
     "description": """
         New entity dsn.brand for product variants, independent from product template brand.
     """,
-    "data": ['views.xml'],
+    "data": ['views/product.xml'],
     "installable": True,
     "auto_install": False,
 }
