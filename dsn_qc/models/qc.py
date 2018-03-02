@@ -53,6 +53,8 @@ class dsnQcInspection(models.Model):
 
     dsn_date_analysis = fields.Date('Date of Analysis', readonly=True)
 
+    dsn_company = fields.Selection([('disna','Disna'),('naturvita','Instituto Naturvita')], default='disna')
+
     @api.multi
     def dsn_action_back_to_ready(self):
         self.write({'state': 'ready'})
