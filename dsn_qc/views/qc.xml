@@ -30,8 +30,8 @@
             <field name="inherit_id" ref="quality_control.qc_inspection_form_view"/>
             <field name="arch" type="xml">
                 <field name="test" position="after">
-                    <field name="dsn_company" />
-                    <field name="dsn_lang" />
+                    <field name="dsn_company">Company</field>
+                    <field name="dsn_lang">Language</field>
                 </field>
             </field>
 
