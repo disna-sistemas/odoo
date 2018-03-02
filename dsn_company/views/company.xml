@@ -7,9 +7,10 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form" />
             <field name="arch">
+
                 <notebook position="inside">
                     <page string="etc">
-                        <group string="etc">
+                        <group colspan="2" col="2">
                             <field name="dsn_logo2" widget="image"  class="oe_avatar oe_left">Logo Instituto Naturvita</field>
                         </group>
                     </page>
