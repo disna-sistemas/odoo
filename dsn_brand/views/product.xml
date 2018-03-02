@@ -36,7 +36,7 @@
                     <page string="Certificates">
                         <group colspan="2" col="2">
 
-                            <field name="dsn_brand_id" groups="dsn_security.qualityGuarantee_user">Brand</field>
+                            <field name="dsn_brand_id">Brand</field>
                         </group>
                     </page>
                 </notebook>
