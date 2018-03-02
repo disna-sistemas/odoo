@@ -22,6 +22,7 @@
 from openerp import models, fields, api
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+import open
 
 class dsnQcAnalysisMethod(models.Model):
     _name="dsnqc.analysis.method"
@@ -51,7 +52,14 @@ class dsnQcTestQuestion(models.Model):
 class dsnQcInspection(models.Model):
     _inherit = "qc.inspection"
 
+    def _get_language(self):
+        lang_obj=self.env['res.lang']
+        lang_ids = lang_obj.search([('active','=',True)])
+        return [(lang.code, lang.name ) for lang in lang_ids]
+
     dsn_date_analysis = fields.Date('Date of Analysis', readonly=True)
+
+    dsn_lang = fields.selection(_get_language, string='Language')
 
     dsn_company = fields.Selection([('disna','Disna'),('naturvita','Instituto Naturvita')], default='disna')
 
