@@ -121,11 +121,6 @@ class ProductTemplate(models.Model):
 
     dsn_spec_ids = fields.One2many(comodel_name="dsn.product.template.specifications", inverse_name="product_tmpl_id", string="Template Specs")
 
-    dsn_code_difusion = fields.Char(string='Difusion Code', store=True)
-
-    dsn_code_vileda = fields.Char(string='Vileda Code', store=True)
-
-
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
@@ -179,6 +174,9 @@ class ProductProduct(models.Model):
             raise exceptions.Warning('You are not allowed to modify this product!!! (' + _updated_fields + ')')
 
 
+    dsn_code_difusion = fields.Char(string='Difusion Code', store=True)
+
+    dsn_code_vileda = fields.Char(string='Vileda Code', store=True)
 
     _sql_constraints = [
         ('default_code_uniq', 'unique(default_code)', 'Product Code must be unique!!!'),
@@ -194,9 +192,9 @@ class dsnProductSupplierInfo(models.Model):
         self.ensure_one()
 #        result={}
         if self.name.id == 151:
-            self.product_tmpl_id.write({'dsn_code_difusion': self.product_code})
+            self.product_id.write({'dsn_code_difusion': self.product_code})
         if self.name.id == 499:
 #            result.update({'product_tmpl_id.dsn_code_vileda': self.product_code})
-            self.product_tmpl_id.write({'dsn_code_vileda': self.product_code})
+            self.product_id.write({'dsn_code_vileda': self.product_code})
 
 #        return result
