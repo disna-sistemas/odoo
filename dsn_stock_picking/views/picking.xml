@@ -41,6 +41,13 @@
                 <field name="origin" position="after">
                     <field name="dsnsupplierdoc">Supplier Document</field>
                 </field>
+                <notebook position="inside">
+                    <page string="etc">
+                        <group colspan="2" col="2">
+                            <field name="dsn_company">Company</field>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
 

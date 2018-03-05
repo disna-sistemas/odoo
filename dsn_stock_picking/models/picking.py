@@ -27,3 +27,5 @@ class dsnStockPickingExport(models.Model):
 #    _order = "priority, product_id, date desc, name"
 
     dsnsupplierdoc = fields.Char(string="Supplier Document")
+
+    dsn_company = fields.Selection([('disna', 'Disna'), ('naturvita', 'Instituto Naturvita')], default='disna')
