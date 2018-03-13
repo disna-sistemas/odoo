@@ -290,4 +290,4 @@ class dsnProductMps(models.Model):
 
     dsn_cosmetic_safety_group = fields.Many2one(comodel_name="dsn.cosmetic.safety.group",
                                             string="Safety Evaluation Group",
-                                            ondelete='restrict')
+                                            ondelete="restrict")
