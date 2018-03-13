@@ -32,8 +32,7 @@
     - standard_price
     - manual_standard_cost
     - price_history
-
-
+    - dif & vil codes
     """,
     "data": [
         'views/product.xml',
