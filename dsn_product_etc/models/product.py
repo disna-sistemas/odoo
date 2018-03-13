@@ -88,6 +88,7 @@ class ProductTemplate(models.Model):
                         'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
                         'volume', 'warranty', 'weight', 'weight_net' ]
 
+
                     for _field in _forbidden_fields:
                         if _field in values:
 
@@ -153,7 +154,7 @@ class ProductProduct(models.Model):
 
                     _forbidden_fields = ['active', 'adr_class_id','default_code','description','dsnidart','dsn_box_barcode',
                     'dsn_box_config','dsn_box_units','dsn_brand_id','dsn_calc_cost','ean13','manual_code',
-                    'name','name_template','product_id','product_tmpl_id','weight','weight_net','volume']
+                    'name','name_template','product_id','weight','weight_net','volume']
 
                     for _field in _forbidden_fields:
                         if _field in values:
