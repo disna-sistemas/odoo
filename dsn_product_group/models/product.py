@@ -21,7 +21,7 @@
 from openerp import models, fields
 
 class partner(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
 
 #    dsngroup_id = fields.Many2one('dsngroup', string='Group')
     dsninegroup_id = fields.Many2one(comodel_name='dsninegroup',
