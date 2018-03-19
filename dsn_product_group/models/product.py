@@ -23,4 +23,8 @@ from openerp import models, fields
 class partner(models.Model):
     _inherit = "product.product"
 
-    dsngroup_id = fields.Many2one('dsngroup', string='Group')
+#    dsngroup_id = fields.Many2one('dsngroup', string='Group')
+    dsninegroup_id = fields.Many2one(comodel_name='dsninegroup',
+                                     help='Group created for INE purposes',
+                                     ondelete='restrict')
+

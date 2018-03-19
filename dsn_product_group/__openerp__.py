@@ -16,17 +16,15 @@
 ##########################################################################
 
 {
-    "name": "Product Group",
+    "name": "Disna - Product Groups",
     "version": "0.1",
     "author": "Disna",
     "contributors": [],
     "website": "",
     "category": "product",
-    "depends": ['product'],
+    "depends": ['product','dsn_menu_disna'],
     "description": """
-        Creates new entity product.group
-
-        Also extends product VARIANT.
+- new entity INE group and new link from product.template to this group
     """,
     "data": [
             'views/group.xml',

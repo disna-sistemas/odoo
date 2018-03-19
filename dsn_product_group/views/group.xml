@@ -2,36 +2,78 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="dsngroup_form_view">
-            <field name="name">dsngroup.form</field>
-            <field name="model">dsngroup</field>
+        <!--<record model="ir.ui.view" id="dsngroup_form_view">-->
+            <!--<field name="name">dsngroup.form</field>-->
+            <!--<field name="model">dsngroup</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Product Groups">-->
+                    <!--<group>-->
+                        <!--<field name="code" required="True">Code</field>-->
+                        <!--<field name="name" required="True">Name</field>-->
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record model="ir.ui.view" id="dsngroup_tree_view">-->
+            <!--<field name="name">dsngroup.tree</field>-->
+            <!--<field name="model">dsngroup</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Product Groups">-->
+                    <!--<field name="code">Code</field>-->
+                    <!--<field name="name">Parent</field>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="action_dsngroups" model="ir.actions.act_window">-->
+            <!--<field name="name">Product Groups</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">dsngroup</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_id" ref="dsngroup_form_view"/>-->
+            <!--<field name="view_mode">tree,form</field>-->
+            <!--<field name="help" type="html">-->
+              <!--<p class="oe_view_nocontent_create">-->
+                <!--Click to create a product group-->
+              <!--</p>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<menuitem name="Product Groups"-->
+                  <!--id="purchase.dsn_products_groups"-->
+                  <!--parent="purchase.menu_procurement_management_product"-->
+                  <!--action="action_dsngroups"-->
+                  <!--sequence="10"/>-->
+
+        <record model="ir.ui.view" id="dsninegroup_form_view">
+            <field name="name">dsninegroup.form</field>
+            <field name="model">dsninegroup</field>
             <field name="arch" type="xml">
-                <form string="Product Groups">
+                <form string="INE Groups">
                     <group>
-                        <field name="code" required="True">Code</field>
                         <field name="name" required="True">Name</field>
                     </group>
                 </form>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="dsngroup_tree_view">
-            <field name="name">dsngroup.tree</field>
-            <field name="model">dsngroup</field>
+        <record model="ir.ui.view" id="dsninegroup_tree_view">
+            <field name="name">dsninegroup.tree</field>
+            <field name="model">dsninegroup</field>
             <field name="arch" type="xml">
-                <tree string="Product Groups">
-                    <field name="code">Code</field>
-                    <field name="name">Parent</field>
+                <tree string="INE Groups">
+                    <field name="name">Name</field>
                 </tree>
             </field>
         </record>
 
-        <record id="action_dsngroups" model="ir.actions.act_window">
-            <field name="name">Product Groups</field>
+        <record id="action_dsninegroups" model="ir.actions.act_window">
+            <field name="name">INE Product Groups</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsngroup</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="dsngroup_form_view"/>
+            <field name="view_id" ref="dsninegroup_form_view"/>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -40,11 +82,11 @@
             </field>
         </record>
 
-        <menuitem name="Product Groups"
-                  id="purchase.dsn_products_groups"
-                  parent="purchase.menu_procurement_management_product"
-                  action="action_dsngroups"
-                  sequence="10"/>
+        <menuitem name="INE Groups"
+                  id="dsn_ine_product_groups"
+                  parent="dsn_menu_disna.dsn_menu_disna"
+                  action="action_dsninegroups"
+                  sequence="60"/>
 
     </data>
 </openerp>
