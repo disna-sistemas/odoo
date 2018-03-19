@@ -10,7 +10,7 @@
                 <field name="uom_id" position="after">
                     <field name="dsninegroup_id"
                            required="False"
-                           placeholder="Product Group">INE Group</field>
+                           placeholder="INE Group">INE Group</field>
                 </field>
             </field>
         </record>

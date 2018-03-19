@@ -25,6 +25,7 @@ class partner(models.Model):
 
 #    dsngroup_id = fields.Many2one('dsngroup', string='Group')
     dsninegroup_id = fields.Many2one(comodel_name='dsninegroup',
+                                     string='INE Group',
                                      help='Group created for INE purposes',
                                      ondelete='restrict')
 
