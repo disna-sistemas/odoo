@@ -24,7 +24,7 @@
     "category": "product",
     "depends": ['product','dsn_menu_disna'],
     "description": """
-- new entity INE group and new link from product.template to this group
+Creates new entity INE and a link from product template
     """,
     "data": [
             'views/group.xml',
