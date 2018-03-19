@@ -82,11 +82,17 @@
             </field>
         </record>
 
-        <menuitem name="INE Groups"
-                  id="dsn_ine_product_groups"
+        <menuitem name="INE"
+                  id="dsn_menu_ine"
                   parent="dsn_menu_disna.dsn_menu_disna"
                   action="action_dsninegroups"
                   sequence="60"/>
+
+        <menuitem name="INE Groups"
+                  id="dsn_menu_ine_groups"
+                  parent="dsn_menu_ine"
+                  action="action_dsninegroups"
+                  sequence="10"/>
 
     </data>
 </openerp>

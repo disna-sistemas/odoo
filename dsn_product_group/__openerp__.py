@@ -16,7 +16,7 @@
 ##########################################################################
 
 {
-    "name": "Disna - Product Groups",
+    "name": "Disna - INE Groups",
     "version": "0.1",
     "author": "Disna",
     "contributors": [],
