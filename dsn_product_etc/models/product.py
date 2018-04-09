@@ -74,39 +74,33 @@ class ProductTemplate(models.Model):
         _uid = self.env.uid
 
         for record in self:
-            if allow_update and _uid != 1 and record.product_manager:
+            if allow_update and _uid != 1:
 
-                if record.product_manager.id != _uid:
+                if record.product_manager:
 
-                    _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
-                        'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
-                        'hr_expense_ok', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
-                        'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
-                        'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
-                        'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
-                        'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
-                        'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
-                        'volume', 'warranty', 'weight', 'weight_net' ]
+                    if record.product_manager.id != _uid:
+
+                        _forbidden_fields = ['active', 'alert_time', 'categ_id', 'color', 'description', 'description_purchase', 'description_sale',
+                            'dsn_name_es', 'dsn_name_en', 'dsn_pnt_esp', 'dsn_pnt_nf', 'dsn_standard', 'dsn_weight_type', 'dsn_weight_type_margin',
+                            'hr_expense_ok', 'intrastat_id', 'is_label', 'loc_case', 'life_time', 'list_price',
+                            'loc_rack', 'loc_row', 'machine_ok', 'manufacturer', 'manufacturer_purl', 'manufacturer_pname',
+                            'manufacturer_pref', 'mes_type', 'name', 'no_create_variants', 'product_brand_id', 'product_manager', 'product_type',
+                            'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
+                            'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
+                            'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
+                            'volume', 'warranty', 'weight', 'weight_net' ]
 
 
-                    for _field in _forbidden_fields:
-                        if _field in values:
+                        for _field in _forbidden_fields:
+                            if _field in values:
 
-                            _updated_fields = _updated_fields + _field + ","
+                                _updated_fields = _updated_fields + _field + ","
 
-                            allow_update = False
+                                allow_update = False
 
-    #                        if self.create_date:
-    #                            a = datetime.strptime(self.create_date, "%Y-%m-%d %H:%M:%S")
-    #                            b = datetime.now()
-    #                            diff = (b-a).total_seconds()
-    #                            if diff>3600:
-    #                                if self.product_manager == self.env.user:
-    #                                    _allow_update = True
-    #                        else:
-    #                            _allow_update = True
-
-                            break
+                                break
+                else:
+                    raise exceptions.Warning('You must specify the product manager')
 
 
         if allow_update:

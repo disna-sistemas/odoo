@@ -76,13 +76,17 @@ class dsnStockPickingExport(models.Model):
             alb = etree.Element("alb",
                                 dict(user=record.write_uid.name,
                                      file_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S")))  # put `**ns))` if xsi, xsd are unused
+
+            _dsnidcli = ""
+            if record.partner_id.dsnidcli:
+                _dsnidcli = self.replace_bars(str(record.partner_id.dsnidcli))
             docdata = etree.SubElement(alb, "doc",
                 {
                     "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "disna_order": record.origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
                     "partner_id": str(record.partner_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                    "partner_dsnidcli": record.partner_id.dsnidcli,etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_dsnidcli": _dsnidcli, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
