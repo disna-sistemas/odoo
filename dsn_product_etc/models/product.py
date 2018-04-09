@@ -99,7 +99,8 @@ class ProductTemplate(models.Model):
                                 allow_update = False
 
                                 break
-                else:
+
+                else: #Force to define a product manager
                     raise exceptions.Warning('You must specify the product manager')
 
 
