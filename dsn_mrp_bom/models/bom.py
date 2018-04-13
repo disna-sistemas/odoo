@@ -31,6 +31,8 @@ class dsnMrpBom(models.Model):
 
         return result
 
+    dsn_pnt_nf = fields.Char(string="PNT NF", related="product_tmpl_id.dsn_pnt_nf", readonly=True)
+
 class dsnMrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
