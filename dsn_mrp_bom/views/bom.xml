@@ -5,16 +5,17 @@
             <field name="name">Bom Line Qty</field>
             <field name="digits" eval="5"/>
         </record>
-    </data>
 
-    <record id="dsn_mrp_bom_tree_view" model="ir.ui.view">
-        <field name="name">dsn.mrp.bom.tree.view</field>
-        <field name="model">mrp.bom</field>
-        <field name="inherit_id" ref="mrp.mrp_bom_tree_parent_view" />
-        <field name="arch" type="xml">
-            <field name="code" position="after">
-                <field name="dsn_pnt_nf">PNT</field>
+
+        <record id="dsn_mrp_bom_tree_view" model="ir.ui.view">
+            <field name="name">dsn.mrp.bom.tree.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_parent_view" />
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="dsn_pnt_nf">PNT</field>
+                </field>
             </field>
-        </field>
-    </record>
+        </record>
+    </data>
 </openerp>
