@@ -29,7 +29,7 @@
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
-    'depends': ['mrp'],
+    'depends': ['mrp','dsn_product_etc'],
     'data': ['views/bom.xml'],
     'demo': [],
     'installable': True,
