@@ -23,7 +23,7 @@ import openerp.addons.decimal_precision as dp
 class dsnMrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    dsn_pnt_nf = fields.Char(string="PNT NF", related="product_tmpl_id.dsn_pnt_nf", readonly=True)
+    dsn_pnt = fields.Char(string="PNT", related="product_tmpl_id.dsn_pnt_nf", readonly=True)
 
     @api.model
     def _prepare_consume_line(self, bom_line, quantity, factor=1):
