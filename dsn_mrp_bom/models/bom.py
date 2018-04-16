@@ -23,13 +23,15 @@ import openerp.addons.decimal_precision as dp
 class dsnMrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    @api.model
-    def _prepare_consume_line(self, bom_line, quantity, factor=1):
-        result = super(dsnMrpBom,self)._prepare_consume_line(bom_line, quantity, factor)
-
-        result.append({'priority': bom_line.sequence})
-
-        return result
+    # @api.model
+    # def _prepare_consume_line(self, bom_line, quantity, factor=1):
+    #     result = super(dsnMrpBom,self)._prepare_consume_line(bom_line, quantity, factor)
+    #
+    #
+    #
+    #     result.append({'priority': bom_line.sequence})
+    #
+    #     return result
 
     dsn_pnt_nf = fields.Char(string="PNT", related="product_tmpl_id.dsn_pnt_nf", readonly=True)
 
