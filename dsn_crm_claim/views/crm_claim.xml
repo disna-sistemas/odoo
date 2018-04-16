@@ -16,5 +16,15 @@
                 </page>
             </field>
         </record>
+
+        <record id="dsn_crm_claim_tree_view" model="ir.ui.view">
+            <field name="name">dsn.crm.claim.tree.view</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="write_date" />
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>
