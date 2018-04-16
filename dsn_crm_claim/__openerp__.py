@@ -17,18 +17,17 @@
 
 {
     "name": "Disna - CRM Claim",
-    "version": "0.1",
+    "version": "0.2",
     "author": "Disna, S.A.",
     "contributors": [],
     "website": "",
     "category": "",
     "depends": ['crm_claim'],
     "description": """
-        Adds 2 fields to CRM Claims:  time in minutes, cost in €
+- Add write date to tree view
     """,
     "data": [
-        'views/crm_claim.xml',
-        'security/security.xml',
+        'views/crm_claim.xml'
     ],
     "installable": True,
     "auto_install": False,
