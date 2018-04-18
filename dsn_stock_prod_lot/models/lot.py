@@ -113,13 +113,11 @@ class dsnStockProductionLot(models.Model):
 
         for record in self:
 
-            values['dsn_lot_cert'] = 7294
+            values['dsn_lot_cert'] = 15145
 
             super(dsnStockProductionLot, record).write(values)
-            res.write(values)
 
-        return True
-#        return res
+        return res
 
     @api.multi
     @api.onchange('product_id','removal_date')
