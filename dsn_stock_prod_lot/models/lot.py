@@ -69,8 +69,13 @@ class dsnStockProductionLot(models.Model):
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
+    dsn_lot_cert = fields.Many2one(comodel_name='stock.production_lot',
+                                     string='Lot certif.',
+                                     readonly=True)
+
     @api.model
     def create(self, values):
+
         res=super(dsnStockProductionLot, self).create(values)
 
         return res
@@ -106,7 +111,15 @@ class dsnStockProductionLot(models.Model):
                 })
                 mail_mail.send([mail_id])
 
-        return res
+        for record in self:
+
+            values['dsn_lot_cert'] = 7294
+
+            super(dsnStockProductionLot, record).write(values)
+            res.write(values)
+
+        return True
+#        return res
 
     @api.multi
     @api.onchange('product_id','removal_date')
