@@ -70,8 +70,7 @@ class dsnStockProductionLot(models.Model):
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
     dsn_lot_cert = fields.Many2one(comodel_name='stock.production_lot',
-                                     string='Lot certif.',
-                                     readonly=True)
+                                     string='Lot certif.')
 
     @api.model
     def create(self, values):
@@ -112,8 +111,56 @@ class dsnStockProductionLot(models.Model):
                 mail_mail.send([mail_id])
 
         for record in self:
+            d1 = record.create_date
+            d2 = datetime.now()
+            days = d2-d1
+            if days < 30:
+                witness_lot = record
+                move_obj = self.env['stock.move']
+                rl_obj = self.env['mrp.relabel.log']
+                production_obj = self.env['mrp.production']
 
-            values['dsn_lot_cert'] = 15145
+                seguir = True
+                while seguir:
+                    moves = move_obj.search([('restrict_lot_id','=',witness_lot.id),('relabel_dest_id','!=',False)])
+                    if moves: #El lote proviene de un relabel
+                        move = moves[0]
+                        rlogs = rl_obj.search([('relabel_id','=',move.relabel_dest_id.id),('destination_lot_id','=',witness_lot.id)])
+                        if rlogs:
+                            rlog = rlogs[0]
+                            witness_lot = rlog.origin_lot_id
+                        else:
+                            pass
+                    else:
+                        #Comprobar si existe una producción que crea el lote
+                        moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
+                        if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
+                            move = moves[0]
+
+
+                            productions = production_obj.search([('id','=',move.production_id.id)])
+                            #Siempre debe encontrar una única producción
+                            production = productions[0]
+                            # Si la producción contiene lotes de SEMI, asignamos el primer lote tiene alguna producción de semi asignar LA PRIMERA.  Si no, continuar búsqueda descendiente
+                            semi_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name == 'SEMI')
+                            if semi_moves:
+                                semi_move = semi_moves[0]
+                                witness_lot = semi_move.restrict_lot_id
+                                seguir = False
+
+                                record.dsn_lot_cert = witness_lot
+                            else:
+                                pa_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name in ('PA','SE'))
+                                if pa_moves: #PA or SE found
+                                    pa_move = pa_moves[0]
+                                    witness_lot = pa_move.restrict_lot_id
+                                else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
+                                    seguir = False
+
+                        else: #Nada que hacer, se deja witness_lot tal como está
+                            seguir = False
+
+                record.dsn_lot_cert = witness_lot
 
             super(dsnStockProductionLot, record).write(values)
 
