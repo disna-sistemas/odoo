@@ -82,33 +82,6 @@ class dsnStockProductionLot(models.Model):
 
     @api.multi
     def write(self, values):
-        res = super(dsnStockProductionLot, self).write(values)
-        if self.env.user.id!=1:
-            if 'country_ids' in values:
-                _message = "Lot " + self.name + "- Countries modified: "
-                _body = ''
-                for country in self.country_ids:
-                    _body += ('<b> * %s:</b> %s-%s: <i>%s</i><br>' %
-                             (country.country_id.name, country.date_from or '', country.date_to or '', country.notes or ''))
-
-                _body = (_('<b>%s</b><br>%s<br>') % (_message, _body))
-
-                mail_mail = self.env['mail.mail']
-                mail_id = mail_mail.create({
-                    'model': 'stock.production.lot',
-                    'res_id': self.id,
-                    'record_name': 'Lot control',
-                    'email_from': self.env['mail.message']._get_default_from(),
-    #                'email_to': 'vmartinper@gmail.com',
-    #                'email_cc': 'vicktormartin@gmail.com',
-                    'reply_to': self.env['mail.message']._get_default_from(),
-                    'subject': _('Countries modified on Lot: % s') % (self.name),
-                    'body_html': '%s' % _body,
-                    'auto_delete': True,
-                    'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
-                    'partner_ids': [(4, id.id) for id in self.message_follower_ids],
-                })
-                mail_mail.send([mail_id])
 
         for record in self:
 
@@ -162,9 +135,41 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
                 #record.dsn_lot_cert = witness_lot
-                values['dsn_lot_cert'] = witness_lot
+                values.add({'dsn_lot_cert': witness_lot })
 
-            super(dsnStockProductionLot, record).write(values)
+                super(dsnStockProductionLot, record).write(values)
+
+        res = True
+#        res = super(dsnStockProductionLot, self).write(values)
+        if self.env.user.id!=1:
+            if 'country_ids' in values:
+                _message = "Lot " + self.name + "- Countries modified: "
+                _body = ''
+                for country in self.country_ids:
+                    _body += ('<b> * %s:</b> %s-%s: <i>%s</i><br>' %
+                             (country.country_id.name, country.date_from or '', country.date_to or '', country.notes or ''))
+
+                _body = (_('<b>%s</b><br>%s<br>') % (_message, _body))
+
+                mail_mail = self.env['mail.mail']
+                mail_id = mail_mail.create({
+                    'model': 'stock.production.lot',
+                    'res_id': self.id,
+                    'record_name': 'Lot control',
+                    'email_from': self.env['mail.message']._get_default_from(),
+    #                'email_to': 'vmartinper@gmail.com',
+    #                'email_cc': 'vicktormartin@gmail.com',
+                    'reply_to': self.env['mail.message']._get_default_from(),
+                    'subject': _('Countries modified on Lot: % s') % (self.name),
+                    'body_html': '%s' % _body,
+                    'auto_delete': True,
+                    'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
+                    'partner_ids': [(4, id.id) for id in self.message_follower_ids],
+                })
+                mail_mail.send([mail_id])
+
+
+
 
         return res
 
