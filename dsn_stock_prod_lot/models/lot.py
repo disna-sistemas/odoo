@@ -19,6 +19,7 @@
 from openerp import models, fields, api, _, exceptions
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import logging
 
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
@@ -83,10 +84,12 @@ class dsnStockProductionLot(models.Model):
     @api.multi
     def write(self, values):
 
+        _logger = logging.getLogger(__name__)
+
         for record in self:
 
-            d1 = datetime.strptime(record.create_date, '"%Y-%m-%d %H:%M:%S')
-            d2 = datetime.strptime(datetime.write_date,'"%Y-%m-%d %H:%M:%S')
+            d1 = datetime.strptime(record.create_date, '%Y-%m-%d %H:%M:%S')
+            d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
             days = (d2-d1).days
             if days < 30:
                 witness_lot = record
@@ -135,9 +138,10 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
                 #record.dsn_lot_cert = witness_lot
-                values.add({'dsn_lot_cert': witness_lot })
+                values.add({'dsn_lot_cert': witness_lot.id })
+                _logger.info('WRITING LOT ' + str(witness_lot.name) + ' ' + str(witness_lot.id))
 
-                super(dsnStockProductionLot, record).write(values)
+            super(dsnStockProductionLot, record).write(values)
 
         res = True
 #        res = super(dsnStockProductionLot, self).write(values)
