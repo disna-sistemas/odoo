@@ -70,7 +70,7 @@ class dsnStockProductionLot(models.Model):
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
-    dsn_lot_cert = fields.Many2one(comodel_name='stock.production_lot',
+    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot',
                                      string='Lot certif.')
 
     @api.model
