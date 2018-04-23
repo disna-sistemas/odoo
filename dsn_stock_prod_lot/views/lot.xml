@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <field name="create_date" position="after">
                     <field name="life_date"/>
+                    <field name="dsn_lot_cert"/>
                 </field>
                 <field name="create_date" position="attributes">
                     <attribute name="invisible">0</attribute>
