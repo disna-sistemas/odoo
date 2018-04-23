@@ -73,10 +73,23 @@ class dsnStockProductionLot(models.Model):
     dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot',
                                      string='Lot certif.')
 
-    @api.model
+    dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
+
+    @api.multi
     def create(self, values):
 
-        res=super(dsnStockProductionLot, self).create(values)
+        res = True
+        production_obj = self.env['mrp.production']
+
+        for record in self:
+
+            productions = production_obj.search([('move_created_ids2.restrict_lot_id', '=', record.id)]).filtered(
+                lambda x: x.state=='done')
+            if productions:
+                values['dsn_production_id'] = max(productions.mapped('restrict_lot_id'))
+
+            res = res and super(dsnStockProductionLot, record).create(values)
+
 
         return res
 
@@ -85,6 +98,7 @@ class dsnStockProductionLot(models.Model):
     def write(self, values):
 
         _logger = logging.getLogger(__name__)
+        res = True
 
         for record in self:
 
@@ -138,9 +152,9 @@ class dsnStockProductionLot(models.Model):
                 #record.dsn_lot_cert = witness_lot
                 values['dsn_lot_cert'] = witness_lot.id
 
-            super(dsnStockProductionLot, record).write(values)
+            res = res and super(dsnStockProductionLot, record).write(values)
 
-        res = True
+#        res = True
 #        res = super(dsnStockProductionLot, self).write(values)
         if self.env.user.id!=1:
             if 'country_ids' in values:
@@ -168,9 +182,6 @@ class dsnStockProductionLot(models.Model):
                     'partner_ids': [(4, id.id) for id in self.message_follower_ids],
                 })
                 mail_mail.send([mail_id])
-
-
-
 
         return res
 
