@@ -137,7 +137,6 @@ class dsnStockProductionLot(models.Model):
 
                 #record.dsn_lot_cert = witness_lot
                 values['dsn_lot_cert'] = witness_lot.id
-                _logger.info('WRITING LOT ' + str(witness_lot.name) + ' ' + str(witness_lot.id))
 
             super(dsnStockProductionLot, record).write(values)
 
