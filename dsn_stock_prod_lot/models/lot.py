@@ -75,21 +75,18 @@ class dsnStockProductionLot(models.Model):
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
-    @api.multi
+    @api.model
     def create(self, values):
 
-        res = True
         production_obj = self.env['mrp.production']
 
-        for record in self:
 
-            productions = production_obj.search([('move_created_ids2.restrict_lot_id', '=', record.id)]).filtered(
-                lambda x: x.state=='done')
-            if productions:
-                values['dsn_production_id'] = max(productions.mapped('restrict_lot_id'))
+        productions = production_obj.search([('move_created_ids2.restrict_lot_id', '=', self.id)]).filtered(
+            lambda x: x.state=='done')
+        if productions:
+            values['dsn_production_id'] = max(productions.mapped('restrict_lot_id'))
 
-            res = res and super(dsnStockProductionLot, record).create(values)
-
+        res = super(dsnStockProductionLot, self).create(values)
 
         return res
 
