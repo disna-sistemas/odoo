@@ -111,9 +111,10 @@ class dsnStockProductionLot(models.Model):
                 mail_mail.send([mail_id])
 
         for record in self:
-            d1 = record.create_date
-            d2 = datetime.now()
-            days = d2-d1
+
+            d1 = datetime.strptime(record.create_date, '"%Y-%m-%d %H:%M:%S')
+            d2 = datetime.strptime(datetime.write_date,'"%Y-%m-%d %H:%M:%S')
+            days = (d2-d1).days
             if days < 30:
                 witness_lot = record
                 move_obj = self.env['stock.move']
@@ -130,7 +131,7 @@ class dsnStockProductionLot(models.Model):
                             rlog = rlogs[0]
                             witness_lot = rlog.origin_lot_id
                         else:
-                            pass
+                            seguir = False
                     else:
                         #Comprobar si existe una producción que crea el lote
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
@@ -160,7 +161,8 @@ class dsnStockProductionLot(models.Model):
                         else: #Nada que hacer, se deja witness_lot tal como está
                             seguir = False
 
-                record.dsn_lot_cert = witness_lot
+                #record.dsn_lot_cert = witness_lot
+                values['dsn_lot_cert'] = witness_lot
 
             super(dsnStockProductionLot, record).write(values)
 
