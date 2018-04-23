@@ -91,7 +91,7 @@ class dsnStockProductionLot(models.Model):
             d1 = datetime.strptime(record.create_date, '%Y-%m-%d %H:%M:%S')
             d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
             days = (d2-d1).days
-            if days < 30:
+            if days < 1200:
                 witness_lot = record
                 move_obj = self.env['stock.move']
                 rl_obj = self.env['mrp.relabel.log']
@@ -106,14 +106,13 @@ class dsnStockProductionLot(models.Model):
                         if rlogs:
                             rlog = rlogs[0]
                             witness_lot = rlog.origin_lot_id
-                        else:
-                            seguir = False
+                        else: #No debería entrar nunca aquí
+                            pass
                     else:
                         #Comprobar si existe una producción que crea el lote
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
                             move = moves[0]
-
 
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
@@ -125,7 +124,6 @@ class dsnStockProductionLot(models.Model):
                                 witness_lot = semi_move.restrict_lot_id
                                 seguir = False
 
-                                record.dsn_lot_cert = witness_lot
                             else:
                                 pa_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name in ('PA','SE'))
                                 if pa_moves: #PA or SE found
@@ -138,7 +136,7 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
                 #record.dsn_lot_cert = witness_lot
-                values.add({'dsn_lot_cert': witness_lot.id })
+                values['dsn_lot_cert'] = witness_lot.id
                 _logger.info('WRITING LOT ' + str(witness_lot.name) + ' ' + str(witness_lot.id))
 
             super(dsnStockProductionLot, record).write(values)
