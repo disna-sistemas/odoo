@@ -78,13 +78,12 @@ class dsnStockProductionLot(models.Model):
     @api.model
     def create(self, values):
 
-        production_obj = self.env['mrp.production']
+        move_obj = self.env['stock.move']
 
+        moves = move_obj.search([('restrict_lot_id','=',self.id),('production_id','!=',False),('state','=','done')])
 
-        productions = production_obj.search([('move_created_ids2.restrict_lot_id', '=', self.id)]).filtered(
-            lambda x: x.state=='done')
-        if productions:
-            values['dsn_production_id'] = max(productions.mapped('restrict_lot_id'))
+        if moves:
+            values['dsn_production_id'] = moves[0].production_id
 
         res = super(dsnStockProductionLot, self).create(values)
 
