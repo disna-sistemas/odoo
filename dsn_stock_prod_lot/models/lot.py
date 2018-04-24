@@ -89,6 +89,7 @@ class dsnStockProductionLot(models.Model):
         res = True
 
         move_obj = self.env['stock.move']
+        production_obj = self.env['mrp.production']
 
 #        _logger = logging.getLogger(__name__)
 #        _logger.info(self.name))
@@ -96,10 +97,14 @@ class dsnStockProductionLot(models.Model):
         for record in self:
 
 #Save production_id
-            moves = move_obj.search(
-                [('restrict_lot_id', '=', record.id), ('production_id', '!=', False), ('state', '=', 'done')])
-            if moves:
-                values['dsn_production_id'] = moves[0].production_id.id
+            productions = production_obj.search([('move_created_ids2.restrict_lot_id','=',record.id)])
+            if productions:
+                values['dsn_production_id'] = productions[0].id
+
+            # moves = move_obj.search(
+            #     [('restrict_lot_id', '=', record.id), ('production_id', '!=', False), ('state', '=', 'done')])
+            # if moves:
+            #     values['dsn_production_id'] = moves[0].production_id.id
 
 #Traceability
 
