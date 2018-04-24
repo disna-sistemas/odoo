@@ -80,10 +80,14 @@ class dsnStockProductionLot(models.Model):
 
         move_obj = self.env['stock.move']
 
+        _logger = logging.getLogger(__name__)
+
+        _logger.info(str(self.id + ' ' + self.name))
+
         moves = move_obj.search([('restrict_lot_id','=',self.id),('production_id','!=',False),('state','=','done')])
 
         if moves:
-            values['dsn_production_id'] = moves[0].production_id
+            values['dsn_production_id'] = moves[0].production_id.id
 
         res = super(dsnStockProductionLot, self).create(values)
 
@@ -93,7 +97,6 @@ class dsnStockProductionLot(models.Model):
     @api.multi
     def write(self, values):
 
-        _logger = logging.getLogger(__name__)
         res = True
 
         for record in self:
