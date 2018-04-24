@@ -78,17 +78,6 @@ class dsnStockProductionLot(models.Model):
     @api.model
     def create(self, values):
 
-        move_obj = self.env['stock.move']
-
-        _logger = logging.getLogger(__name__)
-
-        _logger.info(str(self.id + ' ' + self.name))
-
-        moves = move_obj.search([('restrict_lot_id','=',self.id),('production_id','!=',False),('state','=','done')])
-
-        if moves:
-            values['dsn_production_id'] = moves[0].production_id.id
-
         res = super(dsnStockProductionLot, self).create(values)
 
         return res
@@ -99,7 +88,20 @@ class dsnStockProductionLot(models.Model):
 
         res = True
 
+        move_obj = self.env['stock.move']
+
+#        _logger = logging.getLogger(__name__)
+#        _logger.info(self.name))
+
         for record in self:
+
+#Save production_id
+            moves = move_obj.search(
+                [('restrict_lot_id', '=', record.id), ('production_id', '!=', False), ('state', '=', 'done')])
+            if moves:
+                values['dsn_production_id'] = moves[0].production_id.id
+
+#Traceability
 
             d1 = datetime.strptime(record.create_date, '%Y-%m-%d %H:%M:%S')
             d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
