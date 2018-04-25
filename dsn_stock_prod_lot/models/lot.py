@@ -138,7 +138,7 @@ class dsnStockProductionLot(models.Model):
                             #Siempre debe encontrar una única producción
                             production = productions[0]
                             # Si la producción contiene lotes de SEMI, asignamos el primer lote tiene alguna producción de semi asignar LA PRIMERA.  Si no, continuar búsqueda descendiente
-                            semi_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name == 'SEMI')
+                            semi_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name == 'SEMI').mapped('restrict_lot_id')
                             if semi_moves:
 
                                 for semi_move in semi_moves:
