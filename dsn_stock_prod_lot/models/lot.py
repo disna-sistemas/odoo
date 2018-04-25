@@ -176,8 +176,7 @@ class dsnStockProductionLot(models.Model):
                     mensaje += ' ' + l.name
                 _logger.info(mensaje)
                 values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
-                mensaje = "VALUES "
-                mensaje += (str(l.id) + ' ' for l in cert_lots)
+                _logger.info("DESPUES")
 
             res = res and super(dsnStockProductionLot, record).write(values)
 
