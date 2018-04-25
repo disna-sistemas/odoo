@@ -126,15 +126,17 @@ class dsnStockProductionLot(models.Model):
                         rlogs = rl_obj.search([('relabel_id','=',move.relabel_dest_id.id),('destination_lot_id','=',witness_lot.id)])
                         if rlogs:
                             rlog = rlogs[0]
+                            _logger.info('relabel ' + move.name + ' lot ' + str(witness_lot.id))
                             witness_lot = rlog.origin_lot_id
                         else: #No debería entrar nunca aquí
+                            _logger.info('NO DEBERIA ')
                             pass
                     else:
                         #Comprobar si existe una producción que crea el lote
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
                             move = moves[0]
-
+                            _logger.info("EXISTE una producción que crea: " + witness_lot.product_id.default_code + ' ' + witness_lot.name)
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
                             production = productions[0]
@@ -163,6 +165,7 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
 #                values['dsn_lot_cert'] = witness_lot.id
+                _logger.info('ANTES D ACTUALIZAR: ' + cert_lots)
                 if len(cert_lots) == 0:
                     cert_lots.append(witness_lot)
                 values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
