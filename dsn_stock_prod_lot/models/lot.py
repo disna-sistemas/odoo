@@ -165,7 +165,8 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
 #                values['dsn_lot_cert'] = witness_lot.id
-
+                if len(cert_lots) == 0:
+                    cert_lots.append(witness_lot.id)
                 values['dsn_lot_cert_ids'] = (6, 0, cert_lots)
 
             res = res and super(dsnStockProductionLot, record).write(values)
