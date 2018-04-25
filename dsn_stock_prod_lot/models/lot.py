@@ -180,6 +180,8 @@ class dsnStockProductionLot(models.Model):
 
             res = res and super(dsnStockProductionLot, record).write(values)
 
+            _logger.info('RES ' + str(res))
+
 #        res = True
 #        res = super(dsnStockProductionLot, self).write(values)
         if self.env.user.id!=1:
