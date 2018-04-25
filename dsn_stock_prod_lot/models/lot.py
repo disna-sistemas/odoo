@@ -120,6 +120,7 @@ class dsnStockProductionLot(models.Model):
 
                 seguir = True
                 while seguir:
+                    _logger.info("ENTRANDO A VER SI HAY RELABEL")
                     moves = move_obj.search([('restrict_lot_id','=',witness_lot.id),('relabel_dest_id','!=',False)])
                     if moves: #El lote proviene de un relabel
                         move = moves[0]
@@ -136,7 +137,7 @@ class dsnStockProductionLot(models.Model):
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
                             move = moves[0]
-                            _logger.info("EXISTE una producción que crea: " + witness_lot.product_id.default_code + ' ' + witness_lot.name)
+                            _logger.info("EXISTE una produccion que crea: " + witness_lot.product_id.default_code + ' ' + witness_lot.name)
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
                             production = productions[0]
@@ -150,6 +151,7 @@ class dsnStockProductionLot(models.Model):
                                         _logger.info('ENTRANDO A semi_moves: ' + str(witness_lot.id) + ' ' + witness_lot.name)
                                         cert_lots.append(witness_lot)
                                 seguir = False
+                                _logger.info("SEGUIR=FALSE")
 
                             else:
                                 pa_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name in ('PA','SE'))
