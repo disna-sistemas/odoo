@@ -161,6 +161,7 @@ class dsnStockProductionLot(models.Model):
                                     witness_lot = pa_move.restrict_lot_id
                                     cert_lots.append(witness_lot)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
+                                    _logger.info("NO SEGUIMOS BUSCANDO")
                                     seguir = False
 
                         else: #Nada que hacer, se deja witness_lot tal como está
@@ -175,6 +176,8 @@ class dsnStockProductionLot(models.Model):
                     mensaje += ' ' + l.name
                 _logger.info(mensaje)
                 values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
+                mensaje = "VALUES "
+                mensaje += (str(l.id) + ' ' for l in cert_lots)
 
             res = res and super(dsnStockProductionLot, record).write(values)
 
