@@ -99,6 +99,7 @@ class dsnStockProductionLot(models.Model):
         _logger = logging.getLogger(__name__)
 
         for record in self:
+            _logger.info(record.product_id.default_code + ' - ' + record.name + ' ' + str(record.id))
 
 #Save production_id
             productions = production_obj.search([('move_created_ids2.restrict_lot_id','=',record.id)])
