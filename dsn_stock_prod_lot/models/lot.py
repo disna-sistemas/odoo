@@ -167,7 +167,7 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
 #                values['dsn_lot_cert'] = witness_lot.id
-                _logger.info('ANTES D ACTUALIZAR: ' + cert_lots)
+                _logger.info('ANTES D ACTUALIZAR: ' + record.name)
                 if len(cert_lots) == 0:
                     cert_lots.append(witness_lot)
                 values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
