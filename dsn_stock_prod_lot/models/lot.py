@@ -96,8 +96,7 @@ class dsnStockProductionLot(models.Model):
         move_obj = self.env['stock.move']
         production_obj = self.env['mrp.production']
 
-#        _logger = logging.getLogger(__name__)
-#        _logger.info(self.name))
+        _logger = logging.getLogger(__name__)
 
         for record in self:
 
@@ -106,17 +105,12 @@ class dsnStockProductionLot(models.Model):
             if productions:
                 values['dsn_production_id'] = productions[0].id
 
-            # moves = move_obj.search(
-            #     [('restrict_lot_id', '=', record.id), ('production_id', '!=', False), ('state', '=', 'done')])
-            # if moves:
-            #     values['dsn_production_id'] = moves[0].production_id.id
-
 #Traceability
 
             d1 = datetime.strptime(record.create_date, '%Y-%m-%d %H:%M:%S')
             d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
             days = (d2-d1).days
-            if days < 1200 and 'ref' in values:
+            if days < 1200:
                 cert_lots=[]
                 witness_lot = record
                 move_obj = self.env['stock.move']
@@ -146,8 +140,10 @@ class dsnStockProductionLot(models.Model):
                             # Si la producción contiene lotes de SEMI, asignamos el primer lote tiene alguna producción de semi asignar LA PRIMERA.  Si no, continuar búsqueda descendiente
                             semi_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name == 'SEMI')
                             if semi_moves:
+
                                 for semi_move in semi_moves:
                                     witness_lot = semi_move.restrict_lot_id
+                                    _logger.info('ENTRANDO A semi_moves: ' + witness_lot.name)
                                     cert_lots.append(witness_lot)
                                 seguir = False
 
@@ -166,8 +162,8 @@ class dsnStockProductionLot(models.Model):
 
 #                values['dsn_lot_cert'] = witness_lot.id
                 if len(cert_lots) == 0:
-                    cert_lots.append(witness_lot.id)
-                values['dsn_lot_cert_ids'] = [(6, 0, cert_lots)]
+                    cert_lots.append(witness_lot)
+                values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
 
             res = res and super(dsnStockProductionLot, record).write(values)
 
