@@ -167,9 +167,13 @@ class dsnStockProductionLot(models.Model):
                             seguir = False
 
 #                values['dsn_lot_cert'] = witness_lot.id
-                _logger.info('ANTES D ACTUALIZAR: ' + record.name)
+
                 if len(cert_lots) == 0:
                     cert_lots.append(witness_lot)
+                mensaje = "ANTES D ACTUALIZAR : " + record.name
+                for l in cert_lots:
+                    mensaje += ' ' + l.name
+                _logger.info(mensaje)
                 values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
 
             res = res and super(dsnStockProductionLot, record).write(values)
