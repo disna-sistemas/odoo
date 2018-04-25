@@ -143,7 +143,7 @@ class dsnStockProductionLot(models.Model):
 
                                 for semi_move in semi_moves:
                                     witness_lot = semi_move.restrict_lot_id
-                                    _logger.info('ENTRANDO A semi_moves: ' + witness_lot.name)
+                                    _logger.info('ENTRANDO A semi_moves: ' + str(witness_lot.id) + ' ' + witness_lot.name)
                                     cert_lots.append(witness_lot)
                                 seguir = False
 
