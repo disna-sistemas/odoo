@@ -70,8 +70,13 @@ class dsnStockProductionLot(models.Model):
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
-    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot',
-                                     string='Lot certif.')
+#    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot', string='Lot certif.')
+
+    dsn_lot_cert_ids = fields.Many2many(comodel_name="stock.production.lot",
+                                 relation="dsn_lot_lot_cert_rel",
+                                 column1="lot_id",
+                                 column2="lot_cert_id",
+                                 string="Certif. Lots")
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
@@ -112,6 +117,7 @@ class dsnStockProductionLot(models.Model):
             d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
             days = (d2-d1).days
             if days < 1200:
+                cert_lots=[]
                 witness_lot = record
                 move_obj = self.env['stock.move']
                 rl_obj = self.env['mrp.relabel.log']
@@ -140,23 +146,27 @@ class dsnStockProductionLot(models.Model):
                             # Si la producción contiene lotes de SEMI, asignamos el primer lote tiene alguna producción de semi asignar LA PRIMERA.  Si no, continuar búsqueda descendiente
                             semi_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name == 'SEMI')
                             if semi_moves:
-                                semi_move = semi_moves[0]
-                                witness_lot = semi_move.restrict_lot_id
+                                for semi_move in semi_moves:
+                                    witness_lot = semi_move.restrict_lot_id
+                                    cert_lots.append(witness_lot.id)
                                 seguir = False
 
                             else:
                                 pa_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name in ('PA','SE'))
                                 if pa_moves: #PA or SE found
                                     pa_move = pa_moves[0]
+
                                     witness_lot = pa_move.restrict_lot_id
+                                    cert_lots.append(witness_lot.id)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
 
                         else: #Nada que hacer, se deja witness_lot tal como está
                             seguir = False
 
-                #record.dsn_lot_cert = witness_lot
-                values['dsn_lot_cert'] = witness_lot.id
+#                values['dsn_lot_cert'] = witness_lot.id
+
+                values['dsn_lot_cert_ids'] = (6, 0, cert_lots)
 
             res = res and super(dsnStockProductionLot, record).write(values)
 
