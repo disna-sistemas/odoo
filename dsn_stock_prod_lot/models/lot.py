@@ -148,7 +148,7 @@ class dsnStockProductionLot(models.Model):
                             if semi_moves:
                                 for semi_move in semi_moves:
                                     witness_lot = semi_move.restrict_lot_id
-                                    cert_lots.append(witness_lot.id)
+                                    cert_lots.append(witness_lot)
                                 seguir = False
 
                             else:
@@ -157,7 +157,7 @@ class dsnStockProductionLot(models.Model):
                                     pa_move = pa_moves[0]
 
                                     witness_lot = pa_move.restrict_lot_id
-                                    cert_lots.append(witness_lot.id)
+                                    cert_lots.append(witness_lot)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
 
@@ -166,7 +166,7 @@ class dsnStockProductionLot(models.Model):
 
 #                values['dsn_lot_cert'] = witness_lot.id
                 if len(cert_lots) == 0:
-                    cert_lots.append(witness_lot.id)
+                    cert_lots.append(witness_lot)
                 values['dsn_lot_cert_ids'] = (6, 0, cert_lots)
 
             res = res and super(dsnStockProductionLot, record).write(values)
