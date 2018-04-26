@@ -182,21 +182,25 @@ class dsnStockProductionLot(models.Model):
                 _body = (_('<b>%s</b><br>%s<br>') % (_message, _body))
 
                 mail_mail = self.env['mail.mail']
-                mail_id = mail_mail.create({
-                    'model': 'stock.production.lot',
-                    'res_id': self.id,
-                    'record_name': 'Lot control',
-                    'email_from': self.env['mail.message']._get_default_from(),
-    #                'email_to': 'vmartinper@gmail.com',
-    #                'email_cc': 'vicktormartin@gmail.com',
-                    'reply_to': self.env['mail.message']._get_default_from(),
-                    'subject': _('Countries modified on Lot: % s') % (self.name),
-                    'body_html': '%s' % _body,
-                    'auto_delete': True,
-                    'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
-                    'partner_ids': [(4, id.id) for id in self.message_follower_ids],
-                })
-                mail_mail.send([mail_id])
+
+                for partner in self.message_follower_ids:
+                    if partner.email:
+
+                        mail_id = mail_mail.create({
+                            'model': 'stock.production.lot',
+                            'res_id': self.id,
+                            'record_name': 'Lot control',
+                            'email_from': self.env['mail.message']._get_default_from(),
+                            'email_to': partner.email,
+#                            'email_cc': 'vicktormartin@gmail.com',
+                            'reply_to': self.env['mail.message']._get_default_from(),
+                            'subject': _('Countries modified on Lot: % s') % (self.name),
+                            'body_html': '%s' % _body,
+                            'auto_delete': True,
+                            'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
+                            'partner_ids': [(4, id.id) for id in self.message_follower_ids],
+                        })
+                        mail_mail.send([mail_id])
 
         return res
 
