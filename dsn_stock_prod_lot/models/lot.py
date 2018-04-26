@@ -120,14 +120,12 @@ class dsnStockProductionLot(models.Model):
 
                 seguir = True
                 while seguir:
-                    _logger.info("ENTRANDO A VER SI HAY RELABEL")
                     moves = move_obj.search([('restrict_lot_id','=',witness_lot.id),('relabel_dest_id','!=',False)])
                     if moves: #El lote proviene de un relabel
                         move = moves[0]
                         rlogs = rl_obj.search([('relabel_id','=',move.relabel_dest_id.id),('destination_lot_id','=',witness_lot.id)])
                         if rlogs:
                             rlog = rlogs[0]
-                            _logger.info('relabel ' + move.name + ' lot ' + str(witness_lot.id))
                             witness_lot = rlog.origin_lot_id
                         else: #No debería entrar nunca aquí
                             _logger.info('NO DEBERIA ')
@@ -137,7 +135,6 @@ class dsnStockProductionLot(models.Model):
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
                             move = moves[0]
-                            _logger.info("EXISTE una produccion que crea: " + witness_lot.product_id.default_code + ' ' + witness_lot.name)
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
                             production = productions[0]
@@ -148,10 +145,8 @@ class dsnStockProductionLot(models.Model):
                                 for semi_move in semi_moves:
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
-                                        _logger.info('ENTRANDO A semi_moves: ' + str(witness_lot.id) + ' ' + witness_lot.name)
                                         cert_lots.append(witness_lot)
                                 seguir = False
-                                _logger.info("SEGUIR=FALSE")
 
                             else:
                                 pa_moves = production.move_lines2.filtered(lambda x: x.state=='done' and x.product_id.product_tmpl_id.dsncat2_id.name in ('PA','SE'))
@@ -161,55 +156,48 @@ class dsnStockProductionLot(models.Model):
                                     witness_lot = pa_move.restrict_lot_id
                                     cert_lots.append(witness_lot)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
-                                    _logger.info("NO SEGUIMOS BUSCANDO")
                                     seguir = False
 
                         else: #Nada que hacer, se deja witness_lot tal como está
                             seguir = False
 
-#                values['dsn_lot_cert'] = witness_lot.id
-
                 if len(cert_lots) == 0:
                     cert_lots.append(witness_lot)
-                mensaje = "ANTES D ACTUALIZAR : " + record.name
-                for l in cert_lots:
-                    mensaje += ' ' + l.name
-                _logger.info(mensaje)
-#                values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
-                values['dsn_lot_cert_ids'] = [(6, 0, cert_lots)]
+
+                # for l in cert_lots:
+                #     mensaje += ' ' + l.name
+                # _logger.info(mensaje)
+                values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
-                _logger.info("SUPER")
 
-            _logger.info('RES ' + str(res))
+        if self.env.user.id!=1:
+            if 'country_ids' in values:
+                _message = "Lot " + self.name + "- Countries modified: "
+                _body = ''
+                for country in self.country_ids:
+                    _body += ('<b> * %s:</b> %s-%s: <i>%s</i><br>' %
+                             (country.country_id.name, country.date_from or '', country.date_to or '', country.notes or ''))
 
-    #     if self.env.user.id!=1:
-    #         if 'country_ids' in values:
-    #             _message = "Lot " + self.name + "- Countries modified: "
-    #             _body = ''
-    #             for country in self.country_ids:
-    #                 _body += ('<b> * %s:</b> %s-%s: <i>%s</i><br>' %
-    #                          (country.country_id.name, country.date_from or '', country.date_to or '', country.notes or ''))
-    #
-    #             _body = (_('<b>%s</b><br>%s<br>') % (_message, _body))
-    #
-    #             mail_mail = self.env['mail.mail']
-    #             mail_id = mail_mail.create({
-    #                 'model': 'stock.production.lot',
-    #                 'res_id': self.id,
-    #                 'record_name': 'Lot control',
-    #                 'email_from': self.env['mail.message']._get_default_from(),
-    # #                'email_to': 'vmartinper@gmail.com',
-    # #                'email_cc': 'vicktormartin@gmail.com',
-    #                 'reply_to': self.env['mail.message']._get_default_from(),
-    #                 'subject': _('Countries modified on Lot: % s') % (self.name),
-    #                 'body_html': '%s' % _body,
-    #                 'auto_delete': True,
-    #                 'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
-    #                 'partner_ids': [(4, id.id) for id in self.message_follower_ids],
-    #             })
-    #             mail_mail.send([mail_id])
+                _body = (_('<b>%s</b><br>%s<br>') % (_message, _body))
+
+                mail_mail = self.env['mail.mail']
+                mail_id = mail_mail.create({
+                    'model': 'stock.production.lot',
+                    'res_id': self.id,
+                    'record_name': 'Lot control',
+                    'email_from': self.env['mail.message']._get_default_from(),
+    #                'email_to': 'vmartinper@gmail.com',
+    #                'email_cc': 'vicktormartin@gmail.com',
+                    'reply_to': self.env['mail.message']._get_default_from(),
+                    'subject': _('Countries modified on Lot: % s') % (self.name),
+                    'body_html': '%s' % _body,
+                    'auto_delete': True,
+                    'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
+                    'partner_ids': [(4, id.id) for id in self.message_follower_ids],
+                })
+                mail_mail.send([mail_id])
 
         return res
 
