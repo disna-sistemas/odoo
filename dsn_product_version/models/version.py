@@ -40,22 +40,22 @@ class ProductLabelVersion(models.Model):
 
             mail_mail = self.env['mail.mail']
 
-            for partner in self.message_follower_ids:
-                if partner.email:
-                    mail_id = mail_mail.create({
-                        'model': 'stock.production.lot',
-                        'res_id': self.id,
-                        'record_name': 'Product Version',
-                        'email_from': self.env['mail.message']._get_default_from(),
-                        'email_to': 'technical@disna.com',
-                        'reply_to': self.env['mail.message']._get_default_from(),
-                        'subject': _subject,
-                        'body_html': '%s' % _body,
-                        'auto_delete': True,
-                        'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
-                        'partner_ids': [(4, id.id) for id in self.message_follower_ids],
-                    })
-                    mail_mail.send([mail_id])
+            # for partner in self.message_follower_ids:
+            #     if partner.email:
+            mail_id = mail_mail.create({
+                'model': 'stock.production.lot',
+                'res_id': self.id,
+                'record_name': 'Product Version',
+                'email_from': self.env['mail.message']._get_default_from(),
+                'email_to': 'technical@disna.com',
+                'reply_to': self.env['mail.message']._get_default_from(),
+                'subject': _subject,
+                'body_html': '%s' % _body,
+                'auto_delete': True,
+                'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
+                'partner_ids': [(4, id.id) for id in self.message_follower_ids],
+            })
+            mail_mail.send([mail_id])
 
         res = super(ProductLabelVersion, self).create(values)
 
