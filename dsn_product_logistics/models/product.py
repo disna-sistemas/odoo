@@ -57,6 +57,9 @@ class ProductVariant(models.Model):
 
     dsn_box_height = fields.Float("Height", digits=dp.get_precision('cm'), help="Height in cm")
 
+    dsn_box_prefer_desc_en = fields.Char(string='Preferential description for boxes (EN)',
+                                         help='A preferential ENGLISH description to be shown in the box label')
+
 class ProductPackaging(models.Model):
     _inherit = "product.packaging"
 
