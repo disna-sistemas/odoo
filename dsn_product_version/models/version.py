@@ -17,6 +17,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
+import logging
 
 
 class ProductLabelVersion(models.Model):
@@ -24,6 +25,8 @@ class ProductLabelVersion(models.Model):
 
     @api.model
     def create(self, values):
+
+        _logger = logging.getLogger(__name__)
 
         for record in self:
 
@@ -55,6 +58,8 @@ class ProductLabelVersion(models.Model):
 #                'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
 #                'partner_ids': [(4, id.id) for id in self.message_follower_ids],
             })
+            _logger.info('VERSIOM ' + str(record.id))
+
             mail_mail.send([mail_id])
 
         res = super(ProductLabelVersion, self).create(values)
