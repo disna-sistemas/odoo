@@ -28,39 +28,38 @@ class ProductLabelVersion(models.Model):
 
         _logger = logging.getLogger(__name__)
 
-        for record in self:
 
-            _subject = "New product version:  " + record.name
+        _subject = "New product version:  " + self.name
 
-            _body = "Product "
+        _body = "Product "
 
-            if record.product_id.default_code:
-                _subject +=" - Product " + record.product_id.default_code
-                _body += "Product code: " + record.product_id.default_code
+        if self.product_id.default_code:
+            _subject +=" - Product " + self.product_id.default_code
+            _body += "Product code: " + self.product_id.default_code
 
-            _body += "<br>Product ES name: " + record.product_id.product_tmpl_id.dsn_name_es
-            _body += "<br>Version: " + record.name
+        _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
+        _body += "<br>Version: " + self.name
 
-            mail_mail = self.env['mail.mail']
+        mail_mail = self.env['mail.mail']
 
-            # for partner in self.message_follower_ids:
-            #     if partner.email:
-            mail_id = mail_mail.create({
-                'model': 'product.label.version',
-                'res_id': record.id,
-                'record_name': 'Product Version',
-                'email_from': self.env['mail.message']._get_default_from(),
-                'email_to': 'technical@disna.com',
-                'reply_to': self.env['mail.message']._get_default_from(),
-                'subject': _subject,
-                'body_html': '%s' % _body,
-                'auto_delete': True,
+        # for partner in self.message_follower_ids:
+        #     if partner.email:
+        mail_id = mail_mail.create({
+            'model': 'product.label.version',
+            'res_id': self.id,
+            'record_name': 'Product Version',
+            'email_from': self.env['mail.message']._get_default_from(),
+            'email_to': 'technical@disna.com',
+            'reply_to': self.env['mail.message']._get_default_from(),
+            'subject': _subject,
+            'body_html': '%s' % _body,
+            'auto_delete': True,
 #                'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
 #                'partner_ids': [(4, id.id) for id in self.message_follower_ids],
-            })
-            _logger.info('VERSIOM ' + str(record.id))
+        })
+        _logger.info('VERSIOM ' + str(self.id))
 
-            mail_mail.send([mail_id])
+        mail_mail.send([mail_id])
 
         res = super(ProductLabelVersion, self).create(values)
 
