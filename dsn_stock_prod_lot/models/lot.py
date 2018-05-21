@@ -21,6 +21,14 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import logging
 
+class dsnLotSemiLotPA(models.Model):
+    _name = 'dsn.lot.father'
+
+    lot = fields.Many2one('stock.production.lot')
+    father = fields.Many2one('stock.production.lot')
+
+
+
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
 
@@ -78,9 +86,12 @@ class dsnStockProductionLot(models.Model):
                                  column2="lot_cert_id",
                                  string="Certif. Lots")
 
-    dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
+    dsn_lot_certif_ids = fields.Many2many(comodel_name='dsn.lot.father',
+                                          relation='dsn_lot_lot_father',
+                                          column1='lot_id',
+                                          string='Certif. Lots')
 
-    dsn_father_lot_id = fields.Many2one(comodel_name='stock.production.lot', string='Father')
+    dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
     @api.model
     def create(self, values):
