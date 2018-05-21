@@ -24,9 +24,8 @@ import logging
 class dsnLotSemiLotPA(models.Model):
     _name = 'dsn.lot.father'
 
-    lot = fields.Many2one('stock.production.lot')
-    father = fields.Many2one('stock.production.lot')
-
+    lot_id = fields.Many2one('stock.production.lot')
+    father_id = fields.Many2one('stock.production.lot')
 
 
 class dsnStockProductionLot(models.Model):
@@ -125,11 +124,13 @@ class dsnStockProductionLot(models.Model):
             days = (d2-d1).days
             if days < 1200:
                 cert_lots=[]
+                certif_lots = []
                 witness_lot = record
                 witness_father = record
                 move_obj = self.env['stock.move']
                 rl_obj = self.env['mrp.relabel.log']
                 production_obj = self.env['mrp.production']
+                lotfather_obj = self.env['dsn.lot.father']
 
                 seguir = True
                 while seguir:
@@ -161,8 +162,11 @@ class dsnStockProductionLot(models.Model):
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
                                         witness_lot.write({'dsn_father_lot_id': witness_father.id })
+                                        lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                              'father_id': witness_father.id})
 #                                        witness_lot.dsn_father_lot_id = witness_father
-                                        cert_lots.append(witness_lot)
+#                                        cert_lots.append(witness_lot)
+                                        cert_lots.append(lot_and_father)
                                 seguir = False
 
                             else:
@@ -172,21 +176,24 @@ class dsnStockProductionLot(models.Model):
 
                                     witness_lot = pa_move.restrict_lot_id
                                     witness_father = pa_move.restrict_lot_id
-                                    witness_lot.write({'dsn_father_lot_id': witness_father.id})
-                                    cert_lots.append(witness_lot)
+#                                    witness_lot.write({'dsn_father_lot_id': witness_father.id})
+                                    lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                           'father_id': witness_father.id})
+
+                                    certif_lots.append(lot_and_father)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
 
                         else: #Nada que hacer, se deja witness_lot tal como está
                             seguir = False
 
-                if len(cert_lots) == 0:
-                    cert_lots.append(witness_lot)
+                # if len(cert_lots) == 0:
+                #     cert_lots.append(witness_lot)
 
                 # for l in cert_lots:
                 #     mensaje += ' ' + l.name
                 # _logger.info(mensaje)
-                values['dsn_lot_cert_ids'] = [(6, 0, [l.id for l in cert_lots])]
+                values['dsn_lot_certif_ids'] = [(6, 0, [l.id for l in certif_lots])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
