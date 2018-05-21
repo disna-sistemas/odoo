@@ -165,7 +165,7 @@ class dsnStockProductionLot(models.Model):
                                                                               'father_id': witness_father.id})
 #                                        witness_lot.dsn_father_lot_id = witness_father
 #                                        cert_lots.append(witness_lot)
-                                        cert_lots.append(lot_and_father)
+                                        certif_lots.append(lot_and_father)
                                 seguir = False
 
                             else:
@@ -189,7 +189,7 @@ class dsnStockProductionLot(models.Model):
                 # if len(cert_lots) == 0:
                 #     cert_lots.append(witness_lot)
 
-                mensaje=''
+                mensaje=' CERTIFLOTS '
                 for l in certif_lots:
                     mensaje += ' ' + str(l.id)
                 _logger.info(mensaje)
