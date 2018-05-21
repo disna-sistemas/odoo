@@ -129,7 +129,8 @@ class dsnStockProductionLot(models.Model):
                         if rlogs:
                             rlog = rlogs[0]
                             witness_lot = rlog.origin_lot_id
-                            witness_pa = rlog.origin_lot_id
+                            witness_father = rlog.origin_lot_id
+                            witness_lot.dsn_father_lot_id = witness_father
                         else: #No debería entrar nunca aquí
                             _logger.info('NO DEBERIA ')
                             pass
@@ -158,6 +159,7 @@ class dsnStockProductionLot(models.Model):
                                     pa_move = pa_moves[0]
 
                                     witness_lot = pa_move.restrict_lot_id
+                                    witness_father = pa_move.restrict_lot_id
                                     witness_lot.dsn_father_lot_id = witness_father
                                     cert_lots.append(witness_lot)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
