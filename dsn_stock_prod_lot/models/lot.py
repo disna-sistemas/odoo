@@ -186,13 +186,15 @@ class dsnStockProductionLot(models.Model):
                         else: #Nada que hacer, se deja witness_lot tal como está
                             seguir = False
 
-                # if len(cert_lots) == 0:
-                #     cert_lots.append(witness_lot)
+                if len(certif_lots) == 0:
+                    lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                           'father_id': witness_lot.id})
+                    certif_lots.append(lot_and_father)
 
-                mensaje=' CERTIFLOTS '
-                for l in certif_lots:
-                    mensaje += ' ' + str(l.id)
-                _logger.info(mensaje)
+                # mensaje=' CERTIFLOTS '
+                # for l in certif_lots:
+                #     mensaje += ' ' + str(l.id)
+                # _logger.info(mensaje)
 #                values['dsn_lot_certif_ids'] = [(6, 0, [l.id for l in certif_lots])]
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
 
