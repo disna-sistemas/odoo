@@ -125,6 +125,7 @@ class dsnStockProductionLot(models.Model):
                 certif_lots = []
                 witness_lot = record
                 witness_father = record
+                lot_and_father = False
                 move_obj = self.env['stock.move']
                 rl_obj = self.env['mrp.relabel.log']
                 production_obj = self.env['mrp.production']
@@ -140,7 +141,7 @@ class dsnStockProductionLot(models.Model):
                             rlog = rlogs[0]
                             witness_lot = rlog.origin_lot_id
                             witness_father = rlog.origin_lot_id
-                            witness_lot.dsn_father_lot_id = witness_father
+#                            witness_lot.dsn_father_lot_id = witness_father
                         else: #No debería entrar nunca aquí
                             _logger.info('NO DEBERIA ')
                             pass
@@ -159,7 +160,7 @@ class dsnStockProductionLot(models.Model):
                                 for semi_move in semi_moves:
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
-                                        witness_lot.write({'dsn_father_lot_id': witness_father.id })
+#                                        witness_lot.write({'dsn_father_lot_id': witness_father.id })
                                         lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                               'father_id': witness_father.id})
 #                                        witness_lot.dsn_father_lot_id = witness_father
