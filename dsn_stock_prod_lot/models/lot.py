@@ -80,6 +80,8 @@ class dsnStockProductionLot(models.Model):
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
+    dsn_father_lot_id = fields.Many2one(comodel_name='stock.production.lot', string='Father')
+
     @api.model
     def create(self, values):
 
@@ -113,6 +115,7 @@ class dsnStockProductionLot(models.Model):
             if days < 1200:
                 cert_lots=[]
                 witness_lot = record
+                witness_father = record
                 move_obj = self.env['stock.move']
                 rl_obj = self.env['mrp.relabel.log']
                 production_obj = self.env['mrp.production']
@@ -126,6 +129,7 @@ class dsnStockProductionLot(models.Model):
                         if rlogs:
                             rlog = rlogs[0]
                             witness_lot = rlog.origin_lot_id
+                            witness_pa = rlog.origin_lot_id
                         else: #No debería entrar nunca aquí
                             _logger.info('NO DEBERIA ')
                             pass
@@ -144,6 +148,7 @@ class dsnStockProductionLot(models.Model):
                                 for semi_move in semi_moves:
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
+                                        witness_lot.dsn_father_lot_id = witness_father
                                         cert_lots.append(witness_lot)
                                 seguir = False
 
@@ -153,6 +158,7 @@ class dsnStockProductionLot(models.Model):
                                     pa_move = pa_moves[0]
 
                                     witness_lot = pa_move.restrict_lot_id
+                                    witness_lot.dsn_father_lot_id = witness_father
                                     cert_lots.append(witness_lot)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
