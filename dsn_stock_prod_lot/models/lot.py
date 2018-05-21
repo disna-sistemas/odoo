@@ -188,10 +188,12 @@ class dsnStockProductionLot(models.Model):
                 # if len(cert_lots) == 0:
                 #     cert_lots.append(witness_lot)
 
-                # for l in cert_lots:
-                #     mensaje += ' ' + l.name
-                # _logger.info(mensaje)
-                values['dsn_lot_certif_ids'] = [(6, 0, [l.id for l in certif_lots])]
+                # mensaje=''
+                # for l in certif_lots:
+                #     mensaje += ' ' + str(l.name
+                #  _logger.info(mensaje)
+#                values['dsn_lot_certif_ids'] = [(6, 0, [l.id for l in certif_lots])]
+                values['dsn_lot_certif_ids'] = [(6, 0, [lf for lf in certif_lots])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
