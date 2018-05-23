@@ -27,14 +27,20 @@ class ProductLabelVersion(models.Model):
 
         res = super(ProductLabelVersion, self).create(values)
 #        _logger = logging.getLogger(__name__)
+        prod_id = values['product_id']
+        prod_code=''
+        if prod_id:
+            prod_obj = self.env['product_product']
+            prods = prod_obj.search([('id','=',prod_id)])
+            if prods:
+                prod_code=prods[0].default_code
 
-        _subject = "New product version:  " + values['name']
+        _subject = "New product version:  " + prod_code + ' - ' + values['name']
 
         _body = "Product "
 
-        if self.product_id.default_code:
-            _subject +=" - Product " + self.product_id.default_code
-            _body += "Product code: " + self.product_iddefault_code
+        _subject +=" - Product " + prod_code
+        _body += "Product code: " + prod_code
 
         if self.product_id.product_tmpl_id.dsn_name_es:
             _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
@@ -47,7 +53,7 @@ class ProductLabelVersion(models.Model):
         #     if partner.email:
         mail_id = mail_mail.create({
             'model': 'product.label.version',
-            'res_id': self.id,
+            'res_id': 1,
             'record_name': 'Product Version',
             'email_from': self.env['mail.message']._get_default_from(),
             'email_to': 'technical@disna.com',
