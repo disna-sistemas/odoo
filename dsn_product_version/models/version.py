@@ -33,10 +33,12 @@ class ProductLabelVersion(models.Model):
 
         if self.product_id.default_code:
             _subject +=" - Product " + self.product_id.default_code
-            _body += "Product code: " + self.product_id.default_code
+            _body += "Product code: " + self.product_iddefault_code
 
-        _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
-        _body += "<br>Version: " + self.name
+        if self.product_id.product_tmpl_id.dsn_name_es:
+            _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
+
+        _body += "<br>Version: " + values['name']
 
         mail_mail = self.env['mail.mail']
 
