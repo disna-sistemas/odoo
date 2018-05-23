@@ -25,6 +25,7 @@ class ProductLabelVersion(models.Model):
     @api.model
     def create(self, values):
 
+        res = super(ProductLabelVersion, self).create(values)
 #        _logger = logging.getLogger(__name__)
 
         _subject = "New product version:  " + values['name']
@@ -61,6 +62,6 @@ class ProductLabelVersion(models.Model):
 
         mail_mail.send([mail_id])
 
-        res = super(ProductLabelVersion, self).create(values)
+
 
         return res
