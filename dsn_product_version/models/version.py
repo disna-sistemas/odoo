@@ -26,7 +26,9 @@ class ProductLabelVersion(models.Model):
     def create(self, values):
 
         res = super(ProductLabelVersion, self).create(values)
-#        _logger = logging.getLogger(__name__)
+        _logger = logging.getLogger(__name__)
+        for val in values:
+            _logger.info(val)
         prod_id = values['product_id']
         prod_code=''
         if prod_id:
