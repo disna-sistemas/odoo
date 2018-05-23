@@ -19,17 +19,15 @@
 from openerp import models, fields, api, _
 import logging
 
-
 class ProductLabelVersion(models.Model):
     _inherit = 'product.label.version'
 
     @api.model
     def create(self, values):
 
-        _logger = logging.getLogger(__name__)
+#        _logger = logging.getLogger(__name__)
 
-
-        _subject = "New product version:  " + self.name
+        _subject = "New product version:  " + values['name']
 
         _body = "Product "
 
@@ -50,18 +48,17 @@ class ProductLabelVersion(models.Model):
             'record_name': 'Product Version',
             'email_from': self.env['mail.message']._get_default_from(),
             'email_to': 'technical@disna.com',
-            'reply_to': self.env['mail.message']._get_default_from(),
+#            'reply_to': self.env['mail.message']._get_default_from(),
             'subject': _subject,
             'body_html': '%s' % _body,
-            'auto_delete': True,
+#            'auto_delete': True,
 #                'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
 #                'partner_ids': [(4, id.id) for id in self.message_follower_ids],
         })
-        _logger.info('VERSIOM ' + str(self.id))
+#        _logger.info('VERSIOM ' + str(self.id))
 
         mail_mail.send([mail_id])
 
         res = super(ProductLabelVersion, self).create(values)
 
         return res
-
