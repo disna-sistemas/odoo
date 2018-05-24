@@ -27,22 +27,22 @@ class ProductLabelVersion(models.Model):
 
         res = super(ProductLabelVersion, self).create(values)
         _logger = logging.getLogger(__name__)
-        for val in values:
-            _logger.info(val)
-        prod_id = values['product_id']
-        prod_code=''
-        if prod_id:
-            prod_obj = self.env['product_product']
-            prods = prod_obj.search([('id','=',prod_id)])
-            if prods:
-                prod_code=prods[0].default_code
+        # for val in values:
+        #     _logger.info(val)
+        # prod_id = values['product_id']
+        # prod_code=''
+        # if prod_id:
+        #     prod_obj = self.env['product_product']
+        #     prods = prod_obj.search([('id','=',prod_id)])
+        #     if prods:
+        #         prod_code=prods[0].default_code
 
-        _subject = "New product version:  " + prod_code + ' - ' + values['name']
+        _subject = "New product version:  " + values['name']
 
         _body = "Product "
 
-        _subject +=" - Product " + prod_code
-        _body += "Product code: " + prod_code
+        # _subject +=" - Product " + prod_code
+        # _body += "Product code: " + prod_code
 
         if self.product_id.product_tmpl_id.dsn_name_es:
             _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
