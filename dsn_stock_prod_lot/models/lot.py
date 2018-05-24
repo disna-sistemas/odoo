@@ -146,6 +146,10 @@ class dsnStockProductionLot(models.Model):
                             _logger.info('NO DEBERIA ')
                             pass
                     else:
+                        #Añadimos el propio witness y seguimos buscando
+                        lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                               'father_id': witness_lot.id})
+                        certif_lots.append(lot_and_father)
                         #Comprobar si existe una producción que crea el lote
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
@@ -191,11 +195,6 @@ class dsnStockProductionLot(models.Model):
                                                            'father_id': witness_lot.id})
                     certif_lots.append(lot_and_father)
 
-                # mensaje=' CERTIFLOTS '
-                # for l in certif_lots:
-                #     mensaje += ' ' + str(l.id)
-                # _logger.info(mensaje)
-#                values['dsn_lot_certif_ids'] = [(6, 0, [l.id for l in certif_lots])]
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
 
             if res:

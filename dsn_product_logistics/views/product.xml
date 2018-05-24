@@ -23,6 +23,7 @@
                                 </group>
                                 <group colspan="2">
                                     <separator string="Box" colspan="2"/>
+                                    <field name="dsn_box_prefer_desc1" />
                                     <field name="dsn_box_prefer_desc_en" />
                                     <field name="dsn_box_weight" />
                                     <field name="dsn_box_length" />
