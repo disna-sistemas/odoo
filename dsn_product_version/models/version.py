@@ -40,9 +40,7 @@ class ProductLabelVersion(models.Model):
         #         prod_code=prods[0].default_code
 
         _subject = "New product version:  " + values['name']
-
-        _body = "Product "
-
+        _body = ""
         # _subject +=" - Product " + prod_code
         # _body += "Product code: " + prod_code
 
@@ -50,7 +48,8 @@ class ProductLabelVersion(models.Model):
         lvs = lvobj.search([('id','=',res.id)])
         if lvs:
             lv=lvs[0]
-            _body += "<br>Product Code: " + lv.product_id.default_code
+            _subject += " - " + lv.product_id.default_code
+            _body += "Product Code: " + lv.product_id.default_code
             _body += "<br>Product ES name: " + lv.product_id.product_tmpl_id.dsn_name_es
             _body += "<br>Version: " + values['name']
 
