@@ -25,6 +25,8 @@ class ProductLabelVersion(models.Model):
     @api.model
     def create(self, values):
 
+#        if vals.get('product_id')
+
         res = super(ProductLabelVersion, self).create(values)
         _logger = logging.getLogger(__name__)
         # for val in values:
@@ -55,7 +57,7 @@ class ProductLabelVersion(models.Model):
         #     if partner.email:
         mail_id = mail_mail.create({
             'model': 'product.label.version',
-            'res_id': 1,
+            'res_id': res,
             'record_name': 'Product Version',
             'email_from': self.env['mail.message']._get_default_from(),
             'email_to': 'technical@disna.com',
