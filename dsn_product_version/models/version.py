@@ -46,17 +46,13 @@ class ProductLabelVersion(models.Model):
         # _subject +=" - Product " + prod_code
         # _body += "Product code: " + prod_code
 
-        if self.product_id.product_tmpl_id.dsn_name_es:
-            _body += "<br>Product ES name: " + self.product_id.product_tmpl_id.dsn_name_es
-
-        _body += "<br>Version: " + values['name']
-
-
         lvobj = self.env['product.label.version']
-        lvs = lvobj.search([('id','=',res)])
+        lvs = lvobj.search([('id','=',res.id)])
         if lvs:
             lv=lvs[0]
-            _body += lv.product_id.default_code
+            _body += "<br>Product Code: " + lv.product_id.default_code
+            _body += "<br>Product ES name: " + lv.product_id.product_tmpl_id.dsn_name_es
+            _body += "<br>Version: " + values['name']
 
         mail_mail = self.env['mail.mail']
 
