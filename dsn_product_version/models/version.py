@@ -51,6 +51,13 @@ class ProductLabelVersion(models.Model):
 
         _body += "<br>Version: " + values['name']
 
+
+        lvobj = self.env['product.label.version']
+        lvs = lvobj.search([('id','=',res)])
+        if lvs:
+            lv=lvs[0]
+            _body += lv.product_id.default_code
+
         mail_mail = self.env['mail.mail']
 
         # for partner in self.message_follower_ids:
