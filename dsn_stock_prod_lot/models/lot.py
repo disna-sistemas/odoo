@@ -88,7 +88,10 @@ class dsnStockProductionLot(models.Model):
     dsn_lot_certif_ids = fields.Many2many(comodel_name='dsn.lot.father',
                                           string='Certif. Lots')
 
-    dsn_component_ids = fields.Many2one(comodel_name='product.product',
+    dsn_component_ids = fields.Many2many(comodel_name='product.product',
+                                         relation="dsn_lot_components_rel",
+                                         column1="lot_id",
+                                         column2="component_id",
                                          string='Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
