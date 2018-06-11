@@ -218,7 +218,13 @@ class dsnStockProductionLot(models.Model):
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
-                    values['dsn_component_ids'] = [(6, 0, [c.id for c in comps])]
+                    lot_comps=[]
+                    lot_comp_obj = self.env['dsn_lot_components_rel']
+                    for comp in comps:
+                        lot_comp = lot_comp_obj.create({'lot_id': record.id,
+                                                       'product_id': comp.id})
+                        lot_comps.append(lot_comp)
+                    values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
