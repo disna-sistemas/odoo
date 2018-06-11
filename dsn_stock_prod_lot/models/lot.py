@@ -79,14 +79,17 @@ class dsnStockProductionLot(models.Model):
 
 #    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot', string='Lot certif.')
 
-    dsn_lot_cert_ids = fields.Many2many(comodel_name="stock.production.lot",
-                                 relation="dsn_lot_lot_cert_rel",
-                                 column1="lot_id",
-                                 column2="lot_cert_id",
-                                 string="Certif. Lots")
+    # dsn_lot_cert_ids = fields.Many2many(comodel_name="stock.production.lot",
+    #                              relation="dsn_lot_lot_cert_rel",
+    #                              column1="lot_id",
+    #                              column2="lot_cert_id",
+    #                              string="Certif. Lots")
 
     dsn_lot_certif_ids = fields.Many2many(comodel_name='dsn.lot.father',
                                           string='Certif. Lots')
+
+    dsn_component_ids = fields.Many2many(comodel_name='product.product',
+                                         string='Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
@@ -123,6 +126,7 @@ class dsnStockProductionLot(models.Model):
             if days < 1200:
                 cert_lots=[]
                 certif_lots = []
+                comps=[]
                 witness_lot = record
                 witness_father = record
                 lot_and_father = False
@@ -139,6 +143,10 @@ class dsnStockProductionLot(models.Model):
                         rlogs = rl_obj.search([('relabel_id','=',move.relabel_dest_id.id),('destination_lot_id','=',witness_lot.id)])
                         if rlogs:
                             rlog = rlogs[0]
+                            #********************************
+                            for c in rlog.component_ids:
+                                comps.append(c)
+                            # ********************************
                             witness_lot = rlog.origin_lot_id
                             witness_father = rlog.origin_lot_id
 #                            witness_lot.dsn_father_lot_id = witness_father
@@ -153,7 +161,17 @@ class dsnStockProductionLot(models.Model):
                         #Comprobar si existe una producción que crea el lote
                         moves = move_obj.search([('restrict_lot_id', '=', witness_lot.id), ('production_id', '!=', False)])
                         if moves: # pueden haber más de un stock.move, porque se haya imputado en 2 o 3 quants.  Coger sólo el PRIMERO
+                            #**********************************
+                            for move in moves:
+                                productions = production_obj.search([('id', '=', move.production_id.id)])
+                                production = productions[0]
+                                for c in productions.move_lines2:
+                                    comps.append(c)
+                            # **********************************
+
+
                             move = moves[0]
+
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
                             production = productions[0]
@@ -196,6 +214,7 @@ class dsnStockProductionLot(models.Model):
                     certif_lots.append(lot_and_father)
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
+                values['dsn_components'] = [(6, 0, [c.id for c in comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
