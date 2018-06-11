@@ -214,7 +214,7 @@ class dsnStockProductionLot(models.Model):
                     certif_lots.append(lot_and_father)
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
-                values['dsn_components'] = [(6, 0, [c.id for c in comps])]
+                values['dsn_component_ids'] = [(6, 0, [c.id for c in comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
