@@ -227,6 +227,10 @@ class dsnStockProductionLot(models.Model):
                 if comps:
                     lot_comps=[]
                     for x in comps:
+                        if x.default_code is None:
+                            _logger.info(x.name)
+                        else:
+                            _logger.info(x.default_code)
 
                         lot_comp = lotcomp_obj.create({'lot_id': record.id,
                                                       'product_id': x.id})
