@@ -174,9 +174,9 @@ class dsnStockProductionLot(models.Model):
                             for move in moves:
                                 productions = production_obj.search([('id', '=', move.production_id.id)])
                                 production = productions[0]
-                                for c in productions.move_lines2.product_id:
-                                    if c not in comps:
-                                        comps.append(c)
+                                for c in productions.move_lines2:
+                                    if c.product_id not in comps:
+                                        comps.append(c.product_id)
                             # **********************************
 
                             move = moves[0]
