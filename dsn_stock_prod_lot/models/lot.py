@@ -225,7 +225,7 @@ class dsnStockProductionLot(models.Model):
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
                     for x in comps:
-                        _logger.info(x.default_code)
+                        _logger.info(str(x.id))
                     values['dsn_component_ids'] = [(6, 0, [x.id for x in comps])]
 
             if res:
