@@ -141,6 +141,7 @@ class dsnStockProductionLot(models.Model):
                 rl_obj = self.env['mrp.relabel.log']
                 production_obj = self.env['mrp.production']
                 lotfather_obj = self.env['dsn.lot.father']
+                lotcomp_obj = self.env['dsn.lot.components']
 
                 seguir = True
                 while seguir:
@@ -224,9 +225,15 @@ class dsnStockProductionLot(models.Model):
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
+                    lot_comps=[]
                     for x in comps:
-                        _logger.info(str(x.id))
-                    values['dsn_component_ids'] = [(6, 0, [x.id for x in comps])]
+
+                        lot_comp = lotcomp_obj.create({'lot_id': record.id,
+                                                      'product_id': x.id})
+                        lot_comps.append(lot_comp)
+
+
+                    values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
