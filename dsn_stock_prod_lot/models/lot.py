@@ -174,11 +174,10 @@ class dsnStockProductionLot(models.Model):
                             for move in moves:
                                 productions = production_obj.search([('id', '=', move.production_id.id)])
                                 production = productions[0]
-                                for c in productions.move_lines2:
+                                for c in productions.move_lines2.product_id:
                                     if c not in comps:
                                         comps.append(c)
                             # **********************************
-
 
                             move = moves[0]
 
@@ -225,19 +224,19 @@ class dsnStockProductionLot(models.Model):
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
-                    lot_comps=[]
-                    for x in comps:
-                        if x.default_code is None:
-                            _logger.info(x.name)
-                        else:
-                            _logger.info(x.default_code)
+                    # lot_comps=[]
+                    # for x in comps:
+                        # if x.default_code is None:
+                        #     _logger.info(x.name)
+                        # else:
+                        #     _logger.info(x.default_code)
 
-                        lot_comp = lotcomp_obj.create({'lot_id': record.id,
-                                                      'product_id': x.id})
-                        lot_comps.append(lot_comp)
+                        # lot_comp = lotcomp_obj.create({'lot_id': record.id,
+                        #                               'product_id': x.id})
+                        # lot_comps.append(lot_comp)
 
 
-                    values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
+                    values['dsn_component_ids'] = [(6, 0, [x.id for x in comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
