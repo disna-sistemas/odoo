@@ -88,10 +88,8 @@ class dsnStockProductionLot(models.Model):
     dsn_lot_certif_ids = fields.Many2many(comodel_name='dsn.lot.father',
                                           string='Certif. Lots')
 
-    dsn_component_ids = fields.Many2many(comodel_name='product.product',
-                                         relation="dsn_lot_components_rel",
-                                         column1="lot_id",
-                                         column2="component_id",
+    dsn_component_ids = fields.One2many(comodel_name='product.product',
+                                        inverse_name='lot_id',
                                          string='Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
@@ -218,13 +216,7 @@ class dsnStockProductionLot(models.Model):
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
-                    lot_comps=[]
-                    lot_comp_obj = self.env['dsn_lot_components_rel']
-                    for comp in comps:
-                        lot_comp = lot_comp_obj.create({'lot_id': record.id,
-                                                       'product_id': comp.id})
-                        lot_comps.append(lot_comp)
-                    values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
+                    values['dsn_component_ids'] = [(6, 0, [x.id for x in comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
