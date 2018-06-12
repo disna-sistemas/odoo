@@ -152,7 +152,8 @@ class dsnStockProductionLot(models.Model):
                             rlog = rlogs[0]
                             #********************************
                             for c in rlog.component_ids:
-                                comps.append(c)
+                                if c not in comps:
+                                    comps.append(c)
                             # ********************************
                             witness_lot = rlog.origin_lot_id
                             witness_father = rlog.origin_lot_id
@@ -173,7 +174,8 @@ class dsnStockProductionLot(models.Model):
                                 productions = production_obj.search([('id', '=', move.production_id.id)])
                                 production = productions[0]
                                 for c in productions.move_lines2:
-                                    comps.append(c)
+                                    if c not in comps:
+                                        comps.append(c)
                             # **********************************
 
 
@@ -222,6 +224,8 @@ class dsnStockProductionLot(models.Model):
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
                 if comps:
+                    for x in comps:
+                        _logger.info(x.default_code)
                     values['dsn_component_ids'] = [(6, 0, [x.id for x in comps])]
 
             if res:
