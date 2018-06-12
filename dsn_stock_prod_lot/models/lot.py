@@ -27,6 +27,12 @@ class dsnLotSemiLotPA(models.Model):
     lot_id = fields.Many2one('stock.production.lot')
     father_id = fields.Many2one('stock.production.lot')
 
+class dsnLotComponents(models.Model):
+    _name = 'dsn.lot.components'
+
+    lot_id = fields.Many2one('stock.production.lot')
+    product_id = fields.Many2one('product.product')
+
 
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
@@ -88,9 +94,9 @@ class dsnStockProductionLot(models.Model):
     dsn_lot_certif_ids = fields.Many2many(comodel_name='dsn.lot.father',
                                           string='Certif. Lots')
 
-    dsn_component_ids = fields.One2many(comodel_name='product.product',
+    dsn_component_ids = fields.One2many(comodel_name='dsn.lot.components',
                                         inverse_name='lot_id',
-                                         string='Components')
+                                         string='Lot Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
