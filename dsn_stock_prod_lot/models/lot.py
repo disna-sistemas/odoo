@@ -180,7 +180,10 @@ class dsnStockProductionLot(models.Model):
                                 for m in productions.move_lines2:
                                     if m.product_id not in comps:
                                         comps.append(m.product_id)
-                                        version_id = m.lot_ids[0].version_id if m.lot_ids[0].version_id else None
+                                        version_id = None
+                                        if m.lot_ids[0]:
+                                            if m.lot_ids[0].version_id:
+                                                version_id = m.lot_ids[0].version_id
                                         compdic[m.product_id] = version_id
                             # **********************************
 
@@ -232,7 +235,7 @@ class dsnStockProductionLot(models.Model):
                     for prod,ver in compdic.items:
                         lot_comp = lotcomp_obj.create({'lot_id': record.id,
                                                         'product': prod.id,
-                                                       'version_id': ver.id if ver else None})
+                                                       'version_id': None if ver is None else ver.id})
                         lot_comps.append(lot_comp)
                     values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
 
