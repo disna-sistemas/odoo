@@ -180,7 +180,8 @@ class dsnStockProductionLot(models.Model):
                                 for m in productions.move_lines2:
                                     if m.product_id not in comps:
                                         comps.append(m.product_id)
-                                        compdic[m.product_id] = m.lot_ids[0].version_id
+                                        version_id = m.lot_ids[0].version_id if m.lot_ids[0].version_id else None
+                                        compdic[m.product_id] = version_id
                             # **********************************
 
                             productions = production_obj.search([('id','=',move.production_id.id)])
