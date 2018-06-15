@@ -32,6 +32,7 @@ class dsnLotComponents(models.Model):
 
     lot_id = fields.Many2one('stock.production.lot')
     product_id = fields.Many2one('product.product')
+    version_id = fields.Many2one('product.label.version')
 
 
 class dsnStockProductionLot(models.Model):
@@ -134,6 +135,7 @@ class dsnStockProductionLot(models.Model):
                 cert_lots=[]
                 certif_lots = []
                 comps=[]
+                compdic={}
                 witness_lot = record
                 witness_father = record
                 lot_and_father = False
@@ -155,6 +157,7 @@ class dsnStockProductionLot(models.Model):
                             for c in rlog.component_ids:
                                 if c not in comps:
                                     comps.append(c)
+                                    compdic[c] = None
                             # ********************************
                             witness_lot = rlog.origin_lot_id
                             witness_father = rlog.origin_lot_id
@@ -174,12 +177,11 @@ class dsnStockProductionLot(models.Model):
                             for move in moves:
                                 productions = production_obj.search([('id', '=', move.production_id.id)])
                                 production = productions[0]
-                                for c in productions.move_lines2:
-                                    if c.product_id not in comps:
-                                        comps.append(c.product_id)
+                                for m in productions.move_lines2:
+                                    if m.product_id not in comps:
+                                        comps.append(m.product_id)
+                                        compdic[m.product_id] = m.lot_ids[0].version_id
                             # **********************************
-
-                            move = moves[0]
 
                             productions = production_obj.search([('id','=',move.production_id.id)])
                             #Siempre debe encontrar una única producción
@@ -223,19 +225,29 @@ class dsnStockProductionLot(models.Model):
                     certif_lots.append(lot_and_father)
 
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
-                if comps:
-                    lot_comps=[]
-                    for x in comps:
-                         if x.default_code is None:
-                             _logger.info(x.name)
-                         else:
-                             _logger.info(x.default_code)
 
-                         lot_comp = lotcomp_obj.create({'lot_id': record.id,
-                                                       'product_id': x.id})
-                         lot_comps.append(lot_comp)
+                if compdic.items:
+                    lot_comps = []
+                    for prod,ver in compdic.items:
+                        lot_comp = lotcomp_obj.create({'lot_id': record.id,
+                                                        'product': prod.id,
+                                                       'version_id': ver.id})
+                        lot_comps.append(lot_comp)
+                    values['dsn_component_ids'] = [(6,0, x.id for x in lot_comps)]
 
-                    values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
+                # if comps:
+                #     lot_comps=[]
+                #     for x in comps:
+                #          if x.default_code is None:
+                #              _logger.info(x.name)
+                #          else:
+                #              _logger.info(x.default_code)
+                #
+                #          lot_comp = lotcomp_obj.create({'lot_id': record.id,
+                #                                        'product_id': x.id})
+                #          lot_comps.append(lot_comp)
+                #
+                #     values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
