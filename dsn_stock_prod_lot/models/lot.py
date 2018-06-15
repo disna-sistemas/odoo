@@ -233,7 +233,7 @@ class dsnStockProductionLot(models.Model):
                                                         'product': prod.id,
                                                        'version_id': ver.id})
                         lot_comps.append(lot_comp)
-                    values['dsn_component_ids'] = [(6,0, x.id for x in lot_comps)]
+                    values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
 
                 # if comps:
                 #     lot_comps=[]
