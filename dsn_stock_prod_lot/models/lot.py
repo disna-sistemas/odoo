@@ -235,8 +235,8 @@ class dsnStockProductionLot(models.Model):
                     for prod,ver in compdic.items():
                         _logger.info(prod.default_code)
                         lot_comp = lotcomp_obj.create({'lot_id': record.id,
-                                                        'product': prod.id,
-                                                       'version_id': None if ver is None else ver.id})
+                                                        'product_id': prod.id,
+                                                        'version_id': None if ver is None else ver.id})
                         lot_comps.append(lot_comp)
                     values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
 
