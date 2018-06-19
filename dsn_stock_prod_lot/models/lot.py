@@ -239,7 +239,7 @@ class dsnStockProductionLot(models.Model):
                                                         'version_id': None if ver is None else ver.id})
                         lot_comps.append(lot_comp)
                     for comp in values['dsn_component_ids']:
-                        values['dsn_component_ids'] = [2, comp.id]
+                        values['dsn_component_ids'] = [(2, comp.id)]
                     values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
 
                 # if comps:
