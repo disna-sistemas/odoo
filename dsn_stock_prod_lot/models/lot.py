@@ -132,7 +132,6 @@ class dsnStockProductionLot(models.Model):
             d2 = datetime.strptime(record.write_date,'%Y-%m-%d %H:%M:%S')
             days = (d2-d1).days
             if days < 1200:
-                cert_lots=[]
                 certif_lots = []
                 comps=[]
                 compdic={}
@@ -161,7 +160,6 @@ class dsnStockProductionLot(models.Model):
                             # ********************************
                             witness_lot = rlog.origin_lot_id
                             witness_father = rlog.origin_lot_id
-#                            witness_lot.dsn_father_lot_id = witness_father
                         else: #No debería entrar nunca aquí
                             _logger.info('NO DEBERIA ')
                             pass
@@ -197,11 +195,8 @@ class dsnStockProductionLot(models.Model):
                                 for semi_move in semi_moves:
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
-#                                        witness_lot.write({'dsn_father_lot_id': witness_father.id })
                                         lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                               'father_id': witness_father.id})
-#                                        witness_lot.dsn_father_lot_id = witness_father
-#                                        cert_lots.append(witness_lot)
                                         certif_lots.append(lot_and_father)
                                 seguir = False
 
@@ -212,7 +207,6 @@ class dsnStockProductionLot(models.Model):
 
                                     witness_lot = pa_move.restrict_lot_id
                                     witness_father = pa_move.restrict_lot_id
-#                                    witness_lot.write({'dsn_father_lot_id': witness_father.id})
                                     lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                            'father_id': witness_father.id})
 
@@ -240,27 +234,11 @@ class dsnStockProductionLot(models.Model):
 
                         lot_comps.append(lot_comp)
 
-                    for c in record.dsn_component_ids:
-                        c.unlink()
-
                     values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
-
-                # if comps:
-                #     lot_comps=[]
-                #     for x in comps:
-                #          if x.default_code is None:
-                #              _logger.info(x.name)
-                #          else:
-                #              _logger.info(x.default_code)
-                #
-                #          lot_comp = lotcomp_obj.create({'lot_id': record.id,
-                #                                        'product_id': x.id})
-                #          lot_comps.append(lot_comp)
-                #
-                #     values['dsn_component_ids'] = [(6, 0, [x.id for x in lot_comps])]
 
             if res:
                 res = super(dsnStockProductionLot, record).write(values)
+
 
         if self.env.user.id!=1:
             if 'country_ids' in values:
