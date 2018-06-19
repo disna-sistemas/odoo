@@ -240,7 +240,7 @@ class dsnStockProductionLot(models.Model):
 
                         lot_comps.append(lot_comp)
 
-                    for c in values['dsn_component_ids']:
+                    for c in record.dsn_component_ids:
                         c.unlink()
 
                     values['dsn_component_ids'] = [(6,0, [x.id for x in lot_comps])]
