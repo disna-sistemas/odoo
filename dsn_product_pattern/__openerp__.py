@@ -22,14 +22,11 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['product','product_packaging_views','mrp','disna_custom'],
+    "depends": ['product','disna_custom'],
     "description": """
-        Product Logistics
+Product Pattern
     """,
     "data": [
-        'views/product.xml',
-        'views/mrp.xml',
-        'views/precision.xml'
     ],
     "installable": True,
     "auto_install": False,
