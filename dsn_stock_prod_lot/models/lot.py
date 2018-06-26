@@ -266,7 +266,7 @@ class dsnStockProductionLot(models.Model):
                             'subject': _('Countries modified on Lot: % s') % (self.name),
                             'body_html': '%s' % _body,
                             'auto_delete': True,
-                            'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
+#                            'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
 #                            'partner_ids': [(4, id.id) for id in self.message_follower_ids],
                         })
                         mail_mail.send([mail_id])
