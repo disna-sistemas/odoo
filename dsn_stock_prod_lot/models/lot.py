@@ -252,6 +252,7 @@ class dsnStockProductionLot(models.Model):
 
                 mail_mail = self.env['mail.mail']
 
+                _notif = True
                 for partner in self.message_follower_ids:
                     if partner.email:
 
@@ -262,14 +263,17 @@ class dsnStockProductionLot(models.Model):
                             'email_from': self.env['mail.message']._get_default_from(),
                             'email_to': partner.email,
 #                            'email_cc': 'vicktormartin@gmail.com',
-                            'reply_to': self.env['mail.message']._get_default_from(),
+#                            'reply_to': self.env['mail.message']._get_default_from(),
                             'subject': _('Countries modified on Lot: % s') % (self.name),
                             'body_html': '%s' % _body,
                             'auto_delete': True,
+                            'notification': _notif,
 #                            'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
 #                            'partner_ids': [(4, id.id) for id in self.message_follower_ids],
                         })
                         mail_mail.send([mail_id])
+
+                        _notif = False
 
         return res
 
