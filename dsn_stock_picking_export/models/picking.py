@@ -101,7 +101,7 @@ class dsnStockPickingExport(models.Model):
                 if line.product_id.dsnidart:
                     _dsnidart = self.replace_bars(str(line.product_id.dsnidart))
 
-                for quant in line.reserved_quant_ids:
+                for quant in line.reserved_quant_ids.mapped('lot_id'):
                     lot = etree.SubElement(docdata, "lot",
                            {
                                "product_id": str(line.product_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
@@ -109,7 +109,8 @@ class dsnStockPickingExport(models.Model):
                                "product_dsnidart": _dsnidart, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                                "product_name": line.product_id.product_tmpl_id.dsn_name_es, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                                "lot_name": quant.lot_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "lot_qty": str(quant.qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
+#                               "lot_qty": str(sum(quant.qty)), etree.QName(xsi, "type"): etree.QName(xsd, "string")
+                               "lot_qty": str(sum(line.reserved_quant_ids.filtered(lambda x: x.lot_id == lot).mapped('qty')))
                            })
 
             etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
