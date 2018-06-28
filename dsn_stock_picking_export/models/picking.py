@@ -65,6 +65,7 @@ class dsnStockPickingExport(models.Model):
                 etree.register_namespace(attr.split(":")[1], uri)
 
             sale_order_model = self.env['sale.order']
+            quant_obj = self.env['stock.quant']
             cond = [('name', '=', record.origin)]
             sale_orders = sale_order_model.search(cond)
             sale_order_ref = record.origin
@@ -96,25 +97,56 @@ class dsnStockPickingExport(models.Model):
                     "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
 
-            for prod in record.move_lines.mapped('product_id'):
+            for prod in record.move_lines.mapped('product_id').sorted:
                 _dsnidart = ""
                 if prod.dsnidart:
                     _dsnidart = self.replace_bars(str(prod.dsnidart))
 
+                prodmoves = record.move_lines.filtered(lambda x: x.product_id == prod)
+                prod_move_ids = [move.id for move in prodmoves]
+
+                lots = quant_obj.search([('reservation_id', 'in', prod_move_ids)]).mapped('lot_id')
+                lot_ids = [lot.id for lot in lots]
+
+                for lot in lots:
+
+                    quants = quant_obj.search([('reservation_id', 'in', prod_move_ids),('lot_id','=',lot)])
+                    lot_qty = 0
+                    if quants:
+                        lot_qty = sum(quants.mapped('qty'))
+
+                    lotdata = etree.SubElement(docdata, "lot",
+                                               {
+                                                   "product_id": str(lot.product_id.id),
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "product_code": lot.product_id.default_code,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "product_dsnidart": _dsnidart,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "product_name": lot.product_id.product_tmpl_id.dsn_name_es,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "lot_name": lot.name,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "lot_qty": str(lot_qty)
+                                               })
+
+
 #                for line in record.move_lines.filtered(lambda x: x.product_id == prod):
 
-    #                for quant in line.reserved_quant_ids.mapped('lot_id'):
-                for lot in record.move_lines.reserved_quant_ids.mapped('lot_id'):
-                    lotdata = etree.SubElement(docdata, "lot",
-                           {
-                               "product_id": str(lot.product_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "product_code": lot.product_id.default_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "product_dsnidart": _dsnidart, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "product_name": lot.product_id.product_tmpl_id.dsn_name_es, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "lot_name": lot.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-#                               "lot_qty": str(sum(quant.qty)), etree.QName(xsi, "type"): etree.QName(xsd, "string")
-                               "lot_qty": str(sum(record.move_lines.reserved_quant_ids.filtered(lambda x: x.lot_id == lot).mapped('qty')))
-                           })
+    #                for quant in line.reserved_qant_ids.mapped('lot_id'):
+
+
+#                 for lot in record.move_lines.reserved_quant_ids.mapped('lot_id'):
+#                     lotdata = etree.SubElement(docdata, "lot",
+#                            {
+#                                "product_id": str(lot.product_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+#                                "product_code": lot.product_id.default_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+#                                "product_dsnidart": _dsnidart, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+#                                "product_name": lot.product_id.product_tmpl_id.dsn_name_es, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+#                                "lot_name": lot.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+# #                               "lot_qty": str(sum(quant.qty)), etree.QName(xsi, "type"): etree.QName(xsd, "string")
+#                                "lot_qty": str(sum(record.move_lines.reserved_quant_ids.filtered(lambda x: x.lot_id == lot).mapped('qty')))
+#                            })
 
             etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
 
