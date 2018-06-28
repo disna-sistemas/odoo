@@ -86,8 +86,6 @@ class dsnStockPickingExport(models.Model):
                     "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "disna_order": record.origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
-                    "partner_id": str(record.partner_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                    "partner_dsnidcli": _dsnidcli, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
@@ -97,7 +95,7 @@ class dsnStockPickingExport(models.Model):
                     "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
 
-            for prod in record.move_lines.mapped('product_id').sorted:
+            for prod in record.move_lines.mapped('product_id').sorted():
                 _dsnidart = ""
                 if prod.dsnidart:
                     _dsnidart = self.replace_bars(str(prod.dsnidart))
@@ -110,18 +108,14 @@ class dsnStockPickingExport(models.Model):
 
                 for lot in lots:
 
-                    quants = quant_obj.search([('reservation_id', 'in', prod_move_ids),('lot_id','=',lot)])
+                    quants = quant_obj.search([('reservation_id', 'in', prod_move_ids),('lot_id','=',lot.id)])
                     lot_qty = 0
                     if quants:
                         lot_qty = sum(quants.mapped('qty'))
 
                     lotdata = etree.SubElement(docdata, "lot",
                                                {
-                                                   "product_id": str(lot.product_id.id),
-                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                                                    "product_code": lot.product_id.default_code,
-                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                                                   "product_dsnidart": _dsnidart,
                                                    etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                                                    "product_name": lot.product_id.product_tmpl_id.dsn_name_es,
                                                    etree.QName(xsi, "type"): etree.QName(xsd, "string"),
