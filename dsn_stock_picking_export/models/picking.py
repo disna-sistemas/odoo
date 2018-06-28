@@ -68,7 +68,7 @@ class dsnStockPickingExport(models.Model):
             quant_obj = self.env['stock.quant']
             cond = [('name', '=', record.origin)]
             sale_orders = sale_order_model.search(cond)
-            sale_order_ref = record.origin
+            sale_order_ref = ""
             if sale_orders:
                 for sale_order in sale_orders:
                     if sale_order.client_order_ref:
