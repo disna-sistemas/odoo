@@ -43,7 +43,7 @@ class dsnStockPickingExport(models.Model):
         return cadena
 
     @api.multi
-    def dsn_button_stock_picking_export_file(self):
+    def dsn_button_stock_picking_export_file_CARRERAS(self):
 
         param_obj = self.env['ir.config_parameter']
         local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
@@ -148,7 +148,7 @@ class dsnStockPickingExport(models.Model):
 
 #############################################################################################################################
     @api.multi
-    def dsn_button_stock_picking_export_file_ALOVA(self):
+    def dsn_button_stock_picking_export_file(self):
 
         param_obj = self.env['ir.config_parameter']
         local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
@@ -257,7 +257,7 @@ class dsnStockPickingExport(models.Model):
         else:
             raise exceptions.Warning(_('Local folder not defined'))
 
-        self.dsn_button_stock_picking_export_file_ALOVA()
+        self.dsn_button_stock_picking_export_file()
 
         for record in self:
             _name = self.replace_bars(record.name)
