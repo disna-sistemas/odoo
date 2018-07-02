@@ -146,9 +146,9 @@ class dsnStockPickingExport(models.Model):
 
         return True
 
-#   Esta función agrupa por producto y excluye campos de Marino
+#############################################################################################################################
     @api.multi
-    def dsn_button_stock_picking_export2_file(self):
+    def dsn_button_stock_picking_export_file_ALOVA(self):
 
         param_obj = self.env['ir.config_parameter']
         local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
@@ -181,11 +181,17 @@ class dsnStockPickingExport(models.Model):
             alb = etree.Element("alb",
                                 dict(user=record.write_uid.name,
                                      file_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S")))  # put `**ns))` if xsi, xsd are unused
+
+            _dsnidcli = ""
+            if record.partner_id.dsnidcli:
+                _dsnidcli = self.replace_bars(str(record.partner_id.dsnidcli))
             docdata = etree.SubElement(alb, "doc",
                 {
                     "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "disna_order": record.origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
+                    "partner_id": str(record.partner_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_dsnidcli": _dsnidcli, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
@@ -195,45 +201,29 @@ class dsnStockPickingExport(models.Model):
                     "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
 
-            quant_ids = self.env['stock.quant'].search([('reservation_id.picking_id.id','=',record.id)]).sorted(key=lambda x: (x.product_id.default_code, x.lot_id.name))
+            for line in record.move_lines:
+                _dsnidart = ""
+                if line.product_id.dsnidart:
+                    _dsnidart = self.replace_bars(str(line.product_id.dsnidart))
 
-            prod_code = ""
-            prod_name = ""
-            lot_name = ""
-            qty = 0
-            for quant in quant_ids:
-                if quant.lot_id.name==lot_name and quant.product_id.default_code==prod_code:
-                    qty += quant.qty
-                else:
-                    if prod_code != "":
-                        lot = etree.SubElement(docdata, "lot",
+                for quant in line.reserved_quant_ids:
+                    lot = etree.SubElement(docdata, "lot",
                            {
-                               "product_code": prod_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "product_name": prod_name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "lot_name": lot_name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                               "lot_qty": str(qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
+                               "product_id": str(line.product_id.id), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                               "product_code": line.product_id.default_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                               "product_dsnidart": _dsnidart, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                               "product_name": line.product_id.product_tmpl_id.dsn_name_es, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                               "lot_name": quant.lot_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                               "lot_qty": str(quant.qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
                            })
-
-                    qty = quant.qty
-                    prod_code = quant.product_id.default_code
-                    prod_name = quant.product_id.product_tmpl_id.dsn_name_es
-                    lot_name = quant.lot_id.name
-
-            if prod_code != "":
-                lot = etree.SubElement(docdata, "lot",
-                   {
-                       "product_code": prod_code, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                       "product_name": prod_name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                       "lot_name": lot_name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                       "lot_qty": str(qty), etree.QName(xsi, "type"): etree.QName(xsd, "string")
-                   })
 
             etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
 
         self.dsn_export_file = True
 
         return True
-
+#############################################################################################################################
+    
     @api.multi
     def dsn_button_export_to_ftp(self):
 
@@ -267,7 +257,7 @@ class dsnStockPickingExport(models.Model):
         else:
             raise exceptions.Warning(_('Local folder not defined'))
 
-        self.dsn_button_stock_picking_export_file()
+        self.dsn_button_stock_picking_export_file_ALOVA()
 
         for record in self:
             _name = self.replace_bars(record.name)
