@@ -269,6 +269,53 @@ class dsnStockPickingExport(models.Model):
 
         return True
 
+
+    @api.multi
+    def dsn_button_export_to_ftp_carreras(self):
+
+        param_obj = self.env['ir.config_parameter']
+        ftp_server_ids = param_obj.search([('key', '=', 'disna.ftp.server')])
+        ftp_user_ids = param_obj.search([('key', '=', 'disna.ftp.user')])
+        ftp_pwd_ids = param_obj.search([('key', '=', 'disna.ftp.pwd')])
+        local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
+
+        if ftp_server_ids:
+            ftp_server_id = ftp_server_ids[0]
+            ftp_server = ftp_server_id['value']
+        else:
+            raise exceptions.Warning(_('No ftp server defined'))
+
+        if ftp_user_ids:
+            ftp_user_id = ftp_user_ids[0]
+            ftp_user = ftp_user_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp user not defined'))
+
+        if ftp_pwd_ids:
+            ftp_pwd_id = ftp_pwd_ids[0]
+            ftp_pwd = ftp_pwd_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp password not defined'))
+
+        if local_folder_ids:
+            local_folder_id = local_folder_ids[0]
+            local_folder = local_folder_id['value']
+        else:
+            raise exceptions.Warning(_('Local folder not defined'))
+
+        self.dsn_button_stock_picking_export_file_CARRERAS()
+
+        for record in self:
+            _name = self.replace_bars(record.name)
+            ftp = ftplib.FTP(ftp_server, ftp_user, ftp_pwd)
+            file = open(local_folder + _name + ".xml", "r")
+            ftp.storbinary("STOR " + _name + ".xml", file)
+            file.close()
+            ftp.quit()
+
+        return True
+
+
     dsn_export_file = fields.Boolean(string="Exportado",
                                      default=False)
 
