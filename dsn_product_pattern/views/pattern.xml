@@ -24,7 +24,7 @@
             </field>
         </record>
 
-        <record>
+        <record id="dsn_product_pattern_tree" model="ir.ui.view">
             <field name="name">dsn.product.pattern.tree</field>
             <field name="model">dsn.product.pattern</field>
             <field name="type">tree</field>
