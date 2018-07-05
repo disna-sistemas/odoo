@@ -8,7 +8,7 @@
             <field name="model">dsn.product.pattern</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Formula">
+                <form string="Pattern">
                     <group col="2">
                         <separator string="Components" colspan="2"/>
                         <field name="component_ids"
@@ -23,5 +23,44 @@
                 </form>
             </field>
         </record>
+
+        <record>
+            <field name="name">dsn.product.pattern.tree</field>
+            <field name="model">dsn.product.pattern</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Patterns">
+                    <field name="product_id" >Component</field>
+                    <field name="version_id" >Version</field>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_action_product_pattern" model="ir.actions.act_window">
+            <field name="name">Product Pattern</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.product.pattern</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="dsn_product_pattern_form"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a product pattern
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="dsn_menu_disna_product_pattern"
+                    name="Product Patterns"
+                    groups="dsn_security.sale_mger"
+                    parent="dsn_menu_disna.dsn_menu_disna"
+                    sequence="150" />
+
+        <menuitem id="dsn_menu_disna_brand_brand"
+                    name="Brands"
+                    groups="dsn_security.sale_mger"
+                    parent="dsn_menu_disna_product_pattern"
+                    action="dsn_action_product_pattern"
+                    sequence="10" />
     </data>
 </openerp>
