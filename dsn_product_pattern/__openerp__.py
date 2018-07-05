@@ -22,12 +22,11 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['product','disna_custom'],
+    "depends": ['product','disna_custom','dsn_security'],
     "description": """
 Product Pattern
     """,
-    "data": [
-    ],
+    "data": ['views/pattern.xml'],
     "installable": True,
     "auto_install": False,
 }
