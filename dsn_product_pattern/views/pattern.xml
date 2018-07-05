@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_product_pattern_form" model="ir.ui.view">
+
+            <field name="name">dsn.product.pattern.form</field>
+            <field name="model">dsn.product.pattern</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Formula">
+                    <group col="2">
+                        <separator string="Components" colspan="2"/>
+                        <field name="component_ids"
+                                context="{'product_pattern_id':id}"
+                                nolabel="1">
+                            <tree>
+                                <field name="product_id" >Component</field>
+                                <field name="version_id" >Version</field>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
