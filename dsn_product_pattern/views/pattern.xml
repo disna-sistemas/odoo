@@ -24,17 +24,7 @@
             </field>
         </record>
 
-        <record id="dsn_product_pattern_tree" model="ir.ui.view">
-            <field name="name">dsn.product.pattern.tree</field>
-            <field name="model">dsn.product.pattern</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Patterns">
-                    <field name="product_id" >Component</field>
-                    <field name="version_id" >Version</field>
-                </tree>
-            </field>
-        </record>
+
 
         <record id="dsn_action_product_pattern" model="ir.actions.act_window">
             <field name="name">Product Pattern</field>
