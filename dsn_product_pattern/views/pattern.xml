@@ -9,6 +9,15 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Pattern">
+                    <group colspan="4" col="4">
+
+                        <separator string="General" colspan="4"/>
+
+                        <field name="partner_id">Product Template</field>
+                        <field name="name">Name</field>
+                        <field name="product_tmpl_id">Product Template</field>
+                    </group>
+
                     <group col="2">
                         <separator string="Components" colspan="2"/>
                         <field name="component_ids"
@@ -46,8 +55,8 @@
                     parent="dsn_menu_disna.dsn_menu_disna"
                     sequence="150" />
 
-        <menuitem id="dsn_menu_disna_brand_brand"
-                    name="Brands"
+        <menuitem id="dsn_menu_disna_pattern_pattern"
+                    name="Patterns"
                     groups="dsn_security.sale_mger"
                     parent="dsn_menu_disna_product_pattern"
                     action="dsn_action_product_pattern"
