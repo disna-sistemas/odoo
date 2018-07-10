@@ -107,7 +107,7 @@ class ProductTemplate(models.Model):
         if allow_update:
             return super(ProductTemplate, self).write(values)
         else:
-            raise exceptions.Warning('You are not allowed to modify this product template!!! (' + _updated_fields + ')')
+           raise exceptions.Warning('You are not allowed to modify this product template!!! (' + _updated_fields + ') ' + 'usr ' + str(_uid) )
 
 
     dsn_pnt_nf = fields.Char(string='PNT NF')
