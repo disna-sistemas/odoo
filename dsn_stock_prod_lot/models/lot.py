@@ -290,7 +290,7 @@ class dsnStockProductionLot(models.Model):
                 lots = lot_obj.search([('product_id','=',self.product_id.id),
                                        ('quant_ids.qty','>',0),
                                        ('quant_ids.location_id.usage','=','internal'),
-                                       ('removal_date','>',self.removal_date)])
+                                       ('removal_date','>=',self.removal_date)])
                 for lot in lots:
                     _other_lots = _other_lots + "," + lot.name
             else:
