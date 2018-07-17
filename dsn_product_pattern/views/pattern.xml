@@ -33,8 +33,6 @@
             </field>
         </record>
 
-
-
         <record id="dsn_action_product_pattern" model="ir.actions.act_window">
             <field name="name">Product Pattern</field>
             <field name="type">ir.actions.act_window</field>
