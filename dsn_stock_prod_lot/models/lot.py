@@ -292,7 +292,7 @@ class dsnStockProductionLot(models.Model):
                                        ('quant_ids.location_id.usage','=','internal'),
                                        ('removal_date','>=',self.removal_date)])
                 for lot in lots:
-                    _other_lots = _other_lots + lot.name + " " + lot.removal_date + "\n"
+                    _other_lots = _other_lots + lot.name + "   Retirada:  " + lot.removal_date[:10] + "\n"
             else:
                 # Mostrar warning si no es p.a.
                 if self.product_id.product_tmpl_id.dsncat2_id[0][0] != 7:
