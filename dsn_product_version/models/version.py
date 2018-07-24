@@ -50,7 +50,7 @@ class ProductLabelVersion(models.Model):
             lv=lvs[0]
             _subject += " - " + lv.product_id.default_code
             _body = "Product Code: " + lv.product_id.default_code + "\n"
-            _body += "Product ES name: " + lv.product_id.product_tmpl_id.dsn_name_es + "\n"
+            _body += "Product ES name: " + lv.product_id.product_tmpl_id.name + "\n"
             _body += "Version: " + values['name']
 
         mail_mail = self.env['mail.mail']
