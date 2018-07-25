@@ -15,6 +15,9 @@
                         <button name="dsn_button_export_to_ftp_carreras" colspan="2" string="to Ftp Carreras" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
                     </div>
                 </field>
+                <field name="min_date" position="after">
+                    <field name="dsn_delivery_date"/>
+                </field>
             </field>
         </record>
 

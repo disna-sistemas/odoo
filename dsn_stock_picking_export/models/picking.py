@@ -27,9 +27,6 @@ import xml.etree.ElementTree as etree
 import ftplib
 
 
-
-
-
 class dsnStockPickingExport(models.Model):
     _inherit = "stock.picking"
 
@@ -41,6 +38,7 @@ class dsnStockPickingExport(models.Model):
             cadena = cadena.replace(chr(47), "_")
 
         return cadena
+
 
     @api.multi
     def dsn_button_stock_picking_export_file_CARRERAS(self):
@@ -78,6 +76,14 @@ class dsnStockPickingExport(models.Model):
             if record.partner_id.ref_supplier:
                 ref_supplier = record.partner_id.ref_supplier
 
+            delivery_date = ""
+            if record.dsn_delivery_date:
+                delivery_date = record.dsn_delivery_date
+
+            carrier = ""
+            if record.carrier_id:
+                carrier = record.carrier_id.name
+
             origin = ""
             if record.origin:
                 origin = record.origin
@@ -91,6 +97,7 @@ class dsnStockPickingExport(models.Model):
                     "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "disna_order": origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
+                    "dsn_delivery_date": delivery_date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
                     "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
@@ -98,7 +105,8 @@ class dsnStockPickingExport(models.Model):
                     "partner_country": record.partner_id.country_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "ref_supplier": ref_supplier, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "sale_comment": record.sale_comment, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                    "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string")
+                    "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "carrier": carrier, etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
 
             for prod in record.move_lines.mapped('product_id').sorted():
@@ -305,6 +313,9 @@ class dsnStockPickingExport(models.Model):
 
     dsn_export_file = fields.Boolean(string="Exportado",
                                      default=False)
+
+    dsn_delivery_date = fields.Date(string="Delivery Date",
+                                    help="Optional delivery date")
 
 
 
