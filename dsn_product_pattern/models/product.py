@@ -39,7 +39,7 @@ class dsnProductPatter_Components(models.Model):
 
     product_pattern_id = fields.Many2one('dsn.product.pattern',
                                          string = 'Product Pattern',
-                                         required = True,
+#                                         required = True,
                                          ondelete = 'restrict')
 
     product_id = fields.Many2one('product.product',
