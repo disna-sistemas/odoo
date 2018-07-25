@@ -28,7 +28,8 @@ class dsnProductPattern(models.Model):
                                 domain = [('customer','=',True)])
 
     product_tmpl_id = fields.Many2one('product.template',
-                                      string='Prod.Template')
+                                      string='Prod.Template',
+                                      required=True)
 
     component_ids = fields.One2many('dsn.product.pattern.components',
                                     string = 'Components',
@@ -39,7 +40,7 @@ class dsnProductPatter_Components(models.Model):
 
     product_pattern_id = fields.Many2one('dsn.product.pattern',
                                          string = 'Product Pattern',
-#                                         required = True,
+                                         required = False,
                                          ondelete = 'restrict')
 
     product_id = fields.Many2one('product.product',
