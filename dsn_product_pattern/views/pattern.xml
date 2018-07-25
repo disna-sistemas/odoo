@@ -33,6 +33,20 @@
             </field>
         </record>
 
+       <record id="dsn_product_pattern_component_form_view" model="ir.ui.view">
+            <field name="name">dsn.product.pattern.component.form</field>
+            <field name="model">dsn.product.pattern.component</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Components">
+                    <group>
+                        <field name="product_id"/>
+                        <field name="version_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record id="dsn_action_product_pattern" model="ir.actions.act_window">
             <field name="name">Product Pattern</field>
             <field name="type">ir.actions.act_window</field>

@@ -21,26 +21,27 @@ from openerp import models, fields, api
 class dsnProductPattern(models.Model):
     _name = 'dsn.product.pattern'
 
-    name = fields.Char(string='Pattern')
+    name = fields.Char(string='Pattern',required=True)
 
     partner_id = fields.Many2one('res.partner',
                                 string = 'Customer',
-                                domain = [('customer','=',True)])
+                                domain = [('customer','=',True)],
+                                 required = True)
 
     product_tmpl_id = fields.Many2one('product.template',
                                       string='Prod.Template',
-                                      required=True)
+                                      required = True)
 
-    component_ids = fields.One2many('dsn.product.pattern.components',
+    component_ids = fields.One2many('dsn.product.pattern.component',
                                     string = 'Components',
                                     inverse_name = 'product_pattern_id')
 
 class dsnProductPatter_Components(models.Model):
-    _name = 'dsn.product.pattern.components'
+    _name = 'dsn.product.pattern.component'
 
     product_pattern_id = fields.Many2one('dsn.product.pattern',
                                          string = 'Product Pattern',
-                                         required = False,
+#                                         required = False,
                                          ondelete = 'restrict')
 
     product_id = fields.Many2one('product.product',
