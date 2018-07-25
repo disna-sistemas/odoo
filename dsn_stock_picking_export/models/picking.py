@@ -97,7 +97,7 @@ class dsnStockPickingExport(models.Model):
                     "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "disna_order": origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
-                    "dsn_delivery_date": delivery_date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
+                    "delivery_date": delivery_date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
                     "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
