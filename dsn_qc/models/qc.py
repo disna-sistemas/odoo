@@ -56,11 +56,23 @@ class dsnQcInspection(models.Model):
         lang_ids = lang_obj.search([('active','=',True)])
         return [(lang.code, lang.name ) for lang in lang_ids]
 
+    @api.multi
+    @api.depends('product_id')
+    def _compute_category_levels(self):
+        for record in self:
+            record.dsncat2_id = record.product.product_tmpl_id.dsncat2_id
+
     dsn_date_analysis = fields.Date('Date of Analysis', readonly=True)
 
     dsn_lang = fields.Selection(_get_language, string='Language')
 
     dsn_company = fields.Selection([('disna','Disna'),('naturvita','Instituto Naturvita')], default='disna')
+
+    dsncat2_id = fields.Many2one('product.category',
+                                 string='Cat2',
+                                 compute='_compute_category_levels',
+                                 store=True
+                                 )
 
     @api.multi
     def dsn_action_back_to_ready(self):

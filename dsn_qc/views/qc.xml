@@ -107,9 +107,9 @@
             <field name="inherit_id" ref="quality_control.qc_inspection_search_view"/>
             <field name="arch" type="xml">
                 <field name="product" position="after">
-                    <field name="Cat2" filter_domain="[('product_id.product_tmpl_id.dsncat2_id','ilike',self)]"/>
-<!--                    <filter name="cat2group" string='Cat2' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id.product_tmpl_id.dsncat2_id'}"/>
+<!--                    <field name="Cat2" filter_domain="[('product.product_tmpl_id.dsncat2_id','ilike',self)]"/>
 -->
+                    <filter name="cat2group" string='Cat2' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'dsncat2_id'}"/>
                 </field>
             </field>
         </record>
