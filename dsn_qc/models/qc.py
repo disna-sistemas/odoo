@@ -57,7 +57,7 @@ class dsnQcInspection(models.Model):
         return [(lang.code, lang.name ) for lang in lang_ids]
 
     @api.multi
-    @api.depends('product_id')
+    @api.depends('product')
     def _compute_category_levels(self):
         for record in self:
             record.dsncat2_id = record.product.product_tmpl_id.dsncat2_id
