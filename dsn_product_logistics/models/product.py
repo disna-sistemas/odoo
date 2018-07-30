@@ -71,3 +71,5 @@ class ProductPackaging(models.Model):
 
     dsn_default = fields.Boolean('Default', help='Paletización por defecto')
 
+    dsn_name = fields.Char(string='Name2',required=True, default='-')
+
