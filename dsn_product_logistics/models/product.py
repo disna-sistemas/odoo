@@ -66,6 +66,13 @@ class ProductVariant(models.Model):
 class ProductPackaging(models.Model):
     _inherit = "product.packaging"
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for item in self:
+            res.append((item.id, item.ul_container.name))
+        return res
+
     dsn_height = fields.Float('Total Package Height', digits=dp.get_precision('cm'),
                            help='Height of the whole package, pallet or box.')
 

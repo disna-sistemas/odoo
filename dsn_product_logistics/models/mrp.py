@@ -32,7 +32,7 @@ class MrpProduction(models.Model):
 
     dsn_packaging_id = fields.Many2one(comodel_name='product.packaging',
                                     string='Packaging',
-#                                    domain="[('id','in', product_tmpl_id.packagings)]",
+                                    domain="[('id','in', product_tmpl_id.packagings)]",
 #                                    default='_compute_default_packaging',
                                     store=True)
 
