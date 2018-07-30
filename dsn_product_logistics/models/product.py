@@ -77,6 +77,3 @@ class ProductPackaging(models.Model):
                            help='Height of the whole package, pallet or box.')
 
     dsn_default = fields.Boolean('Default', help='Paletización por defecto')
-
-    dsn_name = fields.Char(string='Name2',required=True, default='-')
-
