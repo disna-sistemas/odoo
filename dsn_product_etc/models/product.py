@@ -101,7 +101,8 @@ class ProductTemplate(models.Model):
                                 break
 
                 else: #Force to define a product manager
-                    raise exceptions.Warning('You must specify the product manager')
+                    if 'product_manager' not in values:
+                        raise exceptions.Warning('You must specify the product manager')
 
 
         if allow_update:
@@ -127,7 +128,7 @@ class ProductProduct(models.Model):
         for record in self:
             record.default_code=record.default_code.upper()
 
-    @api.multi
+    @api.multi6
     @api.depends('dsnidart')
     def _compute_dsnidart(self):
         for record in self:
