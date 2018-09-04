@@ -70,7 +70,14 @@ class ProductPackaging(models.Model):
     def name_get(self):
         res = []
         for item in self:
-            res.append((item.id, item.ul_container.name + ' - ' + item.ul.name))
+            _container = ""
+            _ul = ""
+            if item.ul_container.name:
+                _container = item.ul_container.name
+            if item.ul.name:
+                _ul = item.ul.name
+
+            res.append((item.id, _container + ' - ' + _ul))
         return res
 
     dsn_height = fields.Float('Total Package Height', digits=dp.get_precision('cm'),
