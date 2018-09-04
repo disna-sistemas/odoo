@@ -128,7 +128,7 @@ class ProductProduct(models.Model):
         for record in self:
             record.default_code=record.default_code.upper()
 
-    @api.multi6
+    @api.multi
     @api.depends('dsnidart')
     def _compute_dsnidart(self):
         for record in self:
