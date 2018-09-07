@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_pricelist_partnerinfo_tree" model="ir.ui.view">
+            <field name="name">dsn.pricelist.partnerinfo.tree</field>
+            <field name="model">pricelist.partnerinfo</field>
+            <field name="inherit_id" ref="product_pricelist_partnerinfo.pricelist_partnerinfo_tree_view" />
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="dsn_ref_mask" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
