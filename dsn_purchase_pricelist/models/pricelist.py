@@ -27,4 +27,5 @@ class DsnPurchasePricelist(models.Model):
     _inherit = "pricelist.partnerinfo"
 
     dsn_ref_mask = fields.Char(string="Ref.", related="product_tmpl_id.reference_mask", readonly=True)
+    dsn_default_code = fields.Char(string="Code", related="product_tmpl_id.default_code", readonly=True)
 
