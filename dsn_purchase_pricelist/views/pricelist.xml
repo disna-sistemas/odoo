@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="product_pricelist_partnerinfo.pricelist_partnerinfo_tree_view" />
             <field name="arch" type="xml">
                 <field name="type" position="after">
-                    <field name="dsn_ref_mask" />
+                    <field name="dsn_default_code" />
                 </field>
             </field>
         </record>
