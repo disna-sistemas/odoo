@@ -121,6 +121,9 @@ class dsnStockProductionLot(models.Model):
 
         for record in self:
 
+            if not record.id:
+                _logger.info('dsn_lot_components:  sin id '+ record.product_id.default_code)
+
 #Save production_id
             productions = production_obj.search([('move_created_ids2.restrict_lot_id','=',record.id)])
             if productions:
