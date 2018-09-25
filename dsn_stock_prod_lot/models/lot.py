@@ -231,7 +231,8 @@ class dsnStockProductionLot(models.Model):
                                                            'father_id': witness_lot.id})
                     certif_lots.append(lot_and_father)
 
-                values['dsn_lot_certif_ids'] = [(5)]
+                for lc in record.dsn_lot_certif_ids:
+                    values['dsn_lot_certif_ids'] = [(2, lc.id)]
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
 
                 if compdic.items:
