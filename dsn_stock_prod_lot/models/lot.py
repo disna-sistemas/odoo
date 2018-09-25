@@ -123,7 +123,6 @@ class dsnStockProductionLot(models.Model):
 
             record.dsn_lot_certif_ids.unlink()
 
-
             if not record.id:
                 _logger.info('dsn_lot_components:  sin id '+ record.product_id.default_code)
 
