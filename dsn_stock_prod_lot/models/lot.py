@@ -206,6 +206,8 @@ class dsnStockProductionLot(models.Model):
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
 
+                                        yaexiste = False
+
                                         for elem in certif_lots:
                                             if elem.lot_id == witness_lot and elem.father_id == witness_father:
                                                 yaexiste = True
@@ -224,6 +226,8 @@ class dsnStockProductionLot(models.Model):
 
                                     witness_lot = pa_move.restrict_lot_id
                                     witness_father = pa_move.restrict_lot_id
+
+                                    yaexiste = False
 
                                     for elem in certif_lots:
                                         if elem.lot_id == witness_lot and elem.father_id == witness_father:
