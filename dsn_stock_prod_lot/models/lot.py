@@ -121,7 +121,7 @@ class dsnStockProductionLot(models.Model):
 
         for record in self:
 
-            record.dsn_lot_certif_ids.unlink()
+#            record.dsn_lot_certif_ids.unlink()
 
             if not record.id:
                 _logger.info('dsn_lot_components:  sin id '+ record.product_id.default_code)
@@ -231,6 +231,7 @@ class dsnStockProductionLot(models.Model):
                                                            'father_id': witness_lot.id})
                     certif_lots.append(lot_and_father)
 
+                values['dsn_lot_certif_ids'] = [(5)]
                 values['dsn_lot_certif_ids'] = [(6, 0, [x.id for x in certif_lots])]
 
                 if compdic.items:
