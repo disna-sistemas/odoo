@@ -147,6 +147,9 @@ class dsnStockProductionLot(models.Model):
                 lotfather_obj = self.env['dsn.lot.father']
                 lotcomp_obj = self.env['dsn.lot.components']
 
+                lotsfather = lotfather_obj.search([('lot_id','=',record.id)])
+                lotsfather.unlink()
+
                 seguir = True
                 while seguir:
                     moves = move_obj.search([('restrict_lot_id','=',witness_lot.id),('relabel_dest_id','!=',False)])
