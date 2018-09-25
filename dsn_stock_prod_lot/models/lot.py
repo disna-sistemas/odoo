@@ -121,6 +121,9 @@ class dsnStockProductionLot(models.Model):
 
         for record in self:
 
+            record.dsn_lot_certif_ids.unlink()
+
+
             if not record.id:
                 _logger.info('dsn_lot_components:  sin id '+ record.product_id.default_code)
 
@@ -147,8 +150,9 @@ class dsnStockProductionLot(models.Model):
                 lotfather_obj = self.env['dsn.lot.father']
                 lotcomp_obj = self.env['dsn.lot.components']
 
-                lotsfather = lotfather_obj.search([('lot_id','=',record.id)])
-                lotsfather.unlink()
+
+#                lotsfather = lotfather_obj.search([('lot_id','=',record.id)])
+#                lotsfather.unlink()
 
                 seguir = True
                 while seguir:
