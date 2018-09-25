@@ -206,9 +206,15 @@ class dsnStockProductionLot(models.Model):
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
 
-                                        lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
-                                                                              'father_id': witness_father.id})
-                                        certif_lots.append(lot_and_father)
+                                        for elem in certif_lots:
+                                            if elem.lot_id == witness_lot and elem.father_id == witness_father:
+                                                yaexiste = True
+
+                                        if not yaexiste:
+
+                                            lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                                  'father_id': witness_father.id})
+                                            certif_lots.append(lot_and_father)
                                 seguir = False
 
                             else:
@@ -219,10 +225,15 @@ class dsnStockProductionLot(models.Model):
                                     witness_lot = pa_move.restrict_lot_id
                                     witness_father = pa_move.restrict_lot_id
 
-                                    lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
-                                                                           'father_id': witness_father.id})
+                                    for elem in certif_lots:
+                                        if elem.lot_id == witness_lot and elem.father_id == witness_father:
+                                            yaexiste = True
 
-                                    certif_lots.append(lot_and_father)
+                                    if not yaexiste:
+                                        lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                               'father_id': witness_father.id})
+
+                                        certif_lots.append(lot_and_father)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
 
@@ -234,7 +245,7 @@ class dsnStockProductionLot(models.Model):
                                                            'father_id': witness_lot.id})
                     certif_lots.append(lot_and_father)
 
-                certif_lots = list(set(certif_lots))
+#                certif_lots = list(set(certif_lots))
 
                 for lc in record.dsn_lot_certif_ids:
                     values['dsn_lot_certif_ids'] = [(2, lc.id)]
