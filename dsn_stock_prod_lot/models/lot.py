@@ -173,6 +173,7 @@ class dsnStockProductionLot(models.Model):
                             _logger.info('NO DEBERIA ')
                             pass
                     else:
+
                         #Añadimos el propio witness y seguimos buscando
                         lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                'father_id': witness_lot.id})
@@ -204,9 +205,13 @@ class dsnStockProductionLot(models.Model):
                                 for semi_move in semi_moves:
                                     if semi_move.restrict_lot_id!=witness_lot:
                                         witness_lot = semi_move.restrict_lot_id
-                                        lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
-                                                                              'father_id': witness_father.id})
-                                        certif_lots.append(lot_and_father)
+
+                                        for elem in certif_lots:
+                                            if (elem[0] == witness_lot.id and elem[1] == witness_father.id):
+
+                                                lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                                      'father_id': witness_father.id})
+                                                certif_lots.append(lot_and_father)
                                 seguir = False
 
                             else:
@@ -216,10 +221,14 @@ class dsnStockProductionLot(models.Model):
 
                                     witness_lot = pa_move.restrict_lot_id
                                     witness_father = pa_move.restrict_lot_id
-                                    lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
-                                                                           'father_id': witness_father.id})
 
-                                    certif_lots.append(lot_and_father)
+                                    for elem in certif_lots:
+                                        if (elem[0] == witness_lot.id and elem[1] == witness_father.id):
+
+                                            lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
+                                                                                   'father_id': witness_father.id})
+
+                                            certif_lots.append(lot_and_father)
                                 else: #No seguimos buscando, puede ser que la propia OF madre tenga el certificado (tintes, etc...)
                                     seguir = False
 
