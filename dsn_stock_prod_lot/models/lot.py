@@ -207,7 +207,7 @@ class dsnStockProductionLot(models.Model):
                                         witness_lot = semi_move.restrict_lot_id
 
                                         for elem in certif_lots:
-                                            if (elem[0] == witness_lot.id and elem[1] == witness_father.id):
+                                            if not (elem[0] == witness_lot.id and elem[1] == witness_father.id):
 
                                                 lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                                       'father_id': witness_father.id})
@@ -223,7 +223,7 @@ class dsnStockProductionLot(models.Model):
                                     witness_father = pa_move.restrict_lot_id
 
                                     for elem in certif_lots:
-                                        if (elem[0] == witness_lot.id and elem[1] == witness_father.id):
+                                        if not (elem[0] == witness_lot.id and elem[1] == witness_father.id):
 
                                             lot_and_father = lotfather_obj.create({'lot_id': witness_lot.id,
                                                                                    'father_id': witness_father.id})
