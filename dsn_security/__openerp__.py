@@ -36,6 +36,7 @@
         'security/transport.xml',
         'security/warehouse.xml',
         'security/labelversion.xml',
+        'security/imasd.xml',
     ],
     "installable": True,
     "auto_install": False,

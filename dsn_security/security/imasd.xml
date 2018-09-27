@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record model="ir.module.category" id="dsn_imasd_category">
+            <field name="name">dsnimasd</field>
+            <field name="description">Extra security for imasd</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <record id="imasd_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="dsn_imasd_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="imasd_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="dsn_imasd_category" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
+</openerp>
