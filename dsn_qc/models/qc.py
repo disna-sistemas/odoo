@@ -117,7 +117,7 @@ class dsnQcInspection(models.Model):
             for l in inspection.inspection_lines.filtered(lambda x: x.success==False):
                 notes = notes + l.name + chr(10)
             if notes:
-                notes = 'Acciones Correctivas' + chr(10) + chr(10)
+                notes = 'Acciones Correctivas' + chr(10) + chr(10) + notes
                 inspection.lot.write({'notes': notes})
 
         result = super(dsnQcInspection, self).action_confirm()
