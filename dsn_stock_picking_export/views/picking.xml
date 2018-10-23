@@ -10,7 +10,7 @@
                     <label for="Exported File"/>
                     <div name="dsn_file_export_info">
                         <field name="dsn_export_file" string="Exported File"/>
-                        <button name="dsn_button_stock_picking_export_file" colspan="2" string="Export to Local Folder (Alova)" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
+                        <button name="dsn_button_stock_picking_export_file" colspan="2" string="Export to Local Folder (Alova Format)" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
                         <button name="dsn_button_export_to_ftp_carreras" colspan="2" string="Export to Ftp (Carreras)" states="partially_available,assigned" type="object" icon="gtk-execute" class="oe_inline"/>
                     </div>
                 </field>
