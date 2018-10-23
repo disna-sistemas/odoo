@@ -22,7 +22,7 @@ class dsnAccountAnalytic(models.Model):
     _inherit = "account.analytic.account"
 
     @api.one
-    @api.depends('id')
+    @api.depends('parent_id')
     def _compute_level1(self):
         testigo = self.id
 
@@ -31,7 +31,7 @@ class dsnAccountAnalytic(models.Model):
             testigo = testigo.parent_id
 
     @api.one
-    @api.depends('id')
+    @api.depends('parent_id')
     def _compute_level2(self):
         levels = 1
         testigo = self.id
@@ -47,7 +47,7 @@ class dsnAccountAnalytic(models.Model):
                 testigo = testigo.parent_id
 
     @api.one
-    @api.depends('id')
+    @api.depends('parent_id')
     def _compute_level3(self):
         levels = 1
         testigo = self.id
@@ -63,7 +63,7 @@ class dsnAccountAnalytic(models.Model):
                 testigo = testigo.parent_id
 
     @api.one
-    @api.depends('id')
+    @api.depends('parent_id')
     def _compute_level4(self):
         levels = 1
         testigo = self.id
