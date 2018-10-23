@@ -22,60 +22,60 @@ class dsnAccountAnalytic(models.Model):
     _inherit = "account.analytic.account"
 
     @api.one
-    @api.depends('account_id')
+    @api.depends('id')
     def _compute_level1(self):
-        testigo = self.account_id
+        testigo = self.id
 
         while testigo:
             self.dsnAccountLevel1_id = testigo
             testigo = testigo.parent_id
 
     @api.one
-    @api.depends('account_id')
+    @api.depends('id')
     def _compute_level2(self):
         levels = 1
-        testigo = self.account_id
+        testigo = self.id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >=2:
-            testigo = self.account_id
+            testigo = self.id
             while testigo.parent_id:
                 self.dsncat2_id = testigo
                 testigo = testigo.parent_id
 
     @api.one
-    @api.depends('account_id')
+    @api.depends('id')
     def _compute_level3(self):
         levels = 1
-        testigo = self.account_id
+        testigo = self.id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >=3:
-            testigo = self.account_id
+            testigo = self.id
             while testigo.parent_id.parent_id:
                 self.dsncat3_id = testigo
                 testigo = testigo.parent_id
 
     @api.one
-    @api.depends('account_id')
+    @api.depends('id')
     def _compute_level4(self):
         levels = 1
-        testigo = self.account_id
+        testigo = self.id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
-        if levels >=4:
-            testigo = self.account_id
-            while testigo.parent_id.parent_id:
-                self.dsncat4_id = testigo
+        if levels >= 4:
+            testigo = self.id
+            while testigo.parent_id.parent_id.parent_id:
+                self.dsnCta4_id = testigo
                 testigo = testigo.parent_id
 
 
