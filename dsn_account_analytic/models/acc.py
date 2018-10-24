@@ -78,6 +78,22 @@ class dsnAccountAnalytic(models.Model):
                 self.dsnCta4_id = testigo
                 testigo = testigo.parent_id
 
+    @api.one
+    @api.depends('parent_id')
+    def _compute_level5(self):
+        levels = 1
+        testigo = self
+
+        while testigo:
+            testigo = testigo.parent_id
+            levels += 1
+
+        if levels >= 5:
+            testigo = self
+            while testigo.parent_id.parent_id.parent_id.parent_id:
+                self.dsnCta5_id = testigo
+                testigo = testigo.parent_id
+
 
     dsnCta1_id = fields.Many2one('account.analytic.account',
                                     string='Cta1',
@@ -97,4 +113,9 @@ class dsnAccountAnalytic(models.Model):
     dsnCta4_id = fields.Many2one('account.analytic.account',
                                     string='Cta4',
                                     compute='_compute_level4',
+                                    store=True)
+
+    dsnCta5_id = fields.Many2one('account.analytic.account',
+                                    string='Cta5',
+                                    compute='_compute_level5',
                                     store=True)
