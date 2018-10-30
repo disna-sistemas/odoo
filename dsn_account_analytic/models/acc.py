@@ -59,7 +59,7 @@ class dsnAccountAnalytic(models.Model):
         if levels >=3:
             testigo = self
             while testigo.parent_id.parent_id:
-                self.dsncta3 = testigo
+                self.dsncta3_id = testigo
                 testigo = testigo.parent_id
 
     @api.one
