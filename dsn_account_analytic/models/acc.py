@@ -27,7 +27,7 @@ class dsnAccountAnalytic(models.Model):
         testigo = self
 
         while testigo:
-            self.dsnCta1_id = testigo
+            self.dsncta1_id = testigo
             testigo = testigo.parent_id
 
     @api.one
@@ -43,7 +43,7 @@ class dsnAccountAnalytic(models.Model):
         if levels >=2:
             testigo = self
             while testigo.parent_id:
-                self.dsnCta2_id = testigo
+                self.dsncta2_id = testigo
                 testigo = testigo.parent_id
 
     @api.one
@@ -59,7 +59,7 @@ class dsnAccountAnalytic(models.Model):
         if levels >=3:
             testigo = self
             while testigo.parent_id.parent_id:
-                self.dsnCta3 = testigo
+                self.dsncta3 = testigo
                 testigo = testigo.parent_id
 
     @api.one
@@ -75,7 +75,7 @@ class dsnAccountAnalytic(models.Model):
         if levels >= 4:
             testigo = self
             while testigo.parent_id.parent_id.parent_id:
-                self.dsnCta4_id = testigo
+                self.dsncta4_id = testigo
                 testigo = testigo.parent_id
 
     @api.one
@@ -91,31 +91,31 @@ class dsnAccountAnalytic(models.Model):
         if levels >= 5:
             testigo = self
             while testigo.parent_id.parent_id.parent_id.parent_id:
-                self.dsnCta5_id = testigo
+                self.dsncta5_id = testigo
                 testigo = testigo.parent_id
 
 
-    dsnCta1_id = fields.Many2one('account.analytic.account',
+    dsncta1_id = fields.Many2one('account.analytic.account',
                                     string='Cta1',
                                     compute='_compute_level1',
                                     store=True)
 
-    dsnCta2_id = fields.Many2one('account.analytic.account',
+    dsncta2_id = fields.Many2one('account.analytic.account',
                                     string='Cta2',
                                     compute='_compute_level2',
                                     store=True)
 
-    dsnCta3_id = fields.Many2one('account.analytic.account',
+    dsncta3_id = fields.Many2one('account.analytic.account',
                                     string='Cta3',
                                     compute='_compute_level3',
                                     store=True)
 
-    dsnCta4_id = fields.Many2one('account.analytic.account',
+    dsncta4_id = fields.Many2one('account.analytic.account',
                                     string='Cta4',
                                     compute='_compute_level4',
                                     store=True)
 
-    dsnCta5_id = fields.Many2one('account.analytic.account',
+    dsncta5_id = fields.Many2one('account.analytic.account',
                                     string='Cta5',
                                     compute='_compute_level5',
                                     store=True)
