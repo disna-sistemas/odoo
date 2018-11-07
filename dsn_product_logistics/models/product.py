@@ -63,6 +63,15 @@ class ProductVariant(models.Model):
     dsn_box_prefer_desc_en = fields.Char(string='Preferential description 2 for boxes',
                                          help='Preferential 2nd description to be shown in the box label')
 
+    dsn_super_box_barcode = fields.Char(string='Super Box Barcode',
+                                  help='Superbox GTIN 14')
+
+    dsn_super_box_config = fields.Char(string='Super Box Config',
+                                help='Ex: 12 x 50 uds')
+
+    dsn_super_box_units = fields.Integer(string='Super Box Units',
+                                       help='Number of units per superbox')
+
 class ProductPackaging(models.Model):
     _inherit = "product.packaging"
 

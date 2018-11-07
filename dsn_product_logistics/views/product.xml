@@ -40,6 +40,17 @@
                                     <field name="dsn_box_config"
                                            required="False"
                                            placeholder="Box Configuration"/>
+                                    <separator string="Super Box" colspan="2" />
+                                    <field name="dsn_super_box_barcode"
+                                           required="False"
+                                           placeholder="GTIN 14 Super Box"/>
+                                    <field name="dsn_super_box_units"
+                                           required="False"
+                                           placeholder="Super Box Units"/>
+                                    <field name="dsn_super_box_config"
+                                           required="False"
+                                           placeholder="Super Box Configuration"/>
+
                                 </group>
                             </group>
                         </page>
