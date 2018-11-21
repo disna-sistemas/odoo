@@ -168,6 +168,30 @@
             </field>
         </record>
 
+        <record id="dsn_qc_trigger_product_tree" model="ir.ui.view">
+
+            <field name="name">dsn_qc.qcanalysis_method_tree</field>
+            <field name="model">qc.trigger.product_template_line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Template Triggers">
+                    <field name="display_name" groups="dsn_security.qualityGuarantee_user">Display Name</field>
+                    <field name="product_id" groups="dsn_security.qualityGuarantee_user">Product</field>
+                    <field name="test" groups="dsn_security.qualityGuarantee_user">Test</field>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="dsn_action_qc_trigger_product" model="ir.actions.act_window">
+            <field name="name">Product Template Triggers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qc.trigger.product_template_line</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_qc_trigger_product_tree"/>
+            <field name="view_mode">tree</field>
+        </record>
+
 
         <menuitem id="dsn_menu_disna_technical"
                     name="Technical"
@@ -179,6 +203,12 @@
                     parent="dsn_menu_disna_technical"
                     action="dsn_action_analysis_method"
                     sequence="10" />
+
+        <menuitem id="dsn_menu_disna_technical_product_trigger"
+                    name="Product Triggers"
+                    parent="dsn_menu_disna_technical"
+                    action="dsn_action_qc_trigger_product"
+                    sequence="20" />
 <!--
         <template id="dsn_qc_inspection_report">
             <t t-call="report.html_container">
