@@ -27,7 +27,7 @@
     "description": """
 Disna reports for stock pickings
     """,
-    "data": ['views/picking.xml'],
+    "data": ['reports/picking.xml'],
     "installable": True,
     "auto_install": False,
 }

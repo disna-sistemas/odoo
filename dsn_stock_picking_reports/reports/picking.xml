@@ -19,10 +19,7 @@
                 <t t-call="dsn_report.external_document_layout_header"/>
 
                 <t t-foreach="docs" t-as="o">
-                    <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height:80px;"/>
-                    <br/>
-                    <br/>
-                    <br/>
+
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
                         <table>
                             <tr>
