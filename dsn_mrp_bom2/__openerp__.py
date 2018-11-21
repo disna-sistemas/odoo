@@ -20,18 +20,17 @@
 ##############################################################################
 
 {
-    'name': 'Disna MRP Elaboration',
+    'name': 'Disna BOM addons',
     'version': '1.0',
-    'category': '',
+    'category': 'Manufacturing',
     'description': """
-Disna MRP Elaboration Management
+- BOM Etc
+- New decimal precision for Bom line qty
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
-    'depends': ['mrp', 'dsn_security'],
-    'data': [
-        'views/reactor.xml'
-    ],
+    'depends': ['mrp','dsn_product_etc'],
+    'data': ['views/bom.xml'],
     'demo': [],
     'installable': True,
     'auto_install': False,
