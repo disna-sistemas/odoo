@@ -176,7 +176,7 @@
             <field name="arch" type="xml">
                 <tree string="Product Template Triggers">
                     <field name="display_name" groups="dsn_security.qualityGuarantee_user">Display Name</field>
-                    <field name="product_id" groups="dsn_security.qualityGuarantee_user">Product</field>
+                    <field name="product_template" groups="dsn_security.qualityGuarantee_user">Product</field>
                     <field name="test" groups="dsn_security.qualityGuarantee_user">Test</field>
                 </tree>
 
