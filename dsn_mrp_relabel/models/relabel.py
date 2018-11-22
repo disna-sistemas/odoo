@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 class dsnRelabel(models.Model):
-    _inherit = 'mrp.relabel'
+    _inherit = 'mrp.relabel.log'
 
     @api.multi
     @api.depends('product_id', 'relabel_id')
