@@ -30,7 +30,7 @@ class dsnRelabelLog(models.Model):
 
         for record in self:
             _reg = ''
-            for spec in record.dsn_spec_ids.filtered(lambda x: x.country_id.id==x.relabel.id_country_id.id):
+            for spec in record.destination_lot_id.product_id.product_tmpl_id.dsn_spec_ids.filtered(lambda x: x.country_id.id==x.relabel.id_country_id.id):
                 _reg = spec.name
             record.dsn_registration = _reg
 
