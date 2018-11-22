@@ -167,7 +167,7 @@
               </p>
             </field>
         </record>
-
+<!--
         <record id="dsn_qc_trigger_product_tree" model="ir.ui.view">
 
             <field name="name">dsn_qc.qcanalysis_method_tree</field>
@@ -193,6 +193,12 @@
             <field name="view_mode">tree</field>
         </record>
 
+        <menuitem id="dsn_menu_disna_technical_product_trigger"
+                    name="Product Triggers"
+                    parent="dsn_menu_disna_technical"
+                    action="dsn_action_qc_trigger_product"
+                    sequence="20" />
+-->
 
         <menuitem id="dsn_menu_disna_technical"
                     name="Technical"
@@ -205,11 +211,6 @@
                     action="dsn_action_analysis_method"
                     sequence="10" />
 
-        <menuitem id="dsn_menu_disna_technical_product_trigger"
-                    name="Product Triggers"
-                    parent="dsn_menu_disna_technical"
-                    action="dsn_action_qc_trigger_product"
-                    sequence="20" />
 <!--
         <template id="dsn_qc_inspection_report">
             <t t-call="report.html_container">
