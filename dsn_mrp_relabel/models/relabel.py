@@ -31,7 +31,7 @@ class dsnRelabel(models.Model):
         for record in self:
             _reg = ''
             for spec in record.destination_lot_id.product_id.product_tmpl_id.dsn_spec_ids.filtered(lambda x: x.country_id.id==record.relabel_id.country_id.id):
-                _reg = spec.name
+                _reg = spec.title1
             record.dsn_registration = _reg
 
     dsn_registration = fields.Char(string='Registration', compute='_compute_registration', store=True)
