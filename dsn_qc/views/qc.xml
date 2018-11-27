@@ -257,8 +257,8 @@
             <field name="name">Test Questions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">qc.test.question</field>
-            <field name="view_type">tree</field>
-            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="dsn_qc_test_question_tree"/>
         </record>
 
