@@ -235,7 +235,7 @@
             <field name="model">qc.test.question</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Test Questions">
+                <tree string="Test Questions" editable="top">
                     <field name="id">id</field>
                     <field name="name">Name</field>
                     <field name="test">Test</field>
