@@ -200,9 +200,24 @@
                     sequence="20" />
 -->
 
+        <record id="dsn_qc_test_question_form" model="ir.ui.view">
+            <field name="name">dsn_qc.test_question_form</field>
+            <field name="model">qc.test.question</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Test Questions">
+                    <group colspan="2" col="2">
+                        <field name="test">Test</field>
+                        <field name="name">Name</field>
+                        <field name="type">Type</field>
+                        <field name="min_value">Min</field>
+                        <field name="max_value">Max</field>
+                    </group>
+                </form>
+            </field>
+        </record>
 
         <record id="dsn_qc_test_question_tree" model="ir.ui.view">
-
             <field name="name">dsn_qc.test_question_tree</field>
             <field name="model">qc.test.question</field>
             <field name="type">tree</field>
@@ -224,7 +239,7 @@
             <field name="res_model">qc.test.question</field>
             <field name="view_type">tree</field>
             <field name="view_id" ref="dsn_qc_test_question_tree"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
 
