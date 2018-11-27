@@ -30,6 +30,7 @@ QC customization:
 - Add internal notes in tree view
 - Add button to return to ready state from waiting state in form view
 - Analysis Methods
+- Etc menu item for test questions
     """,
     "data": [
         'views/qc.xml',
