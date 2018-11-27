@@ -251,8 +251,6 @@
             </field>
         </record>
 
-
-
         <record id="dsn_action_qc_test_question" model="ir.actions.act_window">
             <field name="name">Test Questions</field>
             <field name="type">ir.actions.act_window</field>
