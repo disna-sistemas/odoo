@@ -255,7 +255,7 @@
                     sequence="10" />
 
         <menuitem id="dsn_menu_disna_quality"
-                    name="Technical"
+                    name="Quality"
                     parent="dsn_menu_disna.dsn_menu_disna"
                     sequence="120" />
 
