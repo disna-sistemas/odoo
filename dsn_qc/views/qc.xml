@@ -200,6 +200,19 @@
                     sequence="20" />
 -->
 
+        <record id="dsn_qc_test_question_search" model="ir.ui.view">
+            <field name="name">dsn.qc.test.question.search</field>
+            <field name="model">qc.test.question</field>
+            <field name="arch" type="xml">
+                <search string="Search test question">
+                    <group>
+                        <field name="name" />
+                        <field name="test" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="dsn_qc_test_question_form" model="ir.ui.view">
             <field name="name">dsn_qc.test_question_form</field>
             <field name="model">qc.test.question</field>
