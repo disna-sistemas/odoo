@@ -203,6 +203,7 @@
         <record id="dsn_qc_test_question_search" model="ir.ui.view">
             <field name="name">dsn.qc.test.question.search</field>
             <field name="model">qc.test.question</field>
+            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search test question">
                     <group>
