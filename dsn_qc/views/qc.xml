@@ -223,8 +223,9 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Test Questions">
-                    <field name="test">Test</field>
+                    <field name="id">id</field>
                     <field name="name">Name</field>
+                    <field name="test">Test</field>
                     <field name="type">Type</field>
                     <field name="min_value">Min</field>
                     <field name="max_value">Max</field>
@@ -241,7 +242,6 @@
             <field name="view_id" ref="dsn_qc_test_question_tree"/>
             <field name="view_mode">tree,form</field>
         </record>
-
 
         <menuitem id="dsn_menu_disna_technical"
                     name="Technical"
