@@ -273,6 +273,7 @@
         <menuitem id="dsn_menu_disna_quality"
                     name="Quality"
                     parent="dsn_menu_disna.dsn_menu_disna"
+                    groups="dsn_security.quality_user"
                     sequence="120" />
 
         <menuitem id="dsn_menu_disna_quality_test_question"
