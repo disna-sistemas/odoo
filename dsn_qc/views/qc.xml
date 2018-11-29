@@ -279,6 +279,7 @@
         <menuitem id="dsn_menu_disna_quality_test_question"
                     name="Test Questions"
                     parent="dsn_menu_disna_quality"
+                    groups="dsn_security.quality_user"
                     action="dsn_action_qc_test_question"
                     sequence="10" />
 
