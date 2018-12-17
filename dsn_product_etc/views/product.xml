@@ -126,6 +126,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
+                    <field name="product_code"/>
                     <field name="product_name"/>
                 </field>
             </field>
