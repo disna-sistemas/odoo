@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['product','dsn_marino_links','stock_account','mrp_production_estimated_cost','product_price_history'],
+    "depends": ['product','dsn_marino_links','dsn_product_logistics','stock_account','mrp_production_estimated_cost','product_price_history'],
     "description": """
     Customization of product_template:
     + PNT NF
