@@ -27,6 +27,20 @@
             </field>
         </record>
 
+        <record id="dsn_stock_inventory_tree" mode="ir.ui.view">
+            <field name="name">dsn.stock.inventory.tree</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_tree"/>
+            <field name="arch">
+                <field name="name" position="after">
+                    <field name="dsnLoc2_id"/>
+                    <field name="dsnLoc3_id"/>
+                    <field name="dsnLoc4_id"/>
+                    <field name="location_id"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
 
