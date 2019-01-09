@@ -68,6 +68,10 @@
 
 <template id="external_document_layout_header">
 
+    <link position="after">
+        <link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />
+    </link>
+
     <div class="header">
         <div class="row">
             <div class="col-xs-12">
