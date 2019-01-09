@@ -9,6 +9,13 @@ body {
     background-position: left bottom;
 }
 
+div.page {
+
+    background-image: url("dsn_report/static/img/registro_mercantil.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
 div.absol {
     position: absolute;
     border: 1px solid blue;
