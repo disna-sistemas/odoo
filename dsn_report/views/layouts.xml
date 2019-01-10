@@ -13,12 +13,21 @@
 
 </template>
 
-<template id="html_container">
-    <t t-set="body_classname" t-value="'container'"/>
-    <t t-call="report.layout">
-        <t t-raw="0"/>
-    </t>
+<template id="html_container" inherit_id="report.html_container">
+    <xpath expr="//head" position="inside">
+        <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+        <!--<style type="text/css">-->
+            <!--<t t-call="dsn_report.style"/>-->
+        <!--</style>-->
+    </xpath>
 </template>
+
+<!--<template id="html_container">-->
+    <!--<t t-set="body_classname" t-value="'container'"/>-->
+    <!--<t t-call="report.layout">-->
+        <!--<t t-raw="0"/>-->
+    <!--</t>-->
+<!--</template>-->
 
 <template id="style">
 
@@ -142,8 +151,6 @@
 </template>
 
 <template id="picking_layout">
-
-    <t t-call="dsn_report.layout" />
 
     <!-- Multicompany -->
     <t t-if="o and 'company_id' in o">
