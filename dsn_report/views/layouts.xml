@@ -160,6 +160,7 @@
 
 <template id="picking_layout_header">
     <div class="header">
+
         <t t-call="dsn_report.external_document_layout_header" />
 <!--
             <div class="col-xs-12">
