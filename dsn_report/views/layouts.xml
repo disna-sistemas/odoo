@@ -2,11 +2,14 @@
 <openerp>
 <data>
 
-<template id="layout" inherit_id="web.layout">
+<template id="layout" inherit_id="report.layout">
     <!-- Add report style -->
 
     <xpath expr="//head" position="inside">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+        <style>
+            <t t-call="dsn_report.style" />
+        </style>
     </xpath>
 
 
@@ -24,6 +27,10 @@
 
 <template id="style">
 
+    html {
+        font-family: verdana;
+        font-size:  12px;
+    }
     .border-black td {
         border-top: 1px solid black !important;
     }
@@ -132,13 +139,6 @@
                 </t>
             </t>
         </div>
-        <!--
-        <div class="company_data">
-            <span><t t-field="company.name"/></span>
-            <span><t t-esc="'   ·   '.join(company.street)"/></span>
-            <span><t t-esc="'   ·   '.join('Tel. 935706292')"/></span>
-        </div>
-        -->
 
     </div>
 </template>
