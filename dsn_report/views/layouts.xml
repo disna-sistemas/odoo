@@ -13,14 +13,6 @@
 
 </template>
 
-<template id="html_container" inherit_id="report.html_container">
-    <head position="replace">
-        <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-        <!--<style type="text/css">-->
-            <!--<t t-call="dsn_report.style"/>-->
-        <!--</style>-->
-    </head>
-</template>
 
 <!--<template id="html_container">-->
     <!--<t t-set="body_classname" t-value="'container'"/>-->
@@ -166,7 +158,7 @@
 </template>
 
 <template id="picking_layout_header">
-    <div class="header">
+
 
         <t t-call="dsn_report.external_document_layout_header" />
 <!--
@@ -180,7 +172,6 @@
             </div>
 -->
 
-    </div>
 </template>
 
 <template id="picking_layout_footer">
