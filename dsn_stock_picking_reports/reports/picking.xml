@@ -20,9 +20,9 @@
 -->
             <div class="page">
 
-                <t t-call="dsn_report.external_document_layout_header"/>
-
                 <t t-foreach="docs" t-as="o">
+
+                    <t t-call="dsn_report.picking_layout"/>
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
                         <table>
