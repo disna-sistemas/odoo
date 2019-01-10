@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
     </xpath>
 
+    <t t-call="dsn_report.layout" />
+
 </template>
 
 <!--<template id="html_container" inherit_id="report.html_container">-->
@@ -144,7 +146,7 @@
 
 <template id="picking_layout">
 
-    <t t-call="report.layout" />
+    <t t-call="dsn_report.layout" />
     <!-- Multicompany -->
     <t t-if="o and 'company_id' in o">
         <t t-set="company" t-value="o.company_id"></t>
