@@ -90,16 +90,16 @@
 </template>
 
 
-<template id="invoice_layout_header">
-    <t t-call="dsn_report.external_document_layout_header" />
+<!--<template id="invoice_layout_header">-->
+    <!--<t t-call="dsn_report.external_document_layout_header" />-->
 
-<!--
-            <div class="col-xs-12">
-                <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 14px;">C/ del Ferro, nº 33 Pol. Can Magarola - 08100 Mollet del Vallès - Barcelona - España Tel. (+34) 935 706 292 - Fax (+34) 935 706 536
-                </p>
-            </div>
--->
-</template>
+<!--&lt;!&ndash;-->
+            <!--<div class="col-xs-12">-->
+                <!--<p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 14px;">C/ del Ferro, nº 33 Pol. Can Magarola - 08100 Mollet del Vallès - Barcelona - España Tel. (+34) 935 706 292 - Fax (+34) 935 706 536-->
+                <!--</p>-->
+            <!--</div>-->
+<!--&ndash;&gt;-->
+<!--</template>-->
 
 <template id="invoice_layout_footer">
     <t t-call="dsn_report.external_document_layout_footer" />
@@ -145,7 +145,8 @@
 
 <template id="picking_layout">
 
-    <t t-call="report.layout" />
+<!--    <t t-call="report.layout" />
+-->
     <!-- Multicompany -->
     <t t-if="o and 'company_id' in o">
         <t t-set="company" t-value="o.company_id"></t>
