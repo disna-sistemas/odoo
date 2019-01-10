@@ -11,9 +11,9 @@
 </template>
 
 <template id="html_container" inherit_id="report.html_container">
-    <head position="inside">
+    <xpath expr="//head" position="inside">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-    </head>
+    </xpath>
 
     <!--<xpath expr="//t[@t-call='report.layout']" position="replace">-->
         <!--<t t-call="dsn_report.layout">-->
