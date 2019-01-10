@@ -6,18 +6,18 @@
 		    id="dsn_report_stock_picking_certs"
 		    model="stock.picking"
 		    string="Picking certs"
-		    report_type="qweb-pdf"
+		    report_type="qweb-html"
 		    name="dsn_stock_picking_reports.dsn_document_stock_picking_certificate"
 		    file="dsn_stock_picking_reports.picking"
 		    attachment_use="False"
 		/>
 
 		<template id="dsn_document_stock_picking_certificate">
-
+<!--
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css"/>
             </xpath>
-
+-->
             <div class="page">
 
                 <t t-call="dsn_report.external_document_layout_header"/>
