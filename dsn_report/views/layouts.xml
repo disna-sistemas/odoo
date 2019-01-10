@@ -2,33 +2,24 @@
 <openerp>
 <data>
 
-<template id="layout" inherit_id="report.layout">
+<template id="layout" inherit_id="web.layout">
     <!-- Add report style -->
+
     <xpath expr="//head" position="inside">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
     </xpath>
 
 </template>
 
-<template id="html_container" inherit_id="report.html_container">
-    <xpath expr="//head" position="inside">
-        <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-    </xpath>
-
-    <!--<xpath expr="//t[@t-call='report.layout']" position="replace">-->
-        <!--<t t-call="dsn_report.layout">-->
-            <!--<t t-raw="0"/>-->
-        <!--</t>-->
+<!--<template id="html_container" inherit_id="report.html_container">-->
+    <!--<xpath expr="//head" position="inside">-->
+        <!--<link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />-->
     <!--</xpath>-->
-</template>
 
 
-<!--<template id="html_container">-->
-    <!--<t t-set="body_classname" t-value="'container'"/>-->
-    <!--<t t-call="report.layout">-->
-        <!--<t t-raw="0"/>-->
-    <!--</t>-->
 <!--</template>-->
+
+
 
 <template id="style">
 
