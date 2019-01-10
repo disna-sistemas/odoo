@@ -14,12 +14,12 @@
 </template>
 
 <template id="html_container" inherit_id="report.html_container">
-    <xpath expr="//head" position="inside">
+    <head position="replace">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
         <!--<style type="text/css">-->
             <!--<t t-call="dsn_report.style"/>-->
         <!--</style>-->
-    </xpath>
+    </head>
 </template>
 
 <!--<template id="html_container">-->
