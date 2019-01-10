@@ -137,9 +137,6 @@
             <span><t t-esc="'   ·   '.join('Tel. 935706292')"/></span>
         </div>
         -->
-        <t t-if="o and o.internal_number">
-            <t t-call="dsn_report.registro_mercantil" />
-        </t>
 
     </div>
 </template>
