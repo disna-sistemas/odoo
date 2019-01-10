@@ -6,11 +6,16 @@
     <!-- Add report style -->
     <xpath expr="//head" position="inside">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-        <!--<style type="text/css">-->
-            <!--<t t-call="dsn_report.style"/>-->
-        <!--</style>-->
     </xpath>
 
+</template>
+
+<template id="html_container" inherit_id="report.html_container">
+    <xpath expr="//t[@t-call='report.layout']" position="replace">
+        <t t-call="dsn_report.layout">
+            <t t-raw="0"/>
+        </t>
+    </xpath>
 </template>
 
 
@@ -69,9 +74,9 @@
 
 <template id="external_document_layout_header">
 
-    <link position="after">
-        <link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />
-    </link>
+    <!--<link position="after">-->
+        <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
+    <!--</link>-->
 
     <div class="header">
         <div class="row">
