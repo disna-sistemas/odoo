@@ -21,7 +21,7 @@
 
 {
     'name': 'Disna Report Layouts',
-    'version': '1.0',
+    'version': '2.0',
     'category': 'Reports',
     'description': """
 Adds Disna Report Layouts
@@ -34,5 +34,5 @@ Adds Disna Report Layouts
     ],
     'demo': [],
     'installable': True,
-    'auto_install': False,
+    'auto_install': True,
 }
