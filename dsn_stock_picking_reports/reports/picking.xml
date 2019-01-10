@@ -13,11 +13,11 @@
 		/>
 
 		<template id="dsn_document_stock_picking_certificate">
-<!--
+
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css"/>
             </xpath>
--->
+
             <div class="page">
 
                 <t t-foreach="docs" t-as="o">
