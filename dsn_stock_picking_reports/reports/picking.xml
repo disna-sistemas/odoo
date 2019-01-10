@@ -14,7 +14,7 @@
 
 		<template id="dsn_document_stock_picking_certificate">
 
-            <div class="page">
+            <div class="page" style="font-family:Verdana;font-size:8px;">
 
                 <t t-foreach="docs" t-as="o">
 
