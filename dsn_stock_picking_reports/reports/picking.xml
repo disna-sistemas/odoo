@@ -13,11 +13,9 @@
 		/>
 
 
-		<template id="dsn_document_stock_picking_certificate" inherit_id="report.minimal_layout">
+		<template id="dsn_document_stock_picking_certificate">
 
-            <xpath expr="//head" position="inside">
-                <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-            </xpath>
+            <t t-call="dsn_report.layout" />
 
             <div class="page" style="font-family:Verdana;font-size:8px;">
 
