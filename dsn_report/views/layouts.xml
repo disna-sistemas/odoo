@@ -82,7 +82,7 @@
     <!--<link position="after">-->
         <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
     <!--</link>-->
-    <t t-call="dsn_report.layout" />
+    <t t-call="report.minimal_layout" />
 
     <div class="header">
         <div class="row">
