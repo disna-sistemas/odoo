@@ -32,7 +32,7 @@
         font-size:  12px;
     }
     .border-black td {
-        border-top: 1px solid black !important;
+        border-top: 1px solid grey !important;
     }
     .table-condensed > thead > tr > th {
         border-bottom: 1px solid black !important;
@@ -80,6 +80,7 @@
     <!--<link position="after">-->
         <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
     <!--</link>-->
+    <t t-call="dsn_report.layout" />
 
     <div class="header">
         <div class="row">
