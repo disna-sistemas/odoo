@@ -12,7 +12,31 @@
 		    attachment_use="False"
 		/>
 
+        <template id="style">
+
+            html {
+                font-family: verdana;
+                font-size:  8px;
+            }
+            .border-black td {
+                border-top: 1px solid grey !important;
+            }
+            .table-condensed > thead > tr > th {
+                border-bottom: 1px solid grey;
+            }
+            .zero_min_height {
+                min-height: 0px !important;
+            }
+        </template>
+
 		<template id="dsn_document_stock_picking_certificate">
+
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+                <style>
+                    <t t-call="style" />
+                </style>
+            </xpath>
 
             <div class="page" style="font-family:Verdana;font-size:8px;">
 
