@@ -2,7 +2,18 @@
 <openerp>
 <data>
 
+<template id="layout">
+    <!-- Add report style -->
 
+    <xpath expr="//head" position="inside">
+        <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+        <style>
+            <t t-call="dsn_report.style" />
+        </style>
+    </xpath>
+
+
+</template>
 
 <!--<template id="html_container" inherit_id="report.html_container">-->
     <!--<xpath expr="//head" position="inside">-->
@@ -173,19 +184,6 @@
 
 <template id="registro_mercantil">
         <div class="registro_mercantil" style="text-align: center;">Inscrita en el Registro Mercantil de Barcelona, Hoja 54135, Folio 113, Tomo 4835, Sección 2ª Sociedades - NºIdent.Fiscal <strong>A08627515</strong></div>
-</template>
-
-<template id="layout" >
-    <!-- Add report style -->
-
-    <xpath expr="//head" position="inside">
-        <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
-        <style>
-            <t t-call="dsn_report.style" />
-        </style>
-    </xpath>
-
-
 </template>
 
 </data>
