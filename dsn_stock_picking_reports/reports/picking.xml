@@ -12,22 +12,6 @@
 		    attachment_use="False"
 		/>
 
-        <template id="style">
-
-            html {
-                font-family: verdana;
-                font-size:  8px;
-            }
-            .border-black td {
-                border-top: 1px solid grey !important;
-            }
-            .table-condensed > thead > tr > th {
-                border-bottom: 1px solid grey;
-            }
-            .zero_min_height {
-                min-height: 0px !important;
-            }
-        </template>
 
 		<template id="dsn_document_stock_picking_certificate">
 
