@@ -84,18 +84,24 @@
     <!--</link>-->
     <t t-call="report.minimal_layout" />
 
-    <div class="header">
-        <div class="row">
-            <div class="col-xs-12">
-                <t t-if="o and 'company_id' in o">
-                    <t t-set="company" t-value="o.company_id">
-                        <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
-                        <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 16px;" t-field="company.name"/>
-                    </t>
-                </t>
+    <t t-foreach="docs" t-as="o">
+
+        <div class="header">
+            <div class="row">
+                <div class="col-xs-12">
+
+
+                        <t t-if="o and 'company_id' in o">
+                            <t t-set="company" t-value="o.company_id">
+                                <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
+                                <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 16px;" t-field="company.name"/>
+                            </t>
+                        </t>
+
+                </div>
             </div>
         </div>
-    </div>
+    </t>
 
 </template>
 
