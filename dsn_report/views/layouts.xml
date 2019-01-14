@@ -2,14 +2,16 @@
 <openerp>
 <data>
 
-<template id="layout">
+<template id="layout" inherit_id="report.minimal_layout">
     <!-- Add report style -->
 
     <xpath expr="//head" position="inside">
         <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+<!--
         <style>
             <t t-call="dsn_report.style" />
         </style>
+-->
     </xpath>
 
 
