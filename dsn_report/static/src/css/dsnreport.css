@@ -18,6 +18,11 @@ div.page {
     background-position: left bottom;
 }
 
+div.header {
+    font-family: "Times New Roman";
+    font-size: 14px;
+}
+
 div.absol {
     position: absolute;
     border: 1px solid blue;
