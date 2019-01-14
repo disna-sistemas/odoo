@@ -15,11 +15,11 @@
 
 		<template id="dsn_document_stock_picking_certificate">
 
-            <div class="page" style="font-family:Verdana;font-size:8px;">
+            <div class="page">
+
+                <t t-call="dsn_report.picking_layout"/>
 
                 <t t-foreach="docs" t-as="o">
-
-                    <t t-call="dsn_report.picking_layout"/>
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
                         <table>
