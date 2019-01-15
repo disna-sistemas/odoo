@@ -153,6 +153,10 @@ table.header {
     border: 1px solid blue;
 }
 
+td.blue {
+    color: blue;
+}
+
 td.packages {
     vertical-align: top;
     padding-right: 5px;
