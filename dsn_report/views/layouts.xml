@@ -124,22 +124,9 @@ Albarán
 
 
 <template id="picking_layout">
-
-<!--    <t t-call="report.layout" />
--->
-    <t t-foreach="docs" t-as="o">
-        <!-- Multicompany -->
-        <t t-if="o and 'company_id' in o">
-            <t t-set="company" t-value="o.company_id"></t>
-        </t>
-        <t t-if="not o or not 'company_id' in o">
-            <t t-set="company" t-value="res_company"></t>
-        </t>
-
-        <t t-call="dsn_report.picking_layout_header" />
-        <t t-raw="0" />
-        <t t-call="dsn_report.picking_layout_footer" />
-    </t>
+    <t t-call="dsn_report.picking_layout_header" />
+    <t t-raw="0" />
+    <t t-call="dsn_report.picking_layout_footer" />
 </template>
 
 <template id="picking_layout_header">
@@ -177,13 +164,6 @@ Albarán
                 <hr />
             </p>
             <span>footer</span>
-            <t t-if="o and 'company_id' in o">
-                <t t-set="company" t-value="o.company_id"></t>
-            </t>
-            <t t-if="not o or not 'company_id' in o">
-                <span>pos no</span>
-                <t t-set="company" t-value="res_company"></t>
-            </t>
             <t t-if="company.vat='ESA08627515'" >
                 <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
                 </p>
