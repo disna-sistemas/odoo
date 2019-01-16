@@ -121,35 +121,7 @@ Albarán
 </template>
 
 
-<template id="external_document_layout_footer">
-    <div class="footer">
-        <!--
-        <div class="text-center">
-            <div>
-            <ul class="list-inline">
-                <li><span class="page"/></li>
-                <li>/</li>
-                <li><span class="topage"/></li>
-            </ul>
-            </div>
-        </div>
-        -->
-        <div class="col-xs-12">
-            <p>
-                <hr />
-            </p>
-            <t t-if="o and 'company_id' in o">
-                <t t-set="company" t-value="o.company_id">
-                    <t t-if="company.vat='ESA08627515'" >
-                        <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
-                        </p>
-                    </t>
-                </t>
-            </t>
-        </div>
 
-    </div>
-</template>
 
 <template id="picking_layout">
 
@@ -187,9 +159,38 @@ Albarán
 
 </template>
 
+
+
 <template id="picking_layout_footer">
     <t t-call="dsn_report.external_document_layout_footer" />
-+</template>
+</template>
+
+<template id="external_document_layout_footer">
+    <div class="footer">
+        <!--
+        <div class="text-center">
+            <div>
+            <ul class="list-inline">
+                <li><span class="page"/></li>
+                <li>/</li>
+                <li><span class="topage"/></li>
+            </ul>
+            </div>
+        </div>
+        -->
+        <div class="col-xs-12">
+            <p>
+                <hr />
+            </p>
+            <span>footer</span>
+            <t t-if="company.vat='ESA08627515'" >
+                <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+                </p>
+            </t>
+        </div>
+
+    </div>
+</template>
 
 <template id="registro_mercantil">
         <div class="registro_mercantil" style="text-align: center;">Inscrita en el Registro Mercantil de Barcelona, Hoja 54135, Folio 113, Tomo 4835, Sección 2ª Sociedades - NºIdent.Fiscal <strong>A08627515</strong></div>
