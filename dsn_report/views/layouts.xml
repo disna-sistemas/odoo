@@ -159,12 +159,6 @@ Albarán
 
 </template>
 
-
-
-<template id="picking_layout_footer">
-    <t t-call="dsn_report.external_document_layout_footer" />
-</template>
-
 <template id="external_document_layout_footer">
     <div class="footer">
         <!--
@@ -187,6 +181,7 @@ Albarán
                 <t t-set="company" t-value="o.company_id"></t>
             </t>
             <t t-if="not o or not 'company_id' in o">
+                <span>pos no</span>
                 <t t-set="company" t-value="res_company"></t>
             </t>
             <t t-if="company.vat='ESA08627515'" >
@@ -197,6 +192,12 @@ Albarán
 
     </div>
 </template>
+
+<template id="picking_layout_footer">
+    <t t-call="dsn_report.external_document_layout_footer" />
+</template>
+
+
 
 <template id="registro_mercantil">
         <div class="registro_mercantil" style="text-align: center;">Inscrita en el Registro Mercantil de Barcelona, Hoja 54135, Folio 113, Tomo 4835, Sección 2ª Sociedades - NºIdent.Fiscal <strong>A08627515</strong></div>

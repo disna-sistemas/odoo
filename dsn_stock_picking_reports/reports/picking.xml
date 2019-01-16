@@ -18,7 +18,7 @@
             <div class="page">
 
                 <t t-foreach="docs" t-as="o">
-
+                    <span>un documento</span>
                     <t t-call="dsn_report.picking_layout"/>
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
