@@ -65,6 +65,7 @@ div.footer_picking_transporter {
 }
 
 div.footer {
+    position: absolute;
     bottom: 50px;
     /*background-image: url("/opt/odoo/v8/other-addons/dsn_report/static/img/registro_mercantil.png");*/
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
