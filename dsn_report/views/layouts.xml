@@ -83,23 +83,16 @@
         <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
     <!--</link>-->
     <t t-call="report.minimal_layout" />
-<!--
+
     <div class="header">
 
-        <div class="row">
-            <div class="col-xs-12">
-                <t t-if="o and 'company_id' in o">
-                    <t t-set="company" t-value="o.company_id">
-                        <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
-                        <span t-if="company.company_registry.startswith('distribuidora')" class="text-left" style="margin-left: 10px; margin-bottom: 0px; color: rgb(142,144,144); font-family: Comfortaa; font-size: 16px;" t-field="company.name"/>
-                    </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id">
+                <t t-if="company.company_registry.startswith('distribuidora')">
+                    <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
                 </t>
-            </div>
-        </div>
-    </div>
--->
-    <div class="header">
-Albarán
+            </t>
+        </t>
     </div>
 
 </template>
@@ -159,14 +152,13 @@ Albarán
             </div>
         </div>
         -->
-        <div class="col-xs-12">
             <p>
                 <hr />
             </p>
-            <span>footer</span>
-            <p style="color: rgb(142,144,144); font-family: Comfortaa; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+            <p style="color: rgb(142,144,144); font-family: 'Liberation Sans'; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+
                 </p>
-        </div>
+
 
     </div>
 </template>
