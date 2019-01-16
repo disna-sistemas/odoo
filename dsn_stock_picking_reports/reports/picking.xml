@@ -22,14 +22,14 @@
                 <t t-foreach="docs" t-as="o">
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
-                        <table>
-                            <tr>
+                        <table style="font-size: xx-small;color: grey;">
+                            <tr >
                                 <td><b>Lote: </b></td>
                                 <td style="padding: 30px;"><span t-field="p.name" /></td>
                             </tr>
                             <tr>
                                 <td><b>life date:</b></td>
-                                <td style="padding-left: 15px;"><span t-field="p.life_date" /></td>
+                                <td style="padding-left: 15px; "><span t-field="p.life_date" /></td>
                             </tr>
                         </table>
                         <br/>
