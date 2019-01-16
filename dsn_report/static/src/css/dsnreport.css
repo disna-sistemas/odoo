@@ -59,6 +59,11 @@ div.transporter_signature {
     clear: both;
 }
 
+div.header {
+    position: absolute;
+    top: 10px;
+}
+
 div.footer_picking_transporter {
     bottom: 50px;
     height: 200px;
