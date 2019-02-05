@@ -23,5 +23,17 @@
             </field>
         </record>
 
+        <record id="dsn_account_invoice_tree" model="ir.ui.view">
+            <field name="name">dsn.account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"></field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="supplier_invoice_number" />
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
