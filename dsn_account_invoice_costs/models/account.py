@@ -24,15 +24,15 @@ from openerp import models, fields, api
 class dsnAccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    dsn_unit_cost = fields.Float(string="Unit Cost")
-
     @api.multi
-    def write(self, values):
+    @api.depends('product_id')
+    def _compute_unit_cost(self):
         for record in self:
-            if record.product_id:
-                record.dsn_unit_cost = record.product_id.standard_price
+            record.dsn_unit_cost = record.product_id.standard_price
 
-        return super(dsnAccountInvoiceLine, self).write(values)
+    dsn_unit_cost = fields.Float("Unit Cost",
+                          compute='_compute_unit_cost',
+                          store=True)
 
 
 
