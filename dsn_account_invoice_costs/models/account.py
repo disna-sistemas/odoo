@@ -25,7 +25,7 @@ class dsnAccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     @api.multi
-    @api.depends('product_id')
+    @api.depends('product_id','invoice_id.state')
     def _compute_unit_cost(self):
         for record in self:
             record.dsn_unit_cost = record.product_id.standard_price
