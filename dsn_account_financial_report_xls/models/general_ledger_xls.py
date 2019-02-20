@@ -23,9 +23,11 @@ import xlwt
 from datetime import datetime
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell
-from openerp.addons.account_financial_report_webkit_xls import GeneralLedgersXls
-
 from openerp.tools.translate import _
+
+import openerp.addons.account_financial_report_webkit_xls
+
+
 # import logging
 # _logger = logging.getLogger(__name__)
 
