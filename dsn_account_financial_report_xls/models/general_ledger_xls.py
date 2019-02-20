@@ -25,6 +25,7 @@ from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell
 from openerp.tools.translate import _
 
+from openerp.addons.account_financial_report_webkit_xls import GeneralLedgerXls
 import openerp.addons.account_financial_report_webkit_xls
 
 
