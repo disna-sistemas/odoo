@@ -23,8 +23,8 @@ import xlwt
 from datetime import datetime
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell
-from openerp.addons.account_financial_report_webkit.report.general_ledger \
-    import GeneralLedgerWebkit
+from openerp.addons.account_financial_report_webkit_xls import GeneralLedgersXls
+
 from openerp.tools.translate import _
 # import logging
 # _logger = logging.getLogger(__name__)
@@ -47,7 +47,7 @@ _column_sizes = [
 ]
 
 
-class GeneralLedgerXls(report_xls):
+class dsnGeneralLedgerXls(GeneralLedgerXls):
     column_sizes = [x[1] for x in _column_sizes]
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
