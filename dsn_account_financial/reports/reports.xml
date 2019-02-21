@@ -11,8 +11,8 @@
             name="dsn_account_financial.base_report"
             file="report_balance"
     />
-<!--
-    <record forcecreate="True" id="paperformat_balance_reporting" model="report.paperformat">
+
+    <record forcecreate="True" id="dsn_paperformat_balance_reporting" model="report.paperformat">
         <field name="name">Balance Reporting Paperformat</field>
         <field name="default" eval="True"/>
         <field name="format">A4</field>
@@ -27,12 +27,11 @@
         <field name="header_spacing">8</field>
         <field name="dpi">90</field>
     </record>
-    -->
-<!--
-    <record id="report_account_balance_reporting_generic" model="ir.actions.report.xml">
-        <field name="paperformat_id" ref="paperformat_balance_reporting"/>
+
+    <record id="report_account_balance_reporting" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="dsn_paperformat_balance_reporting"/>
     </record>
-    -->
+
 </data>
 </openerp>
 	
