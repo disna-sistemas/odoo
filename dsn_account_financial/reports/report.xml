@@ -9,10 +9,10 @@
                     <strong><span t-esc="o.name"/></strong>
                 </div>
                 <div class="page">
-                    <div style="position: absolute;right: 0px; padding: 5px; font-size: x-small;"><span t-esc="o.calc_date"/></div>
-                    <div style="font-size: large;"><span t-esc="o.company_id.name"/></div>
-                    <div style="font-size: medium;"><span t-esc="o.name"/><br/></div>
                     <div class="row">
+                        <div style="position: absolute;right: 0px; padding: 5px; font-size: x-small;"><span t-esc="o.calc_date"/></div>
+                        <div style="font-size: large;"><span t-esc="o.company_id.name"/></div>
+                        <div style="font-size: medium;"><span t-esc="o.name"/><br/></div>
                         <table class="table table-bordered" style="width:100%;border:1px solid black;border-collapse:collapse;padding:3px;">
                             <thead>
                                 <tr style="font-size:100%;background-color:#aaa;border-bottom:1px solid black;">
