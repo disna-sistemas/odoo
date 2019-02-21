@@ -17,9 +17,8 @@
                                 <tr style="font-size:120%;background-color:#ccc;border-bottom:1px solid black;">
                                     <th>CONCEPT</th>
                                     <th class="text-center">CODE</th>
-                                    <th class="text-center">NOTES</th>
-                                    <th class="text-center">CURRENT</th>
-                                    <th class="text-center">PREVIOUS</th>
+                                    <th class="text-center"><span t-esc="o.current_fiscalyear_id.name"/></th>
+                                    <th class="text-center"><span t-esc="o.previous_fiscalyear_id.name"/></th>
                                 </tr>
                             </thead>
                             <tbody class="balance_reporting">
@@ -33,7 +32,6 @@
                                         </t>
                                     </td>
                                     <td style="text-align:center;border-right:1px solid black;"><strong><span t-esc="line.code"/></strong></td>
-                                    <td style="text-align:center;border-right:1px solid black;"><span t-esc="line.notes"/></td>
                                     <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-esc="'%.2f' % line.current_value"/></td>
                                     <td style="text-align:right;padding-right:3px;"><span t-esc="'%.2f' % line.previous_value"/></td>
                                 </tr>

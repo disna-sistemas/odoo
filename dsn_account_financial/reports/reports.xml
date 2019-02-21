@@ -6,12 +6,12 @@
     <report id="report_account_balance_reporting"
             model="account.balance.reporting"
             report_type="qweb-pdf"
-            string="Disna Generic balance report"
+            string="Disna Balance"
             menu="False"
             name="dsn_account_financial.base_report"
             file="dsn_account_financial.report"
     />
-
+<!--
     <record forcecreate="True" id="paperformat_balance_reporting" model="report.paperformat">
         <field name="name">Balance Reporting Paperformat</field>
         <field name="default" eval="True"/>
@@ -27,6 +27,7 @@
         <field name="header_spacing">8</field>
         <field name="dpi">90</field>
     </record>
+    -->
 <!--
     <record id="report_account_balance_reporting_generic" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
