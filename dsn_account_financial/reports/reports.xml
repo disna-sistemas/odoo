@@ -8,7 +8,7 @@
             report_type="qweb-pdf"
             string="Disna Balance"
             menu="False"
-            name="dsn_account_financial.base_report"
+            name="balance_base"
             file="dsn_account_financial.report"
     />
 <!--
