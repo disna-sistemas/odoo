@@ -6,7 +6,7 @@
     <report id="report_account_balance_reporting"
             model="account.balance.reporting"
             report_type="qweb-pdf"
-            string="Disna Balance"
+            string="Balance Disna"
             menu="False"
             name="dsn_account_financial.base_report"
             file="report_balance"
