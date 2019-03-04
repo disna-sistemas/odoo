@@ -70,6 +70,7 @@ class ProductTemplate(models.Model):
 
         allow_update = True
         _updated_fields = ""
+        _usr_mgr_comparison = ""
 
         _uid = self.env.uid
 
@@ -95,6 +96,7 @@ class ProductTemplate(models.Model):
                             if _field in values:
 
                                 _updated_fields = _updated_fields + _field + ","
+                                _usr_mgr_comparison = 'usr ' + str(_uid) + ', mngr ' + str(record.product_manager.id)
 
                                 allow_update = False
 
@@ -108,7 +110,7 @@ class ProductTemplate(models.Model):
         if allow_update:
             return super(ProductTemplate, self).write(values)
         else:
-           raise exceptions.Warning('You are not allowed to modify this product template!!! (' + _updated_fields + ') ' + 'usr ' + str(_uid) + ', mngr ' + str(record.product_manager.id))
+           raise exceptions.Warning('You are not allowed to modify this product template!!! (' + _updated_fields + ') ' + _usr_mgr_comparison)
 
 
     dsn_pnt_nf = fields.Char(string='PNT NF')
