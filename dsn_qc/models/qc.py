@@ -30,12 +30,8 @@ class dsnQcTest(models.Model):
     @api.depends('object_id')
     def _compute_product(self):
         for record in self:
-            if record.object_id:
-                x = record.object_id.split(",")
-                if x[0] == 'product.product':
-                    prod_id = int(x[1])
-                    record.product_id = prod_id
-
+            if record.object_id and record.object_id.type=='product':
+                record.product_id = record.object_id
 
     product_id = fields.Many2one(string="Product",
                                  comodel_name="product.product",
