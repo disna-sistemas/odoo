@@ -23,6 +23,25 @@ from openerp import models, fields, api
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
 
+class dsnQcTest(models.Model):
+    _inherit = "qc.test"
+
+    @api.multi
+    @api.depends('object_id')
+    def _compute_product(self):
+        for record in self:
+            if record.object_id:
+                x = record.object_id.split(",")
+                if x[0] == 'product.product':
+                    prod_id = int(x[1])
+                    record.product_id = prod_id
+
+
+    product_id = fields.Many2one(string="Product",
+                                 comodel_name="product.product",
+                                 compute='_compute_product',
+                                 store=True)
+
 class dsnQcAnalysisMethod(models.Model):
     _name="dsnqc.analysis.method"
 
