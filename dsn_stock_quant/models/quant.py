@@ -116,6 +116,7 @@ class dsnStockQuant(models.Model):
                                  )
 
     dsnlife_date = fields.Datetime(related='lot_id.life_date', readonly=True)
+    dsnremoval_date = fields.Datetime(related='lot_id.removal_date', readonly=True)
 
     qty = fields.Float(string='Quantity',
                    required=True,

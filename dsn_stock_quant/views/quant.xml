@@ -33,6 +33,7 @@
             <field name="arch" type="xml">
                 <field name="in_date" position="after">
                     <field name="dsnlife_date"/>
+                    <field name=""
                 </field>
                 <field name="company_id" position="attributes">
                     <attribute name="invisible">1</attribute>
