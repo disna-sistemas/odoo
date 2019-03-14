@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, api
-from openerp import tools
+from openerp import tools, _
 
 class dsnPurchaseOrder(models.Model):
     _inherit = "purchase.order"
@@ -30,6 +30,19 @@ class dsnPurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 #    _order = "date_planned desc, name"
     _order = "id"
+
+    @api.multi
+    @api.onchange('product_id')
+    def dsn_warning_obsolete(self):
+        self.ensure_one()
+        res = {}
+        if self.product_id:
+            _obsolete = False
+            if self.product.state and self.product_id.state=='obsolete':
+                res = {'warning': {'title': _('Obsolete Product'), 'message': _(
+                    'This product is obsolete')}}
+
+        return res
 
 class dsnPurchasereport(models.Model):
     _inherit = "purchase.report"
