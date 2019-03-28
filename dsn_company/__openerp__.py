@@ -24,7 +24,8 @@
     "category": "",
     "depends": ['base'],
     "description": """
-Adds Logo 2 for the company
+- Logo 2
+- Export Logo
     """,
     "data": ['views/company.xml',],
     "installable": True,
