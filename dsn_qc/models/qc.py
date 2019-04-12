@@ -165,7 +165,7 @@ class dsnQcInspectionLine(models.Model):
     @api.multi
     @api.depends('test_line')
     def quality_test_check(self):
-        super(self).quality_test_check()
+        super(dsnQcInspectionLine,self).quality_test_check()
         for record in self:
             record.dsn_auto_success = record.test_line.dsn_auto_success
 

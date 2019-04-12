@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['quality_control_stock', 'quality_control_mrp',
+    "depends": ['quality_control','quality_control_stock', 'quality_control_mrp',
                 'quality_control_mrp_operations','quality_control_claim','quality_control_force_valid',
                 'dsn_menu_disna','dsn_security','dsn_product_category_levels'],
     "description": """
