@@ -166,4 +166,5 @@ class dsnQcInspectionLine(models.Model):
 
     dsn_auto_success = fields.Boolean(string="Auto Success",
                                       compute='compute_auto_success',
+                                      store=True,
                                       readonly=True)
