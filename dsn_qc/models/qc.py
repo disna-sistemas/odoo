@@ -44,6 +44,7 @@ class dsnQcAnalysisMethod(models.Model):
     name = fields.Char(string="Method")
     notes = fields.Text(string="Notes")
 
+
 class dsnQcTestQuestion(models.Model):
     _inherit = "qc.test.question"
 
@@ -56,12 +57,19 @@ class dsnQcTestQuestion(models.Model):
             if method_lst:
                 return method_lst[0]
             else:
+
                 return None
+
+
 
     method_id = fields.Many2one(comodel_name="dsnqc.analysis.method",
                                 string="Analysis Method",
                                 required=True,
                                 default=get_default_method)
+
+    dsn_auto_success = fields.Boolean(string="Auto Success")
+
+
 
 class dsnQcInspection(models.Model):
     _inherit = "qc.inspection"
@@ -143,3 +151,19 @@ class dsnQcInspection(models.Model):
     dsn_micro_ok = fields.Boolean(string='Micro OK', default=False, compute='_compute_samples', store=True)
 
     dsn_production_qty = fields.Float(string="Production Qty", compute='_get_production_qty', store=False)
+
+
+class dsnQcInspectionLine(models.Model):
+    _inherit = "qc.inspection.line"
+
+    @api.multi
+    @api.depends('test_line')
+    def compute_auto_success(self):
+        for record in self:
+            record.dsn_auto_success = record.test_line.dsn_auto_success
+            if record.dsn_auto_success:
+                record.success = True
+
+    dsn_auto_success = fields.Boolean(string="Auto Success",
+                                      compute='compute_auto_success',
+                                      readonly=True)

@@ -121,6 +121,7 @@
             <field name="arch" type="xml">
                 <field name="type" position="after">
                     <field name="method_id" />
+                    <field name="dsn_auto_success" />
                 </field>
             </field>
         </record>
