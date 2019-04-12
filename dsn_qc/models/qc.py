@@ -161,7 +161,7 @@ class dsnQcInspectionLine(models.Model):
     def compute_auto_success(self):
         for record in self:
             record.dsn_auto_success = record.test_line.dsn_auto_success
-            if record.dsn_auto_success:
+            if record.test_line.dsn_auto_success:
                 record.success = True
 
     dsn_auto_success = fields.Boolean(string="Auto Success",
