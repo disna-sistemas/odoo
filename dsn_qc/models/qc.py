@@ -156,15 +156,23 @@ class dsnQcInspection(models.Model):
 class dsnQcInspectionLine(models.Model):
     _inherit = "qc.inspection.line"
 
+#    @api.multi
+#    @api.depends('test_line')
+#    def compute_auto_success(self):
+#        for record in self:
+#            record.dsn_auto_success = record.test_line.dsn_auto_success
+
     @api.multi
     @api.depends('test_line')
-    def compute_auto_success(self):
+    def quality_test_check(self):
+        super(self).quality_test_check()
         for record in self:
             record.dsn_auto_success = record.test_line.dsn_auto_success
-            if record.test_line.dsn_auto_success:
-                record.success = True
+
+            if record.success == False:
+                record.success = record.test_line.dsn_auto_success
 
     dsn_auto_success = fields.Boolean(string="Auto Success",
-                                      compute='compute_auto_success',
+                                      compute='quality_test_check',
                                       store=True,
                                       readonly=True)
