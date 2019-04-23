@@ -25,7 +25,7 @@ class dsnSurveyPage(models.Model):
     _inherit = "survey.page"
 
     @api.multi
-    @api.depends('survey_id.user_input_line')
+    @api.depends('survey_id.user_input_line_ids')
     def compute_aggregate_functions(self):
         for record in self:
             media = 0
