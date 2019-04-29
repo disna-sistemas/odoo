@@ -25,8 +25,6 @@ import openerp.addons.decimal_precision as dp
 class dsnMp(models.Model):
     _name = 'dsnmp'
 
-    _inherit = ['mail.thread']
-
     product_id = fields.Many2one(string="Product", comodel_name="product.template", required=True)
     name = fields.Char(string="INCI", required=True)
     anexos = fields.Char(string="Anexos")
@@ -235,6 +233,8 @@ class dsnMp(models.Model):
 
 class dsnMpIngredient(models.Model):
     _name="dsnmp.ingredient"
+    _inherit = ['mail.thread']
+
 
     @api.multi
     @api.depends('conc_min','conc_max')
