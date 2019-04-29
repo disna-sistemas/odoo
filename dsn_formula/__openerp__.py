@@ -32,7 +32,7 @@ INCI name, NOAEL, LD50, CAS, EINECS, etc...
     'author': 'Disna',
     'website': 'http://www.disna.com',
     'contributors': ["Victor Martin <vicktormartin@gmail.com"],
-    'depends': ['mail','product','dsn_product_etc'],
+    'depends': ['mail','base','product','dsn_product_etc'],
     'data': [
         'views/formula.xml'
     ],
