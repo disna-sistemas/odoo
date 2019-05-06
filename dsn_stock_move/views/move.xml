@@ -66,7 +66,7 @@
 
         </record>
 
-        <record id="dsn_stock_move_search">
+        <record id="dsn_stock_move_search" model="ir.ui.view">
             <field name="name">dsn.stock.move.search</field>
             <field name="model">stock.move</field>
             <field name="inherit_id" ref="stock.view_move_search" />
