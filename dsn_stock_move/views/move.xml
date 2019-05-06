@@ -74,6 +74,8 @@
                 <filter string="Product" position="after">
                     <filter string="Cat2" name="groupby_cat2" domain="[]" context="{'group_by':'dsncat2_id'}"/>
                     <filter string="Cat3" name="groupby_cat3" domain="[]" context="{'group_by':'dsncat3_id'}"/>
+                    <filter string="Cat4" name="groupby_cat4" domain="[]" context="{'group_by':'dsncat4_id'}"/>
+                    <filter string="Cat5" name="groupby_cat5" domain="[]" context="{'group_by':'dsncat5_id'}"/>
                 </filter>
             </field>
 
