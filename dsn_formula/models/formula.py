@@ -235,7 +235,7 @@ class dsnMp(models.Model):
 
 
     @api.multi
-    def load_ingredients_in_chatter(self, message='Ingredients:'):
+    def load_ingredients_in_chatter(self, message='Modified Ingredients:'):
         self.ensure_one()
         body = ''
 
@@ -249,7 +249,7 @@ class dsnMp(models.Model):
 
             if diff_in_secs < 5:
 
-                body += ('<b> * %s:</b> conc.mín. %s ; conc.máx. %s ; conc.fija %s <br>' %
+                body += ('<b> * %s:</b> conc.min. %s ; conc.max. %s ; conc.fix. %s <br>' %
                      (ingredient.name.encode('utf-8'), str(round(ingredient.conc_min,4)).encode('utf-8'),
                       str(round(ingredient.conc_max,4)).encode('utf-8'),
                       str(round(ingredient.conc_fixed,4)).encode('utf-8')))
