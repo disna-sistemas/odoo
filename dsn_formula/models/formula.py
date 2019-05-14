@@ -24,6 +24,7 @@ import openerp.addons.decimal_precision as dp
 
 class dsnMp(models.Model):
     _name = 'dsnmp'
+    _inherit = ['mail.thread']
 
     product_id = fields.Many2one(string="Product", comodel_name="product.template", required=True)
     name = fields.Char(string="INCI", required=True)
@@ -230,6 +231,33 @@ class dsnMp(models.Model):
 
     functions = fields.Char(string="Functions", compute='_compute_functions', store=True)
 
+
+    @api.multi
+    def load_ingredients_in_chatter(self, message='Ingredients:'):
+        self.ensure_one()
+        body = ''
+        for ingredient in self.ingredient_ids:
+            body += ('<b> * %s:</b> conc.mín. %s ; conc.máx. %s ; conc.fija %s <br>' %
+                     (ingredient.name, str(ingredient.conc_min),
+                      str(ingredient.conc_max), str(ingredient.conc_fixed)))
+
+        m = ('<b>%s</b><br>%s<br>') % (message, body)
+
+        mail_values = {
+            'notification': True,
+            'model': self._model,
+            'res_id': self.id,
+        }
+
+        self.message_post(body=m, type='notification', **mail_values)
+
+    @api.multi
+    def write(self, values):
+        res = super(dsnMp, self).write(values)
+        if 'ingredient_ids' in values:
+            for record in self:
+                record.load_ingredients_in_chatter()
+        return res
 
 class dsnMpIngredient(models.Model):
     _name="dsnmp.ingredient"
