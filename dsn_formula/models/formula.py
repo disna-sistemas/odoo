@@ -238,7 +238,7 @@ class dsnMp(models.Model):
         self.ensure_one()
         body = ''
 
-        right_now = datetime.now
+        right_now = datetime.datetime.now()
 
         for ingredient in self.ingredient_ids:
 
