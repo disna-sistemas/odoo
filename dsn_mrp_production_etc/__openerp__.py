@@ -27,10 +27,11 @@
 QC page on mrp production
 - Adds filters to production search view
 - Adds fields to production tree view
+- Adds manual lot to production calendar view
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
-    'depends': ['mrp','mrp_production_estimated_cost'],
+    'depends': ['mrp','mrp_production_estimated_cost','mrp_final_product_lot'],
     'data': [
         'views/production.xml'
     ],
