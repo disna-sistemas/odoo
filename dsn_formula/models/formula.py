@@ -19,7 +19,7 @@
 from openerp import models, fields, api
 import exceptions
 import openerp.addons.decimal_precision as dp
-
+import datetime
 
 
 class dsnMp(models.Model):
@@ -237,21 +237,32 @@ class dsnMp(models.Model):
     def load_ingredients_in_chatter(self, message='Ingredients:'):
         self.ensure_one()
         body = ''
+
+        right_now = datetime.now
+
         for ingredient in self.ingredient_ids:
-            body += ('<b> * %s:</b> conc.mín. %s ; conc.máx. %s ; conc.fija %s <br>' %
+
+#            diff = ahora - ingredient.write_date
+
+            diff_in_secs = (right_now - ingredient.write_date).total_seconds()
+
+            if diff_in_secs < 5:
+
+                body += ('<b> * %s:</b> conc.mín. %s ; conc.máx. %s ; conc.fija %s <br>' %
                      (ingredient.name.encode('utf-8'), str(round(ingredient.conc_min,4)).encode('utf-8'),
                       str(round(ingredient.conc_max,4)).encode('utf-8'),
                       str(round(ingredient.conc_fixed,4)).encode('utf-8')))
 
-        m = ('<b>%s</b><br>%s<br>') % (message, body)
+        if len(body)>0:
+            m = ('<b>%s</b><br>%s<br>') % (message, body)
 
-        mail_values = {
-            'notification': True,
-            'model': self._model,
-            'res_id': self.id,
-        }
+            mail_values = {
+                'notification': True,
+                'model': self._model,
+                'res_id': self.id,
+            }
 
-        self.message_post(body=m, type='notification', **mail_values)
+            self.message_post(body=m, type='notification', **mail_values)
 
     @api.multi
     def write(self, values):
