@@ -239,8 +239,9 @@ class dsnMp(models.Model):
         body = ''
         for ingredient in self.ingredient_ids:
             body += ('<b> * %s:</b> conc.mín. %s ; conc.máx. %s ; conc.fija %s <br>' %
-                     (ingredient.name, '%.4f' % ingredient.conc_min,
-                      '%.4f' % ingredient.conc_max, '%.4f' % ingredient.conc_fixed))
+                     (ingredient.name.encode('utf-8'), str(round(ingredient.conc_min,4)).encode('utf-8'),
+                      str(round(ingredient.conc_max,4)).encode('utf-8'),
+                      str(round(ingredient.conc_fixed,4)).encode('utf-8')))
 
         m = ('<b>%s</b><br>%s<br>') % (message, body)
 
