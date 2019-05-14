@@ -19,7 +19,8 @@
 from openerp import models, fields, api
 import exceptions
 import openerp.addons.decimal_precision as dp
-import datetime
+from datetime import datetime
+#from dateutil.relativedelta import relativedelta
 
 
 class dsnMp(models.Model):
@@ -238,7 +239,7 @@ class dsnMp(models.Model):
         self.ensure_one()
         body = ''
 
-        right_now = datetime.datetime.now()
+        right_now = datetime.now()
 
         for ingredient in self.ingredient_ids:
 
