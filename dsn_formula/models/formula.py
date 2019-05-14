@@ -244,7 +244,7 @@ class dsnMp(models.Model):
 
 #            diff = ahora - ingredient.write_date
 
-            diff_in_secs = (right_now - ingredient.write_date).total_seconds()
+            diff_in_secs = (right_now - datetime.strptime(ingredient.write_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
 
             if diff_in_secs < 5:
 
