@@ -114,6 +114,18 @@
             </field>
         </record>
 
+        <record id="dsn_qc_test_form" model="ir.ui.view">
+            <field name="name">dsn.qc.test.form</field>
+            <field name="model">qc.test</field>
+            <field name="inherit_id" ref="quality_control.qc_test_form_view"/>
+            <field name="arch" type="xml">
+                <field name="uom_id" position="after">
+                    <field name="dsn_auto_success"/>
+                </field>
+
+            </field>
+        </record>
+
         <record id="dsn_qc_test_question_method" model="ir.ui.view">
             <field name="name">dsn.qc.test.question.method</field>
             <field name="model">qc.test.question</field>
