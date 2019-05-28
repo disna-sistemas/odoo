@@ -177,8 +177,8 @@ class ProductProduct(models.Model):
 
     dsn_code_vileda = fields.Char(string='Vileda Code', store=True)
 
-    dsn_lots = fields.One2many(comodel_name='stock.production.lot', inverse_name='product_id',
-                               string='Lots', help='Lots related to this product')
+    # dsn_lots = fields.One2many(comodel_name='stock.production.lot', inverse_name='product_id',
+    #                            string='Lots', help='Lots related to this product')
 
     _sql_constraints = [
         ('default_code_uniq', 'unique(default_code)', 'Product Code must be unique!!!'),
