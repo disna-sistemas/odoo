@@ -79,6 +79,14 @@ class dsnQcInspection(models.Model):
         lang_ids = lang_obj.search([('active','=',True)])
         return [(lang.code, lang.name ) for lang in lang_ids]
 
+    @api.model
+    def create(self, vals):
+        res = super(dsnQcInspection, self).create(vals)
+        if vals.get('lot') is not None:
+            lot = vals.get('lot')
+            lot.write({'locked': True})
+        return res
+
     @api.multi
     @api.depends('product')
     def _compute_category_levels(self):
