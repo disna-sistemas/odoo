@@ -88,6 +88,16 @@ class dsnQcInspection(models.Model):
         return res
 
     @api.multi
+    def write(self, values):
+        res = super(dsnQcInspection, self).write(values)
+        if 'lot' in values:
+            for record in self:
+                if record.lot:
+                    lot = record.lot
+                    lot.write({'locked': True})
+        return res
+
+    @api.multi
     @api.depends('product')
     def _compute_category_levels(self):
         for record in self:
