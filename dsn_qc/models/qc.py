@@ -79,22 +79,26 @@ class dsnQcInspection(models.Model):
         lang_ids = lang_obj.search([('active','=',True)])
         return [(lang.code, lang.name ) for lang in lang_ids]
 
-    @api.model
-    def create(self, vals):
-        res = super(dsnQcInspection, self).create(vals)
-        if vals.get('lot') is not None:
-            lot = vals.get('lot')
-            lot.write({'locked': True})
-        return res
+    # @api.model
+    # def create(self, vals):
+    #
+    #     res = super(dsnQcInspection, self).create(vals)
+    #     lot = vals('lot',False)
+    #     if lot:
+    #         lot.write({'locked': True})
+    #
+    #
+    #     return res
 
     @api.multi
     def write(self, values):
         res = super(dsnQcInspection, self).write(values)
+
         if 'lot' in values:
             for record in self:
-                if record.lot:
-                    lot = record.lot
-                    lot.write({'locked': True})
+#              if record.lot:
+                record.lot.write({'locked': True})
+
         return res
 
     @api.multi
