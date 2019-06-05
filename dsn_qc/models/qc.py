@@ -94,9 +94,11 @@ class dsnQcInspection(models.Model):
     @api.multi
     def write(self, values):
         res = super(dsnQcInspection, self).write(values)
+        _logger = logging.getLogger(__name__)
+        _logger.info('inspección' +  self.name)
 
         if 'lot' in values:
-            _logger = logging.getLogger(__name__)
+
 
             lotobj = self.env['stock.production.lot']
             for record in self.filtered(lambda x: x.state == 'ready'):
