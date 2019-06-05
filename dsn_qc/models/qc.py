@@ -22,6 +22,7 @@
 from openerp import models, fields, api
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+import logging
 
 class dsnQcTest(models.Model):
     _inherit = "qc.test"
@@ -95,9 +96,15 @@ class dsnQcInspection(models.Model):
         res = super(dsnQcInspection, self).write(values)
 
         if 'lot' in values:
-            for record in self:
-#              if record.lot:
-                record.lot.write({'locked': True})
+            _logger = logging.getLogger(__name__)
+
+            lotobj = self.env['stock.production.lot']
+            for record in self.filtered(lambda x: x.state == 'ready'):
+                #              if record.lot:
+                lots = lotobj.search([('id','=',record.lot)])
+                for lot in lots:
+                    _logger.info('Insp. ' + record.name + ' lot ' + lot.name)
+                    lot.write({'locked': True})
 
         return res
 
