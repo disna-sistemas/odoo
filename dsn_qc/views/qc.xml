@@ -167,6 +167,20 @@
             </field>
         </record>
 
+        <record id="dsn_qc_product_template_specs_tree" model="ir.ui.view">
+
+            <field name="name">dsn_qc.product_template_specs_tree</field>
+            <field name="model">dsn.product.template.specifications</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Template Specifications">
+                    <field name="name" groups="dsn_security.qualityGuarantee_user">Name</field>
+                </tree>
+
+            </field>
+        </record>
+
+
         <record id="dsn_action_analysis_method" model="ir.actions.act_window">
             <field name="name">Analysis Methods</field>
             <field name="type">ir.actions.act_window</field>
