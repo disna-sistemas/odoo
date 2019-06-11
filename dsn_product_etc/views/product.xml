@@ -2,11 +2,34 @@
 <openerp>
     <data>
 
+        <record id="product_template_specs_form" model="ir.ui.view">
+            <field name="name">product.template.specs.form</field>
+            <field name="model">dsn.product.template.specifications</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Specifications">
+                    <group colspan="2" col="2">
+                        <field name="country_id" />
+                        <field name="name" />
+                        <field name="title1" />
+                        <field name="from1" />
+                        <field name="until1" />
+                        <field name="title2" />
+                        <field name="from2" />
+                        <field name="until2" />
+                        <field name="notes" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record id="product_template_specs_tree" model="ir.ui.view">
             <field name="name">product.template.specs.tree</field>
             <field name="model">dsn.product.template.specifications</field>
+            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Specifications" editable="bottom">
+                    <field name="product_tmpl_id" />
                     <field name="country_id" />
                     <field name="name" />
                     <field name="title1" />
