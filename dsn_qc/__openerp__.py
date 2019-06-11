@@ -24,7 +24,7 @@
     "category": "",
     "depends": ['quality_control','quality_control_stock', 'quality_control_mrp',
                 'quality_control_mrp_operations','quality_control_claim','quality_control_force_valid',
-                'dsn_menu_disna','dsn_security','dsn_product_category_levels'],
+                'dsn_menu_disna','dsn_security','dsn_product_category_levels','dsn_product_etc'],
     "description": """
 QC customization:
 - Add internal notes in tree view
