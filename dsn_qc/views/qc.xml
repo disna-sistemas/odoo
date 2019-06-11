@@ -180,6 +180,18 @@
               </p>
             </field>
         </record>
+
+        <record id="dsn_action_product_template_specifications" model="ir.actions.act_window">
+            <field name="name">Product Template Specifications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dsn.product.template.specifications</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="dsn_qc_product_template_specs_tree"/>
+            <field name="view_mode">tree</field>
+<!--            <field name="help" type="html">
+            </field>
+-->
+        </record>
 <!--
         <record id="dsn_qc_trigger_product_tree" model="ir.ui.view">
 
@@ -282,6 +294,12 @@
                     parent="dsn_menu_disna_technical"
                     action="dsn_action_analysis_method"
                     sequence="10" />
+
+        <menuitem id="dsn_menu_disna_product_template_specifications"
+                    name="Product Template Specifications"
+                    parent="dsn_menu_disna_technical"
+                    action="dsn_action_product_template_specifications"
+                    sequence="20" />
 
         <menuitem id="dsn_menu_disna_quality"
                     name="Quality"

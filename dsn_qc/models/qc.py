@@ -80,16 +80,6 @@ class dsnQcInspection(models.Model):
         lang_ids = lang_obj.search([('active','=',True)])
         return [(lang.code, lang.name ) for lang in lang_ids]
 
-    # @api.model
-    # def create(self, vals):
-    #
-    #     res = super(dsnQcInspection, self).create(vals)
-    #     lot = vals('lot',False)
-    #     if lot:
-    #         lot.write({'locked': True})
-    #
-    #
-    #     return res
 
     @api.multi
     def write(self, values):
@@ -101,16 +91,7 @@ class dsnQcInspection(models.Model):
             _logger = logging.getLogger(__name__)
 
             for record in self.filtered(lambda x: x.state == 'ready' and x.lot != False):
-                _logger.info('inspeccion' + self.name)
-                record.lot.write({'locked': True})
-
-            # lotobj = self.env['stock.production.lot']
-            # for record in self.filtered(lambda x: x.state == 'ready'):
-            #     #              if record.lot:
-            #     lots = lotobj.search([('id','=',record.lot)])
-            #     for lot in lots:
-            #         _logger.info('Insp. ' + record.name + ' lot ' + lot.name)
-            #         lot.write({'locked': True})
+#                record.lot.write({'locked': True})
 
         return res
 
