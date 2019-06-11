@@ -200,6 +200,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dsn.product.template.specifications</field>
             <field name="view_type">tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="dsn_product_etc.product_template_specs_tree"/>
             <field name="view_mode">tree</field>
 <!--            <field name="help" type="html">
