@@ -90,8 +90,11 @@ class dsnQcInspection(models.Model):
 
             _logger = logging.getLogger(__name__)
 
-#            for record in self.filtered(lambda x: x.state == 'ready' and x.lot != False):
-#                record.lot.write({'locked': True})
+            for record in self.filtered(lambda x: x.state == 'ready' and x.lot != False):
+                record.lot.write({'locked': True})
+
+            for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
+                record.lot.write({'locked': False})
 
         return res
 
