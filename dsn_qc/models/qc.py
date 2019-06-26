@@ -112,9 +112,6 @@ class dsnQcInspection(models.Model):
 
         _logger = logging.getLogger(__name__)
 
-        for record in self:
-            _logger.info('writing qc.inspection ' + str(record.lot.name))
-
         res = super(dsnQcInspection, self).write(values)
 
         if 'state' in values:
@@ -126,6 +123,9 @@ class dsnQcInspection(models.Model):
 
             for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
                 record.lot.write({'locked': False})
+        else:
+            for record in self:
+                _logger.info('writing qc.inspection ' + values)
 
         return res
 
