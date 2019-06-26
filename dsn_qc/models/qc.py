@@ -88,15 +88,16 @@ class dsnQcInspection(models.Model):
         _logger = logging.getLogger(__name__)
         lotobj = self.env['stock.production.lot']
 
-        if vals.get['lot'] is not None:
-            lots = lotobj.search([('id', '=', vals.get('lot'))])
+        if vals['lot']:
+            lots = lotobj.search([('id', '=', vals['lot'])
+
             for lot in lots:
                 lot.write({'locked': True})
 
-        # for record in self:
-        #     _logger.info('creating ' + str(record.lot.name))
-        #     if record.lot:
-        #         record.lot.write({'locked': True})
+        for record in self:
+            _logger.info('creating ' + str(record.lot.name))
+            if record.lot:
+                record.lot.write({'locked': True})
 
 
 #            res.line_id.other_partner_id = vals['other_partner_id']
