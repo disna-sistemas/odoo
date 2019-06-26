@@ -126,8 +126,10 @@ class dsnQcInspection(models.Model):
                 for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
                     record.lot.write({'locked': False})
             else:
+                if record.lot.state == 'ready':
+                    record.lot.write({'locked': True})
 
-                _logger.info('writing qc.inspection ' + str(values[0]))
+#                _logger.info('writing qc.inspection ' + str(values[0]))
 
         return res
 
