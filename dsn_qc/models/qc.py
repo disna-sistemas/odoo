@@ -132,14 +132,12 @@ class dsnQcInspection(models.Model):
 
                     right_now = datetime.now()
 
-                    for ingredient in self.ingredient_ids:
+                    diff_in_secs = (
+                    right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
 
-                        diff_in_secs = (
-                        right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
+                    if diff_in_secs < 5:
 
-                        if diff_in_secs < 5:
-
-                            record.lot.write({'locked': True})
+                        record.lot.write({'locked': True})
 
 #                _logger.info('writing qc.inspection ' + str(values[0]))
 
