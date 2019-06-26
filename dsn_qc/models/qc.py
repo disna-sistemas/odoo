@@ -22,6 +22,7 @@
 from openerp import models, fields, api
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+from datetime import datetime
 import logging
 
 class dsnQcTest(models.Model):
@@ -126,8 +127,19 @@ class dsnQcInspection(models.Model):
                 for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
                     record.lot.write({'locked': False})
             else:
-                if record.lot.state == 'ready':
-                    record.lot.write({'locked': True})
+
+                if record.state == 'ready':
+
+                    right_now = datetime.now()
+
+                    for ingredient in self.ingredient_ids:
+
+                        diff_in_secs = (
+                        right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
+
+                        if diff_in_secs < 5:
+
+                            record.lot.write({'locked': True})
 
 #                _logger.info('writing qc.inspection ' + str(values[0]))
 
