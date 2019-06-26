@@ -83,8 +83,9 @@ class dsnQcInspection(models.Model):
     @api.model
     def create(self, vals):
         res = super(dsnQcInspection, self).create(vals)
-        if vals.get('lot') is not None:
-            res.lot.write({'locked': True})
+        for record in self:
+            if record.lot:
+                record.lot.write({'locked': True})
 #            res.line_id.other_partner_id = vals['other_partner_id']
         return res
 
