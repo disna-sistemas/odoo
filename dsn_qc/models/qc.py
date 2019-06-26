@@ -80,35 +80,40 @@ class dsnQcInspection(models.Model):
         lang_ids = lang_obj.search([('active','=',True)])
         return [(lang.code, lang.name ) for lang in lang_ids]
 
-    @api.model
-    def create(self, vals):
-
-        res = super(dsnQcInspection, self).create(vals)
-
-        _logger = logging.getLogger(__name__)
-        lotobj = self.env['stock.production.lot']
-
-        if (vals['lot']):
-
-            lots = lotobj.search([('id', '=', vals['lot'])
-
-            for lot in lots:
-
-                lot.write({'locked': True})
-
-        for record in self:
-            _logger.info('creating ' + str(record.lot.name))
-            if record.lot:
-                record.lot.write({'locked': True})
-
-
-#            res.line_id.other_partner_id = vals['other_partner_id']
-
-        return res
+    # @api.model
+    # def create(self, vals):
+    #
+    #     res = super(dsnQcInspection, self).create(vals)
+    #
+    #     _logger = logging.getLogger(__name__)
+    #     lotobj = self.env['stock.production.lot']
+    #
+    #     if (vals['lot']):
+    #
+    #         lots = lotobj.search([('id', '=', vals['lot'])
+    #
+    #         for lot in lots:
+    #
+    #             lot.write({'locked': True})
+#
+#         for record in self:
+#             _logger.info('creating ' + str(record.lot.name))
+#             if record.lot:
+#                 record.lot.write({'locked': True})
+#
+#
+# #            res.line_id.other_partner_id = vals['other_partner_id']
+#
+#         return res
 
 
     @api.multi
     def write(self, values):
+
+        _logger = logging.getLogger(__name__)
+
+        for record in self:
+            _logger.info('writing qc.inspection ' + str(record.lot.name))
 
         res = super(dsnQcInspection, self).write(values)
 
