@@ -72,6 +72,12 @@ class dsnQcTestQuestion(models.Model):
     dsn_auto_success = fields.Boolean(string="Auto Success")
 
 
+class dsnQcTestCategory(models.Model):
+    _inherit = "qc.test.category"
+
+    dsn_lock_lot_on_inspection_creation = fields.Boolean('Lock lot on Inspection creation')
+
+
 
 class dsnQcInspection(models.Model):
     _inherit = "qc.inspection"
@@ -108,6 +114,57 @@ class dsnQcInspection(models.Model):
 #         return res
 
 
+    def lot_lock_check(self, values):
+
+        for record in self.filtered(lambda x: x.state == 'ready' and x.testx.lot != False and x.test.category.dsn_lock_lot_on_inspection_creation):
+
+            cat = record.lot.product_id.product_tmpl_id.categ_id
+            _locked = cat.lot_default_locked
+
+            while cat and not _locked:
+                cat = cat.parent_id
+                _locked = cat.lot_default_locked
+
+            if _locked:
+                record.lot.write({'locked': True})
+
+
+
+    def lot_unlock_check(self):
+
+        for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
+            record.lot.write({'locked': False})
+
+
+
+    def lot_lock_unlock_check(self, values):
+
+        if 'state' in values:
+
+            self.lot_lock_check()
+
+            self.lot_unlock_check()
+
+        else:
+
+            for record in self:
+
+                if record.state == 'ready':
+
+# Comprobamos si la inspección es autogenerada por disparador (comparando fecha con create_date)
+
+                    right_now = datetime.now()
+
+                    diff_in_secs = (
+                        right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
+
+                    if diff_in_secs < 5:
+
+                        self.lot_unlock_check()
+
+                        #record.lot.write({'locked': True})
+
+
     @api.multi
     def write(self, values):
 
@@ -115,31 +172,7 @@ class dsnQcInspection(models.Model):
 
         res = super(dsnQcInspection, self).write(values)
 
-        for record in self:
-
-            if 'state' in values:
-
-                _logger = logging.getLogger(__name__)
-
-                for record in self.filtered(lambda x: x.state == 'ready' and x.lot != False):
-                    record.lot.write({'locked': True})
-
-                for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
-                    record.lot.write({'locked': False})
-            else:
-
-                if record.state == 'ready':
-
-                    right_now = datetime.now()
-
-                    diff_in_secs = (
-                    right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
-
-                    if diff_in_secs < 5:
-
-                        record.lot.write({'locked': True})
-
-#                _logger.info('writing qc.inspection ' + str(values[0]))
+        self.lot_lock_unlock_check()
 
         return res
 
