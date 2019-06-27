@@ -116,7 +116,7 @@ class dsnQcInspection(models.Model):
 
     def lot_lock_check(self):
 
-        for record in self.filtered(lambda x: x.state == 'ready' and x.testx.lot != False and x.test.category.dsn_lock_lot_on_inspection_creation):
+        for record in self.filtered(lambda x: x.state == 'ready' and x.test.lot != False and x.test.category.dsn_lock_lot_on_inspection_creation):
 
             cat = record.lot.product_id.product_tmpl_id.categ_id
             _locked = cat.lot_default_locked
