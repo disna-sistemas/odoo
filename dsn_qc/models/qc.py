@@ -75,7 +75,7 @@ class dsnQcTestQuestion(models.Model):
 class dsnQcTestCategory(models.Model):
     _inherit = "qc.test.category"
 
-    dsn_lock_lot_on_inspection_creation = fields.Boolean('Lock lot on Inspection creation')
+    dsn_lock_lot_on_inspection_creation = fields.Boolean('Lock lot on Inspection creation', default=False)
 
 
 
@@ -114,7 +114,7 @@ class dsnQcInspection(models.Model):
 #         return res
 
 
-    def lot_lock_check(self, values):
+    def lot_lock_check(self):
 
         for record in self.filtered(lambda x: x.state == 'ready' and x.testx.lot != False and x.test.category.dsn_lock_lot_on_inspection_creation):
 
