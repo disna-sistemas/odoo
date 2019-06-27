@@ -146,24 +146,22 @@ class dsnQcInspection(models.Model):
 
             self.lot_unlock_check()
 
-        else:
-
-            for record in self:
-
-                if record.state == 'ready':
-
-# Comprobamos si la inspección es autogenerada por disparador (comparando fecha con create_date)
-
-                    right_now = datetime.now()
-
-                    diff_in_secs = (
-                        right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
-
-                    if diff_in_secs < 5:
-
-                        self.lot_unlock_check()
-
-                        #record.lot.write({'locked': True})
+#         else:
+#
+#             for record in self:
+#
+#                 if record.state == 'ready':
+#
+# # Comprobamos si la inspección es autogenerada por disparador (comparando fecha con create_date)
+#
+#                     right_now = datetime.now()
+#
+#                     diff_in_secs = (
+#                         right_now - datetime.strptime(record.create_date, "%Y-%m-%d %H:%M:%S")).total_seconds()
+#
+#                     if diff_in_secs < 5:
+#
+#                         self.lot_unlock_check()
 
 
     @api.multi
