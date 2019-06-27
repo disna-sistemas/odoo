@@ -132,7 +132,8 @@ class dsnQcInspection(models.Model):
 
     def lot_unlock_check(self):
 
-        for record in self.filtered(lambda x: x.state == 'success' and x.lot != False):
+        for record in self.filtered(lambda x: x.state == 'success' and x.lot != False and
+                                    x.test.category.dsn_lock_lot_on_inspection_creation):
             record.lot.write({'locked': False})
 
 
