@@ -52,7 +52,7 @@
                                     ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
                     <filter name="caducado"
                             string="Caducado"
-                            domain="[('locked','&#61;',True)]"/>
+                            domain="[('life_date','&gt;',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
                     <filter name="no_caducado"
                             string="No Caducado"
                             domain="[('locked','&#61;',False)]"/>
