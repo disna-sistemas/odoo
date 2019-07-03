@@ -27,6 +27,7 @@
                 'dsn_product_category_levels'],
     "description": """
 - Gets product-partner description, according to supplier info
+- Adds 'Last 5 days' filter
 - Adds Cat1 - Cat5 to stock move search view
     """,
     "data": ['views/move.xml'],
