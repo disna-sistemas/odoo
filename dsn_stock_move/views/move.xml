@@ -74,7 +74,7 @@
                 <filter string="Today" position="after">
                     <filter string="Since 6 days ago"
                             domain="[('date','&lt;=', (context_today()).strftime('%%Y-%%m-%%d')),
-                                     ('date','&gt;',(context_today() - relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                                     ('date','&gt;',(context_today() - relativedelta(days=7)).strftime('%%Y-%%m-%%d'))]"
                             help="Since 6 days ago until today"/>
                 </filter>
                 <filter string="Product" position="after">
