@@ -41,8 +41,13 @@
                                     </td>
 <!--                                    <td style="text-align:center;border-right:1px solid black;"><strong><span t-esc="line.code"/></strong></td>
 -->
+<!-- Corrección separador de miles
                                     <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-esc="'%.2f' % line.current_value"/></td>
                                     <td style="text-align:right;padding-right:3px;"><span t-esc="'%.2f' % line.previous_value"/></td>
+-->
+
+                                    <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-field="line.current_value"/></td>
+                                    <td style="text-align:right;padding-right:3px;"><span t-field="line.previous_value"/></td>
                                 </tr>
                             </tbody>
                         </table>
