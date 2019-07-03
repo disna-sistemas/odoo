@@ -71,6 +71,12 @@
             <field name="model">stock.move</field>
             <field name="inherit_id" ref="stock.view_move_search" />
             <field name="arch" type="xml">
+                <filter string="Today" position="after">
+                    <filter string="Since 6 days ago"
+                            domain="[('date','&lt;=', (context_today()).strftime('%%Y-%%m-%%d')),
+                                     ('date','&gt;',(context_today() - relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                            help="Since 6 days ago until today"/>
+                </filter>
                 <filter string="Product" position="after">
                     <filter string="Cat2" name="groupby_cat2" domain="[]" context="{'group_by':'dsncat2_id'}"/>
                     <filter string="Cat3" name="groupby_cat3" domain="[]" context="{'group_by':'dsncat3_id'}"/>
