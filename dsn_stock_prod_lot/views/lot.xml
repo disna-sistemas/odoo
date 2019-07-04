@@ -52,10 +52,10 @@
                                     ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
                     <filter name="caducado"
                             string="Caducado"
-                            domain="[('life_date','&lt;',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                            domain="[('life_date','&lt;',context_today().strftime('%%Y-%%m-%%d'))]"/>
                     <filter name="no_caducado"
                             string="No Caducado"
-                            domain="[('life_date','&gt;',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                            domain="[('life_date','&gt;',context_today().strftime('%%Y-%%m-%%d'))]"/>
 <!--                            context="{'group_by': 'product_id'}"-->
                 </field>
             </field>
