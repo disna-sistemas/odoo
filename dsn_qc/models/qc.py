@@ -144,7 +144,12 @@ class dsnQcInspection(models.Model):
 
             self.lot_lock_check()
 
-            self.lot_unlock_check()
+#20190704 Deshabilitamos el desbloqueo automático p.o. Ruben.  Se hará manualmente.
+#            self.lot_unlock_check()
+
+
+
+
 
 #         else:
 #
