@@ -56,6 +56,7 @@
                     <filter name="no_caducado"
                             string="No Caducado"
                             domain="[('life_date','&gt;',context_today().strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="Cat2" string="Cat2" context="{'group_by': 'product_id.dsncat2_id.name'}"/>
 <!--                            context="{'group_by': 'product_id'}"-->
                 </field>
             </field>
