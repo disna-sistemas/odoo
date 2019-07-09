@@ -119,9 +119,8 @@
                 <notebook position="inside">
                     <page string="Costs" >
                         <group colspan="2" col="2">
-                            <field name="standard_price" groups="account.group_account_manager">Cost Price</field>
-                            <field name="manual_standard_cost" groups="account.group_account_manager">Manual Standard cost</field>
-                            <button name="open_product_historic_prices"
+                            <field name="standard_price" groups="dsn_security.cost_user">Cost Price</field>
+                            <field name="manual_standard_cost" groups="dsn_security.cost_user">Manual Standard cost</field>                            <button name="open_product_historic_prices"
                                     string="Price history" type="object" class="oe_link"
                                     colspan="2" />
                         </group>
