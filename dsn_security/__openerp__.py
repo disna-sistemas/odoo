@@ -37,6 +37,7 @@
         'security/warehouse.xml',
         'security/labelversion.xml',
         'security/imasd.xml',
+        'security/costs.xml',
     ],
     "installable": True,
     "auto_install": False,
