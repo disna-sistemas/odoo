@@ -50,12 +50,14 @@
                             string="ACC en stock"
                             domain="[('product_id.dsncat2_id.name','&#61;', 'ACC'),
                                     ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
-                    <filter name="caducado"
-                            string="Caducado"
-                            domain="[('life_date','&lt;',context_today().strftime('%%Y-%%m-%%d'))]"/>
-                    <filter name="no_caducado"
-                            string="No Caducado"
-                            domain="[('life_date','&gt;',context_today().strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="caducado_en_stock"
+                            string="Caducado en stock"
+                            domain="[('life_date','&lt;',context_today().strftime('%%Y-%%m-%%d')),
+                                    ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
+                    <filter name="no_caducado_en_stock"
+                            string="No Caducado en stock"
+                            domain="[('life_date','&gt;',context_today().strftime('%%Y-%%m-%%d')),
+                                    ('quant_ids.location_id.usage','&#61;', 'internal')]"/>
 <!--                            context="{'group_by': 'product_id'}"-->
                 </field>
             </field>
