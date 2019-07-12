@@ -55,12 +55,12 @@
                             string="Caducado en stock"
                             domain="[('life_date','&lt;',context_today().strftime('%%Y-%%m-%%d')),
                                     ('quant_ids.location_id.usage','&#61;', 'internal'),
-                                    ('quants_ids.qty','&gt;',0)]"/>
+                                    ('quant_ids.qty','&gt;',0)]"/>
                     <filter name="no_caducado_en_stock"
                             string="No Caducado en stock"
                             domain="[('life_date','&gt;',context_today().strftime('%%Y-%%m-%%d')),
                                     ('quant_ids.location_id.usage','&#61;', 'internal'),
-                                    ('quants_ids.qty','&gt;',0)]"/>
+                                    ('quant_ids.qty','&gt;',0)]"/>
 <!--                            context="{'group_by': 'product_id'}"-->
                 </field>
             </field>
