@@ -9,6 +9,9 @@
                 <field name="product_id" position="after">
                     <field name="manual_production_lot"/>
                 </field>
+                <search string="Search Production" position="inside">
+                    <field name="template" filter_domain="[('product_tmpl_id','ilike',self)]"/>
+                </search>
             </field>
         </record>
     </data>
