@@ -36,12 +36,11 @@
             <field name="arch" type="xml">
                 <page string="Follow Up" position="after">
                     <page string="Partners">
+                        <separator colspan="2" string="Related Partners"/>
                         <field name="dsn_partner_ids"
-                                context="{'claim_id':id}"
-                                nolabel="1">
-                            <tree>
-                                <field name="partner_id" >Partner</field>
-                            </tree>
+                               colspan="2"
+                               nolabel="1"
+                               widget="many2many">
                         </field>
                     </page>
                 </page>
