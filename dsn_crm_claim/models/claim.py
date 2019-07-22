@@ -24,14 +24,16 @@ class partner(models.Model):
     time=fields.Integer(string="Time", help="Tiempo imputable (hh:mm)")
     cost=fields.Float(string="Cost", help="Coste en euros asociado")
 
-    partner_ids = fields.Many2many(comodel_name="res.partner",
-                                       relation="dsn_claim_partner_rel",
-                                       column1="claim_id",
-                                       columns2="partner_id",
-                                       string="Partners")
-
+    partner_ids = fields.One2many(comodel_name="dsn.claim.partner",
+                                    inverse_name="claim_id",
+                                    string="Partners")
 
     # categ_ids = fields.Many2many(
     #     comodel_name='product.category', relation='product_categ_rel',
     #     column1='product_id', column2='categ_id', string='Product Categories')
 
+class ClaimPartner(models.Model):
+    _name = "dsn.claim.partner"
+
+    claim_id = fields.Many2one(comodel_name="crm.claim", string="Claim", required = True, ondelete='restrict')
+    partner_id = fields.Many2one(comodel_name="res.partner", string="Partner", required = True, ondelete='restrict')
