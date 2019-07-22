@@ -30,3 +30,8 @@ class partner(models.Model):
                                        columns2="partner_id",
                                        string="Partners")
 
+
+    # categ_ids = fields.Many2many(
+    #     comodel_name='product.category', relation='product_categ_rel',
+    #     column1='product_id', column2='categ_id', string='Product Categories')
+
