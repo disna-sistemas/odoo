@@ -30,8 +30,3 @@ class partner(models.Model):
                                        columns2="partner_id",
                                        string="Partners")
 
-
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
-
-    dsn_claims = fields.One2many('crm.claim', 'partner_id', string='Claims')
