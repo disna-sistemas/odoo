@@ -46,7 +46,7 @@
                         </tree>
                     </field>
                 </field>
-                <field name="ref" position="attribute">
+                <field name="ref" position="attributes">
                     <attribute name="string">Otra referencia</attribute>
                 </field>
 
