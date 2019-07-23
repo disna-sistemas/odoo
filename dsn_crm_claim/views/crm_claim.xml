@@ -36,7 +36,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Follow Up']" position="after">
                     <page string="dsnPartners">
-                        <group string="Rel.Partners" name="dsn_partners" col="2">
+                        <group string="Partners" name="dsn_partners" col="2">
                             <field name="dsn_partner_ids"
                                    widget="one2many_list"
                                    context="{'claim_id':id}"
@@ -50,5 +50,21 @@
                 </xpath>
             </field>
         </record>
+
+       <record id="dsn_claim_partner_form" model="ir.ui.view">
+            <field name="name">dsn.claim.partner.form</field>
+            <field name="model">dsn.claim.partner</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Claim Partners">
+
+                    <group>
+                        <field name="partner_id"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
     </data>
 </openerp>
