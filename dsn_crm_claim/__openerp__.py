@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['crm_claim'],
+    "depends": ['crm_claim','crm_claim_links'],
     "description": """
 - Add write date to tree view
     """,

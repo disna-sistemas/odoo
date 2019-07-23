@@ -81,17 +81,32 @@
             </field>
         </record>
 
-       <record id="dsn_claim_partner_form" model="ir.ui.view">
+        <record id="dsn.res_partner_form_claim" model="ir.ui.view">
+            <field name="name">dsn.res.partner.form.claim</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="crm_claim_links.view_partner_form_inherit"/>
+            <field name="arch" type="xml">
+                <page string="CRM Claims" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </page>
+                <page string="CRM Claims" position="after">
+                    <page string="DSN Claims">
+                        <field name="dsn_claim_ids" nolabel="1"/>
+                    </page>
+                </page>
+
+            </field>
+        </record>
+
+        <record id="dsn_claim_partner_form" model="ir.ui.view">
             <field name="name">dsn.claim.partner.form</field>
             <field name="model">dsn.claim.partner</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Claim Partners">
-
                     <group>
                         <field name="partner_id"/>
                     </group>
-
                 </form>
             </field>
         </record>

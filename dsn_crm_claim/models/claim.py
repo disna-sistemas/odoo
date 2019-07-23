@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class partner(models.Model):
     _inherit = "crm.claim"
@@ -44,3 +44,24 @@ class ClaimPartner(models.Model):
 
     claim_id = fields.Many2one(comodel_name="crm.claim", string="Claim", required = True, ondelete='restrict')
     partner_id = fields.Many2one(comodel_name="res.partner", string="Partner", required = True, ondelete='restrict')
+
+class Partner(models.Model):
+    _inherit = "res.partner"
+
+    @api.multi
+    def _compute_claims(self):
+        clobj = self.env['crm.claim']
+
+        for record in self:
+            cllist = clobj.search([('dsn_partner_ids.partner_id', '=', record.id)])
+
+            record.dsn_claim_ids = [(6, 0, [x.id for x in cllist])]
+
+            # for claim in cllist:
+            #     record.dsn_claim_ids.append(claim)
+
+
+
+    dsn_claim_ids = fields.One2many(comodel_name="crm.claim",
+                                    string="DSN Claims",
+                                    compute="_compute_claims")
