@@ -38,6 +38,7 @@
                     <page string="dsnPartners">
                         <group string="Rel.Partners" name="dsn_partners" col="2">
                             <field name="dsn_partner_ids"
+                                   widget="one2many_list"
                                    context="{'claim_id':id}"
                                    nolabel="1">
                                     <tree>
