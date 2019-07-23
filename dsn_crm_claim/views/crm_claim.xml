@@ -34,7 +34,7 @@
             <field name="model">crm.claim</field>
             <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
             <field name="arch" type="xml">
-                <field name="ref" position="after">
+                <field name="ref" position="before">
                     <field name="dsn_product_id"/>
                     <field name="dsn_component_id"/>
                     <field name="dsn_partner_ids"
@@ -45,6 +45,9 @@
                             <field name="partner_id">Partner</field>
                         </tree>
                     </field>
+                </field>
+                <field name="ref" position="attribute">
+                    <attribute name="string">Otra referencia</attribute>
                 </field>
 
 <!--
@@ -66,11 +69,13 @@
                 <field name="section_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
+
                 <field name="user_fault" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
                 <field name="categ_id" position="attributes">
                     <attribute name="required">True</attribute>
+                    <attribute name="string">Type of Claim</attribute>
                 </field>
 
             </field>
