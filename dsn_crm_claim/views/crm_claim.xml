@@ -48,6 +48,13 @@
                         </group>
                     </page>
                 </xpath>
+                <field name="user_fault" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="categ_id" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+
             </field>
         </record>
 
