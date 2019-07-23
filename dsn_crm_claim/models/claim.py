@@ -24,6 +24,13 @@ class partner(models.Model):
     time=fields.Integer(string="Time", help="Tiempo imputable (hh:mm)")
     cost=fields.Float(string="Cost", help="Coste en euros asociado")
 
+    dsn_product_id = fields.Many2one(comodel_name="product.product",
+                                     string="Product",
+                                     help="Variante de Producto")
+    dsn_component_id = fields.Many2one(comodel_name="product.product",
+                                     string="Componente",
+                                     help="Componente (Variante de Producto)")
+
     dsn_partner_ids = fields.One2many(comodel_name="dsn.claim.partner",
                                     inverse_name="claim_id",
                                     string="Partners")

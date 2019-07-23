@@ -34,6 +34,25 @@
             <field name="model">crm.claim</field>
             <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
             <field name="arch" type="xml">
+                <separator string="Responsibilities" position="before">
+                    <separator string="Products">
+                        <field name="dsn_product_id">Product</field>
+                        <field name="dsn_component_id">Component</field>
+                    </separator>
+                    <separator string="Partners">
+                        <field name="dsn_partner_ids"
+                               widget="one2many_list"
+                               context="{'claim_id':id}"
+                               nolabel="1">
+                                <tree>
+                                    <field name="partner_id">Partner</field>
+                                </tree>
+                        </field>
+                    </separator>
+
+                </separator>
+
+<!--
                 <xpath expr="//page[@string='Follow Up']" position="after">
                     <page string="dsnPartners">
                         <group string="Partners" name="dsn_partners" col="2">
@@ -48,6 +67,10 @@
                         </group>
                     </page>
                 </xpath>
+-->
+                <field name="section_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
                 <field name="user_fault" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
