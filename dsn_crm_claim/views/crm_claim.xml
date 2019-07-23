@@ -34,29 +34,18 @@
             <field name="model">crm.claim</field>
             <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
             <field name="arch" type="xml">
-                <page string="Claim Description" position="inside">
-                    <group position="after">
-                        <group name="dsnproduct" colspan="2" col="2">
-                            <separator string="Products">
-                                <field name="dsn_product_id"/>
-                                <field name="dsn_component_id"/>
-                            </separator>
-                        </group>
-                        <group name="dsnpartners">
-                            <separator string="Partners">
-                                <field name="dsn_partner_ids"
-                                       widget="one2many_list"
-                                       context="{'claim_id':id}"
-                                       nolabel="1">
-                                        <tree>
-                                            <field name="partner_id">Partner</field>
-                                        </tree>
-                                </field>
-                            </separator>
-                        </group>
-
-                    </group>
-                </page>
+                <field name="ref" position="after">
+                    <field name="dsn_product_id"/>
+                    <field name="dsn_component_id"/>
+                    <field name="dsn_partner_ids"
+                           widget="one2many_list"
+                           context="{'claim_id':id}"
+                           nolabel="0">
+                        <tree>
+                            <field name="partner_id">Partner</field>
+                        </tree>
+                    </field>
+                </field>
 
 <!--
                 <xpath expr="//page[@string='Follow Up']" position="after">
