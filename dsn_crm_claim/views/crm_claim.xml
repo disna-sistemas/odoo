@@ -37,7 +37,7 @@
                 <xpath expr="//page[@string='Follow Up']" position="after">
                     <page string="dsnPartners">
                         <group string="Rel.Partners" name="dsn_partners">
-                            <field name="partner_ids" nolabel="1" colspan="2"/>
+                            <field name="dsn_partner_ids" nolabel="1" colspan="2"/>
                         </group>
                     </page>
                 </xpath>
