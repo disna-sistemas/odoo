@@ -36,8 +36,14 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Follow Up']" position="after">
                     <page string="dsnPartners">
-                        <group string="Rel.Partners" name="dsn_partners">
-                            <field name="dsn_partner_ids" nolabel="1" colspan="2"/>
+                        <group string="Rel.Partners" name="dsn_partners" col="2">
+                            <field name="dsn_partner_ids"
+                                   context="{'claim_id':id}"
+                                   nolabel="1">
+                                    <tree>
+                                        <field name="partner_id">Partner</field>
+                                    </tree>
+                            </field>
                         </group>
                     </page>
                 </xpath>
