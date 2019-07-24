@@ -26,6 +26,12 @@
                 <field name="date" position="after">
                     <field name="write_date" />
                 </field>
+                <field name="date_action_next" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="action_next" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
             </field>
         </record>
 
@@ -81,7 +87,7 @@
             </field>
         </record>
 
-        <record id="dsn.res_partner_form_claim" model="ir.ui.view">
+        <record id="dsn_res_partner_form_claim" model="ir.ui.view">
             <field name="name">dsn.res.partner.form.claim</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="crm_claim_links.view_partner_form_inherit"/>
