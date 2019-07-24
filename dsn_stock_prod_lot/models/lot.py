@@ -340,30 +340,29 @@ class dsnStockProductionLot(models.Model):
 
         return res
 
-
     @api.multi
     def button_unlock(self):
         res = super(dsnStockProductionLot, self).button_unlock()
 
-        if self.locked == False:
-            if self.product_id.product_tmpl_id.product_brand_id.name == 'CS':
-                _subject = "Lot " + self.name + " unblocked by " + self.write_uid.name
-                _body = '<div><p>who: ' + self.write_uid.name + '<br>when: ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '</p></div>'
+        for lot in self.filtered(lambda l: not l.locked):
+            if lot.product_id.product_tmpl_id.product_brand_id.name == 'CS':
+                _subject = "Lot " + lot.name + " unblocked by " + lot.write_uid.name
+                _body = '<div><p>who: ' + lot.write_uid.name + '<br>when: ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '</p></div>'
 
 #                res_partner_obj = self.env['res.partner']
 #                partner_cc_id = res_partner_obj.search([('email','=','sistemas@disna.com')], limit=1)
 #                for id in partner_cc_id:
-#                    self.message_follower_ids.append(id)
+#                    lot.message_follower_ids.append(id)
 
 #                partner_obj = self.env['res.partner']
 #                partner_ids = partner_obj.search([('email', '=', 'sistemas@disna.com')])
-#                new_follower_ids = [p.id for p in partner_ids if p not in self.message_follower_ids]
-#                self.message_subscribe([self.id], partner_ids)
+#                new_follower_ids = [p.id for p in partner_ids if p not in lot.message_follower_ids]
+#                lot.message_subscribe([lot.id], partner_ids)
 
                 mail_mail = self.env['mail.mail']
                 mail_id = mail_mail.create({
                     'model': 'stock.production.lot',
-                    'res_id': self.id,
+                    'res_id': lot.id,
                     'record_name': _('Unblocking'),
                     'email_from': self.env['mail.message']._get_default_from(),
                     'email_to': 'ventas@disna.com',
@@ -373,7 +372,7 @@ class dsnStockProductionLot(models.Model):
                     'body_html': '%s' % _body,
                     'auto_delete': True,
                     'message_id': self.env['mail.message']._get_message_id({'no_auto_thread': True}),
-                    'partner_ids': [(4, id.id) for id in self.message_follower_ids],
+                    'partner_ids': [(4, id.id) for id in lot.message_follower_ids],
                 })
                 mail_mail.send([mail_id])
 
@@ -381,4 +380,4 @@ class dsnStockProductionLot(models.Model):
 
     _sql_constraints = [
         ('name_product_uniq', 'unique(name, product_id)', 'Lot Name must be unique per product !!!'),
-]
+    ]
