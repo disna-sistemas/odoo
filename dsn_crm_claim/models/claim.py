@@ -66,3 +66,19 @@ class Partner(models.Model):
     dsn_claim_ids = fields.One2many(comodel_name="crm.claim",
                                     string="DSN Claims",
                                     compute="_compute_claims")
+
+class Product(models.Model):
+    _inherit = "product.product"
+
+    @api.multi
+    def _compute_claims(self):
+        clobj = self.env['crm.claim']
+
+        for record in self:
+            cllist = clobj.search([('dsn_product_id', '=', record.id)])
+
+            record.dsn_claim_ids = [(6, 0, [x.id for x in cllist])]
+
+    dsn_claim_ids = fields.One2many(comodel_name="crm.claim",
+                                    string="DSN Claims",
+                                    compute="_compute_claims")

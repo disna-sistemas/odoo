@@ -117,5 +117,18 @@
             </field>
         </record>
 
+        <record id="dsn_product_product_form_costs" model="ir.ui.view">
+            <field name="name">dsn.product.product.form.claims</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="DSN Claims" >
+                        <field name="dsn_claim_ids" nolabel="1"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
     </data>
 </openerp>
