@@ -53,7 +53,8 @@ class Partner(models.Model):
         clobj = self.env['crm.claim']
 
         for record in self:
-            cllist = clobj.search([('dsn_partner_ids.partner_id', '=', record.id)])
+            cllist = clobj.search(['|', ('dsn_partner_ids.partner_id', '=', record.id),
+                                   ('partner_id', '=', record.id)])
 
             record.dsn_claim_ids = [(6, 0, [x.id for x in cllist])]
 
