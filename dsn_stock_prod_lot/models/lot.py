@@ -355,7 +355,7 @@ class dsnStockProductionLot(models.Model):
     #                 'res_id': lot.id,
     #                 'record_name': _('Unblocking'),
     #                 'email_from': self.env['mail.message']._get_default_from(),
-    #                 'email_to': 'ventas@disna.com',
+    #                 'email_to': 'unknownemail@disna.com',
     #                 'reply_to': self.env['mail.message']._get_default_from(),
     #                 'subject': _(_subject),
     #                 'body_html': '%s' % _body,
