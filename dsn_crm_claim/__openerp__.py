@@ -24,7 +24,10 @@
     "category": "",
     "depends": ['crm_claim','crm_claim_links','product'],
     "description": """
-- Add write date to tree view
+- New relation with partners
+- Product link
+- Component Link
+- Form, Tree and Calendar view customized
     """,
     "data": [
         'views/crm_claim.xml'
