@@ -75,8 +75,8 @@ class Product(models.Model):
         clobj = self.env['crm.claim']
 
         for record in self:
-            cllist = clobj.search(['|',('dsn_product_id', '=', record.id)
-                                   ('dsn_component_id', '=', record.id),])
+            cllist = clobj.search(['|',('dsn_product_id', '=', record.id),
+                                   ('dsn_component_id', '=', record.id)])
 
             record.dsn_claim_ids = [(6, 0, [x.id for x in cllist])]
 
