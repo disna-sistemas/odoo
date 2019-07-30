@@ -37,7 +37,7 @@ class ProductTemplate(models.Model):
         for record in self:
             tasklist = taskobj.search([('dsn_product_tmpl_id', '=', record.id)])
 
-            record.dsn_claim_ids = [(6, 0, [x.id for x in tasklist])]
+            record.dsn_task_ids = [(6, 0, [x.id for x in tasklist])]
 
     dsn_task_ids = fields.One2many(comodel_name="project.task",
                                     string="DSN Project Tasks",
