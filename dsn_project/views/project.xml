@@ -15,7 +15,8 @@
 
         <record id="dsn_project_task_tree" model="ir.ui.view">
             <field name="name">dsn.project.task.tree</field>
-            <field name="inherit_id" ref="project.task"/>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="mrp_project.project_task_mrp_inh_tree_view"/>
             <field name="arch" type="xml">
                 <field name="mrp_production_id" position="attributes">
                     <attribute name="invisible">True</attribute>
