@@ -22,9 +22,11 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['project'],
+    "depends": ['project','product'],
     "description": """
 - Adds link to product template from project task
+- Adds tasks view into product template view
+- Hides some task columns
     """,
     "data": ['views/project.xml'],
     "installable": True,
