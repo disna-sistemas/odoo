@@ -22,7 +22,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['project','product'],
+    "depends": ['project','mrp_project','product'],
     "description": """
 - Adds link to product template from project task
 - Adds tasks view into product template view

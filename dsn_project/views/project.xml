@@ -13,6 +13,22 @@
             </field>
         </record>
 
+        <record id="dsn_project_task_tree" model="ir.ui.view">
+            <field name="name">dsn.project.task.tree</field>
+            <field name="inherit_id" ref="project.task"/>
+            <field name="arch" type="xml">
+                <field name="mrp_production_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="workorder" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="final_product" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+            </field>
+        </record>
+
 
         <record id="dsn_product_template_form_tasks" model="ir.ui.view">
             <field name="name">dsn.product.template.form.tasks</field>
