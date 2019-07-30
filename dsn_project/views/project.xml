@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="dsn_project_form" model="ir.ui.view">
+            <field name="name">dsn.project.form</field>
+            <field name="model">project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="product_tmpl_id">Product Template</field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
