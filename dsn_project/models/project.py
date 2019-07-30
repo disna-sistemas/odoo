@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class dsnProjectTask(models.Model):
     _inherit = "project.task"
@@ -27,3 +27,18 @@ class dsnProjectTask(models.Model):
 
 
 
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+
+    @api.multi
+    def _compute_tasks(self):
+        taskobj = self.env['project.task']
+
+        for record in self:
+            tasklist = taskobj.search([('dsn_product_tmpl_id', '=', record.id)])
+
+            record.dsn_claim_ids = [(6, 0, [x.id for x in tasklist])]
+
+    dsn_task_ids = fields.One2many(comodel_name="project.task",
+                                    string="DSN Project Tasks",
+                                    compute="_compute_tasks")

@@ -12,5 +12,20 @@
                 </field>
             </field>
         </record>
+
+
+        <record id="dsn_product_template_form_tasks" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.tasks</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <page name="variants" position="after">
+                    <page name="dsn_tasks">
+                        <field name="dsn_task_ids" nolabel="1"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
     </data>
 </openerp>
