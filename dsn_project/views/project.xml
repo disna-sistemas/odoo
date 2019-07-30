@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="project.view_task_form2" />
             <field name="arch" type="xml">
                 <field name="project_id" position="after">
-                    <field name="product_tmpl_id">Product Template</field>
+                    <field name="dsn_product_tmpl_id">Product Template</field>
                 </field>
             </field>
         </record>
