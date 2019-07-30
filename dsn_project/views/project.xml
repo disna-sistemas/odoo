@@ -20,7 +20,7 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <page name="variants" position="after">
-                    <page name="dsn_tasks">
+                    <page name="dsn_tasks" string="DSN Tasks">
                         <field name="dsn_task_ids" nolabel="1"/>
                     </page>
                 </page>
