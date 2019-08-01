@@ -42,7 +42,7 @@ class dsnStockMove(models.Model):
         for record in self.filtered(lambda mv: not mv.picking_id is None):
 #            record.dsn_customer_product_name = record.product_id.name_template
             prodsubinfolist = prodsupinfoobj.search([('product_id','=',record.product_id),
-                                                     ('name','=',record.picking_id.partner_id)])
+                                                     ('name','=',record.picking_id.partner_id.id)])
 
             for prod_custom_info in prodsubinfolist:
                     record.dsn_customer_product_name = prod_custom_info.product_name
