@@ -38,12 +38,13 @@ class dsnStockMove(models.Model):
     @api.multi
     @api.depends('product_id')
     def _compute_partner_product_name(self):
+        prodsupinfoobj = self.env['product.supplierinfo']
         for record in self.filtered(lambda mv: not mv.picking_id is None):
-            record.dsn_customer_product_name = record.product_id.name_template
-            for prod_custom_info in record.product_id.product_tmpl_id.customer_ids.filtered(
-                lambda x: x.name == record.picking_id.partner_id):
+#            record.dsn_customer_product_name = record.product_id.name_template
+            prodsubinfolist = prodsupinfoobj.search([('product_id','=',record.product_id),
+                                                     ('name','=',record.picking_id.partner_id)])
 
-                if prod_custom_info.name:
+            for prod_custom_info in prodsubinfolist:
                     record.dsn_customer_product_name = prod_custom_info.product_name
 
     dsn_customer_product_name = fields.Char(string='Partner-Product Name',
