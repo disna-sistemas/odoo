@@ -35,6 +35,18 @@ class dsnStockMove(models.Model):
             record.dsncat4_id = record.product_id.dsncat4_id
             record.dsncat5_id = record.product_id.dsncat5_id
 
+    @api.multi
+    @api.depends('product_id')
+    def _compute_partner_product_name(self):
+        for record in self.filtered(lambda mv: not mv.picking_id is None):
+            record.dsn_customer_product_name = record.product_id.product_tmpl_id.customer_ids.filtered(
+                lambda x: x.name.id == record.picking_id.partner_id.id)
+
+    dsn_customer_product_name = fields.Char(string='Partner-Product Name',
+                                            compute='_compute_partner_product_name',
+                                            store=True)
+
+
     dsncat1_id = fields.Many2one('product.category',
                                  string='Cat1',
                                  compute='_compute_category_levels',
