@@ -35,21 +35,18 @@ class dsnStockMove(models.Model):
             record.dsncat4_id = record.product_id.dsncat4_id
             record.dsncat5_id = record.product_id.dsncat5_id
 
-#     @api.multi
-#     @api.depends('product_id')
-#     def _compute_partner_product_name(self):
-#         prodsupinfoobj = self.env['product.supplierinfo']
-#         for record in self.filtered(lambda mv: not mv.picking_id is None):
-# #            record.dsn_customer_product_name = record.product_id.name_template
-#             prodsubinfolist = prodsupinfoobj.search([('product_id','=',record.product_id),
-#                                                      ('name','=',record.picking_id.partner_id.id)])
-#
-#             for prod_custom_info in prodsubinfolist:
-#                     record.dsn_customer_product_name = prod_custom_info.product_name
-#
-#     dsn_customer_product_name = fields.Char(string='Partner-Product Name',
-#                                             compute='_compute_partner_product_name',
-#                                             store=True)
+    @api.multi
+    @api.depends('product_id')
+    def _compute_partner_product_name(self):
+
+        for move in self.filtered(lambda mv: not mv.picking_id is None):
+            for prod_custom_info in move.product_id.customer_ids:
+                move.dsn_customer_product_name = prod_custom_info.product_name
+
+
+    dsn_customer_product_name = fields.Char(string='Partner-Product Name',
+                                            compute='_compute_partner_product_name',
+                                            store=True)
 
     dsncat1_id = fields.Many2one('product.category',
                                  string='Cat1',
