@@ -176,7 +176,7 @@ class dsnQcInspection(models.Model):
 
         res = super(dsnQcInspection, self).write(values)
 
-        self.lot_lock_unlock_check(values)
+#        self.lot_lock_unlock_check(values)
 
         return res
 
