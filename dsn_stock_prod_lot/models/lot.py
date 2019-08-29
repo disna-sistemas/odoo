@@ -37,6 +37,7 @@ class dsnLotComponents(models.Model):
 
 class dsnStockProductionLot(models.Model):
     _inherit = ['stock.production.lot']
+    _order = 'create_date desc'
 
     @api.multi
     @api.depends('name')
