@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-<!--
-        <record id="dsn_mrp_production_search" model="ir.ui.view" >
-            <field name="name">dsn.mrp.production.search</field>
-            <field name="model">mrp.production</field>
-            <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+
+        <record id="dsn_operation_time_line_form" model="ir.ui.view" >
+            <field name="name">dsn.operation.time.line.form</field>
+            <field name="model">operation.time.line</field>
+            <field name="inherit_id" ref="mrp_operations_time_control.operation_time_lines_form_view" />
             <field name="arch" type="xml">
-                <filter name="inprogress" position="after">
-                    <filter name='pa' string="PA" domain="[('product_id.dsncat2_id.name','&#61;', 'PA')]"/>
-                    <filter name='semi' string="SEMI" domain="[('product_id.dsncat2_id.name','&#61;', 'SEMI')]"/>
-                </filter>
+                <field name="user" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </field>
             </field>
         </record>
--->
 
     </data>
 </openerp>
