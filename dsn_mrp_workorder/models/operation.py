@@ -30,13 +30,13 @@ class OperationTimeLine(models.Model):
         return datetime.now().strftime("%Y-%m-%d")
 #        return datetime.now()
 
-    @api.multi
-    @api.depends('operation_time')
-    def _compute_production(self):
-        for record in self:
-            record.production=record.operation_time.production_id
+    # @api.multi
+    # @api.depends('operation_time')
+    # def _compute_production(self):
+    #     for record in self:
+    #         record.production=record.operation_time.production_id
 
     start_date = fields.Datetime(string='Start Date', default=_default_time)
     end_date = fields.Datetime(string='End Date', default=_default_time)
-    production = fields.Many2one('mrp.production', string='Production', compute='_compute_production', store=True)
+#    production = fields.Many2one('mrp.production', string='Production', compute='_compute_production', store=True)
 
