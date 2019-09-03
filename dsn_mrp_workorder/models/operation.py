@@ -27,7 +27,7 @@ class OperationTimeLine(models.Model):
 
 
     def _default_time(self):
-        return datetime.now().strftime("%Y-%m-%d")
+        return datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 #        return datetime.now()
 
     # @api.multi
