@@ -106,6 +106,18 @@
             </field>
         </record>
 
+        <record id="dsn_trademark_registration_search" model="ir.ui.view">
+            <field name="name">dsn.trademark.registration_search</field>
+            <field name="model">dsn.trademark.registration</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="countrygroup" string='Country' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'country_id'}"/>
+                    <filter name="stategroup" string='State' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'state'}"/>
+                </search>
+            </field>
+        </record>
+
         <record id="dsn_trademark_registration_calendar" model="ir.ui.view">
             <field name="name">dsn.trademark.registration.calendar</field>
             <field name="model">dsn.trademark.registration</field>
