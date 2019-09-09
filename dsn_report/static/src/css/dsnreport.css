@@ -4,7 +4,7 @@ html {
 
 body {
 
-    font-family: "Times New Roman";
+    font-family: "Liberation Sans";
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -12,14 +12,14 @@ body {
 
 div.page {
 
-    font-family: "Times New Roman";
+    font-family: "Liberation Sans";
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
 }
 
 div.header {
-    font-family: "Times New Roman";
+    font-family: "Liberation Sans";
     font-size: 14px;
 }
 
@@ -70,11 +70,12 @@ div.footer_picking_transporter {
 }
 
 div.footer {
-    position: absolute;
+/*    position: absolute;
     bottom: 15px;
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
+*/
 }
 
 div.footer_picking_transporter {
