@@ -15,13 +15,14 @@
 
 		<template id="dsn_document_stock_picking_certificate">
 
+            <t t-call="dsn_report.picking_layout_header" />
+
             <div class="page">
 
-                <t t-foreach="docs" t-as="o">
-                    <span>un documento</span>
-                    <t t-set="company" t-value="o.company_id"></t>
 
-                    <t t-call="dsn_report.picking_layout"/>
+                <t t-foreach="docs" t-as="o">
+                    <span t-field="o.name"></span>
+                    <t t-set="company" t-value="o.company_id"></t>
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
                         <table style="font-size: xx-small;color: grey;">
@@ -38,6 +39,8 @@
                     </t>
                 </t>
             </div>
+
+            <t t-call="dsn_report.picking_layout_footer" />
 		</template>
 
 	</data>
