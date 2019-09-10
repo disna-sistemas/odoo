@@ -139,7 +139,7 @@
 
 </template>
 
-<template id="external_document_layout_footer">
+<template id="external_document_layout_footer" inherit_id="report.external_layout_footer">
 
     <div class="footer">
 
