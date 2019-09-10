@@ -3,19 +3,21 @@ html {
 }
 
 body {
-
+/*
     font-family: "Liberation Sans";
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
+*/
 }
 
 div.page {
-
+/*
     font-family: "Liberation Sans";
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
+*/
 }
 
 div.header {
