@@ -136,18 +136,17 @@
 <!--&ndash;&gt;-->
 <!--</template>-->
 
-<template id="invoice_layout_footer">
-    <t t-call="dsn_report.external_document_layout_footer" />
-</template>
 
 
 
+<!--
 
 <template id="picking_layout">
     <t t-call="dsn_report.picking_layout_header" />
     <t t-raw="0" />
     <t t-call="dsn_report.picking_layout_footer" />
 </template>
+-->
 
 <template id="picking_layout_header">
 
@@ -165,7 +164,6 @@
 -->
 
 </template>
-
 
 
 <template id="picking_layout_footer">
