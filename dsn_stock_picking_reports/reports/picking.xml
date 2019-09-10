@@ -17,7 +17,9 @@
 
 		<template id="dsn_document_stock_picking_certificate">
 
+<!--
             <t t-call="picking_layout" />
+-->
 
             <div class="page">
 
