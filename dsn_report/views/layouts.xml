@@ -127,9 +127,12 @@
 
         <t t-if="o and 'company_id' in o">
             <t t-set="company" t-value="o.company_id">
+                <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
+<!--
                 <t t-if="company.company_registry.startswith('distribuidora')">
                     <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
                 </t>
+-->
             </t>
         </t>
     </div>
