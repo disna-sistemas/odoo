@@ -20,11 +20,6 @@ div.page {
 */
 }
 
-div.header {
-    font-family: "Liberation Sans";
-    font-size: 14px;
-}
-
 div.absol {
     position: absolute;
     border: 1px solid blue;
@@ -62,7 +57,7 @@ div.transporter_signature {
 }
 
 div.header {
-    position: absolute;
+
     top: 10px;
 }
 

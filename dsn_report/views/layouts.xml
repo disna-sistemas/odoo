@@ -119,14 +119,14 @@
 
 
         <t t-foreach="docs" t-as="o">
-<!--            <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
+<!--            <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
 -->
-
             <t t-if="o and 'company_id' in o">
-                <span>entraif</span>
 
                 <t t-set="company" t-value="o.company_id">
-                    <span><img t-if="company.company_registry='disna')" t-att-src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
+                    <t t-if="company.company_registry='disna'">
+                        <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
+                    </t>
                 </t>
             </t>
         </t>
