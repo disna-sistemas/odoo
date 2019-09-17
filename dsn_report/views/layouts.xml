@@ -101,14 +101,7 @@
 
 
 <template id="external_layout">
-    <!-- Multicompany -->
-    <t t-if="o and 'company_id' in o">
-        <t t-set="company" t-value="o.company_id"></t>
-    </t>
-    <t t-if="not o or not 'company_id' in o">
-        <t t-set="company" t-value="res_company"></t>
-    </t>
-
+    <span>external_layout</span>
     <t t-call="dsn_report.external_layout_header" />
     <t t-raw="0" />
     <t t-call="dsn_report.external_layout_footer" />
@@ -124,6 +117,7 @@
     <t t-call="report.minimal_layout" />
 
     <div class="header">
+        <span>header</span>
 
         <t t-foreach="docs" t-as="o">
             <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 120px; "/></span>
