@@ -72,8 +72,9 @@ div.footer_picking_transporter {
 }
 
 div.footer {
-/*    position: absolute;
+    position: absolute;
     bottom: 15px;
+/*
     background-image: url("/dsn_report/static/img/registro_mercantil.png");
     background-repeat: no-repeat;
     background-position: left bottom;
