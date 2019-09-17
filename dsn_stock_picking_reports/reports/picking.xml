@@ -18,7 +18,7 @@
 		<template id="dsn_document_stock_picking_certificate">
 
 
-            <t t-call="dsn_report.picking_layout" />
+            <t t-call="dsn_report.picking_layout_header" />
 
             <div class="page">
 
@@ -42,6 +42,8 @@
                     </t>
                 </t>
             </div>
+
+            <t t-call="dsn_report.picking_layout_footer" />
 
 		</template>
 
