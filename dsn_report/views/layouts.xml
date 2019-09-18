@@ -119,7 +119,7 @@
         <t t-foreach="docs" t-as="o">
             <t t-set="comp" t-value="o.company_id" />
             <t t-if="comp.company_registry=='disna'">
-                <span><img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
+                <span><img t-if="comp.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
             </t>
 <!--            <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
                     <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
