@@ -115,26 +115,32 @@
     <!--</link>-->
     <t t-call="report.minimal_layout" />
 
-    <div class="header">
-        <t t-foreach="docs" t-as="o">
-            <t t-set="comp" t-value="o.company_id" />
-            <t t-if="comp.company_registry=='disna'">
-                <div style="page-break-before: always;">
-                    <span><img t-if="comp.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % comp.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
-                    <div id="partner_adress">
-                        <t t-set="partner" t-value="o.partner_id" />
+    <table>
+        <thead style="display: table-header-group">
+            <tr>
+                <td>
+                    <div class="header">
+                        <t t-foreach="docs" t-as="o">
+                            <t t-set="comp" t-value="o.company_id" />
+                            <t t-if="comp.company_registry=='disna'">
+                                <div style="page-break-before: always;">
+                                    <span><img t-if="comp.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % comp.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
+                                    <div id="partner_adress">
+                                        <t t-set="partner" t-value="o.partner_id" />
 
-                        <div><span><b><t t-esc="partner.name" /></b></span></div>
-                        <div><span t-esc="partner.street" /></div>
+                                        <div><span><b><t t-esc="partner.name" /></b></span></div>
+                                        <div><span t-esc="partner.street" /></div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
                     </div>
-                </div>
-            </t>
+                </td>
+            </tr>
 
-<!--            <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
-                    <span><img src="/dsn_report/static/img/logo_disna_descrip.jpg" style="margin-bottom: 5px; vertical-align: text-bottom; max-width: 1080px; "/></span>
--->
-        </t>
-    </div>
+        </thead>
+    </table>
+
 
 </template>
 
