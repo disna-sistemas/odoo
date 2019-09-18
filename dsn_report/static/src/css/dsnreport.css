@@ -75,6 +75,10 @@ div.footer {
 */
 }
 
+div.partner_address {
+    left: 500px;
+}
+
 div.footer_picking_transporter {
     bottom: 50px;
     height: 200px;
