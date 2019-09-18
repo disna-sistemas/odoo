@@ -19,14 +19,13 @@
 
             <t t-call="report.minimal_layout" />
 
-            <t t-call="dsn_report.picking_layout_header" />
+            <t t-foreach="docs" t-as="o">
+                <span t-field="o.name"></span>
+                <t t-set="company" t-value="o.company_id" />
 
-            <div class="page">
+                <t t-call="dsn_report.picking_layout_header" />
 
-
-                <t t-foreach="docs" t-as="o">
-                    <span t-field="o.name"></span>
-                    <t t-set="company" t-value="o.company_id"></t>
+                <div class="page">
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="p">
                         <table style="font-size: xx-small;color: grey;">
@@ -41,14 +40,13 @@
                         </table>
                         <br/>
                     </t>
-                </t>
-            </div>
+                </div>
 
-            <t t-call="dsn_report.picking_layout_footer" />
+                <t t-call="dsn_report.picking_layout_footer" />
+
+            </t>
 
 		</template>
-
-
 
 	</data>
 </openerp>

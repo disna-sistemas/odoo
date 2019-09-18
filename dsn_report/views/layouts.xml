@@ -111,11 +111,9 @@
 <template id="external_layout_header">
 
     <div class="header">
-        <t t-foreach="docs" t-as="o">
-            <t t-set="comp" t-value="o.company_id" />
-            <t t-if="comp.company_registry=='disna'">
+            <t t-if="company.company_registry=='disna'">
                 <div style="page-break-before: always;">
-                    <span><img t-if="comp.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % comp.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
+                    <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
                     <div id="partner_adress">
                         <t t-set="partner" t-value="o.partner_id" />
 
@@ -124,7 +122,6 @@
                     </div>
                 </div>
             </t>
-        </t>
     </div>
 
 
