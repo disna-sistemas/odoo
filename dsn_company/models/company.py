@@ -22,5 +22,6 @@ class dsnCompany(models.Model):
     _inherit = "res.company"
 
     dsn_logo2 = fields.Binary('Logo Instituto Naturvita', help='Logo for certificates')
-    dsn_logo_export = fields.Binary('Export Logo', help='Logo for export docs')
+    dsn_logo_export = fields.Binary('Export Logo for documents', help='Logo for export docs')
+    dsn_logo_docs = fields.Binary('Logo for documents', help='Logo for documents')
  
