@@ -113,7 +113,7 @@
     <!--<link position="after">-->
         <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
     <!--</link>-->
-    <t t-call="report.minimal_layout" />
+
 
     <table>
         <thead style="display: table-header-group">
