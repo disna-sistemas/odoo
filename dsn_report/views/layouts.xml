@@ -110,36 +110,22 @@
 
 <template id="external_layout_header">
 
-    <!--<link position="after">-->
-        <!--<link rel="stylesheet" href="/dsn_report/static/src/css/dsnreport.css" />-->
-    <!--</link>-->
+    <div class="header">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="comp" t-value="o.company_id" />
+            <t t-if="comp.company_registry=='disna'">
+                <div style="page-break-before: always;">
+                    <span><img t-if="comp.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % comp.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
+                    <div id="partner_adress">
+                        <t t-set="partner" t-value="o.partner_id" />
 
-
-    <table>
-        <thead style="display: table-header-group">
-            <tr>
-                <td>
-                    <div class="header">
-                        <t t-foreach="docs" t-as="o">
-                            <t t-set="comp" t-value="o.company_id" />
-                            <t t-if="comp.company_registry=='disna'">
-                                <div style="page-break-before: always;">
-                                    <span><img t-if="comp.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % comp.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
-                                    <div id="partner_adress">
-                                        <t t-set="partner" t-value="o.partner_id" />
-
-                                        <div><span><b><t t-esc="partner.name" /></b></span></div>
-                                        <div><span t-esc="partner.street" /></div>
-                                    </div>
-                                </div>
-                            </t>
-                        </t>
+                        <div><span><b><t t-esc="partner.name" /></b></span></div>
+                        <div><span t-esc="partner.street" /></div>
                     </div>
-                </td>
-            </tr>
-
-        </thead>
-    </table>
+                </div>
+            </t>
+        </t>
+    </div>
 
 
 </template>
