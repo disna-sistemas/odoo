@@ -2,23 +2,6 @@ html {
     font-family: Verdana;
 }
 
-body {
-/*
-    font-family: "Liberation Sans";
-    background-image: url("/dsn_report/static/img/registro_mercantil.png");
-    background-repeat: no-repeat;
-    background-position: left bottom;
-*/
-}
-
-div.page {
-/*
-    font-family: "Liberation Sans";
-    background-image: url("/dsn_report/static/img/registro_mercantil.png");
-    background-repeat: no-repeat;
-    background-position: left bottom;
-*/
-}
 
 div.absol {
     position: absolute;
@@ -183,9 +166,3 @@ ul.list-inline span {
     font-color: #56;
 }
 
-/*
-div.invoice {
-    //position: relative;
-    margin-left: 30px;
-}
-*/

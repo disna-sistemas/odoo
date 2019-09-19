@@ -113,7 +113,9 @@
     <div class="header">
         <t t-if="company.company_registry=='disna'">
             <div style="page-break-before: always;">
+                <!--
                 <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
+                -->
                 <div id="partner_adress">
                     <t t-set="partner" t-value="o.partner_id" />
 
@@ -136,21 +138,12 @@
 
     <div class="footer">
 
-        <!--
-        <div class="text-center">
-            <div>
-            <ul class="list-inline">
-                <li><span class="page"/></li>
-                <li>/</li>
-                <li><span class="topage"/></li>
-            </ul>
-            </div>
-        </div>
-        -->
             <p>
                 <hr />
             </p>
-            <p style="color: rgb(142,144,144); font-family: 'Liberation Sans'; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+<!--<p style="color: rgb(142,144,144); font-family: 'Liberation Sans'; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+-->
+            <p>C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
 
             </p>
 
