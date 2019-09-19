@@ -111,17 +111,21 @@
 <template id="external_layout_header">
 
     <div class="header">
-            <t t-if="company.company_registry=='disna'">
-                <div style="page-break-before: always;">
-                    <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
-                    <div id="partner_adress">
-                        <t t-set="partner" t-value="o.partner_id" />
+        <t t-if="company.company_registry=='disna'">
+            <div style="page-break-before: always;">
+                <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
+                <div id="partner_adress">
+                    <t t-set="partner" t-value="o.partner_id" />
 
-                        <div><span><b><t t-esc="partner.name" /></b></span></div>
-                        <div><span t-esc="partner.street" /></div>
+                    <div><span><b><t t-esc="partner.name" /></b></span></div>
+                    <div>
+                        <t t-if="partner.street">
+                            <span t-esc="partner.street" />
+                        </t>
                     </div>
                 </div>
-            </t>
+            </div>
+        </t>
     </div>
 
 
