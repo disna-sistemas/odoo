@@ -113,7 +113,7 @@
     <div class="header">
             <t t-if="company.company_registry=='disna'">
                 <div style="page-break-before: always;">
-                    <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 950px; "/></span>
+                    <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
                     <div id="partner_adress">
                         <t t-set="partner" t-value="o.partner_id" />
 

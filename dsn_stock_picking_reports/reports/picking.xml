@@ -6,13 +6,11 @@
 		    id="dsn_report_stock_picking_certs"
 		    model="stock.picking"
 		    string="Picking certs"
-		    report_type="qweb-html"
+		    report_type="qweb-pdf"
 		    name="dsn_stock_picking_reports.dsn_document_stock_picking_certificate"
 		    file="dsn_stock_picking_reports.picking"
 		    attachment_use="False"
 		/>
-
-
 
 
 		<template id="dsn_document_stock_picking_certificate">
