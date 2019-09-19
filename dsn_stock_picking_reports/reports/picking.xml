@@ -17,6 +17,7 @@
 
             <t t-call="report.minimal_layout" />
 
+
             <t t-foreach="docs" t-as="o">
                 <span t-field="o.name"></span>
                 <t t-set="company" t-value="o.company_id" />
