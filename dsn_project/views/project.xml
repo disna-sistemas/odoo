@@ -2,43 +2,39 @@
 <openerp>
     <data>
 
-        <record id="dsn_project_task_form" model="ir.ui.view">
-            <field name="name">dsn.project.task.form</field>
-            <field name="model">project.task</field>
-            <field name="inherit_id" ref="project.view_task_form2" />
+        <record id="dsn_project_form" model="ir.ui.view">
+            <field name="name">dsn.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
             <field name="arch" type="xml">
-                <field name="project_id" position="after">
+                <field name="partner_id" position="after">
                     <field name="dsn_product_tmpl_id">Product Template</field>
                 </field>
             </field>
         </record>
 
-        <record id="dsn_project_task_tree" model="ir.ui.view">
-            <field name="name">dsn.project.task.tree</field>
-            <field name="model">project.task</field>
-            <field name="inherit_id" ref="mrp_project.project_task_mrp_inh_tree_view"/>
+        <record id="dsn_project_tree" model="ir.ui.view">
+            <field name="name">dsn.project.tree</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
             <field name="arch" type="xml">
-                <field name="mrp_production_id" position="attributes">
-                    <attribute name="invisible">True</attribute>
+                <field name="user_id" position="after">
+                    <field name="dsn_product_tmpl_id" />
                 </field>
-                <field name="workorder" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </field>
-                <field name="final_product" position="attributes">
+                <field name="partner_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
             </field>
         </record>
 
-
-        <record id="dsn_product_template_form_tasks" model="ir.ui.view">
-            <field name="name">dsn.product.template.form.tasks</field>
+        <record id="dsn_product_template_form_projects" model="ir.ui.view">
+            <field name="name">dsn.product.template.form.projects</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <page name="variants" position="after">
-                    <page name="dsn_tasks" string="DSN Tasks">
-                        <field name="dsn_task_ids" nolabel="1"/>
+                    <page name="dsn_projects" string="DSN Projects">
+                        <field name="dsn_project_ids" nolabel="1"/>
                     </page>
                 </page>
             </field>
