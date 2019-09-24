@@ -32,7 +32,7 @@
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.view_project_kanban"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[contains(@class, 'text-center oe_kanban_alias" position="after">
+                <xpath expr="//div[contains(@class, 'text-center oe_kanban_alias'" position="after">
                     <div>
                         <span><strong><field name="dsn_product_tmpl_id"/></strong></span>
                     </div>
