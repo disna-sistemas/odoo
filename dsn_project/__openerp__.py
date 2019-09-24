@@ -24,9 +24,8 @@
     "category": "",
     "depends": ['project','mrp_project','product'],
     "description": """
-- Adds link to product template from project task
-- Adds tasks view into product template view
-- Hides some task columns
+- Adds link to product template from project
+- Adds projects view into product template view
     """,
     "data": ['views/project.xml'],
     "installable": True,

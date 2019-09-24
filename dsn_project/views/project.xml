@@ -26,6 +26,16 @@
                 </field>
             </field>
         </record>
+
+        <record id="dsn_project_kanban" model="ir.ui.view">
+            <field name="arch" type="xml">
+                <xpath expr="//div[contains(@class, 'text-center oe_kanban_alias" position="after">
+                    <div>
+                        <span><strong><field name="dsn_product_tmpl_id"/></strong></span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
 <!--
         <record id="dsn_product_template_form_projects" model="ir.ui.view">
             <field name="name">dsn.product.template.form.projects</field>
