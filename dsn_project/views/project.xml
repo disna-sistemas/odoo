@@ -39,7 +39,7 @@
                 </xpath>
             </field>
         </record>
-<!--
+
         <record id="dsn_product_template_form_projects" model="ir.ui.view">
             <field name="name">dsn.product.template.form.projects</field>
             <field name="model">product.template</field>
@@ -52,7 +52,6 @@
                 </page>
             </field>
         </record>
-        -->
     </data>
 
 </openerp>
