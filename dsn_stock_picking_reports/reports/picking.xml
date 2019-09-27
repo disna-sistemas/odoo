@@ -15,6 +15,10 @@
 
 		<template id="dsn_document_stock_picking_certificate">
 
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet" type="text/css" href="/dsn_report/static/src/css/dsnreport.css" />
+            </xpath>
+
             <t t-call="report.minimal_layout" />
 
 
