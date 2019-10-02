@@ -42,6 +42,9 @@ div.transporter_signature {
 div.header {
 
     top: 10px;
+    background-image: url("/dsn_report/static/img/logo_disna_descrip.jpg");
+    background-repeat: no-repeat;
+    background-position: left bottom;
 }
 
 div.footer_picking_transporter {
