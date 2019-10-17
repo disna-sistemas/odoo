@@ -21,11 +21,27 @@
 
 # Computes the number of the planned_date
 
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 from datetime import datetime
 
 class dsnMrpProduction(models.Model):
     _inherit = "mrp.production"
+
+    @api.multi
+    def action_assign(self):
+
+        cancel_operation = False
+
+        for record in self:
+            if record.project_id is None:
+                cancel_operation = True
+
+        if cancel_operation:
+            raise exceptions.Warning('Project must be specified')
+        else:
+            res = super(dsnMrpProduction, self).action_assign()
+            self.recalc_production_notes()
+            return res
 
 
 
