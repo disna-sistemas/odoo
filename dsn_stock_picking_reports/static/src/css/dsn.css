@@ -1,3 +1,7 @@
 html {
     font-family: Verdana;
 }
+
+p.company_data {
+    font-size: xx-small;
+}
