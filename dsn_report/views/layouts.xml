@@ -135,6 +135,7 @@
 <template id="external_layout_footer">
 
     <div class="footer">
+        <div class="registro_mercantil">
 
             <p>
                 <hr />
@@ -144,7 +145,7 @@
             <p>C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
 
             </p>
-
+        </div>
 
     </div>
 
