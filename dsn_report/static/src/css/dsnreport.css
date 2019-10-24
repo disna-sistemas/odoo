@@ -108,10 +108,8 @@ div.relat {
     position: relative;
 }
 
-p.registro_mercantil {
-    font-size: 7px;
-    font-color: rgb(0,111,105);
-    text-align: center;
+p.company_data {
+    font-size: xxx-small;
 }
 
 span.float_left {
