@@ -135,12 +135,10 @@
 <template id="external_layout_footer">
 
     <div class="footer">
-            <p>
-
-            </p>
+        <hr/>
 <!--<p style="color: rgb(142,144,144); font-family: 'Liberation Sans'; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
 -->
-            <p style="font-size: xx-small; color: grey;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
+            <p style="font-size: xx-small; color: grey; text-align">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
             </p>
     </div>
 
