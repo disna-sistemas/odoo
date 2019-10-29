@@ -6,6 +6,16 @@
             <field name="digits" eval="5"/>
         </record>
 
+        <record model="ir.ui.view" id="dsn_mrp_bom_form">
+            <field name="name">dsn.mrp.bom.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp_bom_version.mrp_bom_version_form_view"/>
+            <field name="arch" type="xml">
+                <button name="button_activate" position="attributes">
+                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_activation"</attribute>
+                </button>
+            </field>
+        </record>
 
         <record id="dsn_mrp_bom_tree_view" model="ir.ui.view">
             <field name="name">dsn.mrp.bom.tree.view</field>
