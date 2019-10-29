@@ -38,6 +38,7 @@
         'security/labelversion.xml',
         'security/imasd.xml',
         'security/costs.xml',
+        'security/bomactivation.xml',
     ],
     "installable": True,
     "auto_install": False,
