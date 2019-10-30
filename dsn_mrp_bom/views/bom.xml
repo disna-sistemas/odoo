@@ -12,7 +12,7 @@
             <field name="inherit_id" ref="mrp_bom_version.mrp_bom_version_form_view"/>
             <field name="arch" type="xml">
                 <button name="button_activate" position="attributes">
-                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_activation"</attribute>
+                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_activation</attribute>
                 </button>
             </field>
         </record>
