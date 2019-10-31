@@ -31,7 +31,7 @@ QC page on mrp production
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
-    'depends': ['mrp_production_estimated_cost','mrp_final_product_lot','disna_mrp_labelling_control'],
+    'depends': ['mrp_production_estimated_cost','mrp_final_product_lot','disna_mrp_labelling_control','mrp_product_variants'],
     'data': [
         'views/production.xml'
     ],

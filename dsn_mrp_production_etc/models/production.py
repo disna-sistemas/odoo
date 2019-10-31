@@ -43,7 +43,13 @@ class dsnMrpProduction(models.Model):
             self.recalc_production_notes()
             return res
 
-
+    @api.multi
+    @api.onchange('product_tmpl_id')
+    def onchange_product_tmpl_id(self):
+        res = super(dsnMrpProduction, self).onchange_product_tmpl_id()
+        res['domain'].update({
+            'bom_id': [('product_tmpl_id', '=', self.product_tmpl_id.id),('state','!=','draft')]})
+        return res
 
 #   Imprimir etiquetas
 #    @api.multi
