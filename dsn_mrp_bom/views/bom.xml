@@ -14,9 +14,6 @@
                 <button name="button_activate" position="attributes">
                     <attribute name="groups">dsn_security.dsn_group_mrp_bom_activation</attribute>
                 </button>
-                <button name="button_historical" position="attributes">
-                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_historify</attribute>
-                </button>
             </field>
         </record>
 
