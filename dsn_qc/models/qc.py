@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
 from datetime import datetime
@@ -39,6 +39,30 @@ class dsnQcTest(models.Model):
                                  comodel_name="product.product",
                                  compute='_compute_product',
                                  store=True)
+    default_test = fields.Boolean(string="Default Test")
+
+
+
+class dsnProductProduct(models.Model):
+    _inherit = "product.product"
+
+    dsn_default_test_id = fields.Many2one(string="Default Test",
+                                          comodel_name="qc.test",
+                                          compute='_compute_default_test',
+                                          store=True)
+
+    @api.multi
+    def _compute_default_test(self):
+        test_obj = self.env['qc.test']
+        for record in self:
+            default_tests = test_obj.search([('product_id','=',record.id),('default_test','=',True)])
+            if default_tests:
+                record.dsn_default_test_id = default_tests[0]
+            else:
+                record.dsn_default_test_id = None
+
+
+
 
 class dsnQcAnalysisMethod(models.Model):
     _name="dsnqc.analysis.method"
