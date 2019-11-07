@@ -19,7 +19,7 @@
                 </button>
             </field>
         </record>
-
+<!--
         <record id="dsn_mrp_bom_tree_view" model="ir.ui.view">
             <field name="name">dsn.mrp.bom.tree.view</field>
             <field name="model">mrp.bom</field>
@@ -28,6 +28,23 @@
                 <field name="code" position="after">
                     <field name="dsn_pnt_nf">PNT</field>
                 </field>
+            </field>
+        </record>
+-->
+        <record id="dsn_mrp_bom_tree_view" model="ir.ui.view">
+            <field name="name">dsn.mrp.bom.tree.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp_bom_version.mrp_bom_version_tree_view" />
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="dsn_pnt_nf">PNT</field>
+                </field>
+                <button name="button_activate" position="attributes">
+                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_activation</attribute>
+                </button>
+                <button name="button_historical" position="attributes">
+                    <attribute name="groups">dsn_security.dsn_group_mrp_bom_historify</attribute>
+                </button>
             </field>
         </record>
 
