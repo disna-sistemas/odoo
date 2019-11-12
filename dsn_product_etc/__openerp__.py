@@ -29,10 +29,12 @@
     + PNT ESP
     + rinsing
     + Product Specifications and Registrations
+    + pictograms
     - standard_price
     - manual_standard_cost
     - price_history
     - dif & vil codes
+
     """,
     "data": [
         'views/product.xml',
