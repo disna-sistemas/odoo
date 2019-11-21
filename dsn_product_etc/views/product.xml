@@ -61,12 +61,14 @@
                                 <separator string="Formula" colspan="2"/>
                                 <field name="dsn_rinsing" groups="dsn_security.quality_user">Rinsing</field>
                             </group>
+<!--
                             <group colspan="2" col="2">
                                 <separator string="Pictograms" colspan="2"/>
                                 <field name="dsn_pictogram1">Pictogram 1</field>
                                 <field name="dsn_pictogram2">Pictogram 1</field>
                                 <field name="dsn_pictogram3">Pictogram 1</field>
                             </group>
+-->
                         </group>
                         <group>
                             <tree string="Specs">
