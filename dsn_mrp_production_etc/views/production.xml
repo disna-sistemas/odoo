@@ -49,6 +49,28 @@
                 </field>
             </field>
         </record>
+
+<!--
+        <record id="action_production_late" model="ir.actions.act_window">
+            <field name="name">Late Productions</field>
+            <field name="res_model">mrp.production</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('name', 'ilike', 'M%')]</field>
+            <field name="context">{
+                    'search_default_picking_type_id': [active_id],
+                    'default_picking_type_id': active_id,
+                    'contact_display': 'partner_address',
+                    'search_default_late': 1,
+                    'search_default_confirmed': 1,
+            }
+            </field>
+            <field name="search_view_id" ref="view_picking_internal_search"/>
+        </record>
+
+-->
+
 <!--
         <record id="dsn_mrp_production_form_view" model="ir.ui.view">
             <field name="name">dsn.mrp.production.form.view</field>
