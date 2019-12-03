@@ -23,7 +23,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['account'],
+    "depends": ['account','disna_account_asset_extension'],
     "description": """
 - Add parent to tree view
     """,
