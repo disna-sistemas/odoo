@@ -26,6 +26,8 @@
     "depends": ['account','disna_account_asset_extension'],
     "description": """
 - Add parent to tree view
+- Add real purchase amount to tree view
+- Hide partner on tree view
     """,
     "data": ['views/asset.xml'],
     "installable": True,
