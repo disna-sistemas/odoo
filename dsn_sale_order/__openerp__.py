@@ -27,7 +27,7 @@
     "description": """
 - Add year to sale order line search view
     """,
-    "data": ['views'],
+    "data": ['views/sale.xml'],
     "installable": True,
     "auto_install": False,
 }
