@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
             <field name="arch" type="xml">
                 <filter string="Status" position="after">
-                    <filter string="Year" context="{'group_by':'sale_data:year'}" />
+                    <filter string="Order Year" context="{'group_by':'sale_data:year'}" />
                 </filter>
             </field>
         </record>
