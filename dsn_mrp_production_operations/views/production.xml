@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="dsn_mrp_production_form_operations" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.form.operations</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <field name="Scheduled Products" position="before">
+                    <field name="dsnoperation_id" />
+                    <field name="done" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
