@@ -27,6 +27,7 @@
     "description": """
 - Changes purchase orders sort
 - Adds Cat2 to purchase.report
+- Adds year to purchase order line search view
     """,
     "data": ['views/purchase.xml'],
     "installable": True,

@@ -11,5 +11,92 @@
                 </filter>
             </field>
         </record>
+
+        <!--<record id="stock_picking_type_kanban" model="ir.ui.view">-->
+            <!--<field name="name">stock.picking.type.kanban</field>-->
+            <!--<field name="model">stock.picking.type</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<kanban class="oe_background_grey" create="0">-->
+                    <!--<field name="complete_name"/>-->
+                    <!--<field name="color"/>-->
+                    <!--<field name="count_picking_ready"/>-->
+                    <!--<field name="count_picking_draft"/>-->
+                    <!--<field name="count_picking_waiting"/>-->
+                    <!--<field name="count_picking_late"/>-->
+                    <!--<field name="count_picking_backorders"/>-->
+                    <!--<templates>-->
+                        <!--<t t-name="kanban-box">-->
+                            <!--<div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_stock_picking_type">-->
+                                <!--<div class="oe_dropdown_toggle oe_dropdown_kanban" groups="stock.group_stock_manager">-->
+                                    <!--<span class="oe_e">í</span>-->
+                                    <!--<ul class="oe_dropdown_menu">-->
+                                        <!--<t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>-->
+                                        <!--<t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>-->
+                                        <!--<t t-if="widget.view.is_action_enabled('edit')"><li><ul class="oe_kanban_colorpicker" data-field="color"/></li></t>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<div class="oe_kanban_content">-->
+                                    <!--<h4 class="text-center"><strong><field name="complete_name"/></strong></h4>-->
+                                    <!--<div class="oe_right">-->
+                                        <!--<a name="open_barcode_interface" type="object">-->
+                                            <!--<img src="/stock/static/src/img/scan.png"-->
+                                                <!--alt="Click to launch the barcode interface"-->
+                                                <!--class="oe_stock_scan_image" title="Click to launch the barcode interface"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="oe_items_list oe_kanban_ellipsis">-->
+                                        <!--<div>-->
+                                            <!--<a name="%(action_picking_tree_ready)d" type="action">-->
+                                                <!--<field name="count_picking_ready"/> Ready-->
+                                            <!--</a>-->
+                                            <!--<a name="%(action_picking_tree_done)d" type="action" class="oe_sparkline_bar_link">-->
+                                                <!--<field name="last_done_picking" widget="sparkline_bar" options="{'type': 'tristate', 'colorMap': {'0': 'orange', '-1': 'red', '1': 'green'}}">Last 10 Done Operations</field>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div t-if="record.count_picking_waiting.raw_value &gt; 0">-->
+                                            <!--<a name="%(action_picking_tree_waiting)d" type="action">-->
+                                                <!--<field name="count_picking_waiting"/> Waiting Availability-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div>-->
+                                            <!--<a name="%(action_picking_tree)d" type="action">All Operations</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="oe_picking_type_gauge">-->
+                                        <!--<field name="rate_picking_late" widget="gauge" style="width:150px; height: 110px;" options="{'levelcolors': ['#a9d70b', '#f9c802', '#ff0000'], 'action_jump': '%(action_picking_tree_late)d'}">Late (%%)</field>-->
+                                        <!--<field name="rate_picking_backorders" widget="gauge" style="width:150px; height: 110px;">Backorders (%%)</field>-->
+                                        <!--<div class="oe_gauge_labels">-->
+                                            <!--<div class="oe_gauge_label_column">-->
+                                                <!--<a name="%(action_picking_tree_late)d" type="action">-->
+                                                    <!--<field name="count_picking_late"/> Late-->
+                                                <!--</a>-->
+                                            <!--</div>-->
+                                            <!--<div class="oe_gauge_label_column">-->
+                                                <!--<a name="%(action_picking_tree_backorder)d" type="action">-->
+                                                    <!--<field name="count_picking_backorders"/> Backorders-->
+                                                <!--</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</t>-->
+                    <!--</templates>-->
+                <!--</kanban>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <record model="ir.ui.view" id="dsn_purchase_order_line_search">
+            <field name="name">dsn.purchase.order.line.search</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search" />
+            <field name="arch" type="xml">
+                <filter string="Status" position="after">
+                    <filter string="Order Year" context="{'group_by':'date_planned:year'}" />
+                </filter>
+            </field>
+        </record>
+
     </data>
 </openerp>
