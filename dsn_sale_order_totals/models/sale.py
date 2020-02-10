@@ -39,7 +39,7 @@ class dsnSaleOrderTotals(models.Model):
             _after = datetime.now()
 
             diff_in_secs = (_after - _before).total_seconds()
-            _logger.info('sale order ' + record.name + ' seconds computing promo : ' + diff_in_secs)
+            _logger.info('sale order ' + record.name + ' seconds computing promo : ' + str(diff_in_secs))
 
     dsn_promo_qty = fields.Float("Promo Quantity",
                           compute='_compute_promo',
