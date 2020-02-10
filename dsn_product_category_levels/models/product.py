@@ -129,7 +129,7 @@ class dsnProductCategoryLevels(models.Model):
     @api.one
     @api.depends('parent_id')
     def _compute_level1(self):
-        testigo = self.categ_id
+        testigo = self.parent_id
 
         while testigo:
             self.dsncat1_id = testigo
@@ -139,14 +139,14 @@ class dsnProductCategoryLevels(models.Model):
     @api.depends('parent_id')
     def _compute_level2(self):
         levels = 1
-        testigo = self.categ_id
+        testigo = self.parent_id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >=2:
-            testigo = self.categ_id
+            testigo = self.parent_id
             while testigo.parent_id:
                 self.dsncat2_id = testigo
                 testigo = testigo.parent_id
@@ -155,14 +155,14 @@ class dsnProductCategoryLevels(models.Model):
     @api.depends('parent_id')
     def _compute_level3(self):
         levels = 1
-        testigo = self.categ_id
+        testigo = self.parent_id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >=3:
-            testigo = self.categ_id
+            testigo = self.parent_id
             while testigo.parent_id.parent_id:
                 self.dsncat3_id = testigo
                 testigo = testigo.parent_id
@@ -171,14 +171,14 @@ class dsnProductCategoryLevels(models.Model):
     @api.depends('parent_id')
     def _compute_level4(self):
         levels = 1
-        testigo = self.categ_id
+        testigo = self.parent_id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >= 4:
-            testigo = self.categ_id
+            testigo = self.parent_id
             while testigo.parent_id.parent_id.parent_id:
                 self.dsncat4_id = testigo
                 testigo = testigo.parent_id
@@ -187,14 +187,14 @@ class dsnProductCategoryLevels(models.Model):
     @api.depends('parent_id')
     def _compute_level5(self):
         levels = 1
-        testigo = self.categ_id
+        testigo = self.parent_id
 
         while testigo:
             testigo = testigo.parent_id
             levels += 1
 
         if levels >= 5:
-            testigo = self.categ_id
+            testigo = self.parent_id
             while testigo.parent_id.parent_id.parent_id.parent_id:
                 self.dsncat5_id = testigo
                 testigo = testigo.parent_id
