@@ -85,6 +85,8 @@ class dsnStockProductionLot(models.Model):
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
+
+
 #    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot', string='Lot certif.')
 
     # dsn_lot_cert_ids = fields.Many2many(comodel_name="stock.production.lot",
@@ -101,6 +103,8 @@ class dsnStockProductionLot(models.Model):
                                          string='Lot Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
+
+    dsn_production_date = fields.Date(string='Production Date *',help='Esta fecha se debe informar SÓLO para aquellos lotes que no hayan sido producidos desde Odoo')
 
     @api.model
     def create(self, values):
