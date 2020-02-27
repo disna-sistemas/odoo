@@ -95,6 +95,9 @@
                 <filter string="Status" position="after">
                     <filter string="Order Year" context="{'group_by':'date_planned:year'}" />
                 </filter>
+                <filter string="Status" position="after">
+                    <filter string="Order Month" context="{'group_by':'date_planned:month'}" />
+                </filter>
             </field>
         </record>
 
