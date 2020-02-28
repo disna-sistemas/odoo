@@ -42,6 +42,12 @@ class dsnMrpBomOperation(models.Model):
 #    done = fields.Boolean(string='Done')
 
 
+class dsnMrpBom(models.Model):
+    _inherit = "mrp.bom"
+
+    dsn_operation_ids = fields.One2many(comodel_name="dsn.mrp.bom.operation",
+                                    inverse_name="dsnoperation_id",
+                                    string="Operations")
 
 class dsnMrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
@@ -59,6 +65,14 @@ class dsnMrpProductionOperation(models.Model):
     sequence = fields.Integer(string='Sequence', required=True)
     description = fields.Text(string='Description')
     done = fields.Boolean(string='Done')
+
+
+class dsnMrpProduction(models.Model):
+    _inherit = "mrp.production"
+
+    dsn_operation_ids = fields.One2many(comodel_name="dsn.mrp.production.operation",
+                                        inverse_name="dsnoperation_id",
+                                        string="Operations")
 
 
 class dsnMrpProductionProductLine(models.Model):

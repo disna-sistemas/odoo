@@ -6,10 +6,11 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-                <field name="Scheduled Products" position="before">
-                    <field name="dsnoperation_id" />
-                    <field name="done" />
-                </field>
+                <page name="Scheduled Products" position="before">
+                    <page string="DSN Operations">
+                        <field name="dsn_operation_ids" />
+                    </page>
+                </page>
             </field>
         </record>
     </data>
