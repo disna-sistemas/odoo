@@ -28,30 +28,48 @@ from datetime import datetime
 class dsnMrpOperations(models.Model):
     _name = "dsnoperation"
 
-
-class mrpBomDsnOperation(models.Model):
-    _name = "mrp.bom.dsnoperation"
-    _order = 'sequence, id'
-
     name = fields.Char(string="Operation", required=True)
+
+
+class dsnMrpBomOperation(models.Model):
+    _name = "dsn.mrp.bom.operation"
+    _order = "sequence, id"
+
     bom_id = fields.Many2one(comodel_name='mrp.bom', string='BoM')
+    dsnoperation_id = fields.Many2one(comodel_name='dsnoperation', string='Operation')
+    sequence = fields.Integer(string='Sequence', required=True)
+    description = fields.Text(string='Description')
+#    done = fields.Boolean(string='Done')
+
+
+
+class dsnMrpBomLine(models.Model):
+    _inherit = "mrp.bom.line"
+
+    dsnoperation_id = fields.Many2one(comodel_name='dsn.mrp.bom.operation', string='Operation')
+
+
+
+class dsnMrpProductionOperation(models.Model):
+    _name = "dsn.mrp.production.operation"
+    _order = "sequence, id"
+
+    production_id = fields.Many2one(comodel_name='mrp.production', string='OF')
     dsnoperation_id = fields.Many2one(comodel_name='dsnoperation', string='Operation')
     sequence = fields.Integer(string='Sequence', required=True)
     description = fields.Text(string='Description')
     done = fields.Boolean(string='Done')
 
 
+class dsnMrpProductionProductLine(models.Model):
+    _inherit = "mrp.production.product.line"
 
-class dsnMrpProduction(models.Model):
-    _inherit = "mrp.production"
+    dsnoperation_id = fields.Many2one(comodel_name='dsn.mrp.production.operation', string='Operation')
 
-    @api.multi
-    @api.onchange('product_tmpl_id')
-    def onchange_product_tmpl_id(self):
-        res = super(dsnMrpProduction, self).onchange_product_tmpl_id()
-        res['domain'].update({
-            'bom_id': [('product_tmpl_id', '=', self.product_tmpl_id.id),('state','!=','draft')]})
-        return res
+
+
+
+
 
 
 
