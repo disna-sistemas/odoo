@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <record id="dsn_mrp_bom_operation_tree" model="ir.ui.view">
+            <field name="name">dsn.mrp.bom.operation.tree</field>
+            <field name="model">dsn.mrp.bom.operation</field>
+            <field name="arch" type="xml">
+                <tree string="BoM Operations">
+                    <field name="dsnoperation_id">Operation</field>
+                    <field name="description">Description</field>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dsn_mrp_production_operation_tree" model="ir.ui.view">
+            <field name="name">dsn.mrp.production.operation.tree</field>
+            <field name="model">dsn.mrp.production.operation</field>
+            <field name="arch" type="xml">
+                <tree string="Production Operations">
+                    <field name="dsnoperation_id">Operation</field>
+                    <field name="description">Description</field>
+                </tree>
+            </field>
+        </record>
+
         <record id="dsn_mrp_production_form_operations" model="ir.ui.view">
             <field name="name">dsn.mrp.production.form.operations</field>
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-                <page name="Scheduled Products" position="before">
+                <page string="Scheduled Products" position="before">
                     <page string="DSN Operations">
                         <field name="dsn_operation_ids" />
                     </page>
