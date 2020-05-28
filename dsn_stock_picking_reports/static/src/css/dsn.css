@@ -1,5 +1,6 @@
 html {
     font-family: Verdana;
+    color: red !important;
 }
 
 div.header {
@@ -9,6 +10,7 @@ div.header {
     background-repeat: no-repeat;
     background-position: left bottom;
     page-break-before: always;
+
 }
 
 p.company_data {
