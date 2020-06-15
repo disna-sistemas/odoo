@@ -51,6 +51,14 @@ class dsnMrpProduction(models.Model):
             'bom_id': [('product_tmpl_id', '=', self.product_tmpl_id.id),('state','!=','draft')]})
         return res
 
+    @api.multi
+    @api.onchange('date_planned')
+    def onchange_date_planned(self):
+        for of in self:
+            for wl in of.workcenter_lines:
+                wl.write({'date_planned': of.date_planned})
+
+
 #   Imprimir etiquetas
 #    @api.multi
 #    def dsn_button_print_label(self):

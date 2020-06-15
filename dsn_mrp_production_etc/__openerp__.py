@@ -28,6 +28,7 @@ QC page on mrp production
 - Adds filters to production search view
 - Adds fields to production tree view
 - Adds manual lot to production calendar view
+- Copy date_planned to workcenter_line.date_planned
 """,
     'author': 'Disna',
     'website': 'http://www.disna.com',
