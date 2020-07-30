@@ -58,6 +58,16 @@ class dsnMrpProduction(models.Model):
             for wl in of.workcenter_lines:
                 wl.write({'date_planned': of.date_planned})
 
+class dsnMrpProductionWorkcenterLine(models.Model):
+    _inherit = "mrp.production.workcenter.line"
+
+    @api.multi
+    @api.onchange('date_planned')
+    def onchange_date_planned(self):
+        for ot in self:
+            ot.production_id.write({'date_planned': ot.date_planned})
+
+
 
 #   Imprimir etiquetas
 #    @api.multi
