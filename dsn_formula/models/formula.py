@@ -16,8 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-import exceptions
+from openerp import models, fields, api, _, exceptions
 import openerp.addons.decimal_precision as dp
 from datetime import datetime
 #from dateutil.relativedelta import relativedelta
@@ -334,5 +333,16 @@ class dsnProductMps(models.Model):
 
     dsn_cosmetic_safety_group = fields.Many2one(comodel_name="dsn.cosmetic.safety.group",
                                             string="Safety Evaluation Group",
-                                            ondelete="restrict",
-                                            groups="dsn_security.imasd_manager")
+                                            ondelete="restrict")
+
+    @api.multi
+    @api.onchange('dsn_cosmetic_safety_group')
+    def dsn_check_fields(self):
+        self.ensure_one()
+        res = {}
+        if self.dsn_cosmetic_safety_group:
+            if not self.env.user.has_group('dsn_security.imasd_manager'):
+                res = {'warning': {'title': _('Cosmetic Safety Permissions'), 'message': _(
+                    'User must be I+D Manager')}}
+
+        return res
