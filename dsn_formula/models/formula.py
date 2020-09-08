@@ -336,13 +336,22 @@ class dsnProductMps(models.Model):
                                             ondelete="restrict")
 
     @api.multi
-    @api.onchange('dsn_cosmetic_safety_group')
-    def dsn_check_fields(self):
-        self.ensure_one()
-        res = {}
-        if self.dsn_cosmetic_safety_group:
+    def write(self, values):
+        res = super(dsnProductMps, self).write(values)
+        if 'dsn_cosmetic_safety_group' in values:
             if not self.env.user.has_group('dsn_security.imasd_manager'):
                 res = {'warning': {'title': _('Cosmetic Safety Permissions'), 'message': _(
                     'User must be I+D Manager')}}
-
         return res
+
+#    @api.multi
+#    @api.onchange('dsn_cosmetic_safety_group')
+#    def dsn_check_fields(self):
+#        self.ensure_one()
+#        res = {}
+#        if self.dsn_cosmetic_safety_group:
+#            if not self.env.user.has_group('dsn_security.imasd_manager'):
+#                res = {'warning': {'title': _('Cosmetic Safety Permissions'), 'message': _(
+#                    'User must be I+D Manager')}}
+#
+#        return res
