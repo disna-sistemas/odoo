@@ -335,24 +335,14 @@ class dsnProductMps(models.Model):
                                             string="Safety Evaluation Group",
                                             ondelete="restrict")
 
-#    @api.multi
-#    def write(self, values):
-#        res = super(dsnProductMps, self).write(values)
-#        if 'dsn_cosmetic_safety_group' in values:
-#            if not self.env.user.has_group('dsn_security.imasd_manager'):
-#                res = {'warning': {'title': _('Cosmetic Safety Permissions'), 'message': _(
-#                    'User must be I+D Manager')}}
-#        return res
-
     @api.multi
-    @api.onchange('dsn_cosmetic_safety_group')
-    def dsn_check_fields(self):
-        self.ensure_one()
-        res = {}
-        if self.dsn_cosmetic_safety_group:
+    def write(self, values):
+        allow_update = True
+        if 'dsn_cosmetic_safety_group' in values:
             if not self.env.user.has_group('dsn_security.imasd_manager'):
-                res = {'warning': {'title': _('Cosmetic Safety Permissions'), 'message': _(
-                    'User must be I+D Manager')}}
-                res = False
+                allow_update = False
 
-        return res
+        if allow_update:
+            return super(dsnProductMps, self).write(values)
+        else:
+           raise exceptions.Warning('Only I+D Manager can modify Cosmetic Safety Group!')
