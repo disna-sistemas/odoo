@@ -48,7 +48,7 @@
                                 <td></td>
 <!--                                <td><span t-esc="sum(o.move_lines.quant_ids.filtered(lambda x: x.lot_id == l.id).mapped('qty'))" /></td>
 -->
-                                <td><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=','o.id'),('lot_id','=',l.id)]).mapped('qty'))" /></td>
+                                <td><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))" /></td>
                                 <td></td>
                                 <td style="padding: 30px;"><span t-field="l.name" /></td>
                                 <td><span t-field="l.life_date" /></td>
