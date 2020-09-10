@@ -27,7 +27,7 @@
                 <t t-set="company" t-value="o.company_id" />
 
                 <t t-call="dsn_report.picking_layout_header" />
-
+.
                 <div class="page">
 
                     <t t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="l">
@@ -46,8 +46,7 @@
                                 <td><span t-field="l.product_id.default_code" /> </td>
                                 <td><span t-field="l.product_id.name" /> </td>
                                 <td></td>
-                                <td><span t-esc="sum(q.qty for q in o.move_lines.quant_ids.filtered(lambda x: x.lot_id == l.id))" /></td>
-
+                                <td><span t-esc="sum(o.move_lines.quant_ids.filtered(lambda x: x.lot_id == l.id).mapped('qty'))" /></td>
                                 <td></td>
                                 <td style="padding: 30px;"><span t-field="l.name" /></td>
                                 <td><span t-field="l.life_date" /></td>
