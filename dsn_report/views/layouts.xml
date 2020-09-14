@@ -100,7 +100,7 @@
 </template>
 
 
-<template id="external_layout" inherit_id="report.layout">
+<template id="external_layout">
 
     <t t-if="o and 'company_id' in o">
         <t t-set="company" t-value="o.company_id"></t>
