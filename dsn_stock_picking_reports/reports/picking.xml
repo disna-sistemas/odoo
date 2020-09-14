@@ -19,7 +19,7 @@
                 <link rel="stylesheet" type="text/css" href="/dsn_stock_picking_reports/static/src/css/dsn.css" />
             </xpath>
 
-            <t t-call="report.external_layout" />
+            <t t-call="dsn_report.external_layout" />
 
 
             <t t-foreach="docs" t-as="o">
