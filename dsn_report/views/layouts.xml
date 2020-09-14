@@ -110,8 +110,9 @@
 <template id="external_layout_header">
 
     <div class="header">
-        <t t-set="company" t-value="o.company_id"></t>
-        <t t-if="company.company_registry=='disna'">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="company" t-value="o.company_id"></t>
+            <t t-if="company.company_registry=='disna'">
 
                 <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/jpg;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
 
@@ -125,6 +126,7 @@
                         </t>
                     </div>
                 </div>
+            </t>
         </t>
     </div>
 
