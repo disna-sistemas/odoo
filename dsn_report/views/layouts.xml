@@ -101,6 +101,14 @@
 
 
 <template id="external_layout" inherit_id="report.layout">
+
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+
     <t t-call="dsn_report.external_layout_header" />
     <t t-raw="0" />
     <t t-call="dsn_report.external_layout_footer" />
@@ -110,24 +118,22 @@
 <template id="external_layout_header">
 
     <div class="header">
-        <t t-foreach="docs" t-as="o">
-            <t t-set="company" t-value="o.company_id"></t>
-            <t t-if="company.company_registry=='disna'">
 
-                <span><img t-if="company.dsn_logo_docs" t-att-src="'data:image/jpg;base64,%s' % company.dsn_logo_docs" style="margin_bottom: 5px; vertical-align: text-bottom; max-width: 700px; "/></span>
+        <div class="row">
+            <div class="col-xs-3">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+            </div>
+<!--            <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>-->
+        </div>
 
-                <div id="partner_adress">
-                    <t t-set="partner" t-value="o.partner_id" />
+        <div class="row">
+            <div class="col-xs-3">
+                <div t-field="company.partner_id"
+                    t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    style="border-bottom: 1px solid black;"/>
+            </div>
+        </div>
 
-                    <div><span><b><t t-esc="partner.name" /></b></span></div>
-                    <div>
-                        <t t-if="partner.street">
-                            <span t-esc="partner.street" />
-                        </t>
-                    </div>
-                </div>
-            </t>
-        </t>
     </div>
 
 </template>
