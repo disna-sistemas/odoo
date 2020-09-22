@@ -118,7 +118,10 @@
 <template id="external_layout_header">
 
     <div class="header">
+
         <t t-set="company" t-value="o.company_id"></t>
+
+        <t t-esc="company.registry" />
 
         <div class="row">
             <div class="col-xs-3">
