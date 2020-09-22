@@ -32,7 +32,7 @@
                 <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
             </div>
                     <div class="oe_structure"/>
-                        <t t-call="dsn_report.external_layout" >
+                        <t t-call="dsn_report.external_layout" t-lang="o.partner_id.lang">
                         <div class="row">
                             <span t-field="o.name"></span>
                             <table class="table table-condensed">
