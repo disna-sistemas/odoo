@@ -14,10 +14,11 @@
 
 
 		<template id="dsn_document_stock_picking_certificate">
-
+<!--
             <xpath expr="//head" position="inside">
                 <link rel="stylesheet" type="text/css" href="/dsn_stock_picking_reports/static/src/css/dsn.css" />
             </xpath>
+-->
 
             <t t-foreach="docs" t-as="o"  >
 
@@ -26,15 +27,16 @@
                 <t t-set="company" t-value="o.company_id" />
 
 <!--                <t t-call="dsn_report.picking_layout_header" /> -->
+                <t t-call="dsn_report.external_layout" t-lang="o.partner_id.lang">
 
-                <div class="page">
-            <div class="col-xs-3">
-                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
-            </div>
+                    <div class="page">
+                        <div class="col-xs-3">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+                        </div>
                     <div class="oe_structure"/>
-                        <t t-call="dsn_report.external_layout" t-lang="o.partner_id.lang">
+
                         <div class="row">
-                            <span t-field="o.name"></span>
+                            <span t-field="o.name" style="font-size: xx-large;"></span>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
@@ -66,8 +68,8 @@
                                 </tbody>
                             </table>
                         </div>
-                    </t>
-                </div>
+                    </div>
+                </t>
 
 <!--
                 <t t-call="dsn_report.picking_layout_footer" />
