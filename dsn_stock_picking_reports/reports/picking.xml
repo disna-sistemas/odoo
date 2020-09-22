@@ -29,8 +29,9 @@
 <!--                <t t-call="dsn_report.picking_layout_header" /> -->
 
                 <div class="page">
-                    <t t-call="dsn_report.external_layout" >
-                        <div class="oe_structure"/>
+
+                    <div class="oe_structure"/>
+                        <t t-call="dsn_report.external_layout" >
                         <div class="row">
                             <span t-field="o.name"></span>
                             <table class="table table-condensed">
@@ -46,8 +47,8 @@
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="l">
-                                        <td class="text-left col-xs-1" ><span t-field="l.product_id.default_code" /> </td>
-                                        <td class="text-left col-xs-5"><span t-field="l.product_id.name" /> </td>
+                                        <td class="text-left" style="font-size: x-small;" ><span t-field="l.product_id.default_code" /> </td>
+                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.product_id.name" /> </td>
 
     <!--                                    <td class="text-right col-xs-1"><span t-esc="formatLang(sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))/6, digits=0)" /></td>
                                         -->
@@ -58,8 +59,8 @@
                                         <td class="text-right col-xs-1"><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))" /></td>
                                         -->
 
-                                        <td class="text-left col-xs-2"><span t-field="l.name" /></td>
-                                        <td class="text-left col-xs-2"><span t-field="l.life_date" t-field-options='{"widget":"date"}' /></td>
+                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.name" /></td>
+                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.life_date" t-field-options='{"widget":"date"}' /></td>
                                     </tr>
                                 </tbody>
                             </table>
