@@ -19,12 +19,11 @@
                 <link rel="stylesheet" type="text/css" href="/dsn_stock_picking_reports/static/src/css/dsn.css" />
             </xpath>
 
-            <t t-foreach="docs" t-as="o">
+            <t t-foreach="docs" t-as="o"  >
+
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
 
                 <t t-set="company" t-value="o.company_id" />
-
-
-
 
 <!--                <t t-call="dsn_report.picking_layout_header" /> -->
 
