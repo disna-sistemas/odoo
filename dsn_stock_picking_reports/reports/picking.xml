@@ -34,6 +34,31 @@
                             <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
                         </div>
                     <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-5 col-xs-offset-1">
+                                <div t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                            </div>
+                        </div>
+
+                        <div class="row mt32 mb32">
+                            <div t-if="o.name" class="col-xs-3">
+                                <strong>Our Order Reference:</strong>
+                                <p t-field="o.name"/>
+                            </div>
+                            <div t-if="o.partner_ref" class="col-xs-3">
+                                <strong>Your Order Reference</strong>
+                                <p t-field="o.partner_ref"/>
+                            </div>
+                            <div t-if="o.date_order" class="col-xs-3">
+                                <strong>Order Date:</strong>
+                                <p t-field="o.date_order"/>
+                            </div>
+                            <div t-if="o.validator" class="col-xs-3">
+                                <strong>Validated By:</strong>
+                                <p t-field="o.validator"/>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <span t-field="o.name" style="font-size: xx-large;"></span>
