@@ -104,6 +104,7 @@
 
     <t t-if="o and 'company_id' in o">
         <t t-set="company" t-value="o.company_id"></t>
+        <span t-field="company.company_registry" style="font-color:red;" />
     </t>
     <t t-if="not o or not 'company_id' in o">
         <t t-set="company" t-value="res_company"></t>
@@ -120,6 +121,7 @@
     <div class="header">
 
         <t t-set="company" t-value="o.company_id"></t>
+
 
         <div class="col-xs-3">
 
