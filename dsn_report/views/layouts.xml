@@ -120,6 +120,11 @@
     <div class="header">
 
         <t t-set="company" t-value="o.company_id"></t>
+
+        <div class="col-xs-3">
+
+            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+        </div>
 <!--
         <div class="row">
             <div class="col-xs-3">
