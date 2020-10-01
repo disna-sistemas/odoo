@@ -40,11 +40,11 @@
                         </div>
 -->
                         <div class="oe_structure"/>
-                            <div class="row">
-                                <div class="col-xs-5 col-xs-offset-5">
-                                    <div t-field="o.partner_id"
-                                         t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
-                                </div>
+                            <div class="row" >
+                                <div class="col-xs-5 col-xs-offset-5"
+                                         t-field="o.partner_id"
+                                         t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"
+                                        />
                             </div>
 
                             <div class="row mt32 mb32">
