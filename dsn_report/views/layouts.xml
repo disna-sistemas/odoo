@@ -119,8 +119,10 @@
             <t t-set="company" t-value="res_company"></t>
         </t>
 -->
-        <div class="col-xs-4">
-            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+        <div class="row">
+            <div class="col-xs-4">
+                <img t-if="company.dsn_logo_docs" t-att-src="'data:image/png;base64,%s' % company.dsn_logo" style="max-height: 45px;"/>
+            </div>
         </div>
 <!--
         <div class="row">
@@ -139,7 +141,7 @@
 
 <template id="external_layout_footer">
 
-    <div class="footer">
+    <div class="footer" style="vertical-align: bottom;" >
         <hr/>
 <!--<p style="color: rgb(142,144,144); font-family: 'Liberation Sans'; font-size: 10px;">C/ del Ferro nº 33,  Pol. Can Magarola   ·   08100 Mollet del Vallès - Barcelona - España   ·  Tel. (+34) 935 706 292   ·   Fax (+34) 935 706 53
 -->

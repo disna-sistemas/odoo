@@ -27,71 +27,74 @@
                 <t t-set="company" t-value="o.company_id" />
 
 <!--                <t t-call="dsn_report.picking_layout_header" /> -->
-                <t t-call="dsn_report.external_layout" t-lang="o.partner_id.lang">
-
-                    <div class="page">
 
 
-                            <div class="col-xs-10">
-                                <div t-field="o.company"
-                                    t-field-options='{"widget": "contact", "fields": ["name"], "no_marker": true}'
-                                    style="border-bottom: 1px solid black;"/>
-                            </div>
+                <div class="page">
+                    <t t-call="dsn_report.external_layout" t-lang="o.partner_id.lang">
 
-                    <div class="oe_structure"/>
-                        <div class="row">
-                            <div class="col-xs-5 col-xs-offset-5">
-                                <div t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
-                                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
-                            </div>
+<!--
+                        <div class="col-xs-4 col-xs-offset-6">
+                            <div t-field="o.partner_id"
+                                t-field-options='{"widget": "contact", "fields": ["name"], "no_marker": true}'
+                                style="border-bottom: 1px solid black;"/>
                         </div>
-
-                        <div class="row mt32 mb32">
-                            <div t-if="o.name" class="col-xs-3">
-                                <strong>Our Order Reference:</strong>
-                                <p t-field="o.name"/>
+-->
+                        <div class="oe_structure"/>
+                            <div class="row">
+                                <div class="col-xs-5 col-xs-offset-5">
+                                    <div t-field="o.partner_id"
+                                         t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                                </div>
                             </div>
-                            <div t-if="o.min_date" class="col-xs-3">
-                                <strong>Order Date:</strong>
-                                <p t-field="o.min_date"/>
+
+                            <div class="row mt32 mb32">
+                                <div t-if="o.name" class="col-xs-3">
+                                    <strong>Our Order Reference:</strong>
+                                    <p t-field="o.name"/>
+                                </div>
+                                <div t-if="o.min_date" class="col-xs-3">
+                                    <strong>Order Date:</strong>
+                                    <p t-field="o.min_date"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <span t-field="o.name" style="font-size: xx-large;"></span>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left" style="text-align: left; font-size: x-small; color: gray;">Code</th>
-                                        <th class="text-left" style="font-size: x-small; color: gray;">Description</th>
-                                        <th class="text-center" style="font-size: x-small; color: gray;">Cajas</th>
-                                        <th class="text-center" style="font-size: x-small; color: gray;">Cantidad</th>
-                                        <th class="text-left" style="font-size: x-small; color: gray;">Lote</th>
-                                        <th class="text-left" style="font-size: x-small; color: gray;">Caducidad</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="l">
-                                        <td class="text-left" style="font-size: x-small;" ><span t-field="l.product_id.default_code" /> </td>
-                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.product_id.name" /> </td>
+                            <div class="row">
+                                <span t-field="o.name" style="font-size: xx-large;"></span>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left" style="text-align: left; font-size: x-small; color: gray;">Code</th>
+                                            <th class="text-left" style="font-size: x-small; color: gray;">Description</th>
+                                            <th class="text-center" style="font-size: x-small; color: gray;">Cajas</th>
+                                            <th class="text-center" style="font-size: x-small; color: gray;">Cantidad</th>
+                                            <th class="text-left" style="font-size: x-small; color: gray;">Lote</th>
+                                            <th class="text-left" style="font-size: x-small; color: gray;">Caducidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.mapped('move_lines.quant_ids.lot_id')" t-as="l">
+                                            <td class="text-left" style="font-size: x-small;" ><span t-field="l.product_id.default_code" /> </td>
+                                            <td class="text-left" style="font-size: x-small;"><span t-field="l.product_id.name" /> </td>
 
-    <!--                                    <td class="text-right col-xs-1"><span t-esc="formatLang(sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))/6, digits=0)" /></td>
-                                        -->
+        <!--                                    <td class="text-right col-xs-1"><span t-esc="formatLang(sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))/6, digits=0)" /></td>
+                                            -->
 
-        <!--                                <td><span t-esc="sum(o.move_lines.quant_ids.filtered(lambda x: x.lot_id == l.id).mapped('qty'))" /></td>
-        -->
-                                        <!--
-                                        <td class="text-right col-xs-1"><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))" /></td>
-                                        -->
+            <!--                                <td><span t-esc="sum(o.move_lines.quant_ids.filtered(lambda x: x.lot_id == l.id).mapped('qty'))" /></td>
+            -->
+                                            <!--
+                                            <td class="text-right col-xs-1"><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))" /></td>
+                                            -->
 
-                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.name" /></td>
-                                        <td class="text-left" style="font-size: x-small;"><span t-field="l.life_date" t-field-options='{"widget":"date"}' /></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </t>
+                                            <td class="text-left" style="font-size: x-small;"><span t-field="l.name" /></td>
+                                            <td class="text-left" style="font-size: x-small;"><span t-field="l.life_date" t-field-options='{"widget":"date"}' /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </t>
+                </div>
+
+
 
 <!--
                 <t t-call="dsn_report.picking_layout_footer" />
