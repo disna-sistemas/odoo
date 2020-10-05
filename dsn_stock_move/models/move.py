@@ -78,3 +78,5 @@ class dsnStockMove(models.Model):
                                  store=True
                                  )
 
+    dsn_date_confirmed = fields.Date(string='Date Confirmed')
+

@@ -42,6 +42,9 @@
                     <attribute name="invisible">0</attribute>
                     <attribute name="widget">date</attribute>
                 </field>
+                <field name="date_expected" position="after">
+                    <field name="date_confirmed" groups="dsn_security.purchase_manager" />
+                </field>
             </field>
         </record>
 
