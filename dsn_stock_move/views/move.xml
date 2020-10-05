@@ -69,7 +69,7 @@
                     <attribute name="widget">date</attribute>
                 </field>
                 <field name="date_expected" position="after">
-                    <field name="dsn_date_confirmed" groups="dsn_security.purchase_manager" />
+                    <field name="dsn_date_confirmed" groups="dsn_security.purchase_user" />
                 </field>
             </field>
         </record>
