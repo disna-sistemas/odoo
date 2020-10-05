@@ -29,6 +29,7 @@
 - Gets product-partner description, according to supplier info
 - Adds 'Last 6 days' filter
 - Adds Cat1 - Cat5 to stock move search view
+- Adds Date Confirmed 
     """,
     "data": ['views/move.xml'],
     "installable": True,
