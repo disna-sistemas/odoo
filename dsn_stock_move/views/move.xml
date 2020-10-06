@@ -113,8 +113,8 @@
 
         </record>
 
-        <record id="dsn_action_stock_move" model="stock.move">
-            <field name="inherit_id" ref="stock.action_receipt_picking_move">stock.action_receipt_picking_move</field>
+        <record id="dsn_action_stock_move" model="ir.actions.act_window">
+            <field name="inherit_id" ref="stock.action_receipt_picking_move" />
             <field name="view_mode">tree,form,calendar</field>
         </record>
 <!--
