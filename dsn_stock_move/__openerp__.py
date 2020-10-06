@@ -24,7 +24,7 @@
     "website": "",
     "category": "",
     "depends": ['stock','stock_move_partner_info','dsn_security','product_supplierinfo_for_customer',
-                'dsn_product_category_levels'],
+                'dsn_product_category_levels','dsn_menu_disna'],
     "description": """
 - Gets product-partner description, according to supplier info
 - Adds 'Last 6 days' filter

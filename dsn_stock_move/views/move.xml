@@ -113,31 +113,14 @@
 
         </record>
 
+
+
         <record id="dsn_action_stock_move" model="ir.actions.act_window">
-            <field name="name">dsn.action.stock.move</field>
-            <field name="res_model">stock.move</field>
-            <field name="inherit_id" ref="stock.action_receipt_picking_move" />
-            <field name="view_mode">tree,form,calendar</field>
-        </record>
-<!--
-        <record id="dsn_action_stock_move" model="ir.actions.act_window">
-            <field name="name">Incoming Products</field>
+            <field name="name">DSN Incoming Products Action</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">stock.move</field>
-            <field name="inherit_id" ref="stock.action_receipt_picking_move" />
             <field name="view_mode">tree,form,calendar</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="view_move_tree_receipt_picking"/>
-            <field name="context">{'product_receive': True, 'search_default_future': True}</field>
-        </record>
--->
-<!--
-        <record id="action_receipt_picking_move" model="ir.actions.act_window">
-            <field name="name">Incoming  Products</field>
-            <field name="res_model">stock.move</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
             <field name="domain" eval="[('picking_id.picking_type_id.code','=','incoming'), ('location_id.usage','!=','internal'), ('location_dest_id.usage', '=', 'internal')]"/>
             <field name="view_id" ref="view_move_tree_receipt_picking"/>
             <field name="context">{'product_receive': True, 'search_default_future': True}</field>
@@ -154,6 +137,20 @@
               </p>
             </field>
         </record>
--->
+
+
+
+        <menuitem id="dsn_menu_disna_receptions"
+                    name="Receptions"
+                    groups="dsn_security.purchase_user"
+                    parent="dsn_menu_disna.dsn_menu_disna"
+                    sequence="20" />
+
+        <menuitem id="dsn_menu_disna_receptions_incoming_products"
+                    name="Incoming Products"
+                    groups="dsn_security.purchase_user"
+                    parent="dsn_menu_disna_receptions"
+                    action="dsn_stock_move.dsn_action_stock_move"
+                    sequence="10" />
     </data>
 </openerp>
