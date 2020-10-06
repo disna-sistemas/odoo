@@ -114,5 +114,13 @@
 
         </record>
 
+        <record id="dsn_action_stock_move" model="ir.actions.act_window">
+            <field name="name">Trademark Registration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.move</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="inherit_id" ref="stock.action_receipt_picking_move" />
+        </record>
+
     </data>
 </openerp>
