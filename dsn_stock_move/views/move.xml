@@ -122,7 +122,7 @@
             <field name="view_mode">tree,form,calendar</field>
             <field name="view_type">form</field>
             <field name="domain" eval="[('picking_id.picking_type_id.code','=','incoming'), ('location_id.usage','!=','internal'), ('location_dest_id.usage', '=', 'internal')]"/>
-            <field name="view_id" ref="view_move_tree_receipt_picking"/>
+            <field name="view_id" ref="stock.view_move_tree_receipt_picking"/>
             <field name="context">{'product_receive': True, 'search_default_future': True}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -142,9 +142,13 @@
 
         <menuitem id="dsn_menu_disna_receptions"
                     name="Receptions"
-                    groups="dsn_security.purchase_user"
                     parent="dsn_menu_disna.dsn_menu_disna"
                     sequence="20" />
+
+        <menuitem id="dsn_menu_disna_receptions2"
+            name="Receptions"
+            parent="dsn_menu_disna_receptions"
+            sequence="30" />
 
         <menuitem id="dsn_menu_disna_receptions_incoming_products"
                     name="Incoming Products"
