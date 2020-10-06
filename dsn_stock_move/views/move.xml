@@ -113,6 +113,10 @@
 
         </record>
 
+        <record id="stock.action_receipt_picking_move" model="stock.move">
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+<!--
         <record id="dsn_action_stock_move" model="ir.actions.act_window">
             <field name="name">Incoming Products</field>
             <field name="type">ir.actions.act_window</field>
@@ -123,6 +127,7 @@
             <field name="view_id" ref="view_move_tree_receipt_picking"/>
             <field name="context">{'product_receive': True, 'search_default_future': True}</field>
         </record>
+-->
 <!--
         <record id="action_receipt_picking_move" model="ir.actions.act_window">
             <field name="name">Incoming  Products</field>
