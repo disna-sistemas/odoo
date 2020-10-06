@@ -80,3 +80,7 @@ class dsnStockMove(models.Model):
 
     dsn_date_confirmed = fields.Date(string='Date Confirmed')
 
+    dsn_partner_id = fields.Many2one(string='Partner',
+                                     related='picking_id.partner_id',
+                                     readonly=True)
+
