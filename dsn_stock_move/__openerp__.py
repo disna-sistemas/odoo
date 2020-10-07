@@ -23,13 +23,14 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['stock','stock_move_partner_info','dsn_security','product_supplierinfo_for_customer',
-                'dsn_product_category_levels','dsn_menu_disna'],
+    "depends": ['stock','purchase','stock_move_partner_info','dsn_security','product_supplierinfo_for_customer',
+                'dsn_product_category_levels'],
     "description": """
 - Gets product-partner description, according to supplier info
 - Adds 'Last 6 days' filter
 - Adds Cat1 - Cat5 to stock move search view
 - Adds Date Confirmed 
+- Adds Calendar View for Stock Moves (Purchases - Receptions - Incoming Products)
     """,
     "data": ['views/move.xml'],
     "installable": True,
