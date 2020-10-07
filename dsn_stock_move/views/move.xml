@@ -152,9 +152,9 @@
             sequence="30" />
 -->
         <menuitem id="dsn_menu_receptions_incoming_products"
-                    name="Incoming Products"
+                    name="Incoming Products II"
                     groups="dsn_security.purchase_user"
-                    parent="menu_procurement_management_inventory"
+                    parent="purchase.menu_procurement_management_inventory"
                     action="dsn_stock_move.dsn_action_stock_move"
                     sequence="10" />
     </data>
