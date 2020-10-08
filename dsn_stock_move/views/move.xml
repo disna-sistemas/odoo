@@ -46,7 +46,7 @@
             <field name="name">dsn.stock.move.calendar</field>
             <field name="model">stock.move</field>
             <field name="arch" type="xml">
-                <calendar color="dsn_partner_id" date_start="dsn_date_confirmed" string="Stock Moves">
+                <calendar color="dsn_partner_id" date_start="date_expected" string="Stock Moves">
                     <field name="picking_id"/>
                     <field name="origin"/>
                     <field name="product_id"/>
