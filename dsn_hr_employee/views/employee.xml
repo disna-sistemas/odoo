@@ -18,6 +18,7 @@
                                 <field name="dsn_city"/>
                                 <field name="dsn_mobile"/>
                                 <field name="dsn_email"/>
+
                             </group>
                             <group string="SS">
                                 <field name="dsn_ssn"/>
@@ -27,6 +28,7 @@
                             <group string="Other">
                                 <field name="dsn_joiningdate"/>
                                 <field name="dsn_notes"/>
+                                <field name="dsn_anviz_userid"/>
                             </group>
 
                         </group>
