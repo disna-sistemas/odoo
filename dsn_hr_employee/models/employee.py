@@ -31,5 +31,5 @@ class employee(models.Model):
     dsn_email = fields.Char(string="e-mail", groups="base.group_hr_user")
     dsn_joiningdate = fields.Date(string="Joining Date")
     dsn_notes = fields.Text(string="Notes")
-    dsn_anviz_userid = fields.Text(string="anviz user id")
+    dsn_anviz_userid = fields.Integer(string="anviz user id")
 
