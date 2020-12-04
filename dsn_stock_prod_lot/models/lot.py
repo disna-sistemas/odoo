@@ -51,6 +51,16 @@ class dsnStockProductionLot(models.Model):
             record.dsn_lot_code = _lot[0:_longitud]
 
     @api.multi
+    @api.depends('name')
+    def _compute_lot_barcode(self):
+        for record in self:
+            _lcb = ''
+            if record.product_id.ean13:
+                _lcb = '01' + record.product_id.ean13
+            _lcb += '10' + record.name + ' 240' + record.product_id.default_code
+            record.dsn_barcode = _lcb
+
+    @api.multi
     @api.depends('life_date')
     def _compute_dsn_life_date(self):
         for record in self:
@@ -85,6 +95,10 @@ class dsnStockProductionLot(models.Model):
 
     dsn_life_date = fields.Date(string='Life Date 2', compute='_compute_dsn_life_date', store=True)
 
+#   Código de barras que figura en las cajas de producto.  Compuesto por [01 + GTIN13] + 10 + LOTE + <BLANK> + 240 + CODIGO_PRODUCTO
+    dsn_barcode = fields.Char(string='box Barcode',
+                              compute='_compute_lot_barcode',
+                              store=True)
 
 
 #    dsn_lot_cert = fields.Many2one(comodel_name='stock.production.lot', string='Lot certif.')
