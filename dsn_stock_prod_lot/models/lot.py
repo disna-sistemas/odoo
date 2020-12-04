@@ -54,10 +54,17 @@ class dsnStockProductionLot(models.Model):
     @api.depends('name')
     def _compute_lot_barcode(self):
         for record in self:
-            _lcb = ''
+            _ean13 = ''
+            _lot = ''
+            _cod = ''
             if record.product_id.ean13:
-                _lcb = '01' + record.product_id.ean13
-            _lcb += '10' + record.name + ' 240' + record.product_id.default_code
+                _ean13 = '01' + record.product_id.ean13
+            _lot = '10' + record.name
+            if record.product_id.default_code:
+                _cod =' 240' + record.product_id.default_code
+
+            _lcb = _ean13 + _lot + _cod
+
             record.dsn_barcode = _lcb
 
     @api.multi
