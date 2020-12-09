@@ -88,6 +88,10 @@ class dsnStockPickingExport(models.Model):
             if record.origin:
                 origin = record.origin
 
+            sale_comment = ""
+            if record.sale_comment:
+                sale_comment = record.sale_comment
+
             alb = etree.Element("alb",
                                 dict(user=record.write_uid.name,
                                      file_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S")))  # put `**ns))` if xsi, xsd are unused
@@ -104,7 +108,7 @@ class dsnStockPickingExport(models.Model):
                     "partner_city": record.partner_id.city, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "partner_country": record.partner_id.country_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "ref_supplier": ref_supplier, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
-                    "sale_comment": record.sale_comment, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "sale_comment": sale_comment, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
                     "carrier": carrier, etree.QName(xsi, "type"): etree.QName(xsd, "string")
                 })
