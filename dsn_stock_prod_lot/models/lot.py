@@ -63,7 +63,7 @@ class dsnStockProductionLot(models.Model):
             if record.product_id.default_code:
                 _cod =' 240' + record.product_id.default_code
 
-            _lcb = _ean13 + _lot + _cod
+            _lcb = _gtin14 + _lot + _cod
 
             record.dsn_barcode = _lcb
 
