@@ -37,6 +37,8 @@
                 </field>
             </field>
         </record>
+        <record id="dsn_account_invoice_form" model="ir.ui.view">
+        </record>
 
 
 
