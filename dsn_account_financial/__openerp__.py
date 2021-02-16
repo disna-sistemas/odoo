@@ -28,7 +28,8 @@
 etc
     """,
     "data": ['reports/report.xml',
-             'reports/reports.xml'],
+             'reports/reports.xml',
+             'views/account.xml'],
     "installable": True,
     "auto_install": False,
 }
