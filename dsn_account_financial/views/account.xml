@@ -15,5 +15,13 @@
                 </calendar>
             </field>
         </record>
+
+        <record id="dsn_action_account_move_line" model="ir.actions.act_window">
+            <field name="name">dsn.action.account.move.line</field>
+            <field name="inherit_id" id="883"/>
+            <field name="arch" type="xml">
+                <field name="view_mode">tree,form,calendar</field>
+            </field>
+        </record>
     </data>
 </openerp>
