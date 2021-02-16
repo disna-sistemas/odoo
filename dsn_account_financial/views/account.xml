@@ -16,6 +16,7 @@
             </field>
         </record>
 
+<!-- NO ME FUNCIONA para añadir la acción de ventana calendar
         <record model="ir.actions.act_window" id="dsn_account_financial.action_invoice_payments">
             <field name="name">Payments and due list</field>
             <field name="res_model">account.move.line</field>
@@ -27,6 +28,6 @@
             <field name="search_view_id" ref="view_payments_filter"/>
             <field name="domain">[('account_id.type', 'in', ['receivable', 'payable'])]</field>
         </record>
-
+-->
     </data>
 </openerp>
