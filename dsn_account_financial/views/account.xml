@@ -25,7 +25,7 @@
             <field name="context">{'search_default_from_invoices': 1}</field>
 <!--            <field name="view_id" ref="view_payments_tree"/>-->
             <field name="view_id" ref="dsn_account_move_line_calendar" />
-            <field name="search_view_id" ref="view_payments_filter"/>
+            <field name="search_view_id" ref="account_due_list.view_payments_filter"/>
             <field name="domain">[('account_id.type', 'in', ['receivable', 'payable'])]</field>
         </record>
 
