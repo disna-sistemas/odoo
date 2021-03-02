@@ -40,8 +40,6 @@ class ProductTemplateSpecs(models.Model):
 
     notes = fields.Char(string="Notes")
 
-    tariff_heading = fields.Char(string="Tariff Heading")
-
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"

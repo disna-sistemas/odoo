@@ -32,7 +32,6 @@
                     <field name="product_tmpl_id" invisible="1"/>
                     <field name="country_id" />
                     <field name="name" />
-                    <field name="tariff_heading" />
                     <field name="title1" />
                     <field name="from1" />
                     <field name="until1" />
