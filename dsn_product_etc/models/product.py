@@ -120,6 +120,8 @@ class ProductTemplate(models.Model):
 
     dsn_spec_ids = fields.One2many(comodel_name="dsn.product.template.specifications", inverse_name="product_tmpl_id", string="Template Specs")
 
+    dsn_hs_code = fields.Char(string='H.S. Code')
+
 #    dsn_pictogram1 = fields.Binary(string='Pictogram 1')
 #    dsn_pictogram2 = fields.Binary(string='Pictogram 2')
 #    dsn_pictogram3 = fields.Binary(string='Pictogram 3')
