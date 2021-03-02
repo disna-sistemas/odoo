@@ -28,13 +28,13 @@ class ProductTemplateSpecs(models.Model):
 
     prod_specs = fields.Char(string="Product Specifications")
     label_specs = fields.Char(string="Label Specifications")
-    name = fields.Char(string="Record Name")
+    name = fields.Char(string="Register Name")
 
-    title1 = fields.Char(string="Record1")
+    title1 = fields.Char(string="Reg1")
     from1 = fields.Date(string="From1")
     until1 = fields.Date(string="Until1")
 
-    title2 = fields.Char(string="Record2")
+    title2 = fields.Char(string="Reg2")
     from2 = fields.Date(string="From2")
     until2 = fields.Date(string="Until2")
 
