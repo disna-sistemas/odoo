@@ -61,6 +61,10 @@
                                 <separator string="Formula" colspan="2"/>
                                 <field name="dsn_rinsing" groups="dsn_security.quality_user">Rinsing</field>
                             </group>
+                            <group colspan="2" col="2">
+                                <separator string="Export" colspan="2"/>
+                                <field name="dsn_hs_code"/>
+                            </group>
 <!--
                             <group colspan="2" col="2">
                                 <separator string="Pictograms" colspan="2"/>
