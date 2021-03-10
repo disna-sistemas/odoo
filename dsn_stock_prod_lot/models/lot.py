@@ -125,7 +125,7 @@ class dsnStockProductionLot(models.Model):
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
-    dsn_origin_country_id = fields.Many2one(comodel_name='res.country', string='Origin Country')
+#    dsn_origin_country_id = fields.Many2one(comodel_name='res.country', string='Origin Country')
 
 #    dsn_production_date = fields.Date(string='Production Date *',help='Esta fecha se debe informar SÓLO para aquellos lotes que no hayan sido producidos desde Odoo')
 # Descartado porque ya contamos con un campo mrp_date, que se utilizará para este mismo fin
