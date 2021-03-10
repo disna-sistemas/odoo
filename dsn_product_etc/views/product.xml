@@ -51,13 +51,13 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="etc">
-                        <group colspan="2" col="6">
+                        <group colspan="2" col="8">
                             <group colspan="2" col="2">
                                 <separator string="Manufacture" colspan="2"/>
                                 <field name="dsn_pnt_nf" groups="dsn_security.mrp_user">PNT NF</field>
                                 <field name="dsn_pnt_esp" groups="dsn_security.mrp_user">PNT ESP</field>
                             </group>
-                            <group colspan="2" col="2">
+                            <group colspan="4" col="4">
                                 <separator string="Formula" colspan="2"/>
                                 <field name="dsn_rinsing" groups="dsn_security.quality_user">Rinsing</field>
                             </group>
