@@ -25,3 +25,20 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     dsn_dateok = fields.Date(string='Date OK', required=False)
+
+
+class AccountMove(models.Model):
+    _inherit="account.move"
+
+    dsn_dateok = fields.Date(string='Date OK', compute='_compute_invoice', store=True)
+
+    @api.multi
+    @api.depends('id')
+    def _compute_invoice(self):
+        invoiceobj = self.env['account.invoice']
+        for record in self:
+            invoices = invoiceobj.search([('move_id', '=', record.id)])
+            if invoices:
+                record.dsn_dateok = invoices[0].dsn_dateok
+
+
