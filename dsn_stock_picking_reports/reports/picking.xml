@@ -87,6 +87,7 @@
                                                 <td class="text-right col-xs-1"><span t-esc="sum(o.env['stock.quant'].search([('history_ids.picking_id','=',o.id),('lot_id','=',l.id)]).mapped('qty'))" /></td>
                                                 -->
 
+
                                                 <td class="text-left" style="font-size: x-small;"><span t-field="l.name" /></td>
                                                 <td class="text-left" style="font-size: x-small;"><span t-field="l.life_date" t-field-options='{"widget":"date"}' /></td>
                                             </tr>
