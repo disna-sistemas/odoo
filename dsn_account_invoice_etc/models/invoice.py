@@ -33,7 +33,7 @@ class AccountMove(models.Model):
     dsn_dateok = fields.Date(string='Date OK', compute='_compute_invoice', store=True)
 
     @api.multi
-    @api.depends('id')
+    @api.depends('create_date')
     def _compute_invoice(self):
         invoiceobj = self.env['account.invoice']
         for record in self:
