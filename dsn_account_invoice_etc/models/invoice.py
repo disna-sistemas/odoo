@@ -30,7 +30,7 @@ class AccountInvoice(models.Model):
     def write(self, values):
         for record in self:
             if record.move_id:
-                record.move_id.write({'dsn_dateok': record.dsn_dateok})
+                record.move_id.write({'dsn_dateok': values['dsn_dateok']})
 
         return super(AccountInvoice, self).write(values)
 
