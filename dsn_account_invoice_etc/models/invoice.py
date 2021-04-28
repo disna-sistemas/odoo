@@ -27,11 +27,19 @@ class AccountInvoice(models.Model):
     dsn_dateok = fields.Date(string='Date OK', required=False)
 
     @api.multi
-    @api.depends('move_id')
-    def _compute_move_dateok(self):
+    def write(self, values):
         for record in self:
             if record.move_id:
-                record.move_id.write({'dateok': record.dsn_dateok})
+                record.move_id.write({'dsn_dateok': record.dsn_dateok})
+
+        return super(AccountInvoice, self).write(values)
+
+    # @api.multi
+    # @api.depends('move_id')
+    # def _compute_move_dateok(self):
+    #     for record in self:
+    #         if record.move_id:
+    #             record.move_id.write({'dateok': record.dsn_dateok})
 
 
 class AccountMove(models.Model):
