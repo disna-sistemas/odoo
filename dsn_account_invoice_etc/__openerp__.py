@@ -23,7 +23,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ['account'],
+    "depends": ['account','account_banking_payment_export'],
     "description": """
 etc
     """,
