@@ -34,13 +34,6 @@ class AccountInvoice(models.Model):
 
         return super(AccountInvoice, self).write(values)
 
-    # @api.multi
-    # @api.depends('move_id')
-    # def _compute_move_dateok(self):
-    #     for record in self:
-    #         if record.move_id:
-    #             record.move_id.write({'dateok': record.dsn_dateok})
-
 
 class AccountMove(models.Model):
     _inherit = "account.move"

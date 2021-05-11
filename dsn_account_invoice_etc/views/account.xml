@@ -50,6 +50,7 @@
             </field>
         </record>
 
+
         <record id="dsn_payment_order_populate_view_move_line_tree" model="ir.ui.view">
             <field name="dsn.payment.order.populate.view.move.line.tree" />
             <field name="model">account.move.line</field>
