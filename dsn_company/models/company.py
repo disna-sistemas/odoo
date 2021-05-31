@@ -36,7 +36,8 @@ class dsnCompany(models.Model):
                     prodv = prodvs[0]
                     ctrylist = []
                     for pavc in prod.country_list:
-                        ident = prodv.country_list.create({'product_id': prodv.product_id, 'country_id': pavc.country_id.id, 'cc': pavc.cc, 'date_to': pavc.date_to, 'date_from': pavc.date_$
+                        ident = prodv.country_list.create({'product_id': prodv.product_id, 'country_id': pavc.country_id, 'cc': pavc.cc,
+                                                           'date_to': pavc.date_to, 'date_from': pavc.date_from, 'notes': pavc.notes })
                         ctrylist.append(ident)
                     prodv.country_list = [(6, 0, ctrylist)]
 
