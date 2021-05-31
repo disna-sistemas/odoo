@@ -24,15 +24,16 @@ class dsnCompany(models.Model):
 
     _logger = logging.getLogger(__name__)
 
+    @api.multi
     def dsn_button_do_work(self):
         lista = ['4749S','4750S','4747S','4748S']
 
         prodobj = self.env['product.product']
         for cod in lista:
-            prods = prodobj.search([('default_code','=',code)])
+            prods = prodobj.search([('default_code','=',cod)])
             if prods:
                 prod = prods[0]
-                prodvs = prodobj.search([('default_code', '=', code + 'V')])
+                prodvs = prodobj.search([('default_code', '=', cod + 'V')])
                 if prodvs:
                     prodv = prodvs[0]
                     ctrylist = []
