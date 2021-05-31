@@ -25,7 +25,7 @@ class dsnCompany(models.Model):
     _logger = logging.getLogger(__name__)
 
     def dsn_button_do_work(self):
-        lista = ['4749S,'4750S','4747S','4748S']
+        lista = ['4749S','4750S','4747S','4748S']
 
         prodobj = self.env['product.product']
         for cod in lista:
