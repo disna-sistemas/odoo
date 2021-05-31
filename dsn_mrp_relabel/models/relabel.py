@@ -40,7 +40,7 @@ class dsnRelabel(models.Model):
 #            record.dsn_registration2 = _reg2
 
     dsn_registration = fields.Char(string='Registration', compute='_compute_registration', store=True)
-    dsn_registration2 = fields.Char(string='Registration2', compute='_compute_registration', store=True)
+#    dsn_registration2 = fields.Char(string='Registration2', compute='_compute_registration', store=True)
 
 
 #    @api.multi
