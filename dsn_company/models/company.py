@@ -17,9 +17,34 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
+import logging
 
 class dsnCompany(models.Model):
     _inherit = "res.company"
+
+    _logger = logging.getLogger(__name__)
+
+    def dsn_button_do_work(self):
+        lista = ['4749S,'4750S','4747S','4748S']
+
+        prodobj = self.env['product.product']
+        for cod in lista:
+            prods = prodobj.search([('default_code','=',code)])
+            if prods:
+                prod = prods[0]
+                prodvs = prodobj.search([('default_code', '=', code + 'V')])
+                if prodvs:
+                    prodv = prodvs[0]
+                    ctrylist = []
+                    for pavc in prod.country_list:
+                        ident = prodv.country_list.create({'product_id': prodv.product_id.id, 'country_id': pavc.country_id.id, 'cc': pavc.cc, 'date_to': pavc.date_to, date_from': pavc.date_from }).id
+                        ctrylist.append(ident)
+#                    print lista
+                    prodv.country_list = [6, 0, ctrylist]
+
+                    _logger.info('ASIGNADOs países de ' + prodv)
+
+        return True
 
     dsn_logo2 = fields.Binary('Logo Instituto Naturvita', help='Logo for certificates')
     dsn_logo_export = fields.Binary('Export Logo for documents', help='Logo for export docs')
