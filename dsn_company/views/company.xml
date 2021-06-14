@@ -13,7 +13,9 @@
                             <field name="dsn_logo_docs" widget="image"  class="oe_avatar oe_left">Logo for Documents</field>
                             <field name="dsn_logo_export" widget="image"  class="oe_avatar oe_left">Logo Export Documents</field>
                             <field name="dsn_logo2" widget="image"  class="oe_avatar oe_left">Logo Instituto Naturvita</field>
+<!--
                             <button name="dsn_button_do_work" confirm="¿Seguro?" colspan="2" string="Asigna países" type="object" icon="gtk-execute" class="oe_inline" />
+-->
                         </group>
                     </page>
                 </notebook>
