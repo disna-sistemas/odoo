@@ -23,7 +23,7 @@
     "contributors": [],
     "website": "",
     "category": "",
-    "depends": ["stock"],
+    "depends": ["stock","dsn_security"],
     "description": """
 Allows exporting stock picking to a text file
 Allows exporting stock picking to a ftp server
