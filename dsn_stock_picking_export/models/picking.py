@@ -145,6 +145,109 @@ class dsnStockPickingExport(models.Model):
 
         return True
 
+    @api.multi
+    def dsn_button_stock_picking_export_file_CARRERAS2(self):
+
+        param_obj = self.env['ir.config_parameter']
+        local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
+
+        if local_folder_ids:
+            local_folder_id = local_folder_ids[0]
+            local_folder = local_folder_id['value']
+        else:
+            raise exceptions.Warning(_('Local folder not defined'))
+
+        for record in self:
+
+            _name = self.replace_bars(record.name)
+
+            xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsd = "http://www.w3.org/2001/XMLSchema"
+            ns = {"xmlns:xsi": xsi, "xmlns:xsd": xsd}
+            for attr, uri in ns.items():
+                etree.register_namespace(attr.split(":")[1], uri)
+
+            sale_order_model = self.env['sale.order']
+            quant_obj = self.env['stock.quant']
+            cond = [('name', '=', record.origin)]
+            sale_orders = sale_order_model.search(cond)
+            sale_order_ref = ""
+            if sale_orders:
+                for sale_order in sale_orders:
+                    if sale_order.client_order_ref:
+                        sale_order_ref = sale_order.client_order_ref
+
+            ref_supplier = ""
+            if record.partner_id.ref_supplier:
+                ref_supplier = record.partner_id.ref_supplier
+
+            delivery_date = ""
+            if record.dsn_delivery_date:
+                delivery_date = record.dsn_delivery_date
+
+            carrier = ""
+            if record.carrier_id:
+                carrier = record.carrier_id.name
+
+            origin = ""
+            if record.origin:
+                origin = record.origin
+
+            sale_comment = ""
+            if record.sale_comment:
+                sale_comment = record.sale_comment
+
+            alb = etree.Element("alb",
+                                dict(user=record.write_uid.name,
+                                     file_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S")))  # put `**ns))` if xsi, xsd are unused
+
+            docdata = etree.SubElement(alb, "doc",
+                {
+                    "name": _name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "disna_order": origin, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "date": record.date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
+                    "delivery_date": delivery_date, etree.QName(xsi, "type"): etree.QName(xsd, "dateTime"),
+                    "partner_name": record.partner_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_street": record.partner_id.street, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_zip": record.partner_id.zip, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_city": record.partner_id.city, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "partner_country": record.partner_id.country_id.name, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "ref_supplier": ref_supplier, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "sale_comment": sale_comment, etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "client_order_ref": str(sale_order_ref), etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                    "carrier": carrier, etree.QName(xsi, "type"): etree.QName(xsd, "string")
+                })
+
+            for prod in record.move_lines.mapped('product_id').sorted():
+
+                prodmoves = record.move_lines.filtered(lambda x: x.product_id == prod)
+                prod_move_ids = [move.id for move in prodmoves]
+
+                lots = prodmoves.quant_ids.mapped('lot_id')
+                lot_ids = [lot.id for lot in lots]
+
+                for lot in lots:
+
+                    quants = prodmoves.quant_ids.search([('lot_id','=',lot.id)])
+                    lot_qty = 0
+                    if quants:
+                        lot_qty = sum(quants.mapped('qty'))
+
+                    lotdata = etree.SubElement(docdata, "lot",
+                                               {
+                                                   "product_code": lot.product_id.default_code,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "product_name": lot.product_id.product_tmpl_id.dsn_name_es,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "lot_name": lot.name,
+                                                   etree.QName(xsi, "type"): etree.QName(xsd, "string"),
+                                                   "lot_qty": str(lot_qty)
+                                               })
+
+            etree.ElementTree(alb).write(local_folder + _name + '.xml', xml_declaration=True)
+
+        return True
+
 #############################################################################################################################
     @api.multi
     def dsn_button_stock_picking_export_file(self):
@@ -303,6 +406,51 @@ class dsnStockPickingExport(models.Model):
             raise exceptions.Warning(_('Local folder not defined'))
 
         self.dsn_button_stock_picking_export_file_CARRERAS()
+
+        for record in self:
+            _name = self.replace_bars(record.name)
+            ftp = ftplib.FTP(ftp_server, ftp_user, ftp_pwd)
+            file = open(local_folder + _name + ".xml", "r")
+            ftp.storbinary("STOR " + _name + ".xml", file)
+            file.close()
+            ftp.quit()
+
+        return True
+
+    @api.multi
+    def dsn_button_export_to_ftp_carreras2(self):
+
+        param_obj = self.env['ir.config_parameter']
+        ftp_server_ids = param_obj.search([('key', '=', 'disna.ftp.server')])
+        ftp_user_ids = param_obj.search([('key', '=', 'disna.ftp.user')])
+        ftp_pwd_ids = param_obj.search([('key', '=', 'disna.ftp.pwd')])
+        local_folder_ids = param_obj.search([('key', '=', 'disna.local.folder')])
+
+        if ftp_server_ids:
+            ftp_server_id = ftp_server_ids[0]
+            ftp_server = ftp_server_id['value']
+        else:
+            raise exceptions.Warning(_('No ftp server defined'))
+
+        if ftp_user_ids:
+            ftp_user_id = ftp_user_ids[0]
+            ftp_user = ftp_user_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp user not defined'))
+
+        if ftp_pwd_ids:
+            ftp_pwd_id = ftp_pwd_ids[0]
+            ftp_pwd = ftp_pwd_id['value']
+        else:
+            raise exceptions.Warning(_('Ftp password not defined'))
+
+        if local_folder_ids:
+            local_folder_id = local_folder_ids[0]
+            local_folder = local_folder_id['value']
+        else:
+            raise exceptions.Warning(_('Local folder not defined'))
+
+        self.dsn_button_stock_picking_export_file_CARRERAS2()
 
         for record in self:
             _name = self.replace_bars(record.name)
