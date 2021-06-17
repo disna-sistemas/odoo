@@ -36,6 +36,9 @@
             <field name="arch" type="xml">
                 <field name="product_uom" position="after">
                     <field name="bom_id" />
+                    <field name="dsn_bom_code" />
+                    <field name="dsn_bom_version" />
+                    <field name="dsn_bom_state" />
                 </field>
                 <field name="avg_cost" position="after">
                     <field name="std_cost" sum="Total Std Cost" />
