@@ -60,7 +60,7 @@ class dsnMrpProduction(models.Model):
 
     dsn_bom_version = fields.Integer(string="Bom Version", related="bom_id.version", readonly=True)
     dsn_bom_code = fields.Char(string="Bom Code", related="bom_id.code", readonly=True)
-    dsn_bom_state = fields.Char(string="Bom State", related="bom_id.state", readonly=True)
+    dsn_bom_state = fields.Selection(string="Bom State", related="bom_id.state", readonly=True)
 
 class dsnMrpProductionWorkcenterLine(models.Model):
     _inherit = "mrp.production.workcenter.line"
