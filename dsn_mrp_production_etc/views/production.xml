@@ -34,6 +34,9 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp_production_estimated_cost.mrp_production_tree_view_inh_estimatedcost"/>
             <field name="arch" type="xml">
+                <field name="product_uom" position="after">
+                    <field name="bom_id" />
+                </field>
                 <field name="avg_cost" position="after">
                     <field name="std_cost" sum="Total Std Cost" />
                 </field>
