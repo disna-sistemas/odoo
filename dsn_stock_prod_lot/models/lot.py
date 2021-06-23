@@ -85,8 +85,8 @@ class dsnStockProductionLot(models.Model):
         for record in self:
             ret = ''
             if record.notes:
-                pos = record.notes.index('COUNTRY')
-                if pos:
+                if record.notes.index('COUNTRY'):
+                    pos = record.notes.index('COUNTRY')
                     ret = record.notes[pos + 10:][:8]
             record.dsn_notes_country = ret
 
