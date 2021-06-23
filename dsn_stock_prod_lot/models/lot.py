@@ -79,6 +79,18 @@ class dsnStockProductionLot(models.Model):
 
                 record.dsn_life_date = datetime.strptime(record.life_date, "%Y-%m-%d %H:%M:%S") + relativedelta(days=days_to_add)
 
+    @api.multi
+    @api.depends('notes')
+    def _compute_notes_country(self):
+        for record in self:
+            ret = ''
+            if record.notes:
+                pos = record.notes.index('COUNTRY')
+                if pos:
+                    ret = record.notes[pos + 10:][:8]
+            record.dsn_notes_country = ret
+
+
 #    @api.multi
 #    def _compute_semi_lots(self):
 #        for record in self:
@@ -124,6 +136,9 @@ class dsnStockProductionLot(models.Model):
                                          string='Lot Components')
 
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
+
+    #El contenido de los 8 caracteres de notes después de 'COUNTRY'
+    dsn_notes_country = fields.Char('Notes Country', compute='_compute_notes_country', store=True)
 
 #    dsn_origin_country_id = fields.Many2one(comodel_name='res.country', string='Origin Country')
 
