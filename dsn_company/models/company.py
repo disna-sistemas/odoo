@@ -43,6 +43,24 @@ class dsnCompany(models.Model):
 
         return True
 
+    @api.multi
+    def dsn_button_mp_assign_coste1(self):
+
+        prodobj = self.env['product.product']
+
+        prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4)])
+
+        for prod in prods:
+            if not prod.default_code.upper().startswith('Z'):
+                trobat = False
+                for catextra in prod.categ_ids:
+                    if catextra == 697:
+                        trobat = True
+                if not trobat:
+                    prod.categ_ids = [(4, 697)]
+
+        return True
+
 
     dsn_logo2 = fields.Binary('Logo Instituto Naturvita', help='Logo for certificates')
     dsn_logo_export = fields.Binary('Export Logo for documents', help='Logo for export docs')

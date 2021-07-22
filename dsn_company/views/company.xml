@@ -16,6 +16,7 @@
 <!--
                             <button name="dsn_button_do_work" confirm="¿Seguro?" colspan="2" string="Asigna países" type="object" icon="gtk-execute" class="oe_inline" />
 -->
+                            <button name="dsn_button_mp_assign_coste1" confirm="¿Asignar coste1 a MPs que no empiezan por Z?" colspan="2" string="Asigna coste1 a MPs" type="object" icon="gtk-execute" class="oe_inline" />
                         </group>
                     </page>
                 </notebook>
