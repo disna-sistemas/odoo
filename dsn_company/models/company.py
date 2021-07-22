@@ -56,7 +56,10 @@ class dsnCompany(models.Model):
                 if catextra.id == 697:
                     trobat = True
             if not trobat:
-                prod.categ_ids = [(4, 697)]
+                if prod.categ_ids:
+                    prod.categ_ids = [(4, 697)]
+                else:
+                    prod.categ_ids = [(6, 0, [697])]
 
         return True
 
