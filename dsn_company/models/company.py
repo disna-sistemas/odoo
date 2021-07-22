@@ -48,19 +48,15 @@ class dsnCompany(models.Model):
 
         prodobj = self.env['product.product']
 
-        prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4)])
+        prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4),('default_code','not ilike','Z')])
 
         for prod in prods:
-            primera_letra = prod.default_code[:1]
-            if primera_letra == "Z":
-                continue
-            else:
-                trobat = False
-                for catextra in prod.categ_ids:
-                    if catextra == 697:
-                        trobat = True
-                if not trobat:
-                    prod.categ_ids = [(4, 697)]
+            trobat = False
+            for catextra in prod.categ_ids:
+                if catextra == 697:
+                    trobat = True
+            if not trobat:
+                prod.categ_ids = [(4, 697)]
 
         return True
 
