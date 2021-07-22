@@ -51,7 +51,8 @@ class dsnCompany(models.Model):
         prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4)])
 
         for prod in prods:
-            if prod.default_code.startswith('Z'):
+            primera_letra = prod.default_code.upper()[:1]
+            if primera_letra == "Z":
                 continue
             else:
                 trobat = False
