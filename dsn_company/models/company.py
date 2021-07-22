@@ -51,7 +51,9 @@ class dsnCompany(models.Model):
         prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4)])
 
         for prod in prods:
-            if not prod.default_code.upper().startswith('Z'):
+            if prod.default_code.upper().startswith('Z'):
+                continue
+            else:
                 trobat = False
                 for catextra in prod.categ_ids:
                     if catextra == 697:
