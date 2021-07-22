@@ -45,21 +45,21 @@ class dsnCompany(models.Model):
 
     @api.multi
     def dsn_button_mp_assign_coste1(self):
+        _logger = logging.getLogger(__name__)
 
         prodobj = self.env['product.product']
 
-        prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4),('default_code','not ilike','Z')])
+        prods = prodobj.search([('product_tmpl_id.dsncat2_id', '=', 4)])
 
         for prod in prods:
-            trobat = False
+            _trobat = False
             for catextra in prod.categ_ids:
                 if catextra.id == 697:
-                    trobat = True
-            if not trobat:
-                if prod.categ_ids:
-                    prod.categ_ids = [(4, 697)]
-                else:
-                    prod.categ_ids = [(6, 0, [697])]
+                    _trobat = True
+                    _logger.info('CODE ' + prod.default_code)
+
+            if not _trobat:
+                prod.categ_ids = [(4, 697)]
 
         return True
 
