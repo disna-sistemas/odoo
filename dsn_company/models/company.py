@@ -53,7 +53,7 @@ class dsnCompany(models.Model):
         for prod in prods:
             trobat = False
             for catextra in prod.categ_ids:
-                if catextra == 697:
+                if catextra.id == 697:
                     trobat = True
             if not trobat:
                 prod.categ_ids = [(4, 697)]
