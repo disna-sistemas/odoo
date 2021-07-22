@@ -138,7 +138,7 @@ class dsnStockProductionLot(models.Model):
     dsn_production_id = fields.Many2one(comodel_name='mrp.production', string='Producción')
 
     #El contenido de los 8 caracteres de notes después de 'COUNTRY'
-    dsn_notes_country = fields.Char('Notes Country', compute='_compute_notes_country', store=True)
+#    dsn_notes_country = fields.Char('Notes Country', compute='_compute_notes_country', store=True)
 
 #    dsn_origin_country_id = fields.Many2one(comodel_name='res.country', string='Origin Country')
 
