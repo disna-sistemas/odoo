@@ -53,13 +53,13 @@ class dsnCompany(models.Model):
 
         for prod in prods:
             _trobat = False
-            for catextra in prod.categ_ids:
+            for catextra in prod.product_tmpl_id.categ_ids:
                 if catextra.id == 697:
                     _trobat = True
                     _logger.info(prod.default_code)
 
             if not _trobat:
-                prod.categ_ids = [(4, 697)]
+                prod.product_tmpl_id.categ_ids = [(4, 697)]
 
         return True
 
