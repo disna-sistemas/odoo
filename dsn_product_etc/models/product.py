@@ -89,7 +89,10 @@ class ProductTemplate(models.Model):
                             'purchase_line_warn_msg', 'produce_delay', 'purchase_ok', 'purchase_requisition', 'raw_material', 'reference_mask',
                             'removal_time', 'rental', 'sale_delay', 'sale_ok', 'sale_line_warn_msg', 'state', 'uom_id', 'uom_po_id', 'uop_id',
                             'uos_coeff', 'uos_id', 'use_time', 'track_all', 'track_incoming', 'track_outgoing', 'track_production', 'type',
-                            'volume', 'warranty', 'weight', 'weight_net' ]
+                            'volume', 'warranty', 'weight', 'weight_net', 'dsn_length', 'dsn_width', 'dsn_height', 'dsn_net_volume',
+                            'dsn_box_prefer_desc1', 'dsn_box_prefer_desc_en','dsn_box_weight', 'dsn_box_length', 'dsn_box_width', 'dsn_box_height',
+                            'dsn_box_volume', 'dsn_box_barcode', 'dsn_box_units', 'dsn_box_config', 'dsn_super_box_barcode', 'dsn_super_box_units',
+                            'dsn_super_box_config']
 
 
                         for _field in _forbidden_fields:
